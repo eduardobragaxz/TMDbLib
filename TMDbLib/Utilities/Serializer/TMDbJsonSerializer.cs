@@ -15,15 +15,22 @@ public class TMDbJsonSerializer : ITMDbSerializer
 
     private TMDbJsonSerializer()
     {
-        JsonSerializerOptions = new();
-        JsonSerializerOptions.Converters.Add(new ChangeItemConverter());
-        JsonSerializerOptions.Converters.Add(new AccountStateConverterFactory());
-        JsonSerializerOptions.Converters.Add(new KnownForConverter());
-        JsonSerializerOptions.Converters.Add(new CombinedCreditsCastConverter());
-        JsonSerializerOptions.Converters.Add(new CombinedCreditsCrewConverter());
-        JsonSerializerOptions.Converters.Add(new SearchBaseConverter());
-        JsonSerializerOptions.Converters.Add(new TaggedImageConverter());
-        JsonSerializerOptions.Converters.Add(new TolerantEnumConverter());
+        JsonSerializerOptions = new()
+        {
+            Converters =
+            {
+                new ChangeItemConverter(),
+                new AccountStateConverterFactory(),
+                new KnownForConverter(),
+                new CombinedCreditsCastConverter(),
+                new CombinedCreditsCrewConverter(),
+                new SearchBaseConverter(),
+                new TaggedImageConverter(),
+                new TolerantEnumConverter(),
+                new TmdbUtcTimeConverter(),
+                new TmdbNullIntAsZero()
+            }
+        };
     }
 
     /// <summary>

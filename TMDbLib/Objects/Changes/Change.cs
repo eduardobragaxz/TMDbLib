@@ -12,7 +12,6 @@ public class Change
     /// Gets or sets the list of change items.
     /// </summary>
     [JsonPropertyName("items")]
-    [JsonObjectCreationHandling(JsonObjectCreationHandling.Populate)]
     public List<ChangeItemBase>? Items { get; set; }
 
     /// <summary>

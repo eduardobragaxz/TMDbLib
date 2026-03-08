@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
@@ -7,40 +8,43 @@ using TMDbLib.Objects.People;
 
 namespace TMDbLib.Utilities.Converters;
 
-internal class CombinedCreditsCrewConverter : JsonConverter<CombinedCreditsCrewBase>
+internal class CombinedCreditsCrewConverter : JsonConverter<List<CombinedCreditsCrewBase?>>
 {
     public override bool CanConvert(Type objectType)
     {
-        return objectType == typeof(CombinedCreditsCrewBase);
+        return objectType == typeof(List<CombinedCreditsCrewBase>);
     }
 
-    public override CombinedCreditsCrewBase? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override List<CombinedCreditsCrewBase?> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var jObject = JsonObject.Create(JsonElement.ParseValue(ref reader));
+        var jElement = JsonElement.ParseValue(ref reader);
 
-        var target = GetInstance(jObject!);
-
-        // using var jsonReader = jObject.CreateReader();
-        // serializer.Populate(jsonReader, target!);
+        var target = GetInstance(jElement!);
 
         return target;
     }
 
-    public override void Write(Utf8JsonWriter writer, CombinedCreditsCrewBase value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, List<CombinedCreditsCrewBase?> value, JsonSerializerOptions options)
     {
         throw new NotImplementedException();
     }
 
-    protected CombinedCreditsCrewBase? GetInstance(JsonObject jObject)
+    protected List<CombinedCreditsCrewBase?> GetInstance(JsonElement jElement)
     {
-        var mediaType = jObject["media_type"]?.GetValue<MediaType>();
+        List<CombinedCreditsCrewBase?> combinedCreditsCrewBase = [];
+        using JsonElement.ArrayEnumerator arrayEnumerator = jElement.EnumerateArray();
 
-        return mediaType switch
+        foreach (var m in arrayEnumerator)
         {
-            MediaType.Movie => new CombinedCreditsCrewMovie(),
-            MediaType.Tv => new CombinedCreditsCrewTv(),
-            null => null,
-            _ => throw new ArgumentOutOfRangeException(nameof(jObject)),
-        };
+            var mediaType = m.GetProperty("media_type").Deserialize<MediaType>();
+            combinedCreditsCrewBase.Add(mediaType switch
+            {
+                MediaType.Movie => m.Deserialize<CombinedCreditsCrewMovie>(),
+                MediaType.Tv => m.Deserialize<CombinedCreditsCrewTv>(),
+                _ => null
+            });
+        }
+
+        return combinedCreditsCrewBase;
     }
 }

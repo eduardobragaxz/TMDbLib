@@ -126,7 +126,6 @@ public class Person
     /// Gets or sets the tagged images.
     /// </summary>
     [JsonPropertyName("tagged_images")]
-    [JsonObjectCreationHandling(JsonObjectCreationHandling.Populate)]
     public SearchContainer<TaggedImage>? TaggedImages { get; set; }
 
     /// <summary>

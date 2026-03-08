@@ -8,7 +8,7 @@ namespace TMDbLib.Utilities.Converters;
 /// <summary>
 /// JSON converter that treats null integer values as zero.
 /// </summary>
-public class TmdbNullIntAsZero : JsonConverter<int?>
+public class TmdbNullIntAsZero : JsonConverter<int>
 {
     /// <summary>
     /// Determines whether this instance can convert the specified object type.
@@ -27,16 +27,20 @@ public class TmdbNullIntAsZero : JsonConverter<int?>
     /// <param name="typeToConvert">Type of the object.</param>
     /// <param name="options">The calling serializer.</param>
     /// <returns>The object value, or zero if the value is null.</returns>
-    public override int? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override int Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var tokenString = reader.GetString();
-
-        if (tokenString is null)
+        if (reader.TokenType == JsonTokenType.Number)
         {
-            return 0;
+            int value = reader.GetInt32();
+
+            return value;
+        }
+        else if (reader.TokenType == JsonTokenType.String)
+        {
+            return int.TryParse(reader.GetString(), out int result) ? result : -1;
         }
 
-        return Convert.ToInt32(tokenString, CultureInfo.InvariantCulture);
+        return 0;
     }
 
     /// <summary>
@@ -45,14 +49,14 @@ public class TmdbNullIntAsZero : JsonConverter<int?>
     /// <param name="writer">The <see cref="Utf8JsonWriter"/> to write to.</param>
     /// <param name="value">The value to write.</param>
     /// <param name="options">Serializer options.</param>
-    public override void Write(Utf8JsonWriter writer, int? value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, int value, JsonSerializerOptions options)
     {
-        if (value is null)
-        {
-            writer.WriteNullValue();
-            return;
-        }
+        //if (value is null)
+        //{
+        //    writer.WriteNullValue();
+        //    return;
+        //}
 
-        writer.WriteStringValue(value.Value.ToString(string.Empty, CultureInfo.InvariantCulture));
+        //writer.WriteStringValue(value.Value.ToString(string.Empty, CultureInfo.InvariantCulture));
     }
 }

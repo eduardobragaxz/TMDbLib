@@ -13,7 +13,6 @@ public class CombinedCredits
     /// Gets or sets the list of combined cast roles (both movie and TV).
     /// </summary>
     [JsonPropertyName("cast")]
-    [JsonObjectCreationHandling(JsonObjectCreationHandling.Populate)]
     [JsonConverter(typeof(CombinedCreditsCastConverter))]
     public List<CombinedCreditsCastBase>? Cast { get; set; }
 
@@ -21,7 +20,6 @@ public class CombinedCredits
     /// Gets or sets the list of combined crew jobs (both movie and TV).
     /// </summary>
     [JsonPropertyName("crew")]
-    [JsonObjectCreationHandling(JsonObjectCreationHandling.Populate)]
     [JsonConverter(typeof(CombinedCreditsCrewConverter))]
     public List<CombinedCreditsCrewBase>? Crew { get; set; }
 

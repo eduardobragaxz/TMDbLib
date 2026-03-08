@@ -1,39 +1,52 @@
 using System;
+using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
+using System.Xml.Linq;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.People;
+using TMDbLib.Objects.Search;
 
 namespace TMDbLib.Utilities.Converters;
 
-internal class CombinedCreditsCastConverter : JsonConverter<CombinedCreditsCastBase>
+internal class CombinedCreditsCastConverter : JsonConverter<List<CombinedCreditsCastBase?>>
 {
     public override bool CanConvert(Type objectType)
     {
-        return objectType == typeof(CombinedCreditsCastBase);
+        return objectType == typeof(List<CombinedCreditsCastBase>);
     }
 
-    public override CombinedCreditsCastBase? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override List<CombinedCreditsCastBase?> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        var jElement = JsonElement.ParseValue(ref reader);
+
+        var target = GetInstance(jElement!);
+
+        return target;
+    }
+
+    public override void Write(Utf8JsonWriter writer, List<CombinedCreditsCastBase?> value, JsonSerializerOptions options)
     {
         throw new NotImplementedException();
     }
 
-    public override void Write(Utf8JsonWriter writer, CombinedCreditsCastBase value, JsonSerializerOptions options)
+    protected List<CombinedCreditsCastBase?> GetInstance(JsonElement jElement)
     {
-        throw new NotImplementedException();
-    }
+        List<CombinedCreditsCastBase?> combinedCreditsCastBase = [];
+        using JsonElement.ArrayEnumerator arrayEnumerator = jElement.EnumerateArray();
 
-    protected CombinedCreditsCastBase? GetInstance(JsonObject jObject)
-    {
-        var mediaType = jObject["media_type"]?.GetValue<MediaType>();
-
-        return mediaType switch
+        foreach (var m in arrayEnumerator)
         {
-            MediaType.Movie => new CombinedCreditsCastMovie(),
-            MediaType.Tv => new CombinedCreditsCastTv(),
-            null => null,
-            _ => throw new ArgumentOutOfRangeException(nameof(jObject)),
-        };
+            var mediaType = m.GetProperty("media_type").Deserialize<MediaType>();
+            combinedCreditsCastBase.Add(mediaType switch
+            {
+                MediaType.Movie => m.Deserialize<CombinedCreditsCastMovie>(),
+                MediaType.Tv => m.Deserialize<CombinedCreditsCastTv>(),
+                _ => null
+            });
+        }
+
+        return combinedCreditsCastBase;
     }
 }

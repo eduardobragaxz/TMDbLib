@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
+using TMDbLib.Utilities.Converters;
 
 namespace TMDbLib.Objects.Movies;
 
@@ -31,6 +32,7 @@ public class ReleaseDateItem
     /// Gets or sets the release date.
     /// </summary>
     [JsonPropertyName("release_date")]
+    [JsonConverter(typeof(TmdbUtcTimeConverter))]
     public DateTime ReleaseDate { get; set; }
 
     /// <summary>

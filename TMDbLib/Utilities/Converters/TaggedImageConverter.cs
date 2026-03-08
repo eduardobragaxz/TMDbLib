@@ -19,50 +19,11 @@ internal class TaggedImageConverter : JsonConverter<TaggedImage>
     {
         var jObject = JsonObject.Create(JsonElement.ParseValue(ref reader));
 
-        var result = new TaggedImage();
-
-        var mediaJson = jObject?["media"];
-        if (mediaJson is not null)
-        {
-            result.Media = result.MediaType switch
-            {
-                MediaType.Movie => mediaJson.GetValue<SearchMovie>(),
-                MediaType.Tv => mediaJson.GetValue<SearchTv>(),
-                MediaType.Episode => mediaJson.GetValue<SearchTvEpisode>(),
-                MediaType.Season => mediaJson.GetValue<SearchTvSeason>(),
-                _ => throw new ArgumentOutOfRangeException(),
-            };
-        }
+        using JsonDocument document = JsonDocument.Parse(jObject!.ToJsonString());
+        var result = document.RootElement.Deserialize<TaggedImage>();
 
         return result;
     }
-
-    // public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
-    // {
-    //    var jObject = JObject.Load(reader);
-
-    // var result = new TaggedImage();
-
-    // using (JsonReader jsonReader = jObject.CreateReader())
-    //    {
-    //        serializer.Populate(jsonReader, result!);
-    //    }
-
-    // var mediaJson = jObject["media"];
-    //    if (mediaJson is not null)
-    //    {
-    //        result.Media = result.MediaType switch
-    //        {
-    //            MediaType.Movie => mediaJson.ToObject<SearchMovie>(),
-    //            MediaType.Tv => mediaJson.ToObject<SearchTv>(),
-    //            MediaType.Episode => mediaJson.ToObject<SearchTvEpisode>(),
-    //            MediaType.Season => mediaJson.ToObject<SearchTvSeason>(),
-    //            _ => throw new ArgumentOutOfRangeException(),
-    //        };
-    //    }
-
-    // return result;
-    // }
 
     public override void Write(Utf8JsonWriter writer, TaggedImage value, JsonSerializerOptions options)
     {
@@ -76,16 +37,4 @@ internal class TaggedImageConverter : JsonConverter<TaggedImage>
         writer.WritePropertyName("value");
         // jToken.WriteTo(writer);
     }
-
-    // public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
-    // {
-    //    if (value is null)
-    //    {
-    //        writer.WriteNull();
-    //        return;
-    //    }
-
-    // var jToken = JToken.FromObject(value);
-    //    jToken.WriteTo(writer);
-    // }
 }

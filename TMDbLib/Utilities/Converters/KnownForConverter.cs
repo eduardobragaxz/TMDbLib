@@ -20,9 +20,6 @@ internal class KnownForConverter : JsonConverter<List<KnownForBase?>>
 
         var target = GetInstance(jElement!);
 
-        // using var jsonReader = jObject.CreateReader();
-        // serializer.Populate(jsonReader, target!);
-
         return target;
     }
 
@@ -42,8 +39,9 @@ internal class KnownForConverter : JsonConverter<List<KnownForBase?>>
     protected List<KnownForBase?> GetInstance(JsonElement jElement)
     {
         List<KnownForBase?> knownForBaseList = [];
+        using JsonElement.ArrayEnumerator arrayEnumerator = jElement.EnumerateArray();
 
-        foreach (var m in jElement.EnumerateArray())
+        foreach (var m in arrayEnumerator)
         {
             var mediaType = m.GetProperty("media_type").Deserialize<MediaType>();
 

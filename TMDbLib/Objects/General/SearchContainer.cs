@@ -19,7 +19,6 @@ public class SearchContainer<T>
     /// Gets or sets the list of results.
     /// </summary>
     [JsonPropertyName("results")]
-    [JsonObjectCreationHandling(JsonObjectCreationHandling.Populate)]
     public List<T>? Results { get; set; }
 
     /// <summary>

@@ -39,7 +39,7 @@ internal class SearchBaseConverter : JsonConverter<SearchBase>
                 MediaType.Season => document.RootElement.Deserialize<SearchTvSeason>(),
                 MediaType.TvSeason => document.RootElement.Deserialize<SearchTvSeason>(),
                 MediaType.Collection => document.RootElement.Deserialize<SearchCollection>(),
-                _ => throw new ArgumentOutOfRangeException(),
+                _ => throw new ArgumentOutOfRangeException(nameof(reader)),
             };
         }
 
