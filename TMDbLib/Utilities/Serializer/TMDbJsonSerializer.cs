@@ -29,7 +29,8 @@ public class TMDbJsonSerializer : ITMDbSerializer
                 new TolerantEnumConverter(),
                 new TmdbUtcTimeConverter(),
                 new TmdbNullIntAsZero()
-            }
+            },
+            TypeInfoResolver = SourceGenerationContext.Default
         };
     }
 

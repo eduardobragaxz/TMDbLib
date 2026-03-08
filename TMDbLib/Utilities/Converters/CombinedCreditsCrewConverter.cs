@@ -36,11 +36,11 @@ internal class CombinedCreditsCrewConverter : JsonConverter<List<CombinedCredits
 
         foreach (var m in arrayEnumerator)
         {
-            var mediaType = m.GetProperty("media_type").Deserialize<MediaType>();
+            var mediaType = m.GetProperty("media_type").Deserialize<MediaType>(SourceGenerationContext.Default.MediaType);
             combinedCreditsCrewBase.Add(mediaType switch
             {
-                MediaType.Movie => m.Deserialize<CombinedCreditsCrewMovie>(),
-                MediaType.Tv => m.Deserialize<CombinedCreditsCrewTv>(),
+                MediaType.Movie => m.Deserialize<CombinedCreditsCrewMovie>(SourceGenerationContext.Default.CombinedCreditsCrewMovie),
+                MediaType.Tv => m.Deserialize<CombinedCreditsCrewTv>(SourceGenerationContext.Default.CombinedCreditsCrewTv),
                 _ => null
             });
         }

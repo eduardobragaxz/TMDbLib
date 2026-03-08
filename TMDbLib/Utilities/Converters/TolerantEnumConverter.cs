@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -59,11 +60,20 @@ public class TolerantEnumConverter : JsonConverter<object>
         else if (reader.TokenType == JsonTokenType.Number)
         {
             var enumVal = reader.GetInt32();
-            var values = (int[])Enum.GetValues(enumType);
-            if (values.Contains(enumVal))
+            var values = enumType.GetEnumValuesAsUnderlyingType();
+
+            foreach (var dd in values)
             {
-                return Enum.Parse(enumType, enumVal.ToString(CultureInfo.InvariantCulture));
+                if (dd.Equals(enumVal))
+                {
+                    return Enum.Parse(enumType, enumVal.ToString(CultureInfo.InvariantCulture));
+                }
             }
+
+            // if (values.GetValue(enumVal) is not null)
+            // {
+            //    return Enum.Parse(enumType, enumVal.ToString(CultureInfo.InvariantCulture));
+            // }
         }
 
         if (!isNullable)

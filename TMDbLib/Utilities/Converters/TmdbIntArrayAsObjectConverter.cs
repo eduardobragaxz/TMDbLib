@@ -28,13 +28,13 @@ internal class TmdbIntArrayAsObjectConverter : JsonConverter<List<int>>
         var jElement = JsonElement.ParseValue(ref reader);
         if (reader.TokenType == JsonTokenType.StartArray)
         {
-            return JsonSerializer.Deserialize<List<int>>(jElement);
+            return JsonSerializer.Deserialize<List<int>>(jElement, SourceGenerationContext.Default.ListInt32);
             // return serializer.Deserialize<List<int>>(reader);
         }
 
         if (reader.TokenType == JsonTokenType.EndArray)
         {
-            return JsonSerializer.Deserialize<List<int>>(jElement);
+            return JsonSerializer.Deserialize<List<int>>(jElement, SourceGenerationContext.Default.ListInt32);
             // return serializer.Deserialize<List<int>>(reader);
         }
 
@@ -61,7 +61,7 @@ internal class TmdbIntArrayAsObjectConverter : JsonConverter<List<int>>
         }
 
         // Pass-through
-        JsonSerializer.Serialize(writer, value);
+        JsonSerializer.Serialize(writer, value, SourceGenerationContext.Default.ListInt32);
         // serializer.Serialize(writer, value);
     }
 }

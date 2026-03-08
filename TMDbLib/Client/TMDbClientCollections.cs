@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -70,11 +70,12 @@ public partial class TMDbClient
 
         var appends = string.Join(
             ",",
-            Enum.GetValues(typeof(CollectionMethods))
-                                         .OfType<CollectionMethods>()
-                                         .Except([CollectionMethods.Undefined])
-                                         .Where(s => extraMethods.HasFlag(s))
-                                         .Select(s => s.GetDescription()));
+            typeof(CollectionMethods)
+            .GetEnumValuesAsUnderlyingType()
+            .OfType<CollectionMethods>()
+            .Except([CollectionMethods.Undefined])
+            .Where(s => extraMethods.HasFlag(s))
+            .Select(s => s.GetDescription()));
 
         if (appends != string.Empty)
         {

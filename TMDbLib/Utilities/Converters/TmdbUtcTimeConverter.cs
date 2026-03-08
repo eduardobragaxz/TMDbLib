@@ -12,6 +12,11 @@ public class TmdbUtcTimeConverter : JsonConverter<DateTime>
 {
     private const string Format = "yyyy-MM-dd HH:mm:ss 'UTC'";
 
+    /// <summary>
+    /// Determines whether this instance can convert the specified object type.
+    /// </summary>
+    /// <param name="typeToConvert">Type of the object.</param>
+    /// <returns>True if this converter can convert the type; otherwise, false.</returns>
     public override bool CanConvert(Type typeToConvert)
     {
         return typeToConvert == typeof(DateTime);

@@ -7,6 +7,7 @@
     <PackageId>TMDbLib</PackageId>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
     <Nullable>enable</Nullable>
+    <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
   <!-- Analyzers -->

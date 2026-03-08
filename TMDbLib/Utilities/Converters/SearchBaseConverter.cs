@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
@@ -27,18 +28,18 @@ internal class SearchBaseConverter : JsonConverter<SearchBase>
         {
             // Determine the type based on the media_type
             using JsonDocument document = JsonDocument.Parse(jObject.ToJsonString());
-            var mediaType = document.RootElement.GetProperty("media_type").Deserialize<MediaType>();
+            var mediaType = document.RootElement.GetProperty("media_type").Deserialize<MediaType>(SourceGenerationContext.Default.MediaType);
 
             result = mediaType switch
             {
-                MediaType.Movie => document.RootElement.Deserialize<SearchMovie>(),
-                MediaType.Tv => document.RootElement.Deserialize<SearchTv>(),
-                MediaType.Person => document.RootElement.Deserialize<SearchPerson>(),
-                MediaType.Episode => document.RootElement.Deserialize<SearchTvEpisode>(),
-                MediaType.TvEpisode => document.RootElement.Deserialize<SearchTvEpisode>(),
-                MediaType.Season => document.RootElement.Deserialize<SearchTvSeason>(),
-                MediaType.TvSeason => document.RootElement.Deserialize<SearchTvSeason>(),
-                MediaType.Collection => document.RootElement.Deserialize<SearchCollection>(),
+                MediaType.Movie => document.RootElement.Deserialize<SearchMovie>(SourceGenerationContext.Default.SearchMovie),
+                MediaType.Tv => document.RootElement.Deserialize<SearchTv>(SourceGenerationContext.Default.SearchTv),
+                MediaType.Person => document.RootElement.Deserialize<SearchPerson>(SourceGenerationContext.Default.SearchPerson),
+                MediaType.Episode => document.RootElement.Deserialize<SearchTvEpisode>(SourceGenerationContext.Default.SearchTvEpisode),
+                MediaType.TvEpisode => document.RootElement.Deserialize<SearchTvEpisode>(SourceGenerationContext.Default.SearchTvEpisode),
+                MediaType.Season => document.RootElement.Deserialize<SearchTvSeason>(SourceGenerationContext.Default.SearchTvSeason),
+                MediaType.TvSeason => document.RootElement.Deserialize<SearchTvSeason>(SourceGenerationContext.Default.SearchTvSeason),
+                MediaType.Collection => document.RootElement.Deserialize<SearchCollection>(SourceGenerationContext.Default.SearchCollection),
                 _ => throw new ArgumentOutOfRangeException(nameof(reader)),
             };
         }

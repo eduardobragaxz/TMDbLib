@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -154,11 +154,12 @@ public partial class TMDbClient
 
         var appends = string.Join(
             ",",
-            Enum.GetValues(typeof(TvShowMethods))
-                                         .OfType<TvShowMethods>()
-                                         .Except([TvShowMethods.Undefined])
-                                         .Where(s => extraMethods.HasFlag(s))
-                                         .Select(s => s.GetDescription()));
+            typeof(TvShowMethods)
+            .GetEnumValuesAsUnderlyingType()
+            .OfType<TvShowMethods>()
+            .Except([TvShowMethods.Undefined])
+            .Where(s => extraMethods.HasFlag(s))
+            .Select(s => s.GetDescription()));
 
         if (appends != string.Empty)
         {

@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
@@ -21,6 +23,7 @@ internal class ChangeItemConverter : JsonConverter<ChangeItemBase?>
         if (jObject?["action"] is null)
         {
             // We cannot determine the correct type, let's hope we were provided one
+
             var instance = Activator.CreateInstance(typeToConvert);
             result = instance as ChangeItemBase;
         }
@@ -29,26 +32,15 @@ internal class ChangeItemConverter : JsonConverter<ChangeItemBase?>
             // Determine the type based on the media_type
             var mediaType = jObject["action"]?.GetValue<ChangeAction>();
 
-            switch (mediaType)
+            result = mediaType switch
             {
-                case ChangeAction.Added:
-                    result = new ChangeItemAdded();
-                    break;
-                case ChangeAction.Created:
-                    result = new ChangeItemCreated();
-                    break;
-                case ChangeAction.Updated:
-                    result = new ChangeItemUpdated();
-                    break;
-                case ChangeAction.Deleted:
-                    result = new ChangeItemDeleted();
-                    break;
-                case ChangeAction.Destroyed:
-                    result = new ChangeItemDestroyed();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                ChangeAction.Added => new ChangeItemAdded(),
+                ChangeAction.Created => new ChangeItemCreated(),
+                ChangeAction.Updated => new ChangeItemUpdated(),
+                ChangeAction.Deleted => new ChangeItemDeleted(),
+                ChangeAction.Destroyed => new ChangeItemDestroyed(),
+                _ => throw new ArgumentOutOfRangeException(nameof(reader)),
+            };
         }
 
         // Populate the result
@@ -69,7 +61,7 @@ internal class ChangeItemConverter : JsonConverter<ChangeItemBase?>
             return;
         }
 
-        JsonSerializer.Serialize(writer, value);
+        JsonSerializer.Serialize(writer, value, SourceGenerationContext.Default.ChangeItemBase);
         // var jToken = JToken.FromObject(value);
         // serializer.Serialize(writer, jToken);
     }

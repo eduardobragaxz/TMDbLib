@@ -80,7 +80,7 @@ internal class AccountStateConverter : JsonConverter<AccountState>
             return;
         }
 
-        var jsonObject = JsonSerializer.SerializeToNode(value)?.AsObject();
+        var jsonObject = JsonSerializer.SerializeToNode(value, SourceGenerationContext.Default.AccountState)?.AsObject();
 
         if (jsonObject != null)
         {

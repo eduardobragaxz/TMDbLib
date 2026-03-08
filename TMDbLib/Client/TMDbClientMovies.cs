@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -196,11 +196,12 @@ public sealed partial class TMDbClient
 
         var appends = string.Join(
             ",",
-            Enum.GetValues(typeof(MovieMethods))
-                                         .OfType<MovieMethods>()
-                                         .Except([MovieMethods.Undefined])
-                                         .Where(s => extraMethods.HasFlag(s))
-                                         .Select(s => s.GetDescription()));
+            typeof(MovieMethods)
+            .GetEnumValuesAsUnderlyingType()
+            .OfType<MovieMethods>()
+            .Except([MovieMethods.Undefined])
+            .Where(s => extraMethods.HasFlag(s))
+            .Select(s => s.GetDescription()));
 
         if (appends != string.Empty)
         {

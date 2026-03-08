@@ -9,6 +9,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using TMDbLib.Objects.Exceptions;
+using TMDbLib.Utilities;
 using TMDbLib.Utilities.Serializer;
 
 namespace TMDbLib.Rest;
@@ -210,7 +211,7 @@ internal class RestRequest
 
             if (isJson)
             {
-                statusMessage = JsonSerializer.Deserialize<TMDbStatusMessage>(await resp.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false));
+                statusMessage = JsonSerializer.Deserialize<TMDbStatusMessage>(await resp.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false), SourceGenerationContext.Default.TMDbStatusMessage);
             }
             else
             {

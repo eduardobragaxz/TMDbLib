@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -9,7 +10,7 @@ internal static class EnumMemberCache
 {
     private static readonly Dictionary<Type, Dictionary<object, string?>> _memberCache = [];
 
-    private static Dictionary<object, string?> GetOrPrepareCache(Type type)
+    private static Dictionary<object, string?> GetOrPrepareCache([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type type)
     {
         if (!type.GetTypeInfo().IsEnum)
         {
@@ -26,6 +27,8 @@ internal static class EnumMemberCache
         }
 
         cache = [];
+
+        IEnumerable<FieldInfo> fieldInfos = type.GetTypeInfo().GetDefaultMembers().OfType<FieldInfo>().Where(s => s.IsStatic);
 
         foreach (var fieldInfo in type.GetTypeInfo().DeclaredMembers.OfType<FieldInfo>().Where(s => s.IsStatic))
         {

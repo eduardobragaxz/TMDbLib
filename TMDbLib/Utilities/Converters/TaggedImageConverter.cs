@@ -20,7 +20,7 @@ internal class TaggedImageConverter : JsonConverter<TaggedImage>
         var jObject = JsonObject.Create(JsonElement.ParseValue(ref reader));
 
         using JsonDocument document = JsonDocument.Parse(jObject!.ToJsonString());
-        var result = document.RootElement.Deserialize<TaggedImage>();
+        var result = document.RootElement.Deserialize<TaggedImage>(SourceGenerationContext.Default.TaggedImage);
 
         return result;
     }
