@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
 namespace TMDbLib.Utilities.Converters;
@@ -12,7 +13,7 @@ internal class TmdbIntArrayAsObjectConverter : JsonConverter<List<int>>
 {
     public override bool CanConvert(Type objectType)
     {
-        throw new NotSupportedException();
+        return objectType is object;
     }
 
     public override List<int>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -24,10 +25,16 @@ internal class TmdbIntArrayAsObjectConverter : JsonConverter<List<int>>
         // To:
         //  "genre_ids": []
         //  "genre_ids": [ 1 ]
-
+        var jElement = JsonElement.ParseValue(ref reader);
         if (reader.TokenType == JsonTokenType.StartArray)
         {
-            return JsonSerializer.Deserialize<List<int>>(reader.GetByte());
+            return JsonSerializer.Deserialize<List<int>>(jElement);
+            // return serializer.Deserialize<List<int>>(reader);
+        }
+
+        if (reader.TokenType == JsonTokenType.EndArray)
+        {
+            return JsonSerializer.Deserialize<List<int>>(jElement);
             // return serializer.Deserialize<List<int>>(reader);
         }
 

@@ -17,7 +17,6 @@ internal class SearchBaseConverter : JsonConverter<SearchBase>
     public override SearchBase? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         var jObject = JsonObject.Create(JsonElement.ParseValue(ref reader));
-
         SearchBase? result;
         if (jObject?["media_type"] is null)
         {
@@ -27,28 +26,22 @@ internal class SearchBaseConverter : JsonConverter<SearchBase>
         else
         {
             // Determine the type based on the media_type
-            MediaType mediaType = jObject["media_type"]!.GetValue<MediaType>();
+            using JsonDocument document = JsonDocument.Parse(jObject.ToJsonString());
+            var mediaType = document.RootElement.GetProperty("media_type").Deserialize<MediaType>();
 
             result = mediaType switch
             {
-                MediaType.Movie => new SearchMovie(),
-                MediaType.Tv => new SearchTv(),
-                MediaType.Person => new SearchPerson(),
-                MediaType.Episode => new SearchTvEpisode(),
-                MediaType.TvEpisode => new SearchTvEpisode(),
-                MediaType.Season => new SearchTvSeason(),
-                MediaType.TvSeason => new SearchTvSeason(),
-                MediaType.Collection => new SearchCollection(),
+                MediaType.Movie => document.RootElement.Deserialize<SearchMovie>(),
+                MediaType.Tv => document.RootElement.Deserialize<SearchTv>(),
+                MediaType.Person => document.RootElement.Deserialize<SearchPerson>(),
+                MediaType.Episode => document.RootElement.Deserialize<SearchTvEpisode>(),
+                MediaType.TvEpisode => document.RootElement.Deserialize<SearchTvEpisode>(),
+                MediaType.Season => document.RootElement.Deserialize<SearchTvSeason>(),
+                MediaType.TvSeason => document.RootElement.Deserialize<SearchTvSeason>(),
+                MediaType.Collection => document.RootElement.Deserialize<SearchCollection>(),
                 _ => throw new ArgumentOutOfRangeException(),
             };
         }
-
-        // Populate the result
-        // if (result is not null)
-        // {
-        //    using var jsonReader = jObject.CreateReader();
-        //    serializer.Populate(jsonReader, result);
-        // }
 
         return result;
     }

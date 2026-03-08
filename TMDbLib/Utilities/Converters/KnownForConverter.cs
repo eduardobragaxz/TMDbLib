@@ -1,24 +1,24 @@
 using System;
+using System.Collections.Generic;
 using System.Text.Json;
-using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
 
 namespace TMDbLib.Utilities.Converters;
 
-internal class KnownForConverter : JsonConverter<KnownForBase>
+internal class KnownForConverter : JsonConverter<List<KnownForBase?>>
 {
     public override bool CanConvert(Type objectType)
     {
-        return objectType == typeof(KnownForBase);
+        return objectType == typeof(List<KnownForBase>);
     }
 
-    public override KnownForBase? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override List<KnownForBase?> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var jObject = JsonObject.Create(JsonElement.ParseValue(ref reader));
+        var jElement = JsonElement.ParseValue(ref reader);
 
-        var target = GetInstance(jObject!);
+        var target = GetInstance(jElement!);
 
         // using var jsonReader = jObject.CreateReader();
         // serializer.Populate(jsonReader, target!);
@@ -26,7 +26,7 @@ internal class KnownForConverter : JsonConverter<KnownForBase>
         return target;
     }
 
-    public override void Write(Utf8JsonWriter writer, KnownForBase value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, List<KnownForBase?> value, JsonSerializerOptions options)
     {
         if (value is null)
         {
@@ -39,16 +39,30 @@ internal class KnownForConverter : JsonConverter<KnownForBase>
         // jToken.WriteTo(writer);
     }
 
-    protected KnownForBase? GetInstance(JsonObject jObject)
+    protected List<KnownForBase?> GetInstance(JsonElement jElement)
     {
-        MediaType? mediaType = jObject["media_type"]!.GetValue<MediaType>();
+        List<KnownForBase?> knownForBaseList = [];
 
-        return mediaType switch
+        foreach (var m in jElement.EnumerateArray())
         {
-            MediaType.Movie => new KnownForMovie(),
-            MediaType.Tv => new KnownForTv(),
-            null => null,
-            _ => throw new ArgumentOutOfRangeException(),
-        };
+            var mediaType = m.GetProperty("media_type").Deserialize<MediaType>();
+
+            knownForBaseList.Add(mediaType switch
+            {
+                MediaType.Movie => m.Deserialize<KnownForMovie>(),
+                MediaType.Tv => m.Deserialize<KnownForTv>(),
+                _ => null
+            });
+        }
+
+        return knownForBaseList;
+
+        // return mediaType switch
+        // {
+        //    MediaType.Movie => new KnownForMovie(),
+        //    MediaType.Tv => new KnownForTv(),
+        //    null => null,
+        //    _ => throw new ArgumentOutOfRangeException(),
+        // };
     }
 }

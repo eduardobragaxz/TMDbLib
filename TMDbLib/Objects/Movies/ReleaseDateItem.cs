@@ -31,7 +31,6 @@ public class ReleaseDateItem
     /// Gets or sets the release date.
     /// </summary>
     [JsonPropertyName("release_date")]
-    [JsonConverter(typeof(DateTimeConverter))]
     public DateTime ReleaseDate { get; set; }
 
     /// <summary>

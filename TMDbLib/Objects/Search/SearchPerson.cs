@@ -29,7 +29,6 @@ public class SearchPerson : SearchBase
     /// </summary>
     [JsonPropertyName("known_for")]
     [JsonConverter(typeof(KnownForConverter))]
-    [JsonObjectCreationHandling(JsonObjectCreationHandling.Populate)]
     public List<KnownForBase>? KnownFor { get; set; }
 
     /// <summary>

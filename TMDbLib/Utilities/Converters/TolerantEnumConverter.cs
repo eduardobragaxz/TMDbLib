@@ -58,7 +58,7 @@ public class TolerantEnumConverter : JsonConverter<object>
         }
         else if (reader.TokenType == JsonTokenType.Number)
         {
-            var enumVal = Convert.ToInt32(reader.GetString(), CultureInfo.InvariantCulture);
+            var enumVal = reader.GetInt32();
             var values = (int[])Enum.GetValues(enumType);
             if (values.Contains(enumVal))
             {

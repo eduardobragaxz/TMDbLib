@@ -60,6 +60,6 @@ public class TMDbJsonSerializer : ITMDbSerializer
     {
         using var sr = new StreamReader(source, _encoding, false, 4096, true);
         // using var jr = new JsonTextReader(sr);
-        return System.Text.Json.JsonSerializer.Deserialize(sr.BaseStream, type);
+        return System.Text.Json.JsonSerializer.Deserialize(sr.BaseStream, type, JsonSerializerOptions);
     }
 }
