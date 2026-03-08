@@ -1,34 +1,36 @@
 using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
 
 namespace TMDbLib.Utilities.Converters;
 
-internal abstract class JsonCreationConverter<T> : JsonConverter
+internal abstract class JsonCreationConverter<T> : JsonConverter<T>
 {
-    protected abstract T? GetInstance(JObject jObject);
+    protected abstract T? GetInstance(JsonObject jObject);
 
-    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+    public object? ReadJson(Utf8JsonReader reader, Type objectType, object? existingValue, JsonSerializerOptions serializer)
     {
-        var jObject = JObject.Load(reader);
+        var jObject = JsonObject.Create(JsonElement.ParseValue(ref reader));
 
-        var target = GetInstance(jObject);
+        var target = GetInstance(jObject!);
 
-        using var jsonReader = jObject.CreateReader();
-        serializer.Populate(jsonReader, target!);
+        // using var jsonReader = jObject.CreateReader();
+        // serializer.Populate(jsonReader, target!);
 
         return target;
     }
 
-    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+    public void WriteJson(Utf8JsonWriter writer, object? value, JsonSerializerOptions serializer)
     {
         if (value is null)
         {
-            writer.WriteNull();
+            writer.WriteNullValue();
             return;
         }
 
-        var jToken = JToken.FromObject(value);
-        jToken.WriteTo(writer);
+        writer.WritePropertyName("value");
+        // var jToken = JToken.FromObject(value);
+        // jToken.WriteTo(writer);
     }
 }

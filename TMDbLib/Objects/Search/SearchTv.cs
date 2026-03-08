@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using TMDbLib.Objects.General;
 
 namespace TMDbLib.Objects.Search;
@@ -21,24 +21,24 @@ public class SearchTv : SearchMovieTvBase
     /// <summary>
     /// Gets or sets the first air date of the TV show.
     /// </summary>
-    [JsonProperty("first_air_date")]
+    [JsonPropertyName("first_air_date")]
     public DateTime? FirstAirDate { get; set; }
 
     /// <summary>
     /// Gets or sets the name of the TV show.
     /// </summary>
-    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string? Name { get; set; }
 
     /// <summary>
     /// Gets or sets the original name of the TV show.
     /// </summary>
-    [JsonProperty("original_name")]
+    [JsonPropertyName("original_name")]
     public string? OriginalName { get; set; }
 
     /// <summary>
     /// Gets or sets country ISO code ex. US.
     /// </summary>
-    [JsonProperty("origin_country")]
+    [JsonPropertyName("origin_country")]
     public List<string>? OriginCountry { get; set; }
 }

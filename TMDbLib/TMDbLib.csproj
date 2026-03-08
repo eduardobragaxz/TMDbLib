@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Authors>LordMike;Naliath;Jellyfin Contributors</Authors>
-    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+    <TargetFrameworks>net10.0</TargetFrameworks>
     <AssemblyName>TMDbLib</AssemblyName>
     <PackageId>TMDbLib</PackageId>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
@@ -22,10 +22,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" PrivateAssets="compile" />
   </ItemGroup>
 
   <ItemGroup>

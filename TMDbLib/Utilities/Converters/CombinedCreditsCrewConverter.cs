@@ -1,31 +1,46 @@
 using System;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.People;
 
 namespace TMDbLib.Utilities.Converters;
 
-internal class CombinedCreditsCrewConverter : JsonCreationConverter<CombinedCreditsCrewBase>
+internal class CombinedCreditsCrewConverter : JsonConverter<CombinedCreditsCrewBase>
 {
     public override bool CanConvert(Type objectType)
     {
         return objectType == typeof(CombinedCreditsCrewBase);
     }
 
-    protected override CombinedCreditsCrewBase? GetInstance(JObject jObject)
+    public override CombinedCreditsCrewBase? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var mediaType = jObject["media_type"]?.ToObject<MediaType>();
+        var jObject = JsonObject.Create(JsonElement.ParseValue(ref reader));
 
-        switch (mediaType)
+        var target = GetInstance(jObject!);
+
+        // using var jsonReader = jObject.CreateReader();
+        // serializer.Populate(jsonReader, target!);
+
+        return target;
+    }
+
+    public override void Write(Utf8JsonWriter writer, CombinedCreditsCrewBase value, JsonSerializerOptions options)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected CombinedCreditsCrewBase? GetInstance(JsonObject jObject)
+    {
+        var mediaType = jObject["media_type"]?.GetValue<MediaType>();
+
+        return mediaType switch
         {
-            case MediaType.Movie:
-                return new CombinedCreditsCrewMovie();
-            case MediaType.Tv:
-                return new CombinedCreditsCrewTv();
-            case null:
-                return null;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+            MediaType.Movie => new CombinedCreditsCrewMovie(),
+            MediaType.Tv => new CombinedCreditsCrewTv(),
+            null => null,
+            _ => throw new ArgumentOutOfRangeException(nameof(jObject)),
+        };
     }
 }

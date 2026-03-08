@@ -25,9 +25,9 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder Condition="'$(Configuration)'=='Debug'">$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <PackageReference Include="MinVer" PrivateAssets="all" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <!-- Deterministic build paths, https://devblogs.microsoft.com/dotnet/producing-packages-with-source-link/#deterministic-builds -->
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">

@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text;
-using Newtonsoft.Json;
+using System.Text.Json;
 using TMDbLib.Utilities.Converters;
 
 namespace TMDbLib.Utilities.Serializer;
@@ -11,21 +11,25 @@ namespace TMDbLib.Utilities.Serializer;
 /// </summary>
 public class TMDbJsonSerializer : ITMDbSerializer
 {
-    private readonly JsonSerializer _serializer;
     private readonly Encoding _encoding = new UTF8Encoding(false);
 
     private TMDbJsonSerializer()
     {
-        _serializer = JsonSerializer.CreateDefault();
-        _serializer.Converters.Add(new ChangeItemConverter());
-        _serializer.Converters.Add(new AccountStateConverter());
-        _serializer.Converters.Add(new KnownForConverter());
-        _serializer.Converters.Add(new CombinedCreditsCastConverter());
-        _serializer.Converters.Add(new CombinedCreditsCrewConverter());
-        _serializer.Converters.Add(new SearchBaseConverter());
-        _serializer.Converters.Add(new TaggedImageConverter());
-        _serializer.Converters.Add(new TolerantEnumConverter());
+        JsonSerializerOptions = new();
+        JsonSerializerOptions.Converters.Add(new ChangeItemConverter());
+        JsonSerializerOptions.Converters.Add(new AccountStateConverterFactory());
+        JsonSerializerOptions.Converters.Add(new KnownForConverter());
+        JsonSerializerOptions.Converters.Add(new CombinedCreditsCastConverter());
+        JsonSerializerOptions.Converters.Add(new CombinedCreditsCrewConverter());
+        JsonSerializerOptions.Converters.Add(new SearchBaseConverter());
+        JsonSerializerOptions.Converters.Add(new TaggedImageConverter());
+        JsonSerializerOptions.Converters.Add(new TolerantEnumConverter());
     }
+
+    /// <summary>
+    /// Gets serialization options.
+    /// </summary>
+    public JsonSerializerOptions JsonSerializerOptions { get; }
 
     /// <summary>
     /// Gets the singleton instance of the <see cref="TMDbJsonSerializer"/>.
@@ -41,9 +45,9 @@ public class TMDbJsonSerializer : ITMDbSerializer
     public void Serialize(Stream target, object obj, Type type)
     {
         using var sw = new StreamWriter(target, _encoding, 4096, true);
-        using var jw = new JsonTextWriter(sw);
+        // using var jw = new Utf8JsonWriter(sw.BaseStream);
 
-        _serializer.Serialize(jw, obj, type);
+        JsonSerializer.Serialize(sw.BaseStream, obj, type, JsonSerializerOptions);
     }
 
     /// <summary>
@@ -55,8 +59,7 @@ public class TMDbJsonSerializer : ITMDbSerializer
     public object? Deserialize(Stream source, Type type)
     {
         using var sr = new StreamReader(source, _encoding, false, 4096, true);
-        using var jr = new JsonTextReader(sr);
-
-        return _serializer.Deserialize(jr, type);
+        // using var jr = new JsonTextReader(sr);
+        return System.Text.Json.JsonSerializer.Deserialize(sr.BaseStream, type);
     }
 }

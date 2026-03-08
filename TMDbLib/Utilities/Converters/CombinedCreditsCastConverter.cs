@@ -1,31 +1,39 @@
 using System;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.People;
 
 namespace TMDbLib.Utilities.Converters;
 
-internal class CombinedCreditsCastConverter : JsonCreationConverter<CombinedCreditsCastBase>
+internal class CombinedCreditsCastConverter : JsonConverter<CombinedCreditsCastBase>
 {
     public override bool CanConvert(Type objectType)
     {
         return objectType == typeof(CombinedCreditsCastBase);
     }
 
-    protected override CombinedCreditsCastBase? GetInstance(JObject jObject)
+    public override CombinedCreditsCastBase? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var mediaType = jObject["media_type"]?.ToObject<MediaType>();
+        throw new NotImplementedException();
+    }
 
-        switch (mediaType)
+    public override void Write(Utf8JsonWriter writer, CombinedCreditsCastBase value, JsonSerializerOptions options)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected CombinedCreditsCastBase? GetInstance(JsonObject jObject)
+    {
+        var mediaType = jObject["media_type"]?.GetValue<MediaType>();
+
+        return mediaType switch
         {
-            case MediaType.Movie:
-                return new CombinedCreditsCastMovie();
-            case MediaType.Tv:
-                return new CombinedCreditsCastTv();
-            case null:
-                return null;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+            MediaType.Movie => new CombinedCreditsCastMovie(),
+            MediaType.Tv => new CombinedCreditsCastTv(),
+            null => null,
+            _ => throw new ArgumentOutOfRangeException(nameof(jObject)),
+        };
     }
 }

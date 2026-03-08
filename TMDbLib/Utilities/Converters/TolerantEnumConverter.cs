@@ -1,39 +1,39 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace TMDbLib.Utilities.Converters;
 
 /// <summary>
 /// JSON converter for enum values that gracefully handles unrecognized values by falling back to defaults.
 /// </summary>
-public class TolerantEnumConverter : JsonConverter
+public class TolerantEnumConverter : JsonConverter<object>
 {
     /// <summary>
     /// Determines whether this instance can convert the specified object type.
     /// </summary>
-    /// <param name="objectType">Type of the object.</param>
+    /// <param name="typeToConvert">Type of the object.</param>
     /// <returns>True if this converter can convert the type; otherwise, false.</returns>
-    public override bool CanConvert(Type objectType)
+    public override bool CanConvert(Type typeToConvert)
     {
-        var type = IsNullableType(objectType) ? Nullable.GetUnderlyingType(objectType) : objectType;
+        var type = IsNullableType(typeToConvert) ? Nullable.GetUnderlyingType(typeToConvert) : typeToConvert;
         return type is not null && type.GetTypeInfo().IsEnum;
     }
 
     /// <summary>
     /// Reads the JSON representation of the object.
     /// </summary>
-    /// <param name="reader">The <see cref="JsonReader"/> to read from.</param>
-    /// <param name="objectType">Type of the object.</param>
-    /// <param name="existingValue">The existing value of object being read.</param>
-    /// <param name="serializer">The calling serializer.</param>
+    /// <param name="reader">The <see cref="Utf8JsonReader"/> to read from.</param>
+    /// <param name="typeToConvert">Type of the object.</param>
+    /// <param name="options">The calling serializer.</param>
     /// <returns>The parsed enum value, or a default value if parsing fails.</returns>
-    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+    public override object? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var isNullable = IsNullableType(objectType);
-        var enumType = isNullable ? Nullable.GetUnderlyingType(objectType) : objectType;
+        var isNullable = IsNullableType(typeToConvert);
+        var enumType = isNullable ? Nullable.GetUnderlyingType(typeToConvert) : typeToConvert;
 
         if (enumType is null)
         {
@@ -42,9 +42,9 @@ public class TolerantEnumConverter : JsonConverter
 
         var names = Enum.GetNames(enumType);
 
-        if (reader.TokenType == JsonToken.String)
+        if (reader.TokenType == JsonTokenType.String)
         {
-            var enumText = reader.Value?.ToString();
+            var enumText = reader.GetString();
 
             if (!string.IsNullOrEmpty(enumText))
             {
@@ -56,9 +56,9 @@ public class TolerantEnumConverter : JsonConverter
                 }
             }
         }
-        else if (reader.TokenType == JsonToken.Integer)
+        else if (reader.TokenType == JsonTokenType.Number)
         {
-            var enumVal = Convert.ToInt32(reader.Value, CultureInfo.InvariantCulture);
+            var enumVal = Convert.ToInt32(reader.GetString(), CultureInfo.InvariantCulture);
             var values = (int[])Enum.GetValues(enumType);
             if (values.Contains(enumVal))
             {
@@ -79,18 +79,18 @@ public class TolerantEnumConverter : JsonConverter
     /// <summary>
     /// Writes the JSON representation of the object.
     /// </summary>
-    /// <param name="writer">The <see cref="JsonWriter"/> to write to.</param>
+    /// <param name="writer">The <see cref="Utf8JsonWriter"/> to write to.</param>
     /// <param name="value">The value to write.</param>
-    /// <param name="serializer">The calling serializer.</param>
-    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+    /// <param name="options">The calling serializer.</param>
+    public override void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
     {
         if (value is null)
         {
-            writer.WriteNull();
+            writer?.WriteNullValue();
             return;
         }
 
-        writer.WriteValue(value.ToString());
+        writer?.WriteStringValue(value.ToString());
     }
 
     private static bool IsNullableType(Type t)

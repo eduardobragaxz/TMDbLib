@@ -1,32 +1,33 @@
 using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
 using TMDbLib.Objects.Changes;
 
 namespace TMDbLib.Utilities.Converters;
 
-internal class ChangeItemConverter : JsonConverter
+internal class ChangeItemConverter : JsonConverter<ChangeItemBase?>
 {
     public override bool CanConvert(Type objectType)
     {
         return objectType == typeof(ChangeItemBase);
     }
 
-    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+    public override ChangeItemBase? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var jObject = JObject.Load(reader);
+        var jObject = JsonObject.Create(JsonElement.ParseValue(ref reader));
 
         ChangeItemBase? result;
-        if (jObject["action"] is null)
+        if (jObject?["action"] is null)
         {
             // We cannot determine the correct type, let's hope we were provided one
-            var instance = Activator.CreateInstance(objectType);
+            var instance = Activator.CreateInstance(typeToConvert);
             result = instance as ChangeItemBase;
         }
         else
         {
             // Determine the type based on the media_type
-            var mediaType = jObject["action"]?.ToObject<ChangeAction>();
+            var mediaType = jObject["action"]?.GetValue<ChangeAction>();
 
             switch (mediaType)
             {
@@ -51,24 +52,25 @@ internal class ChangeItemConverter : JsonConverter
         }
 
         // Populate the result
-        if (result is not null)
-        {
-            using var jsonReader = jObject.CreateReader();
-            serializer.Populate(jsonReader, result);
-        }
+        // if (result is not null)
+        // {
+        //    using var jsonReader = jObject.CreateReader();
+        //    serializer.Populate(jsonReader, result);
+        // }
 
         return result;
     }
 
-    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+    public override void Write(Utf8JsonWriter writer, ChangeItemBase? value, JsonSerializerOptions options)
     {
         if (value is null)
         {
-            writer.WriteNull();
+            writer.WriteNullValue();
             return;
         }
 
-        var jToken = JToken.FromObject(value);
-        serializer.Serialize(writer, jToken);
+        JsonSerializer.Serialize(writer, value);
+        // var jToken = JToken.FromObject(value);
+        // serializer.Serialize(writer, jToken);
     }
 }

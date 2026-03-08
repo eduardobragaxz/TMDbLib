@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using TMDbLib.Objects.General;
 
 namespace TMDbLib.Objects.Search;
@@ -11,18 +11,18 @@ public class SearchBase
     /// <summary>
     /// Gets or sets the TMDb ID.
     /// </summary>
-    [JsonProperty("id")]
+    [JsonPropertyName("id")]
     public int Id { get; set; }
 
     /// <summary>
     /// Gets or sets the media type.
     /// </summary>
-    [JsonProperty("media_type")]
+    [JsonPropertyName("media_type")]
     public MediaType MediaType { get; set; }
 
     /// <summary>
     /// Gets or sets the popularity score.
     /// </summary>
-    [JsonProperty("popularity")]
+    [JsonPropertyName("popularity")]
     public double Popularity { get; set; }
 }
