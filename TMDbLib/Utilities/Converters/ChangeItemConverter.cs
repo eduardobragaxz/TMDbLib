@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using TMDbLib.Objects.Changes;
+using TMDbLib.Objects.General;
 
 namespace TMDbLib.Utilities.Converters;
 
@@ -24,13 +25,32 @@ internal class ChangeItemConverter : JsonConverter<ChangeItemBase?>
         {
             // We cannot determine the correct type, let's hope we were provided one
 
-            var instance = Activator.CreateInstance(typeToConvert);
-            result = instance as ChangeItemBase;
+            if (typeToConvert == typeof(ChangeItemAdded))
+            {
+                result = new ChangeItemAdded();
+            }
+            else if (typeToConvert == typeof(ChangeItemCreated))
+            {
+                result = new ChangeItemCreated();
+            }
+            else if (typeToConvert == typeof(ChangeItemUpdated))
+            {
+                result = new ChangeItemUpdated();
+            }
+            else if (typeToConvert == typeof(ChangeItemDeleted))
+            {
+                result = new ChangeItemDeleted();
+            }
+            else
+            {
+                result = new ChangeItemDestroyed();
+            }
         }
         else
         {
             // Determine the type based on the media_type
-            var mediaType = jObject["action"]?.GetValue<ChangeAction>();
+            using JsonDocument document = JsonDocument.Parse(jObject.ToJsonString());
+            var mediaType = document.RootElement.GetProperty("action").Deserialize<ChangeAction>(SourceGenerationContext.Default.ChangeAction);
 
             result = mediaType switch
             {

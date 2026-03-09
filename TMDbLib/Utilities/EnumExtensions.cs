@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -16,7 +17,18 @@ public static class EnumExtensions
     /// <typeparam name="T">The enum type.</typeparam>
     /// <param name="enumerationValue">The enum value.</param>
     /// <returns>The description string from the attribute, or the enum value name.</returns>
-    public static string GetDescription<T>(this T enumerationValue)
+    public static string GetDescription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors
+        | DynamicallyAccessedMemberTypes.NonPublicConstructors
+        | DynamicallyAccessedMemberTypes.PublicMethods
+        | DynamicallyAccessedMemberTypes.NonPublicMethods
+        | DynamicallyAccessedMemberTypes.PublicFields
+        | DynamicallyAccessedMemberTypes.NonPublicFields
+        | DynamicallyAccessedMemberTypes.PublicNestedTypes
+        | DynamicallyAccessedMemberTypes.NonPublicNestedTypes
+        | DynamicallyAccessedMemberTypes.PublicProperties
+        | DynamicallyAccessedMemberTypes.NonPublicProperties
+        | DynamicallyAccessedMemberTypes.PublicEvents
+        | DynamicallyAccessedMemberTypes.NonPublicEvents)] T>(this T enumerationValue)
         where T : struct
     {
         var type = enumerationValue.GetType();
@@ -27,7 +39,7 @@ public static class EnumExtensions
             throw new ArgumentException("EnumerationValue must be of Enum type", nameof(enumerationValue));
         }
 
-        var members = typeof(T).GetTypeInfo().DeclaredMembers;
+        var members = typeof(T).GetTypeInfo().GetMembers();
 
         var requestedName = enumerationValue.ToString();
 

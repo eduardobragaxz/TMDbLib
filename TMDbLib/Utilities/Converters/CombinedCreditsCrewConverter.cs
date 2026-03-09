@@ -40,7 +40,7 @@ internal class CombinedCreditsCrewConverter : JsonConverter<List<CombinedCredits
             combinedCreditsCrewBase.Add(mediaType switch
             {
                 MediaType.Movie => m.Deserialize<CombinedCreditsCrewMovie>(SourceGenerationContext.Default.CombinedCreditsCrewMovie),
-                MediaType.Tv => m.Deserialize<CombinedCreditsCrewTv>(SourceGenerationContext.Default.CombinedCreditsCrewTv),
+                MediaType.Tv => m.Deserialize<CombinedCreditsCrewTv>(SourceGenerationContext.Default.TMDbLib_Objects_People_CombinedCreditsCrewTv),
                 _ => null
             });
         }

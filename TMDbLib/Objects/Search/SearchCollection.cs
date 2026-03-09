@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
@@ -12,7 +13,7 @@ public class SearchCollection : SearchBase
     // Property to hold additional data from the JSON (populated by JSON deserialization)
 #pragma warning disable CS0649 // Field is assigned by JSON deserialization
     [JsonExtensionData]
-    private readonly IDictionary<string, JsonNode>? _additionalData;
+    private readonly IDictionary<string, JsonElement>? _additionalData;
 #pragma warning restore CS0649
     private string? _name;
     private string? _originalName;

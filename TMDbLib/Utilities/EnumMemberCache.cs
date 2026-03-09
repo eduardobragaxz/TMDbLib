@@ -10,11 +10,22 @@ internal static class EnumMemberCache
 {
     private static readonly Dictionary<Type, Dictionary<object, string?>> _memberCache = [];
 
-    private static Dictionary<object, string?> GetOrPrepareCache([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type type)
+    private static Dictionary<object, string?> GetOrPrepareCache([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicConstructors
+        | DynamicallyAccessedMemberTypes.PublicConstructors
+        | DynamicallyAccessedMemberTypes.PublicMethods
+        | DynamicallyAccessedMemberTypes.NonPublicMethods
+        | DynamicallyAccessedMemberTypes.PublicFields
+        | DynamicallyAccessedMemberTypes.PublicNestedTypes
+        | DynamicallyAccessedMemberTypes.NonPublicNestedTypes
+        | DynamicallyAccessedMemberTypes.PublicProperties
+        | DynamicallyAccessedMemberTypes.NonPublicProperties
+        | DynamicallyAccessedMemberTypes.PublicEvents
+        | DynamicallyAccessedMemberTypes.NonPublicEvents
+        | DynamicallyAccessedMemberTypes.NonPublicFields)] Type type)
     {
         if (!type.GetTypeInfo().IsEnum)
         {
-            throw new ArgumentException();
+            throw new ArgumentException(nameof(_memberCache));
         }
 
         Dictionary<object, string?>? cache;
@@ -27,8 +38,6 @@ internal static class EnumMemberCache
         }
 
         cache = [];
-
-        IEnumerable<FieldInfo> fieldInfos = type.GetTypeInfo().GetDefaultMembers().OfType<FieldInfo>().Where(s => s.IsStatic);
 
         foreach (var fieldInfo in type.GetTypeInfo().DeclaredMembers.OfType<FieldInfo>().Where(s => s.IsStatic))
         {
@@ -61,10 +70,20 @@ internal static class EnumMemberCache
         return cache;
     }
 
-    public static T? GetValue<T>(string input)
+    public static T? GetValue<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors
+        | DynamicallyAccessedMemberTypes.NonPublicConstructors
+        | DynamicallyAccessedMemberTypes.PublicMethods
+        | DynamicallyAccessedMemberTypes.NonPublicMethods
+        | DynamicallyAccessedMemberTypes.PublicFields
+        | DynamicallyAccessedMemberTypes.NonPublicFields
+        | DynamicallyAccessedMemberTypes.PublicNestedTypes
+        | DynamicallyAccessedMemberTypes.NonPublicNestedTypes
+        | DynamicallyAccessedMemberTypes.PublicProperties
+        | DynamicallyAccessedMemberTypes.NonPublicProperties
+        | DynamicallyAccessedMemberTypes.PublicEvents
+        | DynamicallyAccessedMemberTypes.NonPublicEvents)] T>(string input)
     {
-        var valueType = typeof(T);
-        var cache = GetOrPrepareCache(valueType);
+        var cache = GetOrPrepareCache(typeof(T));
 
         foreach (var pair in cache)
         {
@@ -77,7 +96,18 @@ internal static class EnumMemberCache
         return default;
     }
 
-    public static object? GetValue(string? input, Type type)
+    public static object? GetValue(string? input, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicConstructors
+        | DynamicallyAccessedMemberTypes.PublicConstructors
+        | DynamicallyAccessedMemberTypes.PublicMethods
+        | DynamicallyAccessedMemberTypes.NonPublicMethods
+        | DynamicallyAccessedMemberTypes.PublicFields
+        | DynamicallyAccessedMemberTypes.PublicNestedTypes
+        | DynamicallyAccessedMemberTypes.NonPublicNestedTypes
+        | DynamicallyAccessedMemberTypes.PublicProperties
+        | DynamicallyAccessedMemberTypes.NonPublicProperties
+        | DynamicallyAccessedMemberTypes.PublicEvents
+        | DynamicallyAccessedMemberTypes.NonPublicEvents
+        | DynamicallyAccessedMemberTypes.NonPublicFields)] Type type)
     {
         var cache = GetOrPrepareCache(type);
 
@@ -99,8 +129,7 @@ internal static class EnumMemberCache
             return null;
         }
 
-        var valueType = value.GetType();
-        var cache = GetOrPrepareCache(valueType);
+        var cache = GetOrPrepareCache(typeof(object));
 
         cache.TryGetValue(value, out var str);
 

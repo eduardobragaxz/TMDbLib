@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
+using TMDbLib.Objects.General;
 using TMDbLib.Utilities.Converters;
 
 namespace TMDbLib.Utilities.Serializer;
@@ -55,7 +57,11 @@ public class TMDbJsonSerializer : ITMDbSerializer
         using var sw = new StreamWriter(target, _encoding, 4096, true);
         // using var jw = new Utf8JsonWriter(sw.BaseStream);
 
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         JsonSerializer.Serialize(sw.BaseStream, obj, type, JsonSerializerOptions);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
     }
 
     /// <summary>
@@ -67,7 +73,11 @@ public class TMDbJsonSerializer : ITMDbSerializer
     public object? Deserialize(Stream source, Type type)
     {
         using var sr = new StreamReader(source, _encoding, false, 4096, true);
-        // using var jr = new JsonTextReader(sr);
-        return System.Text.Json.JsonSerializer.Deserialize(sr.BaseStream, type, JsonSerializerOptions);
+
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+        return JsonSerializer.Deserialize(sr.BaseStream, type, JsonSerializerOptions);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
     }
 }

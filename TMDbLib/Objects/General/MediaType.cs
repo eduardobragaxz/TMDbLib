@@ -7,7 +7,7 @@ namespace TMDbLib.Objects.General;
 /// <summary>
 /// Represents the type of media.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter<MediaType>))]
 public enum MediaType
 {
     /// <summary>

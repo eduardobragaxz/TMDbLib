@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
+using TMDbLib.Objects.Changes;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
 
@@ -22,7 +23,30 @@ internal class SearchBaseConverter : JsonConverter<SearchBase>
         if (jObject?["media_type"] is null)
         {
             // We cannot determine the correct type, let's hope we were provided one
-            result = Activator.CreateInstance(typeToConvert) as SearchBase;
+            if (typeToConvert == typeof(SearchMovie))
+            {
+                result = new SearchMovie();
+            }
+            else if (typeToConvert == typeof(SearchTv))
+            {
+                result = new SearchTv();
+            }
+            else if (typeToConvert == typeof(SearchPerson))
+            {
+                result = new SearchPerson();
+            }
+            else if (typeToConvert == typeof(SearchTvEpisode))
+            {
+                result = new SearchTvEpisode();
+            }
+            else if (typeToConvert == typeof(SearchTvSeason))
+            {
+                result = new SearchTvSeason();
+            }
+            else
+            {
+                result = new SearchCollection();
+            }
         }
         else
         {
