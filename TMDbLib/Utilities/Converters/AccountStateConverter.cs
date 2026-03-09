@@ -40,7 +40,7 @@ internal class AccountStateConverter : JsonConverter<AccountState>
         }
 
         using JsonDocument document = JsonDocument.Parse(jObject!.ToJsonString());
-        var result = document.RootElement.Deserialize<AccountState>(SourceGenerationContext.Default.AccountState);
+        var result = document.RootElement.Deserialize(SourceGenerationContext.Default.AccountState);
 
         return (AccountState?)result;
     }

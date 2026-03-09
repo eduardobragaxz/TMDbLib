@@ -42,6 +42,7 @@ public class ListResult
     /// Gets or sets the list media type.
     /// </summary>
     [JsonPropertyName("list_type")]
+    [JsonConverter(typeof(JsonStringEnumConverter<MediaType>))]
     public MediaType ListType { get; set; }
 
     /// <summary>

@@ -39,7 +39,7 @@ internal class TVAccountStateConverter : JsonConverter<TvAccountState>
         }
 
         using JsonDocument document = JsonDocument.Parse(jObject!.ToJsonString());
-        var result = document.RootElement.Deserialize<TvAccountState>(SourceGenerationContext.Default.TvAccountState);
+        var result = document.RootElement.Deserialize(SourceGenerationContext.Default.TvAccountState);
 
         return (TvAccountState?)result;
     }

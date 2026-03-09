@@ -12,5 +12,6 @@ public class AccountList : TMDbList<int>
     /// Gets or sets the media type of the list.
     /// </summary>
     [JsonPropertyName("list_type")]
+    [JsonConverter(typeof(JsonStringEnumConverter<MediaType>))]
     public MediaType ListType { get; set; }
 }

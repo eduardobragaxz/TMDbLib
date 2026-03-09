@@ -42,6 +42,7 @@ public class Credit
     /// Gets or sets the type of media (movie or TV show).
     /// </summary>
     [JsonPropertyName("media_type")]
+    [JsonConverter(typeof(JsonStringEnumConverter<MediaType>))]
     public MediaType MediaType { get; set; }
 
     /// <summary>

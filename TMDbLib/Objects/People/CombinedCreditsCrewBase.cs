@@ -8,12 +8,13 @@ namespace TMDbLib.Objects.People;
 /// <summary>
 /// Base class for combined crew credits (movies and TV shows).
 /// </summary>
-public abstract class CombinedCreditsCrewBase
+public class CombinedCreditsCrewBase
 {
     /// <summary>
     /// Gets or sets the media type ("movie" or "tv").
     /// </summary>
     [JsonPropertyName("media_type")]
+    [JsonConverter(typeof(JsonStringEnumConverter<MediaType>))]
     public MediaType MediaType { get; set; }
 
     /// <summary>

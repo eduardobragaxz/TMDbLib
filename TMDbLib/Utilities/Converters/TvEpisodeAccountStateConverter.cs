@@ -40,7 +40,7 @@ internal class TvEpisodeAccountStateConverter : JsonConverter<TvEpisodeAccountSt
         }
 
         using JsonDocument document = JsonDocument.Parse(jObject!.ToJsonString());
-        var result = document.RootElement.Deserialize<TvEpisodeAccountState>(SourceGenerationContext.Default.TvEpisodeAccountState);
+        var result = document.RootElement.Deserialize(SourceGenerationContext.Default.TvEpisodeAccountState);
 
         return (TvEpisodeAccountState?)result;
     }

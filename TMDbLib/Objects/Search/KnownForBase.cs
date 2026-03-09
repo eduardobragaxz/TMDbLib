@@ -39,6 +39,7 @@ public abstract class KnownForBase
     /// Gets or sets the media type.
     /// </summary>
     [JsonPropertyName("media_type")]
+    [JsonConverter(typeof(JsonStringEnumConverter<MediaType>))]
     public MediaType MediaType { get; set; }
 
     /// <summary>

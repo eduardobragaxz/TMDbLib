@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using TMDbLib.Objects.Changes;
 using TMDbLib.Objects.General;
 using TMDbLib.Utilities.Converters;
 
@@ -23,13 +24,9 @@ public class TMDbJsonSerializer : ITMDbSerializer
             {
                 new ChangeItemConverter(),
                 new AccountStateConverterFactory(),
-                new KnownForConverter(),
-                new CombinedCreditsCastConverter(),
-                new CombinedCreditsCrewConverter(),
                 new SearchBaseConverter(),
                 new TaggedImageConverter(),
                 new TolerantEnumConverter(),
-                new TmdbUtcTimeConverter(),
                 new TmdbNullIntAsZero()
             },
             TypeInfoResolver = SourceGenerationContext.Default

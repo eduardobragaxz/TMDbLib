@@ -50,7 +50,7 @@ internal class ChangeItemConverter : JsonConverter<ChangeItemBase?>
         {
             // Determine the type based on the media_type
             using JsonDocument document = JsonDocument.Parse(jObject.ToJsonString());
-            var mediaType = document.RootElement.GetProperty("action").Deserialize<ChangeAction>(SourceGenerationContext.Default.ChangeAction);
+            var mediaType = document.RootElement.GetProperty("action").Deserialize(SourceGenerationContext.Default.ChangeAction);
 
             result = mediaType switch
             {

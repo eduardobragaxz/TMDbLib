@@ -31,20 +31,21 @@ internal class CombinedCreditsCrewConverter : JsonConverter<List<CombinedCredits
 
     protected List<CombinedCreditsCrewBase?> GetInstance(JsonElement jElement)
     {
-        List<CombinedCreditsCrewBase?> combinedCreditsCrewBase = [];
+        List<CombinedCreditsCrewBase?> combinedCreditsCrewBaseList = [];
         using JsonElement.ArrayEnumerator arrayEnumerator = jElement.EnumerateArray();
 
         foreach (var m in arrayEnumerator)
         {
-            var mediaType = m.GetProperty("media_type").Deserialize<MediaType>(SourceGenerationContext.Default.MediaType);
-            combinedCreditsCrewBase.Add(mediaType switch
+            var combinedCreditsCrewBase = m.Deserialize(SourceGenerationContext.Default.CombinedCreditsCrewBase);
+
+            combinedCreditsCrewBaseList.Add(combinedCreditsCrewBase!.MediaType switch
             {
-                MediaType.Movie => m.Deserialize<CombinedCreditsCrewMovie>(SourceGenerationContext.Default.CombinedCreditsCrewMovie),
-                MediaType.Tv => m.Deserialize<CombinedCreditsCrewTv>(SourceGenerationContext.Default.TMDbLib_Objects_People_CombinedCreditsCrewTv),
+                MediaType.Movie => m.Deserialize(SourceGenerationContext.Default.CombinedCreditsCrewMovie),
+                MediaType.Tv => m.Deserialize(SourceGenerationContext.Default.TMDbLib_Objects_People_CombinedCreditsCrewTv),
                 _ => null
             });
         }
 
-        return combinedCreditsCrewBase;
+        return combinedCreditsCrewBaseList;
     }
 }

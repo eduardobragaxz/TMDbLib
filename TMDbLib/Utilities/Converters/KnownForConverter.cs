@@ -43,12 +43,12 @@ internal class KnownForConverter : JsonConverter<List<KnownForBase?>>
 
         foreach (var m in arrayEnumerator)
         {
-            var mediaType = m.GetProperty("media_type").Deserialize<MediaType>(SourceGenerationContext.Default.MediaType);
+            var mediaType = m.GetProperty("media_type").Deserialize(SourceGenerationContext.Default.MediaType);
 
             knownForBaseList.Add(mediaType switch
             {
-                MediaType.Movie => m.Deserialize<KnownForMovie>(SourceGenerationContext.Default.KnownForMovie),
-                MediaType.Tv => m.Deserialize<KnownForTv>(SourceGenerationContext.Default.KnownForTv),
+                MediaType.Movie => m.Deserialize(SourceGenerationContext.Default.KnownForMovie),
+                MediaType.Tv => m.Deserialize(SourceGenerationContext.Default.KnownForTv),
                 _ => null
             });
         }

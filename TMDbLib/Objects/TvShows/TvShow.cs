@@ -176,14 +176,12 @@ public class TvShow
     /// Gets or sets the total number of episodes.
     /// </summary>
     [JsonPropertyName("number_of_episodes")]
-    [JsonConverter(typeof(TmdbNullIntAsZero))]
     public int NumberOfEpisodes { get; set; }
 
     /// <summary>
     /// Gets or sets the total number of seasons.
     /// </summary>
     [JsonPropertyName("number_of_seasons")]
-    [JsonConverter(typeof(TmdbNullIntAsZero))]
     public int NumberOfSeasons { get; set; }
 
     /// <summary>

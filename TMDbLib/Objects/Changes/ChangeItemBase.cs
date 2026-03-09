@@ -13,6 +13,7 @@ public abstract class ChangeItemBase
     /// Gets or sets the type of action that occurred.
     /// </summary>
     [JsonPropertyName("action")]
+    [JsonConverter(typeof(JsonStringEnumConverter<ChangeAction>))]
     public ChangeAction Action { get; set; }
 
     /// <summary>

@@ -7,7 +7,6 @@ namespace TMDbLib.Objects.Changes;
 /// <summary>
 /// Specifies the type of change action that occurred.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter<ChangeAction>))]
 public enum ChangeAction
 {
     /// <summary>

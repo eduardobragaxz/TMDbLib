@@ -211,7 +211,7 @@ internal class RestRequest
 
             if (isJson)
             {
-                statusMessage = JsonSerializer.Deserialize<TMDbStatusMessage>(await resp.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false), SourceGenerationContext.Default.TMDbStatusMessage);
+                statusMessage = JsonSerializer.Deserialize(await resp.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false), SourceGenerationContext.Default.TMDbStatusMessage);
             }
             else
             {

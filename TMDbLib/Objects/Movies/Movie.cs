@@ -5,6 +5,7 @@ using TMDbLib.Objects.Changes;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Reviews;
 using TMDbLib.Objects.Search;
+using TMDbLib.Utilities.Converters;
 
 namespace TMDbLib.Objects.Movies;
 

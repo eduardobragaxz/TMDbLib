@@ -18,6 +18,5 @@ public class ChangesListItem
     /// Gets or sets the ID of the changed item.
     /// </summary>
     [JsonPropertyName("id")]
-    [JsonConverter(typeof(TmdbNullIntAsZero))]
     public int Id { get; set; }
 }
