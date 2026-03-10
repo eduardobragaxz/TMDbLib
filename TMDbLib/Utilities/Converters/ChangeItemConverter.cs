@@ -18,10 +18,10 @@ internal class ChangeItemConverter : JsonConverter<ChangeItemBase?>
 
     public override ChangeItemBase? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var jObject = JsonObject.Create(JsonElement.ParseValue(ref reader));
+        var jElement = JsonElement.ParseValue(ref reader);
 
         ChangeItemBase? result;
-        if (jObject?["action"] is null)
+        if (jElement.TryGetProperty("action", out JsonElement value))
         {
             // We cannot determine the correct type, let's hope we were provided one
 
@@ -49,10 +49,8 @@ internal class ChangeItemConverter : JsonConverter<ChangeItemBase?>
         else
         {
             // Determine the type based on the media_type
-            using JsonDocument document = JsonDocument.Parse(jObject.ToJsonString());
-            var mediaType = document.RootElement.GetProperty("action").Deserialize(SourceGenerationContext.Default.ChangeAction);
-
-            result = mediaType switch
+            var actionType = Enum.Parse<ChangeAction>(value.GetString()!, true);
+            result = actionType switch
             {
                 ChangeAction.Added => new ChangeItemAdded(),
                 ChangeAction.Created => new ChangeItemCreated(),
@@ -62,13 +60,6 @@ internal class ChangeItemConverter : JsonConverter<ChangeItemBase?>
                 _ => throw new ArgumentOutOfRangeException(nameof(reader)),
             };
         }
-
-        // Populate the result
-        // if (result is not null)
-        // {
-        //    using var jsonReader = jObject.CreateReader();
-        //    serializer.Populate(jsonReader, result);
-        // }
 
         return result;
     }
@@ -81,7 +72,7 @@ internal class ChangeItemConverter : JsonConverter<ChangeItemBase?>
             return;
         }
 
-        JsonSerializer.Serialize(writer, value, SourceGenerationContext.Default.ChangeItemBase);
+        writer.WritePropertyName("value");
         // var jToken = JToken.FromObject(value);
         // serializer.Serialize(writer, jToken);
     }

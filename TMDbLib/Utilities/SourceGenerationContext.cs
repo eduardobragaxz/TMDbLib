@@ -29,6 +29,7 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(CombinedCreditsCrewMovie))]
 [JsonSerializable(typeof(CombinedCreditsCastTv), TypeInfoPropertyName = "TMDbLib_Objects_People_CombinedCreditsCastTv")]
 [JsonSerializable(typeof(CombinedCreditsCrewTv), TypeInfoPropertyName = "TMDbLib_Objects_People_CombinedCreditsCrewTv")]
+[JsonSerializable(typeof(KnownForBase))]
 [JsonSerializable(typeof(KnownForMovie))]
 [JsonSerializable(typeof(KnownForTv))]
 [JsonSerializable(typeof(TaggedImage))]

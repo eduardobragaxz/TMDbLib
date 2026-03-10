@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using TMDbLib.Objects.Changes;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
+using TMDbLib.Utilities.Serializer;
 
 namespace TMDbLib.Utilities.Converters;
 
@@ -18,9 +19,9 @@ internal class SearchBaseConverter : JsonConverter<SearchBase>
 
     public override SearchBase? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var jObject = JsonObject.Create(JsonElement.ParseValue(ref reader));
+        var jElement = JsonElement.ParseValue(ref reader);
         SearchBase? result;
-        if (jObject?["media_type"] is null)
+        if (jElement.TryGetProperty("media_type", out JsonElement value) == false)
         {
             // We cannot determine the correct type, let's hope we were provided one
             if (typeToConvert == typeof(SearchMovie))
@@ -51,19 +52,18 @@ internal class SearchBaseConverter : JsonConverter<SearchBase>
         else
         {
             // Determine the type based on the media_type
-            using JsonDocument document = JsonDocument.Parse(jObject.ToJsonString());
-            var searchBase = document.RootElement.Deserialize(SourceGenerationContext.Default.SearchBase);
-
-            result = searchBase!.MediaType switch
+            string mediaTypeString = value.GetString()!.Replace("_", string.Empty, StringComparison.OrdinalIgnoreCase);
+            var mediaType = Enum.Parse<MediaType>(mediaTypeString, true);
+            result = mediaType switch
             {
-                MediaType.Movie => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchMovie),
-                MediaType.Tv => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchTv),
-                MediaType.Person => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchPerson),
-                MediaType.Episode => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchTvEpisode),
-                MediaType.Tv_Episode => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchTvEpisode),
-                MediaType.Season => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchTvSeason),
-                MediaType.TvSeason => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchTvSeason),
-                MediaType.Collection => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchCollection),
+                MediaType.Movie => jElement.Deserialize(SourceGenerationContext.Default.SearchMovie),
+                MediaType.Tv => jElement.Deserialize(SourceGenerationContext.Default.SearchTv),
+                MediaType.Person => jElement.Deserialize(SourceGenerationContext.Default.SearchPerson),
+                MediaType.Episode => jElement.Deserialize(SourceGenerationContext.Default.SearchTvEpisode),
+                MediaType.TvEpisode => jElement.Deserialize(SourceGenerationContext.Default.SearchTvEpisode),
+                MediaType.Season => jElement.Deserialize(SourceGenerationContext.Default.SearchTvSeason),
+                MediaType.TvSeason => jElement.Deserialize(SourceGenerationContext.Default.SearchTvSeason),
+                MediaType.Collection => jElement.Deserialize(SourceGenerationContext.Default.SearchCollection),
                 _ => throw new ArgumentOutOfRangeException(nameof(reader)),
             };
         }

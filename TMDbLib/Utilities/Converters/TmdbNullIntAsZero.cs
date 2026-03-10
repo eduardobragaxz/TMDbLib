@@ -51,12 +51,12 @@ public class TmdbNullIntAsZero : JsonConverter<int>
     /// <param name="options">Serializer options.</param>
     public override void Write(Utf8JsonWriter writer, int value, JsonSerializerOptions options)
     {
-         // if (value is null)
-         // {
-         //   writer.WriteNullValue();
-         //   return;
-         // }
+        // if (value is null)
+        // {
+        //   writer.WriteNullValue();
+        //   return;
+        // }
 
-         writer.WriteStringValue(value.ToString(string.Empty, CultureInfo.InvariantCulture));
+        writer?.WritePropertyName("value");
     }
 }

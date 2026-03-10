@@ -17,48 +17,42 @@ public enum MediaType
     /// <summary>
     /// Movie media type.
     /// </summary>
-    // [EnumValue("movie")]
     Movie = 1,
 
     /// <summary>
     /// TV show media type.
     /// </summary>
-    // [EnumValue("tv")]
     Tv = 2,
 
     /// <summary>
     /// Person media type.
     /// </summary>
-    // [EnumValue("person")]
     Person = 3,
 
     /// <summary>
     /// Episode media type.
     /// </summary>
-    // [EnumValue("episode")]
     Episode = 4,
 
     /// <summary>
     /// TV episode media type.
     /// </summary>
-    // [EnumValue("tv_episode")]
-    Tv_Episode = 5,
+    [JsonStringEnumMemberName("tv_episode")]
+    TvEpisode = 5,
 
     /// <summary>
     /// Season media type.
     /// </summary>
-    // [EnumValue("season")]
     Season = 6,
 
     /// <summary>
     /// TV season media type.
     /// </summary>
-    [EnumValue("tv_season")]
+    [JsonStringEnumMemberName("tv_season")]
     TvSeason = 7,
 
     /// <summary>
     /// Collection media type.
     /// </summary>
-    // [EnumValue("collection")]
     Collection = 8
 }

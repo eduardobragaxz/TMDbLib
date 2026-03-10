@@ -57,11 +57,11 @@ public class CustomDatetimeFormatConverter : JsonConverter<DateTime?>
     {
         if (value is DateTime dateTime)
         {
-            writer.WriteStringValue(dateTime.ToString(DatetimeFormat, CultureInfo));
+            writer?.WriteStringValue(dateTime.ToString(DatetimeFormat, CultureInfo));
         }
         else
         {
-            writer.WriteNullValue();
+            writer?.WriteNullValue();
         }
     }
 }

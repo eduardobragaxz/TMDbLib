@@ -22,11 +22,8 @@ public class TMDbJsonSerializer : ITMDbSerializer
         {
             Converters =
             {
-                new ChangeItemConverter(),
                 new AccountStateConverterFactory(),
                 new SearchBaseConverter(),
-                new TaggedImageConverter(),
-                new TolerantEnumConverter(),
                 new TmdbNullIntAsZero()
             },
             TypeInfoResolver = SourceGenerationContext.Default

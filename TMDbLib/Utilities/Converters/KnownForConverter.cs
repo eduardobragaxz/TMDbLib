@@ -41,26 +41,19 @@ internal class KnownForConverter : JsonConverter<List<KnownForBase?>>
         List<KnownForBase?> knownForBaseList = [];
         using JsonElement.ArrayEnumerator arrayEnumerator = jElement.EnumerateArray();
 
-        foreach (var m in arrayEnumerator)
+        foreach (var item in arrayEnumerator)
         {
-            var mediaType = m.GetProperty("media_type").Deserialize(SourceGenerationContext.Default.MediaType);
+            var property = item.GetProperty("media_Type");
+            var mediaType = Enum.Parse<MediaType>(property.GetString()!, true);
 
             knownForBaseList.Add(mediaType switch
             {
-                MediaType.Movie => m.Deserialize(SourceGenerationContext.Default.KnownForMovie),
-                MediaType.Tv => m.Deserialize(SourceGenerationContext.Default.KnownForTv),
+                MediaType.Movie => item.Deserialize(SourceGenerationContext.Default.KnownForMovie),
+                MediaType.Tv => item.Deserialize(SourceGenerationContext.Default.KnownForTv),
                 _ => null
             });
         }
 
         return knownForBaseList;
-
-        // return mediaType switch
-        // {
-        //    MediaType.Movie => new KnownForMovie(),
-        //    MediaType.Tv => new KnownForTv(),
-        //    null => null,
-        //    _ => throw new ArgumentOutOfRangeException(),
-        // };
     }
 }

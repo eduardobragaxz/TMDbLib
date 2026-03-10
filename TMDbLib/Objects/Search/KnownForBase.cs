@@ -8,7 +8,7 @@ namespace TMDbLib.Objects.Search;
 /// <summary>
 /// Base class for movies and TV shows that a person is known for.
 /// </summary>
-public abstract class KnownForBase
+public class KnownForBase
 {
     /// <summary>
     /// Gets or sets a value indicating whether this is adult content.

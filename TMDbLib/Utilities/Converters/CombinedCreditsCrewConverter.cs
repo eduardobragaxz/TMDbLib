@@ -36,9 +36,10 @@ internal class CombinedCreditsCrewConverter : JsonConverter<List<CombinedCredits
 
         foreach (var m in arrayEnumerator)
         {
-            var combinedCreditsCrewBase = m.Deserialize(SourceGenerationContext.Default.CombinedCreditsCrewBase);
+            var property = m.GetProperty("media_type");
+            var mediaType = Enum.Parse<MediaType>(property.GetString()!, true);
 
-            combinedCreditsCrewBaseList.Add(combinedCreditsCrewBase!.MediaType switch
+            combinedCreditsCrewBaseList.Add(mediaType switch
             {
                 MediaType.Movie => m.Deserialize(SourceGenerationContext.Default.CombinedCreditsCrewMovie),
                 MediaType.Tv => m.Deserialize(SourceGenerationContext.Default.TMDbLib_Objects_People_CombinedCreditsCrewTv),

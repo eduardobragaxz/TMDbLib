@@ -17,7 +17,7 @@ internal class EnumStringValueConverter : JsonConverter<Enum>
     {
         if (typeToConvert == typeof(MediaType))
         {
-            var e = Enum.Parse<MediaType>(reader.GetString());
+            var e = Enum.Parse<MediaType>(reader.GetString()!);
             return e;
         }
 
@@ -33,6 +33,6 @@ internal class EnumStringValueConverter : JsonConverter<Enum>
         }
 
         var str = EnumMemberCache.GetString(value);
-        writer.WriteRawValue(str);
+        writer.WriteRawValue(str!);
     }
 }

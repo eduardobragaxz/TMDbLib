@@ -150,6 +150,7 @@ public class Movie
     /// Gets or sets the release date.
     /// </summary>
     [JsonPropertyName("release_date")]
+    [JsonConverter(typeof(TmdbUtcTimeConverter))]
     public DateTime? ReleaseDate { get; set; }
 
     /// <summary>

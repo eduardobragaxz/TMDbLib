@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using TMDbLib.Utilities.Converters;
 
 namespace TMDbLib.Objects.Changes;
 
@@ -12,6 +13,7 @@ public class Change
     /// Gets or sets the list of change items.
     /// </summary>
     [JsonPropertyName("items")]
+    [JsonConverter(typeof(ChangeItemCollectionConvertor))]
     public List<ChangeItemBase>? Items { get; set; }
 
     /// <summary>
