@@ -60,7 +60,7 @@ internal class SearchBaseConverter : JsonConverter<SearchBase>
                 MediaType.Tv => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchTv),
                 MediaType.Person => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchPerson),
                 MediaType.Episode => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchTvEpisode),
-                MediaType.TvEpisode => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchTvEpisode),
+                MediaType.Tv_Episode => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchTvEpisode),
                 MediaType.Season => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchTvSeason),
                 MediaType.TvSeason => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchTvSeason),
                 MediaType.Collection => document.RootElement.Deserialize(SourceGenerationContext.Default.SearchCollection),

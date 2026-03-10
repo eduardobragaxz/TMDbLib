@@ -1,32 +1,38 @@
 using System;
 using System.Reflection;
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using TMDbLib.Objects.General;
 
 namespace TMDbLib.Utilities.Converters;
 
-// internal class EnumStringValueConverter : JsonConverter
-// {
-//    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
-//    {
-//        if (value is null)
-//        {
-//            writer.WriteNull();
-//            return;
-//        }
+internal class EnumStringValueConverter : JsonConverter<Enum>
+{
+    public override bool CanConvert(Type objectType)
+    {
+        return objectType.GetTypeInfo().IsEnum;
+    }
 
-// var str = EnumMemberCache.GetString(value);
-//        writer.WriteValue(str);
-//    }
+    public override Enum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        if (typeToConvert == typeof(MediaType))
+        {
+            var e = Enum.Parse<MediaType>(reader.GetString());
+            return e;
+        }
 
-// public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
-//    {
-//        var val = EnumMemberCache.GetValue(reader.Value as string, objectType);
+        return null;
+    }
 
-// return val;
-//    }
+    public override void Write(Utf8JsonWriter writer, Enum value, JsonSerializerOptions options)
+    {
+        if (value is null)
+        {
+            writer.WriteNullValue();
+            return;
+        }
 
-// public override bool CanConvert(Type objectType)
-//    {
-//        return objectType.GetTypeInfo().IsEnum;
-//    }
-// }
+        var str = EnumMemberCache.GetString(value);
+        writer.WriteRawValue(str);
+    }
+}

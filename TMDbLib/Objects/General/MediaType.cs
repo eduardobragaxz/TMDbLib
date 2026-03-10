@@ -42,7 +42,7 @@ public enum MediaType
     /// TV episode media type.
     /// </summary>
     // [EnumValue("tv_episode")]
-    TvEpisode = 5,
+    Tv_Episode = 5,
 
     /// <summary>
     /// Season media type.
@@ -53,7 +53,7 @@ public enum MediaType
     /// <summary>
     /// TV season media type.
     /// </summary>
-    // [EnumValue("tv_season")]
+    [EnumValue("tv_season")]
     TvSeason = 7,
 
     /// <summary>
