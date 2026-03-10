@@ -40,13 +40,14 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(TvSeason))]
 [JsonSerializable(typeof(Objects.Movies.Credits))]
 [JsonSerializable(typeof(Objects.Movies.Cast))]
-[JsonSerializable(typeof(TMDbLib.Objects.TvShows.Credits), TypeInfoPropertyName = "TMDbLib_Objects_TvShows_Credits")]
+[JsonSerializable(typeof(Objects.TvShows.Credits), TypeInfoPropertyName = "TMDbLib_Objects_TvShows_Credits")]
 [JsonSerializable(typeof(Objects.TvShows.Cast), TypeInfoPropertyName = "TMDbLib_Objects_TvShows_Cast")]
 [JsonSerializable(typeof(List<Objects.TvShows.Cast>), TypeInfoPropertyName = "List_TMDbLib_Objects_TvShows_Cast")]
 [JsonSerializable(typeof(Person))]
 [JsonSerializable(typeof(SearchContainerWithId<TaggedImage>))]
 [JsonSerializable(typeof(TvEpisodeAccountState))]
 [JsonSerializable(typeof(TvEpisodeAccountStateWithNumber))]
+[JsonSerializable(typeof(Objects.Collections.Collection))]
 internal partial class SourceGenerationContext : JsonSerializerContext
 {
 }
