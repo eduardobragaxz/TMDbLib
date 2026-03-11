@@ -174,7 +174,7 @@ internal class RestRequest
         // Body
         if (method == HttpMethod.Post && _bodyObj is not null)
         {
-            var bodyBytes = _client.Serializer.SerializeToBytes(_bodyObj);
+            var bodyBytes = _client.Serializer.SerializeToBytes<object>();
 
             req.Content = new ByteArrayContent(bodyBytes);
             req.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");

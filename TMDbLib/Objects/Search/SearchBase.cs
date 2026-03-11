@@ -7,6 +7,7 @@ namespace TMDbLib.Objects.Search;
 /// <summary>
 /// Base class for all search results.
 /// </summary>
+[JsonConverter(typeof(SearchBaseConverter))]
 public class SearchBase
 {
     /// <summary>

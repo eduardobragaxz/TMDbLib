@@ -16,24 +16,9 @@ public class TMDbJsonSerializer : ITMDbSerializer
 {
     private readonly Encoding _encoding = new UTF8Encoding(false);
 
-    private TMDbJsonSerializer()
-    {
-        JsonSerializerOptions = new()
-        {
-            Converters =
-            {
-                new AccountStateConverterFactory(),
-                new SearchBaseConverter(),
-                new TmdbNullIntAsZero()
-            },
-            TypeInfoResolver = SourceGenerationContext.Default
-        };
-    }
-
     /// <summary>
     /// Gets serialization options.
     /// </summary>
-    public JsonSerializerOptions JsonSerializerOptions { get; }
 
     /// <summary>
     /// Gets the singleton instance of the <see cref="TMDbJsonSerializer"/>.
@@ -44,18 +29,10 @@ public class TMDbJsonSerializer : ITMDbSerializer
     /// Serializes an object to a stream.
     /// </summary>
     /// <param name="target">The target stream to write to.</param>
-    /// <param name="obj">The object to serialize.</param>
-    /// <param name="type">The type of the object.</param>
-    public void Serialize(Stream target, object obj, Type type)
+    /// <typeparam name="T">The type of the object.</typeparam>
+    public void Serialize<T>(Stream target)
     {
-        using var sw = new StreamWriter(target, _encoding, 4096, true);
-        // using var jw = new Utf8JsonWriter(sw.BaseStream);
-
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-        JsonSerializer.Serialize(sw.BaseStream, obj, type, JsonSerializerOptions);
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+        JsonSerializer.Serialize(target, typeof(T), SourceGenerationContext.Default);
     }
 
     /// <summary>
@@ -66,10 +43,6 @@ public class TMDbJsonSerializer : ITMDbSerializer
     /// <returns>The deserialized object.</returns>
     public T? Deserialize<T>(Stream source)
     {
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-        return JsonSerializer.Deserialize<T>(source, JsonSerializerOptions);
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+        return (T?)JsonSerializer.Deserialize(source, typeof(T), SourceGenerationContext.Default);
     }
 }

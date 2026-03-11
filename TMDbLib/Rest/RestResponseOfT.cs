@@ -1,6 +1,8 @@
 using System.IO;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
+using TMDbLib.Utilities;
 
 namespace TMDbLib.Rest;
 
@@ -24,7 +26,8 @@ internal class RestResponse<T> : RestResponse
         }
 
         using Stream content = await GetContent().ConfigureAwait(false);
-        var result = _client.Serializer.Deserialize<T>(content);
+        var result = await JsonSerializer.DeserializeAsync(content, typeof(T), SourceGenerationContext.Default).ConfigureAwait(false);
+        // var result = _client.Serializer.Deserialize<T>(content);
 
         return result is T typed ? typed : default;
     }

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace TMDbLib.Utilities.Serializer;
 
@@ -15,12 +16,11 @@ public static class SerializerExtensions
     /// <typeparam name="T">The type of the object.</typeparam>
     /// <param name="serializer">The serializer instance.</param>
     /// <param name="target">The target stream to write to.</param>
-    /// <param name="type">The object to serialize.</param>
-    public static void Serialize<T>(this ITMDbSerializer serializer, Stream target, T type)
+    public static void Serialize<T>(this ITMDbSerializer serializer, Stream target)
         where T : notnull
     {
         ArgumentNullException.ThrowIfNull(serializer);
-        serializer.Serialize(target, type, typeof(T));
+        serializer.Serialize<T>(target);
     }
 
     /// <summary>
@@ -28,15 +28,14 @@ public static class SerializerExtensions
     /// </summary>
     /// <typeparam name="T">The type of the object.</typeparam>
     /// <param name="serializer">The serializer instance.</param>
-    /// <param name="type">The object to serialize.</param>
     /// <returns>A byte array containing the serialized object.</returns>
-    public static byte[] SerializeToBytes<T>(this ITMDbSerializer serializer, T type)
+    public static byte[] SerializeToBytes<T>(this ITMDbSerializer serializer)
         where T : notnull
     {
         using var ms = new MemoryStream();
 
         ArgumentNullException.ThrowIfNull(serializer);
-        serializer.Serialize(ms, type, typeof(T));
+        serializer.Serialize<T>(ms);
 
         return ms.ToArray();
     }
@@ -54,7 +53,7 @@ public static class SerializerExtensions
         using var ms = new MemoryStream();
 
         ArgumentNullException.ThrowIfNull(serializer);
-        serializer.Serialize(ms, type, typeof(T));
+        serializer.Serialize<T>(ms);
 
         ms.Seek(0, SeekOrigin.Begin);
 
@@ -104,9 +103,9 @@ public static class SerializerExtensions
     public static object? DeserializeFromString(this ITMDbSerializer serializer, string json)
     {
         // TODO: Better method
+        ArgumentNullException.ThrowIfNull(serializer);
         var bytes = Encoding.UTF8.GetBytes(json);
         using var ms = new MemoryStream(bytes);
-        ArgumentNullException.ThrowIfNull(serializer);
-        return serializer.Deserialize<Type>(ms);
+        return serializer.Deserialize<object>(ms);
     }
 }
