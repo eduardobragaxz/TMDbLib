@@ -62,15 +62,13 @@ public class TMDbJsonSerializer : ITMDbSerializer
     /// Deserializes an object from a stream.
     /// </summary>
     /// <param name="source">The source stream to read from.</param>
-    /// <param name="type">The type of the object to deserialize.</param>
+    /// <typeparam name="T">The type of the object to deserialize.</typeparam>
     /// <returns>The deserialized object.</returns>
-    public object? Deserialize(Stream source, Type type)
+    public T? Deserialize<T>(Stream source)
     {
-        using var sr = new StreamReader(source, _encoding, false, 4096, true);
-
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-        return JsonSerializer.Deserialize(sr.BaseStream, type, JsonSerializerOptions);
+        return JsonSerializer.Deserialize<T>(source, JsonSerializerOptions);
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
     }

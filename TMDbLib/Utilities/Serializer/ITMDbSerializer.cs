@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 
 namespace TMDbLib.Utilities.Serializer;
@@ -20,7 +20,7 @@ public interface ITMDbSerializer
     /// Deserializes an object from a stream.
     /// </summary>
     /// <param name="source">The source stream to read from.</param>
-    /// <param name="type">The type of the object to deserialize.</param>
+    /// <typeparam name="T">The type of the object to deserialize.</typeparam>
     /// <returns>The deserialized object.</returns>
-    object? Deserialize(Stream source, Type type);
+    T? Deserialize<T>(Stream source);
 }

@@ -91,6 +91,7 @@ public class TvShow
     /// Gets or sets the first air date of the TV show.
     /// </summary>
     [JsonPropertyName("first_air_date")]
+    [JsonConverter(typeof(TmdbUtcTimeConverter))]
     public DateTime? FirstAirDate { get; set; }
 
     /// <summary>

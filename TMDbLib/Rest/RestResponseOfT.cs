@@ -24,7 +24,7 @@ internal class RestResponse<T> : RestResponse
         }
 
         using Stream content = await GetContent().ConfigureAwait(false);
-        var result = _client.Serializer.Deserialize(content, typeof(T));
+        var result = _client.Serializer.Deserialize<T>(content);
 
         return result is T typed ? typed : default;
     }
