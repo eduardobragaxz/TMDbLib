@@ -17,7 +17,7 @@ public class TmdbNullIntAsZero : JsonConverter<int>
     /// <returns>True if this converter can convert the type; otherwise, false.</returns>
     public override bool CanConvert(Type typeToConvert)
     {
-        return typeToConvert == typeof(int);
+        return typeToConvert == typeof(int?);
     }
 
     /// <summary>

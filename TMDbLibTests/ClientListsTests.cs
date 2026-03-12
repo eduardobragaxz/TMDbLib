@@ -39,7 +39,7 @@ public class ClientListsTests : TestBase
     [Fact]
     public async Task TestListAsync()
     {
-        var movieLists = await TMDbClient.GetMovieListsAsync(IdHelper.Avatar);
+        var movieLists = await TMDbClient.GetMovieListsAsync(IdHelper.Avatar, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(movieLists);
 
         Assert.NotNull(movieLists.Results);
@@ -53,7 +53,7 @@ public class ClientListsTests : TestBase
     [Fact]
     public async Task TestListMissingAsync()
     {
-        var list = await TMDbClient.GetListAsync(IdHelper.MissingID.ToString(CultureInfo.InvariantCulture));
+        var list = await TMDbClient.GetListAsync(IdHelper.MissingID.ToString(CultureInfo.InvariantCulture), cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.Null(list);
     }
@@ -69,12 +69,12 @@ public class ClientListsTests : TestBase
 
         await TMDbClient.SetSessionInformationAsync(TestConfig.UserSessionId, SessionType.UserSession);
 
-        var listId = await TMDbClient.ListCreateAsync(listName);
+        var listId = await TMDbClient.ListCreateAsync(listName, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(listId);
 
         Assert.False(string.IsNullOrWhiteSpace(listId));
 
-        var newlyAddedList = await TMDbClient.GetListAsync(listId);
+        var newlyAddedList = await TMDbClient.GetListAsync(listId, cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(newlyAddedList);
         Assert.Equal(listName, newlyAddedList.Name);
@@ -82,23 +82,23 @@ public class ClientListsTests : TestBase
         Assert.Empty(newlyAddedList.Items);
 
         // Add a movie
-        await TMDbClient.ListAddMovieAsync(listId, IdHelper.Avatar);
-        await TMDbClient.ListAddMovieAsync(listId, IdHelper.AGoodDayToDieHard);
+        await TMDbClient.ListAddMovieAsync(listId, IdHelper.Avatar, TestContext.Current.CancellationToken);
+        await TMDbClient.ListAddMovieAsync(listId, IdHelper.AGoodDayToDieHard, TestContext.Current.CancellationToken);
 
-        Assert.True(await TMDbClient.GetListIsMoviePresentAsync(listId, IdHelper.Avatar));
+        Assert.True(await TMDbClient.GetListIsMoviePresentAsync(listId, IdHelper.Avatar, TestContext.Current.CancellationToken));
 
         // Remove a movie
-        await TMDbClient.ListRemoveMovieAsync(listId, IdHelper.Avatar);
+        await TMDbClient.ListRemoveMovieAsync(listId, IdHelper.Avatar, TestContext.Current.CancellationToken);
 
-        Assert.False(await TMDbClient.GetListIsMoviePresentAsync(listId, IdHelper.Avatar));
+        Assert.False(await TMDbClient.GetListIsMoviePresentAsync(listId, IdHelper.Avatar, TestContext.Current.CancellationToken));
 
         // Clear the list
-        await TMDbClient.ListClearAsync(listId);
+        await TMDbClient.ListClearAsync(listId, TestContext.Current.CancellationToken);
 
-        Assert.False(await TMDbClient.GetListIsMoviePresentAsync(listId, IdHelper.AGoodDayToDieHard));
+        Assert.False(await TMDbClient.GetListIsMoviePresentAsync(listId, IdHelper.AGoodDayToDieHard, TestContext.Current.CancellationToken));
 
         // Delete the list
-        Assert.True(await TMDbClient.ListDeleteAsync(listId));
+        Assert.True(await TMDbClient.ListDeleteAsync(listId, TestContext.Current.CancellationToken));
     }
 
     /// <summary>
@@ -114,7 +114,7 @@ public class ClientListsTests : TestBase
         // API may return false or throw an exception for invalid IDs
         try
         {
-            var result = await TMDbClient.ListDeleteAsync("invalid_id");
+            var result = await TMDbClient.ListDeleteAsync("invalid_id", TestContext.Current.CancellationToken);
             Assert.False(result);
         }
         catch (TMDbLib.Objects.Exceptions.GeneralHttpException)

@@ -35,7 +35,7 @@ public class ClientCreditTests : TestBase
     [Fact]
     public async Task TestMissingCredit()
     {
-        var result = await TMDbClient.GetCreditsAsync(IdHelper.MissingID.ToString(CultureInfo.InvariantCulture));
+        var result = await TMDbClient.GetCreditsAsync(IdHelper.MissingID.ToString(CultureInfo.InvariantCulture), TestContext.Current.CancellationToken);
 
         Assert.Null(result);
     }
@@ -46,7 +46,7 @@ public class ClientCreditTests : TestBase
     [Fact]
     public async Task TestGetCreditSeasons()
     {
-        var result = await TMDbClient.GetCreditsAsync(IdHelper.HughLaurieHouse);
+        var result = await TMDbClient.GetCreditsAsync(IdHelper.HughLaurieHouse, TestContext.Current.CancellationToken);
         Assert.NotNull(result);
         Assert.NotNull(result.Media);
 

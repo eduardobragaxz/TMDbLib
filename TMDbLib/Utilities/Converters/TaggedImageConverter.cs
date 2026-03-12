@@ -17,10 +17,9 @@ internal class TaggedImageConverter : JsonConverter<TaggedImage>
 
     public override TaggedImage? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var jObject = JsonObject.Create(JsonElement.ParseValue(ref reader));
+        var jElement = JsonElement.ParseValue(ref reader);
 
-        using JsonDocument document = JsonDocument.Parse(jObject!.ToJsonString());
-        var result = document.RootElement.Deserialize(SourceGenerationContext.Default.TaggedImage);
+        var result = jElement.Deserialize(SourceGenerationContext.Default.TaggedImage);
 
         return result;
     }

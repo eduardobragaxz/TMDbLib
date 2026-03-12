@@ -20,7 +20,7 @@ public class EnumStringValueConverterTest : TestBase
     /// <returns>A collection of object arrays containing each enum member.</returns>
     public static IEnumerable<object[]> GetEnumMembers(Type type)
     {
-        var values = Enum.GetValues(type);
+        var values = type.GetEnumValuesAsUnderlyingType();
 
         foreach (var value in values)
         {

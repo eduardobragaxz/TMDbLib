@@ -40,7 +40,7 @@ public class ClientCertificationsTests : TestBase
     [Fact]
     public async Task TestCertificationsListTvAsync()
     {
-        var result = await TMDbClient.GetTvCertificationsAsync();
+        var result = await TMDbClient.GetTvCertificationsAsync(TestContext.Current.CancellationToken);
         Assert.NotNull(result);
         Assert.NotNull(result.Certifications);
         Assert.NotEmpty(result.Certifications);

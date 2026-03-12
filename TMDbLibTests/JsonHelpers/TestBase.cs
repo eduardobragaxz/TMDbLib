@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Argon;
+
 using TMDbLib.Client;
 using TMDbLib.Utilities;
 using TMDbLib.Utilities.Serializer;
@@ -66,11 +69,11 @@ public abstract class TestBase
             // 1. Reads Newtonsoft.Json [JsonProperty] attributes for property names
             // 2. Uses camelCase for properties without explicit names
             // 3. Sorts collections for consistent output
-            serializerSettings.ContractResolver = new DataSortingContractResolver();
+            // serializerSettings.ContractResolver = new DataSortingContractResolver();
 
             // Add enum converter that uses TMDbLib's EnumMemberCache for proper string values
             // Insert at beginning to take priority over other converters
-            serializerSettings.Converters.Insert(0, new ArgonEnumStringValueConverter());
+            // serializerSettings.Converters.Insert(0, new ArgonEnumStringValueConverter());
         });
 
         WebProxy? proxy = null;
@@ -97,33 +100,33 @@ public abstract class TestBase
         return Verifier.Verify(obj, settings);
     }
 
-    /// <summary>
-    /// Argon-compatible enum converter that uses TMDbLib's EnumMemberCache for proper string values.
-    /// </summary>
-    class ArgonEnumStringValueConverter : Argon.JsonConverter
-    {
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var str = EnumMemberCache.GetString(value);
-            writer.WriteValue(str);
-        }
+    ///// <summary>
+    ///// Argon-compatible enum converter that uses TMDbLib's EnumMemberCache for proper string values.
+    ///// </summary>
+    //class ArgonEnumStringValueConverter : Argon.JsonConverter
+    //{
+    //    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    //    {
+    //        var str = EnumMemberCache.GetString(value);
+    //        writer.WriteValue(str);
+    //    }
 
-        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
-        {
-            var val = EnumMemberCache.GetValue(reader.Value as string, objectType);
-            return val;
-        }
+    //    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+    //    {
+    //        var val = EnumMemberCache.GetValue(reader.Value as string, objectType);
+    //        return val;
+    //    }
 
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType.IsEnum;
-        }
-    }
+    //    public override bool CanConvert(Type objectType)
+    //    {
+    //        return objectType.IsEnum;
+    //    }
+    //}
 
     /// <summary>
     /// Custom contract resolver that sorts collections and reads Newtonsoft.Json attributes.
     /// </summary>
-    class DataSortingContractResolver : DefaultContractResolver
+    class DataSortingContractResolver
     {
         // Properties to completely ignore during serialization (dynamic values that change over time)
         private static readonly HashSet<string> IgnoredProperties = new(StringComparer.OrdinalIgnoreCase)
@@ -185,141 +188,139 @@ public abstract class TestBase
         /// <summary>
         /// Converter that writes any value as a string placeholder.
         /// </summary>
-        class PlaceholderConverter : Argon.JsonConverter
+        class PlaceholderConverter : JsonConverter<object>
         {
             private readonly string _placeholder;
 
             public PlaceholderConverter(string placeholder) => _placeholder = placeholder;
 
-            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+            public override bool CanConvert(Type objectType) => true;
+
+            public override object? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                return reader.GetString();
+            }
+
+            public override void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
             {
                 if (value is null)
                 {
-                    writer.WriteNull();
+                    writer.WriteNullValue();
                 }
                 else
                 {
-                    writer.WriteValue(_placeholder);
+                    writer.WriteStringValue(_placeholder);
                 }
             }
-
-            public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
-            {
-                return reader.Value;
-            }
-
-            public override bool CanConvert(Type objectType) => true;
         }
 
         /// <summary>
         /// Converter that writes non-empty values as "&lt;non-empty&gt;".
         /// </summary>
-        class NonEmptyConverter : Argon.JsonConverter
+        class NonEmptyConverter : System.Text.Json.Serialization.JsonConverter<object>
         {
-            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+            public override object? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                return reader.GetString();
+            }
+
+            public override void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
             {
                 if (value is null)
                 {
-                    writer.WriteNull();
+                    writer.WriteNullValue();
                 }
                 else
                 {
                     var str = value.ToString();
-                    writer.WriteValue(!string.IsNullOrEmpty(str) ? "<non-empty>" : str);
+                    writer.WriteStringValue(!string.IsNullOrEmpty(str) ? "<non-empty>" : str);
                 }
             }
-
-            public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
-            {
-                return reader.Value;
-            }
-
-            public override bool CanConvert(Type objectType) => true;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DataSortingContractResolver"/> class.
-        /// </summary>
-        public DataSortingContractResolver()
-        {
-            // Use camel case for properties that don't have explicit names
-            NamingStrategy = new CamelCaseNamingStrategy
-            {
-                ProcessDictionaryKeys = false,
-                OverrideSpecifiedNames = false
-            };
-        }
+        ///// <summary>
+        ///// Initializes a new instance of the <see cref="DataSortingContractResolver"/> class.
+        ///// </summary>
+        //public DataSortingContractResolver()
+        //{
+        //    // Use camel case for properties that don't have explicit names
+        //    NamingStrategy = new CamelCaseNamingStrategy
+        //    {
+        //        ProcessDictionaryKeys = false,
+        //        OverrideSpecifiedNames = false
+        //    };
+        //}
 
-        /// <summary>
-        /// Creates a property for the given member.
-        /// </summary>
-        protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
-        {
-            var property = base.CreateProperty(member, memberSerialization);
+        ///// <summary>
+        ///// Creates a property for the given member.
+        ///// </summary>
+        //protected JsonProperty CreateProperty(MemberInfo member)
+        //{
+        //    var property = CreateProperty(member);
 
-            // Check for Newtonsoft.Json JsonPropertyAttribute and use its name
-            var jsonPropertyAttr = member.GetCustomAttributes(true)
-                .FirstOrDefault(a => a.GetType().FullName == "Newtonsoft.Json.JsonPropertyAttribute");
+        //    // Check for System.Text.Json JsonPropertyNameAttribute and use its name
+        //    var jsonPropertyAttr = member.GetCustomAttributes(true)
+        //        .FirstOrDefault(a => a.GetType().FullName == "System.Text.Json.Serialization.JsonPropertyNameAttribute");
 
-            if (jsonPropertyAttr is not null)
-            {
-                // Get the PropertyName from the attribute using reflection
-                var propertyNameProp = jsonPropertyAttr.GetType().GetProperty("PropertyName");
-                if (propertyNameProp is not null)
-                {
-                    var name = propertyNameProp.GetValue(jsonPropertyAttr) as string;
-                    if (!string.IsNullOrEmpty(name))
-                    {
-                        property.PropertyName = name;
-                    }
-                }
-            }
+        //    if (jsonPropertyAttr is not null)
+        //    {
+        //        // Get the PropertyName from the attribute using reflection
+        //        var propertyNameProp = jsonPropertyAttr.GetType().GetProperty("Name");
+        //        if (propertyNameProp is not null)
+        //        {
+        //            var name = propertyNameProp.GetValue(jsonPropertyAttr) as string;
+        //            if (!string.IsNullOrEmpty(name))
+        //            {
+        //                property.Name = name;
+        //            }
+        //        }
+        //    }
 
-            // Skip ignored properties (dynamic values that change over time)
-            if (IgnoredProperties.Contains(member.Name) || (property.PropertyName is not null && IgnoredProperties.Contains(property.PropertyName)))
-            {
-                property.Ignored = true;
-                return property;
-            }
+        //    // Skip ignored properties (dynamic values that change over time)
+        //    if (IgnoredProperties.Contains(member.Name) || (property.PropertyName is not null && IgnoredProperties.Contains(property.PropertyName)))
+        //    {
+        //        property.Ignored = true;
+        //        return property;
+        //    }
 
-            // Apply <non-empty> transformation for image paths and dimensions
-            if (NonEmptyProperties.Contains(member.Name) || (property.PropertyName is not null && NonEmptyProperties.Contains(property.PropertyName)))
-            {
-                property.Converter = new NonEmptyConverter();
-                return property;
-            }
+        //    // Apply <non-empty> transformation for image paths and dimensions
+        //    if (NonEmptyProperties.Contains(member.Name) || (property.PropertyName is not null && NonEmptyProperties.Contains(property.PropertyName)))
+        //    {
+        //        property.Converter = new NonEmptyConverter();
+        //        return property;
+        //    }
 
-            // Apply {Scrubbed} transformation for ID properties
-            if (IsIdProperty(member.Name) || (property.PropertyName is not null && IsIdProperty(property.PropertyName)))
-            {
-                property.Converter = new PlaceholderConverter("{Scrubbed}");
-            }
+        //    // Apply {Scrubbed} transformation for ID properties
+        //    if (IsIdProperty(member.Name) || (property.PropertyName is not null && IsIdProperty(property.PropertyName)))
+        //    {
+        //        property.Converter = new PlaceholderConverter("{Scrubbed}");
+        //    }
 
-            return property;
-        }
+        //    return property;
+        //}
 
         /// <summary>
         /// Resolves the contract for a given type and adds sorting for arrays.
         /// </summary>
-        public override JsonContract ResolveContract(Type type)
-        {
-            var contract = base.ResolveContract(type);
+        //public override JsonContract ResolveContract(Type type)
+        //{
+        //    var contract = base.ResolveContract(type);
 
-            // For array contracts, wrap with sorting converter
-            if (contract is JsonArrayContract arrayContract)
-            {
-                arrayContract.Converter = new SortingListConverter(arrayContract.Converter);
-            }
+        //    // For array contracts, wrap with sorting converter
+        //    if (contract is JsonArrayContract arrayContract)
+        //    {
+        //        arrayContract.Converter = new SortingListConverter(arrayContract.Converter);
+        //    }
 
-            return contract;
-        }
+        //    return contract;
+        //}
 
-        private static string[] _sortFieldsInOrder = { "CreditId", "Id", "Iso_3166_1", "EpisodeNumber", "SeasonNumber" };
+        private static readonly string[] _sortFieldsInOrder = { "CreditId", "Id", "Iso_3166_1", "EpisodeNumber", "SeasonNumber" };
 
         /// <summary>
         /// Converter that sorts lists during serialization.
         /// </summary>
-        class SortingListConverter : Argon.JsonConverter
+        class SortingListConverter : JsonConverter<object>
         {
             public SortingListConverter(Argon.JsonConverter? innerConverter)
             {
@@ -330,19 +331,32 @@ public abstract class TestBase
                 return typeof(IEnumerable).IsAssignableFrom(objectType) && !typeof(IDictionary).IsAssignableFrom(objectType);
             }
 
-            public override bool CanRead => false;
+            private static bool IsSorted(IList list, IComparer comparer)
+            {
+                for (var i = 1; i < list.Count; i++)
+                {
+                    var a = list[i - 1];
+                    var b = list[i];
 
-            public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+                    if (comparer.Compare(a, b) > 0)
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            public override object? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             {
                 throw new NotImplementedException("SortingListConverter should only be used for serialization");
             }
 
-            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+            public override void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
             {
-                var items = value as IEnumerable;
-                if (items is null)
+                if (value is not IEnumerable items)
                 {
-                    writer.WriteNull();
+                    writer.WriteNullValue();
                     return;
                 }
 
@@ -354,7 +368,7 @@ public abstract class TestBase
                     var objType = value.GetType();
                     if (objType.IsGenericType)
                     {
-                        var innerType = objType.GetGenericArguments().First();
+                        var innerType = objType.GetGenericArguments()[0];
 
                         // Determine which comparer to use
                         IComparer? comparer = null;
@@ -386,26 +400,10 @@ public abstract class TestBase
                 writer.WriteStartArray();
                 foreach (var item in itemList)
                 {
-                    serializer.Serialize(writer, item);
+                    JsonSerializer.Serialize(writer, item, SourceGenerationContext.Default.Object);
                 }
 
                 writer.WriteEndArray();
-            }
-
-            private static bool IsSorted(IList list, IComparer comparer)
-            {
-                for (var i = 1; i < list.Count; i++)
-                {
-                    var a = list[i - 1];
-                    var b = list[i];
-
-                    if (comparer.Compare(a, b) > 0)
-                    {
-                        return false;
-                    }
-                }
-
-                return true;
             }
         }
 

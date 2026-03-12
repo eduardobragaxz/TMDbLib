@@ -130,7 +130,7 @@ public class ClientCompanyTests : TestBase
         await TMDbClient.GetConfigAsync();
 
         // Test image url generator
-        var company = await TMDbClient.GetCompanyAsync(IdHelper.TwentiethCenturyFox);
+        var company = await TMDbClient.GetCompanyAsync(IdHelper.TwentiethCenturyFox, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(company);
         Assert.NotNull(company.LogoPath);
 
