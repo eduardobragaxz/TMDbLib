@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TMDbLib.Objects.Changes;
@@ -22,8 +22,8 @@ public class ClientChangesTests : TestBase
     [Fact]
     public async Task TestChangesMoviesAsync()
     {
-        var page1 = await TMDbClient.GetMoviesChangesAsync(1);
-        var oldChanges = await TMDbClient.GetMoviesChangesAsync(endDate: FixedEndDate);
+        var page1 = await TMDbClient.GetMoviesChangesAsync(1, null, null, TestContext.Current.CancellationToken);
+        var oldChanges = await TMDbClient.GetMoviesChangesAsync(0, null, FixedEndDate, TestContext.Current.CancellationToken);
 
         Assert.NotNull(page1);
         Assert.NotNull(page1.Results);

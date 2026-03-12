@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -18,7 +18,7 @@ public class ClientCertificationsTests : TestBase
     [Fact]
     public async Task TestCertificationsListMovieAsync()
     {
-        var result = await TMDbClient.GetMovieCertificationsAsync();
+        var result = await TMDbClient.GetMovieCertificationsAsync(TestContext.Current.CancellationToken);
         Assert.NotNull(result);
         Assert.NotNull(result.Certifications);
         Assert.NotEmpty(result.Certifications);

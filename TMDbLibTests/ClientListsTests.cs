@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TMDbLib.Client;
@@ -28,7 +28,7 @@ public class ClientListsTests : TestBase
     public async Task TestGetListAsync()
     {
         // Get list (TestListId points to a deleted list, so null is expected)
-        var list = await TMDbClient.GetListAsync(TestListId);
+        var list = await TMDbClient.GetListAsync(TestListId, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(list);
     }

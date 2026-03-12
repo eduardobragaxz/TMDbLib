@@ -18,7 +18,7 @@ public class ClientCreditTests : TestBase
     [Fact]
     public async Task TestGetCreditTv()
     {
-        var result = await TMDbClient.GetCreditsAsync(IdHelper.BruceWillisMiamiVice);
+        var result = await TMDbClient.GetCreditsAsync(IdHelper.BruceWillisMiamiVice, TestContext.Current.CancellationToken);
         Assert.NotNull(result);
         Assert.NotNull(result.Media);
 

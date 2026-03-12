@@ -22,7 +22,7 @@ public class ClientConfigurationTests : TestBase
     [Fact]
     public async Task TestConfigurationAsync()
     {
-        var result = await TMDbClient.GetAPIConfiguration();
+        var result = await TMDbClient.GetAPIConfiguration(TestContext.Current.CancellationToken);
         Assert.NotNull(result);
 
         await Verify(result);

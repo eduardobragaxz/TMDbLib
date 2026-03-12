@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -134,7 +134,7 @@ public class ClientTests : TestBase
         using var client = new TMDbClient(TestConfig.APIKey, true, "api.themoviedb.org", null, null, mockHandler);
         client.MaxRetryCount = 0;
 
-        await Assert.ThrowsAsync<RequestLimitExceededException>(() => client.GetMovieAsync(IdHelper.AGoodDayToDieHard));
+        await Assert.ThrowsAsync<RequestLimitExceededException>(() => client.GetMovieAsync(IdHelper.AGoodDayToDieHard, cancellationToken: TestContext.Current.CancellationToken));
     }
 
     /// <summary>

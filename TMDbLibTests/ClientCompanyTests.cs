@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,7 +32,7 @@ public class ClientCompanyTests : TestBase
     [Fact]
     public async Task TestCompaniesExtrasNoneAsync()
     {
-        var company = await TMDbClient.GetCompanyAsync(IdHelper.TwentiethCenturyFox);
+        var company = await TMDbClient.GetCompanyAsync(IdHelper.TwentiethCenturyFox, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(company);
 
         // Test all extras, ensure none of them exist
@@ -84,7 +84,7 @@ public class ClientCompanyTests : TestBase
     [Fact]
     public async Task TestCompanyMissingAsync()
     {
-        var company = await TMDbClient.GetCompanyAsync(IdHelper.MissingID);
+        var company = await TMDbClient.GetCompanyAsync(IdHelper.MissingID, CompanyMethods.Undefined, TestContext.Current.CancellationToken);
 
         Assert.Null(company);
     }
@@ -96,9 +96,9 @@ public class ClientCompanyTests : TestBase
     public async Task TestCompaniesMoviesAsync()
     {
         //GetCompanyMoviesAsync(int id, string language, int page = -1)
-        var resp = await TMDbClient.GetCompanyMoviesAsync(IdHelper.TwentiethCenturyFox);
-        var respPage2 = await TMDbClient.GetCompanyMoviesAsync(IdHelper.TwentiethCenturyFox, 2);
-        var respItalian = await TMDbClient.GetCompanyMoviesAsync(IdHelper.TwentiethCenturyFox, "it");
+        var resp = await TMDbClient.GetCompanyMoviesAsync(IdHelper.TwentiethCenturyFox, 0, TestContext.Current.CancellationToken);
+        var respPage2 = await TMDbClient.GetCompanyMoviesAsync(IdHelper.TwentiethCenturyFox, 2, TestContext.Current.CancellationToken);
+        var respItalian = await TMDbClient.GetCompanyMoviesAsync(IdHelper.TwentiethCenturyFox, "it", 0, TestContext.Current.CancellationToken);
 
         Assert.NotNull(resp);
         Assert.NotNull(respPage2);

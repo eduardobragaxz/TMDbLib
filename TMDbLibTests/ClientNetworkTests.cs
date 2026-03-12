@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using TMDbLib.Objects.General;
 using Xunit;
 using TMDbLib.Objects.TvShows;
@@ -18,7 +18,7 @@ public class ClientNetworkTests : TestBase
     [Fact]
     public async Task TestNetworkGetByIdAsync()
     {
-        var network = await TMDbClient.GetNetworkAsync(IdHelper.Netflix);
+        var network = await TMDbClient.GetNetworkAsync(IdHelper.Netflix, TestContext.Current.CancellationToken);
 
         await Verify(network);
     }
@@ -29,7 +29,7 @@ public class ClientNetworkTests : TestBase
     [Fact]
     public async Task TestNetworkImagesAsync()
     {
-        var logos = await TMDbClient.GetNetworkImagesAsync(IdHelper.Netflix);
+        var logos = await TMDbClient.GetNetworkImagesAsync(IdHelper.Netflix, TestContext.Current.CancellationToken);
 
         await Verify(logos);
     }
@@ -40,7 +40,7 @@ public class ClientNetworkTests : TestBase
     [Fact]
     public async Task TestNetworkAlternativeNamesAsync()
     {
-        var names = await TMDbClient.GetNetworkAlternativeNamesAsync(IdHelper.AMC);
+        var names = await TMDbClient.GetNetworkAlternativeNamesAsync(IdHelper.AMC, TestContext.Current.CancellationToken);
 
         await Verify(names);
     }
@@ -51,7 +51,7 @@ public class ClientNetworkTests : TestBase
     [Fact]
     public async Task TestNetworkMissingAsync()
     {
-        var network = await TMDbClient.GetNetworkAsync(IdHelper.MissingID);
+        var network = await TMDbClient.GetNetworkAsync(IdHelper.MissingID, TestContext.Current.CancellationToken);
 
         Assert.Null(network);
     }
