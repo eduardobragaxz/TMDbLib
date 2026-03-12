@@ -37,7 +37,7 @@ public class EnumStringValueConverterTest : TestBase
     public void EnumStringValueConverter_Data(object original)
     {
         var json = Serializer.SerializeToString(original);
-        var result = Serializer.DeserializeFromString(json, original.GetType());
+        var result = Serializer.DeserializeFromString<object>(json);
 
         Assert.IsType(original.GetType(), result);
         Assert.Equal(original, result);

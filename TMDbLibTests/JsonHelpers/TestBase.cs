@@ -12,6 +12,7 @@ using TMDbLib.Utilities;
 using TMDbLib.Utilities.Serializer;
 using VerifyTests;
 using VerifyXunit;
+using Newtonsoft.Json;
 
 namespace TMDbLibTests.JsonHelpers;
 

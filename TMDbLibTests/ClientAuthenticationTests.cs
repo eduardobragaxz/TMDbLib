@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using TMDbLibTests.Exceptions;
 using Xunit;
-using Xunit.Abstractions;
 using TMDbLibTests.JsonHelpers;
 
 namespace TMDbLibTests;
@@ -34,7 +33,7 @@ public class ClientAuthenticationTests : TestBase
     [Fact]
     public async Task TestAuthenticationRequestNewToken()
     {
-        var token = await TMDbClient.AuthenticationRequestAutenticationTokenAsync();
+        var token = await TMDbClient.AuthenticationRequestAutenticationTokenAsync(TestContext.Current.CancellationToken);
 
         Assert.NotNull(token);
         Assert.True(token.Success);
@@ -67,7 +66,7 @@ public class ClientAuthenticationTests : TestBase
     {
         const string requestToken = "bla";
 
-        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => TMDbClient.AuthenticationGetUserSessionAsync(requestToken));
+        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => TMDbClient.AuthenticationGetUserSessionAsync(requestToken, TestContext.Current.CancellationToken));
     }
 
     /// <summary>
@@ -80,11 +79,11 @@ public class ClientAuthenticationTests : TestBase
     [Trait("Category", "RequiresAccountAccess")]
     public async Task TestAuthenticationGetUserSessionApiUserValidationSuccessAsync()
     {
-        var token = await TMDbClient.AuthenticationRequestAutenticationTokenAsync();
+        var token = await TMDbClient.AuthenticationRequestAutenticationTokenAsync(TestContext.Current.CancellationToken);
         Assert.NotNull(token);
         Assert.NotNull(token.RequestToken);
 
-        await TMDbClient.AuthenticationValidateUserTokenAsync(token.RequestToken, TestConfig.Username, TestConfig.Password);
+        await TMDbClient.AuthenticationValidateUserTokenAsync(token.RequestToken, TestConfig.Username, TestConfig.Password, TestContext.Current.CancellationToken);
     }
 
     /// <summary>
@@ -93,11 +92,11 @@ public class ClientAuthenticationTests : TestBase
     [Fact]
     public async Task TestAuthenticationGetUserSessionApiUserValidationInvalidLoginAsync()
     {
-        var token = await TMDbClient.AuthenticationRequestAutenticationTokenAsync();
+        var token = await TMDbClient.AuthenticationRequestAutenticationTokenAsync(TestContext.Current.CancellationToken);
         Assert.NotNull(token);
         Assert.NotNull(token.RequestToken);
 
-        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => TMDbClient.AuthenticationValidateUserTokenAsync(token.RequestToken, "bla", "bla"));
+        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => TMDbClient.AuthenticationValidateUserTokenAsync(token.RequestToken, "bla", "bla", TestContext.Current.CancellationToken));
     }
 
     /// <summary>
@@ -112,7 +111,7 @@ public class ClientAuthenticationTests : TestBase
     {
         try
         {
-            var session = await TMDbClient.AuthenticationGetUserSessionAsync(TestConfig.Username, TestConfig.Password);
+            var session = await TMDbClient.AuthenticationGetUserSessionAsync(TestConfig.Username, TestConfig.Password, TestContext.Current.CancellationToken);
 
             Assert.NotNull(session);
             Assert.True(session.Success);
@@ -136,7 +135,7 @@ public class ClientAuthenticationTests : TestBase
     {
         const string requestToken = "5f3a62c0d7977319e3d14adf1a2064c0c0938bcf";
 
-        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => TMDbClient.AuthenticationGetUserSessionAsync(requestToken));
+        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => TMDbClient.AuthenticationGetUserSessionAsync(requestToken, TestContext.Current.CancellationToken));
     }
 
     /// <summary>
@@ -145,7 +144,7 @@ public class ClientAuthenticationTests : TestBase
     [Fact]
     public async Task TestAuthenticationCreateGuestSessionAsync()
     {
-        var guestSession = await TMDbClient.AuthenticationCreateGuestSessionAsync();
+        var guestSession = await TMDbClient.AuthenticationCreateGuestSessionAsync(TestContext.Current.CancellationToken);
 
         Assert.NotNull(guestSession);
         Assert.True(guestSession.Success);
