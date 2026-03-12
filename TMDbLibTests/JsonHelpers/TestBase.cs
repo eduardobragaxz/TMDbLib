@@ -12,7 +12,6 @@ using TMDbLib.Utilities;
 using TMDbLib.Utilities.Serializer;
 using VerifyTests;
 using VerifyXunit;
-using Newtonsoft.Json;
 
 namespace TMDbLibTests.JsonHelpers;
 
@@ -21,11 +20,12 @@ namespace TMDbLibTests.JsonHelpers;
 /// </summary>
 public abstract class TestBase
 {
-    /// <summary>
-    /// Registers necessary module initializers.
-    /// </summary>
-    [ModuleInitializer]
-    public static void Init() => VerifyNewtonsoftJson.Initialize();
+    ///// <summary>
+    ///// Registers necessary module initializers.
+    ///// </summary>
+
+    // [ModuleInitializer]
+    // public static void Init() => VerifyNewtonsoftJson.Initialize();
 
     /// <summary>
     /// Gets the Verify settings used for all tests in this class.
