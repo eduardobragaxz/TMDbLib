@@ -43,7 +43,7 @@ internal class KnownForConverter : JsonConverter<List<KnownForBase?>>
 
         foreach (var item in arrayEnumerator)
         {
-            var property = item.GetProperty("media_Type");
+            var property = item.GetProperty("media_type");
             var mediaType = Enum.Parse<MediaType>(property.GetString()!, true);
 
             knownForBaseList.Add(mediaType switch
