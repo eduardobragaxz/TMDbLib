@@ -50,6 +50,7 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(TvEpisodeAccountStateWithNumber))]
 [JsonSerializable(typeof(Objects.Collections.Collection))]
 [JsonSerializable(typeof(object))]
+[JsonSerializable(typeof(TvEpisode))]
 internal partial class SourceGenerationContext : JsonSerializerContext
 {
 }
