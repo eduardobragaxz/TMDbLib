@@ -1,11 +1,6 @@
-using System;
 using System.IO;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using TMDbLib.Objects.Changes;
-using TMDbLib.Objects.General;
-using TMDbLib.Utilities.Converters;
 
 namespace TMDbLib.Utilities.Serializer;
 
@@ -41,8 +36,8 @@ public class TMDbJsonSerializer : ITMDbSerializer
     /// <param name="source">The source stream to read from.</param>
     /// <typeparam name="T">The type of the object to deserialize.</typeparam>
     /// <returns>The deserialized object.</returns>
-    public T? Deserialize<T>(Stream source)
+    public object? Deserialize<T>(Stream source)
     {
-        return (T?)JsonSerializer.Deserialize(source, typeof(T), SourceGenerationContext.Default);
+        return JsonSerializer.Deserialize(source, typeof(T), SourceGenerationContext.Default);
     }
 }

@@ -83,7 +83,7 @@ public static class SerializerExtensions
     /// <param name="serializer">The serializer instance.</param>
     /// <param name="json">The JSON string to deserialize.</param>
     /// <returns>The deserialized object.</returns>
-    public static T? DeserializeFromString<T>(this ITMDbSerializer serializer, string json)
+    public static object? DeserializeFromString<T>(this ITMDbSerializer serializer, string json)
     {
         // TODO: Better method
         var bytes = Encoding.UTF8.GetBytes(json);
