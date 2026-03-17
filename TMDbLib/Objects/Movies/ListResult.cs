@@ -24,7 +24,7 @@ public class ListResult
     /// Gets or sets the list ID.
     /// </summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public int Id { get; set; }
 
     /// <summary>
     /// Gets or sets a language code, e.g. en.
