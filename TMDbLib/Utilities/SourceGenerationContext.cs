@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
+using TMDbLib.Objects.Account;
+using TMDbLib.Objects.Authentication;
 using TMDbLib.Objects.Changes;
 using TMDbLib.Objects.Exceptions;
 using TMDbLib.Objects.General;
+using TMDbLib.Objects.Lists;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.People;
 using TMDbLib.Objects.Search;
@@ -51,6 +54,11 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(Objects.Collections.Collection))]
 [JsonSerializable(typeof(object))]
 [JsonSerializable(typeof(TvEpisode))]
+[JsonSerializable(typeof(TMDbLib.Objects.Authentication.Token))]
+[JsonSerializable(typeof(UserSession))]
+[JsonSerializable(typeof(AccountDetails))]
+[JsonSerializable(typeof(SearchContainer<AccountList>))]
+[JsonSerializable(typeof(SearchContainerWithId<ListResult>))]
 internal partial class SourceGenerationContext : JsonSerializerContext
 {
 }
