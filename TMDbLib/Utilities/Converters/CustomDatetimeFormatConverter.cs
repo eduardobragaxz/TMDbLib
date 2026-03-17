@@ -8,7 +8,7 @@ namespace TMDbLib.Utilities.Converters;
 /// <summary>
 /// JSON converter for DateTime values with custom format strings.
 /// </summary>
-public class CustomDatetimeFormatConverter : JsonConverter<DateTime?>
+public class CustomDatetimeFormatConverter : JsonConverter<DateTime>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="CustomDatetimeFormatConverter"/> class.
@@ -36,12 +36,12 @@ public class CustomDatetimeFormatConverter : JsonConverter<DateTime?>
     /// <param name="typeToConvert">Type of the object.</param>
     /// <param name="options">Serializer options.</param>
     /// <returns>The object value.</returns>
-    public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         var stringValue = reader.GetString();
         if (string.IsNullOrEmpty(stringValue))
         {
-            return null;
+            return DateTime.Now;
         }
 
         return DateTime.ParseExact(stringValue, DatetimeFormat, CultureInfo.CurrentCulture);
@@ -53,7 +53,7 @@ public class CustomDatetimeFormatConverter : JsonConverter<DateTime?>
     /// <param name="writer">The <see cref="Utf8JsonWriter"/> to write to.</param>
     /// <param name="value">The value to write.</param>
     /// <param name="options">Serializer options.</param>
-    public override void Write(Utf8JsonWriter writer, DateTime? value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
     {
         if (value is DateTime dateTime)
         {
