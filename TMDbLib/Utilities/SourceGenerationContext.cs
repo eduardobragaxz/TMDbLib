@@ -58,6 +58,7 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(UserSession))]
 [JsonSerializable(typeof(AccountDetails))]
 [JsonSerializable(typeof(SearchContainer<AccountList>))]
+[JsonSerializable(typeof(SearchContainer<SearchMovieWithRating>))]
 [JsonSerializable(typeof(SearchContainerWithId<ListResult>))]
 internal partial class SourceGenerationContext : JsonSerializerContext
 {
