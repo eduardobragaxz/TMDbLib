@@ -12,6 +12,7 @@ using TMDbLib.Objects.Search;
 using TMDbLib.Objects.TvShows;
 using TMDbLib.Rest;
 using TMDbLib.Utilities;
+using static TMDbLib.Rest.RestRequest;
 using Credits = TMDbLib.Objects.TvShows.Credits;
 
 namespace TMDbLib.Client;
@@ -489,7 +490,7 @@ public partial class TMDbClient
         req.AddUrlSegment("tvShowId", tvShowId.ToString(CultureInfo.InvariantCulture));
         AddSessionId(req);
 
-        req.SetBody(new { value = rating });
+        req.SetBody(new RatingBody { value = rating });
 
         using var response = await req.Post<PostReply>(cancellationToken).ConfigureAwait(false);
 

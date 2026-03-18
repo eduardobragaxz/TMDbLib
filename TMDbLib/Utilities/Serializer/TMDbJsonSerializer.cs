@@ -23,11 +23,12 @@ public class TMDbJsonSerializer : ITMDbSerializer
     /// <summary>
     /// Serializes an object to a stream.
     /// </summary>
-    /// <param name="target">The target stream to write to.</param>
+    /// <param name="value">The value to be converted.</param>
     /// <typeparam name="T">The type of the object.</typeparam>
-    public void Serialize<T>(Stream target)
+    /// <returns>String representation of the value.</returns>
+    public string Serialize<T>(object value)
     {
-        JsonSerializer.Serialize(target, typeof(T), SourceGenerationContext.Default);
+        return JsonSerializer.Serialize(value, typeof(T), SourceGenerationContext.Default);
     }
 
     /// <summary>

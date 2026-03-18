@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using TMDbLib.Objects.General;
+using static TMDbLib.Rest.RestRequest;
 
 namespace TMDbLib.Utilities.Serializer;
 
@@ -28,16 +30,17 @@ public static class SerializerExtensions
     /// </summary>
     /// <typeparam name="T">The type of the object.</typeparam>
     /// <param name="serializer">The serializer instance.</param>
+    /// <param name="value">The value to be serialized.</param>
     /// <returns>A byte array containing the serialized object.</returns>
-    public static byte[] SerializeToBytes<T>(this ITMDbSerializer serializer)
+    public static byte[] SerializeToBytes<T>(this ITMDbSerializer serializer, object value)
         where T : notnull
     {
-        using var ms = new MemoryStream();
+        // using var ms = new MemoryStream();
 
         ArgumentNullException.ThrowIfNull(serializer);
-        serializer.Serialize<T>(ms);
+        string json = serializer.Serialize<T>(value);
 
-        return ms.ToArray();
+        return Encoding.UTF8.GetBytes(json);
     }
 
     /// <summary>
@@ -45,21 +48,21 @@ public static class SerializerExtensions
     /// </summary>
     /// <typeparam name="T">The type of the object.</typeparam>
     /// <param name="serializer">The serializer instance.</param>
-    /// <param name="type">The object to serialize.</param>
+    /// <param name="value">The object to serialize.</param>
     /// <returns>A JSON string representation of the object.</returns>
-    public static string SerializeToString<T>(this ITMDbSerializer serializer, T type)
+    public static string SerializeToString<T>(this ITMDbSerializer serializer, object value)
         where T : notnull
     {
-        using var ms = new MemoryStream();
+        // using var ms = new MemoryStream();
 
         ArgumentNullException.ThrowIfNull(serializer);
-        serializer.Serialize<T>(ms);
+        string json = serializer.Serialize<T>(value);
 
-        ms.Seek(0, SeekOrigin.Begin);
+        // ms.Seek(0, SeekOrigin.Begin);
 
-        using var sr = new StreamReader(ms, Encoding.UTF8);
+        // using var sr = new StreamReader(ms, Encoding.UTF8);
 
-        return sr.ReadToEnd();
+        return json;
     }
 
     /// <summary>

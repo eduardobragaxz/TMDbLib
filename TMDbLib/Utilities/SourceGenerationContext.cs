@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Text.Json.Serialization;
 using TMDbLib.Objects.Account;
@@ -12,6 +13,7 @@ using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.People;
 using TMDbLib.Objects.Search;
 using TMDbLib.Objects.TvShows;
+using static TMDbLib.Rest.RestRequest;
 
 namespace TMDbLib.Utilities;
 
@@ -60,6 +62,10 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(SearchContainer<AccountList>))]
 [JsonSerializable(typeof(SearchContainer<SearchMovieWithRating>))]
 [JsonSerializable(typeof(SearchContainerWithId<ListResult>))]
+[JsonSerializable(typeof(MemoryStream))]
+[JsonSerializable(typeof(Body))]
+[JsonSerializable(typeof(ListBody))]
+[JsonSerializable(typeof(RatingBody))]
 internal partial class SourceGenerationContext : JsonSerializerContext
 {
 }

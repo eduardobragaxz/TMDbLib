@@ -4,11 +4,13 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using TMDbLib.Objects.Exceptions;
+using TMDbLib.Objects.General;
 using TMDbLib.Utilities;
 using TMDbLib.Utilities.Serializer;
 
@@ -174,7 +176,7 @@ internal class RestRequest
         // Body
         if (method == HttpMethod.Post && _bodyObj is not null)
         {
-            var bodyBytes = _client.Serializer.SerializeToBytes<object>();
+            var bodyBytes = _client.Serializer.SerializeToBytes<object>(_bodyObj);
 
             req.Content = new ByteArrayContent(bodyBytes);
             req.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -267,10 +269,46 @@ internal class RestRequest
         throw new RequestLimitExceededException(statusMessage, retryHeader?.Date, retryHeader?.Delta);
     }
 
-    public RestRequest SetBody(object obj)
+    public RestRequest SetBody(Body obj)
     {
         _bodyObj = obj;
 
         return this;
+    }
+
+    public RestRequest SetBody(ListBody obj)
+    {
+        _bodyObj = obj;
+
+        return this;
+    }
+
+    public RestRequest SetBody(RatingBody obj)
+    {
+        _bodyObj = obj;
+
+        return this;
+    }
+
+    /// <summary>
+    /// Body record class purely to avoid anonymous types for source generator reasons.
+    /// </summary>
+    public record Body(string? media_type = null, int media_id = 0, bool? favorite = null);
+
+    public record RatingBody
+    {
+        public double value { get; set; }
+    }
+
+    /// <summary>
+    /// Body record class purely to avoid anonymous types for source generator reasons.
+    /// </summary>
+    public record ListBody
+    {
+        public string name { get; set; } = string.Empty;
+
+        public string description { get; set; } = string.Empty;
+
+        public string? language { get; set; }
     }
 }

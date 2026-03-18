@@ -12,6 +12,7 @@ using TMDbLib.Objects.Reviews;
 using TMDbLib.Objects.Search;
 using TMDbLib.Rest;
 using TMDbLib.Utilities;
+using static TMDbLib.Rest.RestRequest;
 using Credits = TMDbLib.Objects.Movies.Credits;
 
 namespace TMDbLib.Client;
@@ -671,7 +672,7 @@ public sealed partial class TMDbClient
         req.AddUrlSegment("movieId", movieId.ToString(CultureInfo.InvariantCulture));
         AddSessionId(req);
 
-        req.SetBody(new { value = rating });
+        req.SetBody(new RatingBody { value = rating });
 
         using var response = await req.Post<PostReply>(cancellationToken).ConfigureAwait(false);
 

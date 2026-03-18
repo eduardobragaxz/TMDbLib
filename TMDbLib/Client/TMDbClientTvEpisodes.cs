@@ -8,6 +8,7 @@ using TMDbLib.Objects.General;
 using TMDbLib.Objects.TvShows;
 using TMDbLib.Rest;
 using TMDbLib.Utilities;
+using static TMDbLib.Rest.RestRequest;
 
 namespace TMDbLib.Client;
 
@@ -299,7 +300,7 @@ public partial class TMDbClient
 
         AddSessionId(req);
 
-        req.SetBody(new { value = rating });
+        req.SetBody(new RatingBody { value = rating });
 
         using var response = await req.Post<PostReply>(cancellationToken).ConfigureAwait(false);
 

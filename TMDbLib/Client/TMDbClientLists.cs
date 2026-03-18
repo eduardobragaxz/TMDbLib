@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -6,6 +6,7 @@ using TMDbLib.Objects.Authentication;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Lists;
 using TMDbLib.Rest;
+using static TMDbLib.Rest.RestRequest;
 
 namespace TMDbLib.Client;
 
@@ -28,7 +29,7 @@ public partial class TMDbClient
         req.AddUrlSegment("method", method);
         AddSessionId(req, SessionType.UserSession);
 
-        req.SetBody(new { media_id = movieId });
+        req.SetBody(new Body(media_id: movieId));
 
         using RestResponse<PostReply> response = await req.Post<PostReply>(cancellationToken).ConfigureAwait(false);
 
@@ -168,11 +169,11 @@ public partial class TMDbClient
         language ??= DefaultLanguage;
         if (!string.IsNullOrWhiteSpace(language))
         {
-            req.SetBody(new { name, description, language });
+            req.SetBody(new ListBody() { name = name, description = description, language = language });
         }
         else
         {
-            req.SetBody(new { name, description });
+            req.SetBody(new ListBody() { name = name, description = description });
         }
 
         using var response = await req.Post<ListCreateReply>(cancellationToken).ConfigureAwait(false);

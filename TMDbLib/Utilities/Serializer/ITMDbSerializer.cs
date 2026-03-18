@@ -11,9 +11,10 @@ public interface ITMDbSerializer
     /// <summary>
     /// Serializes an object to a stream.
     /// </summary>
-    /// <param name="target">The target stream to write to.</param>
+    /// <param name="value">The value to serialize.</param>
     /// <typeparam name="T">The type of the object.</typeparam>
-    void Serialize<T>(Stream target);
+    /// <returns>Returns a string json representation of the value.</returns>
+    string Serialize<T>(object value);
 
     /// <summary>
     /// Deserializes an object from a stream.
