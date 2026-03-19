@@ -200,7 +200,7 @@ internal class RestRequest
         do
         {
             using var req = PrepRequest(method);
-            var resp = await _client.HttpClient.SendAsync(req, cancellationToken).ConfigureAwait(false);
+            var resp = await RestClient.HttpClient.SendAsync(req, cancellationToken).ConfigureAwait(false);
 
             var isJson = resp.Content.Headers.ContentType?.MediaType?.Equals("application/json", StringComparison.OrdinalIgnoreCase) ?? false;
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -51,7 +51,7 @@ internal sealed class RestClient : IDisposable
 
     internal IWebProxy? Proxy { get; private set; }
 
-    internal HttpClient HttpClient { get; private set; }
+    internal static HttpClient HttpClient { get; private set; }
 
     public int MaxRetryCount
     {

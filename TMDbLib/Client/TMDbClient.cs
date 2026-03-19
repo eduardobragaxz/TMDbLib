@@ -246,7 +246,7 @@ public partial class TMDbClient : IDisposable
     {
         var url = GetImageUrl(size, filePath, useSsl);
 
-        using var response = await _client.HttpClient.GetAsync(url, HttpCompletionOption.ResponseContentRead, token).ConfigureAwait(false);
+        using var response = await RestClient.HttpClient.GetAsync(url, HttpCompletionOption.ResponseContentRead, token).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
 
         return await response.Content.ReadAsByteArrayAsync(token).ConfigureAwait(false);
@@ -278,7 +278,7 @@ public partial class TMDbClient : IDisposable
 
         var httpScheme = useSsl ? "https" : "http";
 
-        _client?.Dispose();
+        // _client?.Dispose();
         _client = new RestClient(new Uri(string.Format(CultureInfo.InvariantCulture, "{0}://{1}/{2}/", httpScheme, baseUrl, ApiVersion)), _serializer, WebProxy, _httpMessageHandler);
         _client.AddDefaultQueryString("api_key", apiKey);
     }
@@ -379,7 +379,7 @@ public partial class TMDbClient : IDisposable
 
         if (disposing)
         {
-            _client?.Dispose();
+            // _client?.Dispose();
         }
 
         _disposed = true;
