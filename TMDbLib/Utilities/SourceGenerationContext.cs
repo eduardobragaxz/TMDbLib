@@ -63,9 +63,12 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(SearchContainer<SearchMovieWithRating>))]
 [JsonSerializable(typeof(SearchContainerWithId<ListResult>))]
 [JsonSerializable(typeof(MemoryStream))]
-[JsonSerializable(typeof(Body))]
+[JsonSerializable(typeof(WatchListBody))]
+[JsonSerializable(typeof(FavoriteListBody))]
 [JsonSerializable(typeof(ListBody))]
 [JsonSerializable(typeof(RatingBody))]
+[JsonSerializable(typeof(ManipulateListBody))]
+[JsonSerializable(typeof(PostReply))]
 internal partial class SourceGenerationContext : JsonSerializerContext
 {
 }

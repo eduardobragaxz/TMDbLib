@@ -82,7 +82,8 @@ public partial class TMDbClient
 
         var request = _client.Create("account/{accountId}/favorite");
         request.AddUrlSegment("accountId", ActiveAccount!.Id.ToString(CultureInfo.InvariantCulture));
-        request.SetBody(new Body(mediaType.GetDescription(), mediaId, isFavorite));
+        var favoriteListBody = new FavoriteListBody(mediaType.GetDescription().ToLowerInvariant(), mediaId, isFavorite);
+        request.SetBody(favoriteListBody);
         AddSessionId(request, SessionType.UserSession);
 
         var response = await request.PostOfT<PostReply>(cancellationToken).ConfigureAwait(false);
@@ -109,7 +110,7 @@ public partial class TMDbClient
 
         var request = _client.Create("account/{accountId}/watchlist");
         request.AddUrlSegment("accountId", ActiveAccount!.Id.ToString(CultureInfo.InvariantCulture));
-        request.SetBody(new Body(mediaType.GetDescription(), mediaId, isOnWatchlist));
+        request.SetBody(new WatchListBody(mediaType.GetDescription().ToLowerInvariant(), mediaId, isOnWatchlist));
         AddSessionId(request, SessionType.UserSession);
 
         var response = await request.PostOfT<PostReply>(cancellationToken).ConfigureAwait(false);

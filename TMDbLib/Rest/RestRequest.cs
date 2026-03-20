@@ -176,9 +176,8 @@ internal class RestRequest
         // Body
         if (method == HttpMethod.Post && _bodyObj is not null)
         {
-            var bodyBytes = _client.Serializer.SerializeToBytes<object>(_bodyObj);
-
-            req.Content = new ByteArrayContent(bodyBytes);
+            StringContent stringContent = _client.Serializer.SerializeToContent<object>(_bodyObj);
+            req.Content = stringContent;
             req.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         }
 
@@ -269,21 +268,7 @@ internal class RestRequest
         throw new RequestLimitExceededException(statusMessage, retryHeader?.Date, retryHeader?.Delta);
     }
 
-    public RestRequest SetBody(Body obj)
-    {
-        _bodyObj = obj;
-
-        return this;
-    }
-
-    public RestRequest SetBody(ListBody obj)
-    {
-        _bodyObj = obj;
-
-        return this;
-    }
-
-    public RestRequest SetBody(RatingBody obj)
+    public RestRequest SetBody(object obj)
     {
         _bodyObj = obj;
 
@@ -291,24 +276,14 @@ internal class RestRequest
     }
 
     /// <summary>
-    /// Body record class purely to avoid anonymous types for source generator reasons.
+    /// Body record classes purely to avoid anonymous types for source generator reasons.
     /// </summary>
-    public record Body(string? media_type = null, int media_id = 0, bool? favorite = null);
+    public record WatchListBody(string? media_type = null, int media_id = 0, bool? watchlist = null);
 
-    public record RatingBody
-    {
-        public double value { get; set; }
-    }
+    public record FavoriteListBody(string? media_type = null, int media_id = 0, bool? favorite = null);
 
-    /// <summary>
-    /// Body record class purely to avoid anonymous types for source generator reasons.
-    /// </summary>
-    public record ListBody
-    {
-        public string name { get; set; } = string.Empty;
+    public record RatingBody(double value);
 
-        public string description { get; set; } = string.Empty;
-
-        public string? language { get; set; }
-    }
+    public record ListBody(string name, string description, string? language);
+    public record ManipulateListBody(int media_id);
 }

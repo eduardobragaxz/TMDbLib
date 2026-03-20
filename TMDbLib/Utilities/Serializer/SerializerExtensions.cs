@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using TMDbLib.Objects.General;
@@ -26,21 +27,19 @@ public static class SerializerExtensions
     }
 
     /// <summary>
-    /// Serializes an object to a byte array.
+    /// Serializes an object to a StringContent.
     /// </summary>
     /// <typeparam name="T">The type of the object.</typeparam>
     /// <param name="serializer">The serializer instance.</param>
     /// <param name="value">The value to be serialized.</param>
-    /// <returns>A byte array containing the serialized object.</returns>
-    public static byte[] SerializeToBytes<T>(this ITMDbSerializer serializer, object value)
-        where T : notnull
+    /// <returns>A string content containing the serialized object.</returns>
+    public static StringContent SerializeToContent<T>(this ITMDbSerializer serializer, object value)
     {
-        // using var ms = new MemoryStream();
-
         ArgumentNullException.ThrowIfNull(serializer);
+
         string json = serializer.Serialize<T>(value);
 
-        return Encoding.UTF8.GetBytes(json);
+        return new StringContent(json);
     }
 
     /// <summary>

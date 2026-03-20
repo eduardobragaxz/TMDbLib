@@ -12,4 +12,10 @@ public class Avatar
     /// </summary>
     [JsonPropertyName("gravatar")]
     public Gravatar? Gravatar { get; set; }
+
+    /// <summary>
+    /// Gets or sets the TMDb avatar.
+    /// </summary>
+    [JsonPropertyName("tmdb")]
+    public TMDbAvatar? TMDbAvatar { get; set; }
 }
