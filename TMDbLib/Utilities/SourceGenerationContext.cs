@@ -69,6 +69,7 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(RatingBody))]
 [JsonSerializable(typeof(ManipulateListBody))]
 [JsonSerializable(typeof(PostReply))]
+[JsonSerializable(typeof(TMDbConfig))]
 internal partial class SourceGenerationContext : JsonSerializerContext
 {
 }
