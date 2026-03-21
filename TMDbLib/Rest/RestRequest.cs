@@ -285,5 +285,6 @@ internal class RestRequest
     public record RatingBody(double value);
 
     public record ListBody(string name, string description, string? language);
+
     public record ManipulateListBody(int media_id);
 }
