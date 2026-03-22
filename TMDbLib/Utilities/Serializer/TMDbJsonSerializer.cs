@@ -18,7 +18,7 @@ public class TMDbJsonSerializer : ITMDbSerializer
     /// <summary>
     /// Gets the singleton instance of the <see cref="TMDbJsonSerializer"/>.
     /// </summary>
-    public static TMDbJsonSerializer Instance { get; } = new();
+    public static TMDbJsonSerializer Instance { get; } = new ();
 
     /// <summary>
     /// Serializes an object to a stream.
