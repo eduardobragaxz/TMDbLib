@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using TMDbLib.Utilities.Converters;
 
 namespace TMDbLib.Objects.General;
 
@@ -22,8 +23,9 @@ public class AccountState
     /// <summary>
     /// Gets or sets the user's rating for the media item.
     /// </summary>
-    [JsonPropertyName("rating")]
-    public double? Rating { get; set; }
+    [JsonPropertyName("rated")]
+    [JsonConverter(typeof(AccountStateConverter))]
+    public double? Rated { get; set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether the related movie is on the current user's watchlist.
