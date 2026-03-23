@@ -30,6 +30,11 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(SearchCollection))]
 [JsonSerializable(typeof(SearchBase))]
 [JsonSerializable(typeof(ChangeItemBase))]
+[JsonSerializable(typeof(ChangeItemAdded))]
+[JsonSerializable(typeof(ChangeItemCreated))]
+[JsonSerializable(typeof(ChangeItemUpdated))]
+[JsonSerializable(typeof(ChangeItemDeleted))]
+[JsonSerializable(typeof(ChangeItemDestroyed))]
 [JsonSerializable(typeof(CombinedCreditsCastMovie))]
 [JsonSerializable(typeof(CombinedCreditsCrewMovie))]
 [JsonSerializable(typeof(CombinedCreditsCastTv), TypeInfoPropertyName = "TMDbLib_Objects_People_CombinedCreditsCastTv")]
@@ -71,6 +76,7 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(PostReply))]
 [JsonSerializable(typeof(TMDbConfig))]
 [JsonSerializable(typeof(SearchContainer<AccountSearchTv>))]
+[JsonSerializable(typeof(ListCreateReply))]
 internal partial class SourceGenerationContext : JsonSerializerContext
 {
 }
