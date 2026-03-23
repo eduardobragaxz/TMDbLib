@@ -52,11 +52,11 @@ internal class ChangeItemCollectionConvertor : JsonConverter<List<ChangeItemBase
 
             changeItemBaseList.Add(actionType switch
             {
-                ChangeAction.Added => new ChangeItemAdded(),
-                ChangeAction.Created => new ChangeItemCreated(),
-                ChangeAction.Updated => new ChangeItemUpdated(),
-                ChangeAction.Deleted => new ChangeItemDeleted(),
-                ChangeAction.Destroyed => new ChangeItemDestroyed(),
+                ChangeAction.Added => m.Deserialize(SourceGenerationContext.Default.ChangeItemAdded)!,
+                ChangeAction.Created => m.Deserialize(SourceGenerationContext.Default.ChangeItemCreated)!,
+                ChangeAction.Updated => m.Deserialize(SourceGenerationContext.Default.ChangeItemUpdated)!,
+                ChangeAction.Deleted => m.Deserialize(SourceGenerationContext.Default.ChangeItemDeleted)!,
+                ChangeAction.Destroyed => m.Deserialize(SourceGenerationContext.Default.ChangeItemDestroyed)!,
                 _ => throw new ArgumentOutOfRangeException(nameof(jElement)),
             });
         }
