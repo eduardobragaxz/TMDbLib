@@ -77,6 +77,7 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(TMDbConfig))]
 [JsonSerializable(typeof(SearchContainer<AccountSearchTv>))]
 [JsonSerializable(typeof(ListCreateReply))]
+[JsonSerializable(typeof(GenericList))]
 internal partial class SourceGenerationContext : JsonSerializerContext
 {
 }

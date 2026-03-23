@@ -24,7 +24,7 @@ public abstract class TMDbList<TId>
     /// Gets or sets the list ID.
     /// </summary>
     [JsonPropertyName("id")]
-    public int? Id { get; set; }
+    public int Id { get; set; }
 
     /// <summary>
     /// Gets or sets a language code, e.g. en.
