@@ -11,6 +11,7 @@ using TMDbLib.Objects.General;
 using TMDbLib.Objects.Lists;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.People;
+using TMDbLib.Objects.Reviews;
 using TMDbLib.Objects.Search;
 using TMDbLib.Objects.TvShows;
 using static TMDbLib.Rest.RestRequest;
@@ -79,6 +80,9 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(ListCreateReply))]
 [JsonSerializable(typeof(GenericList))]
 [JsonSerializable(typeof(GuestSession))]
+[JsonSerializable(typeof(SearchContainerWithId<ReviewBase>))]
+[JsonSerializable(typeof(ReviewBase))]
+[JsonSerializable(typeof(Review))]
 internal partial class SourceGenerationContext : JsonSerializerContext
 {
 }
