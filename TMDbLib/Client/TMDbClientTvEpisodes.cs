@@ -54,7 +54,7 @@ public partial class TMDbClient
     /// <returns>The account states for the episode.</returns>
     /// <remarks>Requires a valid user session.</remarks>
     /// <exception cref="UserSessionRequiredException">Thrown when the current client object doesn't have a user session assigned.</exception>
-    public async Task<TvEpisodeAccountState?> GetTvEpisodeAccountStateAsync(int tvShowId, int seasonNumber, int episodeNumber, CancellationToken cancellationToken = default)
+    public async Task<TvEpisodeAccountState?> GetTvEpisodeAccountStateAsync(int tvShowId, int seasonNumber, long episodeNumber, CancellationToken cancellationToken = default)
     {
         RequireSessionId(SessionType.UserSession);
 
@@ -259,7 +259,7 @@ public partial class TMDbClient
     /// <returns>True if the rating was successfully removed, false otherwise.</returns>
     /// <remarks>Requires a valid guest or user session.</remarks>
     /// <exception cref="GuestSessionRequiredException">Thrown when the current client object doesn't have a guest or user session assigned.</exception>
-    public async Task<bool> TvEpisodeRemoveRatingAsync(int tvShowId, int seasonNumber, int episodeNumber, CancellationToken cancellationToken = default)
+    public async Task<bool> TvEpisodeRemoveRatingAsync(int tvShowId, int seasonNumber, long episodeNumber, CancellationToken cancellationToken = default)
     {
         RequireSessionId(SessionType.GuestSession);
 
@@ -289,7 +289,7 @@ public partial class TMDbClient
     /// <returns>True if the rating was successfully set, false otherwise.</returns>
     /// <remarks>Requires a valid guest or user session.</remarks>
     /// <exception cref="GuestSessionRequiredException">Thrown when the current client object doesn't have a guest or user session assigned.</exception>
-    public async Task<bool> TvEpisodeSetRatingAsync(int tvShowId, int seasonNumber, int episodeNumber, double rating, CancellationToken cancellationToken = default)
+    public async Task<bool> TvEpisodeSetRatingAsync(int tvShowId, int seasonNumber, long episodeNumber, double rating, CancellationToken cancellationToken = default)
     {
         RequireSessionId(SessionType.GuestSession);
 
