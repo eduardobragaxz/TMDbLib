@@ -278,7 +278,7 @@ public partial class TMDbClient : IDisposable
 
         var httpScheme = useSsl ? "https" : "http";
 
-        // _client?.Dispose();
+        _client?.Dispose();
         _client = new RestClient(new Uri(string.Format(CultureInfo.InvariantCulture, "{0}://{1}/{2}/", httpScheme, baseUrl, ApiVersion)), _serializer, WebProxy, _httpMessageHandler);
         _client.AddDefaultQueryString("api_key", apiKey);
     }

@@ -40,7 +40,8 @@ internal sealed class RestClient : IDisposable
             httpMessageHandler = handler;
         }
 
-        HttpClient = new HttpClient(httpMessageHandler);
+        HttpClient = new (httpMessageHandler);
+        HttpClient.DefaultRequestHeaders.ConnectionClose = true;
     }
 
     internal Uri BaseUrl { get; }
