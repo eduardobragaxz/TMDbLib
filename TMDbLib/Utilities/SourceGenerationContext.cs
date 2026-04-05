@@ -84,6 +84,7 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(ReviewBase))]
 [JsonSerializable(typeof(Review))]
 [JsonSerializable(typeof(SearchContainer<AccountSearchTvEpisode>))]
+[JsonSerializable(typeof(ListStatus))]
 internal partial class SourceGenerationContext : JsonSerializerContext
 {
 }
