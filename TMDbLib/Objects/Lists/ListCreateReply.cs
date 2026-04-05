@@ -5,7 +5,7 @@ namespace TMDbLib.Objects.Lists;
 internal class ListCreateReply
 {
     [JsonPropertyName("list_id")]
-    public string? ListId { get; set; }
+    public int? ListId { get; set; }
 
     [JsonPropertyName("status_code")]
     public int StatusCode { get; set; }
