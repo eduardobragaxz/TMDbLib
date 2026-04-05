@@ -149,7 +149,7 @@ public partial class TMDbClient
     /// <returns>The ID of the newly created list.</returns>
     /// <remarks>Requires a valid user session.</remarks>
     /// <exception cref="UserSessionRequiredException">Thrown when the current client object doens't have a user session assigned.</exception>
-    public async Task<string?> ListCreateAsync(string name, string description = "", string? language = null, CancellationToken cancellationToken = default)
+    public async Task<int?> ListCreateAsync(string name, string description = "", string? language = null, CancellationToken cancellationToken = default)
     {
         RequireSessionId(SessionType.UserSession);
 
