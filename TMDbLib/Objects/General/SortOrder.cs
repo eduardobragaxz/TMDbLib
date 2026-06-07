@@ -1,4 +1,4 @@
-﻿using TMDbLib.Utilities;
+using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.General;
 
@@ -15,12 +15,12 @@ public enum SortOrder
     /// <summary>
     /// Ascending sort order.
     /// </summary>
-    [EnumValue("asc")]
+    [JsonStringEnumMemberName("asc")]
     Ascending = 1,
 
     /// <summary>
     /// Descending sort order.
     /// </summary>
-    [EnumValue("desc")]
+    [JsonStringEnumMemberName("desc")]
     Descending = 2
 }

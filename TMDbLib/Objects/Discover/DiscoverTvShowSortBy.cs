@@ -1,4 +1,4 @@
-﻿using TMDbLib.Utilities;
+using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.Discover;
 
@@ -15,72 +15,72 @@ public enum DiscoverTvShowSortBy
     /// <summary>
     /// Sort by vote average in ascending order.
     /// </summary>
-    [EnumValue("vote_average.asc")]
+    [JsonStringEnumMemberName("vote_average.asc")]
     VoteAverage,
 
     /// <summary>
     /// Sort by vote average in descending order.
     /// </summary>
-    [EnumValue("vote_average.desc")]
+    [JsonStringEnumMemberName("vote_average.desc")]
     VoteAverageDesc,
 
     /// <summary>
     /// Sort by first air date in ascending order.
     /// </summary>
-    [EnumValue("first_air_date.asc")]
+    [JsonStringEnumMemberName("first_air_date.asc")]
     FirstAirDate,
 
     /// <summary>
     /// Sort by first air date in descending order.
     /// </summary>
-    [EnumValue("first_air_date.desc")]
+    [JsonStringEnumMemberName("first_air_date.desc")]
     FirstAirDateDesc,
 
     /// <summary>
     /// Sort by popularity in ascending order.
     /// </summary>
-    [EnumValue("popularity.asc")]
+    [JsonStringEnumMemberName("popularity.asc")]
     Popularity,
 
     /// <summary>
     /// Sort by popularity in descending order.
     /// </summary>
-    [EnumValue("popularity.desc")]
+    [JsonStringEnumMemberName("popularity.desc")]
     PopularityDesc,
 
     /// <summary>
     /// Sort by revenue in ascending order.
     /// </summary>
-    [EnumValue("revenue.asc")]
+    [JsonStringEnumMemberName("revenue.asc")]
     Revenue,
 
     /// <summary>
     /// Sort by revenue in descending order.
     /// </summary>
-    [EnumValue("revenue.desc")]
+    [JsonStringEnumMemberName("revenue.desc")]
     RevenueDesc,
 
     /// <summary>
     /// Sort by primary release date in ascending order.
     /// </summary>
-    [EnumValue("primary_release_date.asc")]
+    [JsonStringEnumMemberName("primary_release_date.asc")]
     PrimaryReleaseDate,
 
     /// <summary>
     /// Sort by primary release date in descending order.
     /// </summary>
-    [EnumValue("primary_release_date.desc")]
+    [JsonStringEnumMemberName("primary_release_date.desc")]
     PrimaryReleaseDateDesc,
 
     /// <summary>
     /// Sort by vote count in ascending order.
     /// </summary>
-    [EnumValue("vote_count.asc")]
+    [JsonStringEnumMemberName("vote_count.asc")]
     VoteCount,
 
     /// <summary>
     /// Sort by vote count in descending order.
     /// </summary>
-    [EnumValue("vote_count.desc")]
+    [JsonStringEnumMemberName("vote_count.desc")]
     VoteCountDesc
 }

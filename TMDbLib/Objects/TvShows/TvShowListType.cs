@@ -1,4 +1,4 @@
-﻿using TMDbLib.Utilities;
+using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.TvShows;
 
@@ -10,24 +10,24 @@ public enum TvShowListType
     /// <summary>
     /// TV shows currently on the air.
     /// </summary>
-    [EnumValue("on_the_air")]
+    [JsonStringEnumMemberName("on_the_air")]
     OnTheAir,
 
     /// <summary>
     /// TV shows airing today.
     /// </summary>
-    [EnumValue("airing_today")]
+    [JsonStringEnumMemberName("airing_today")]
     AiringToday,
 
     /// <summary>
     /// Top rated TV shows.
     /// </summary>
-    [EnumValue("top_rated")]
+    [JsonStringEnumMemberName("top_rated")]
     TopRated,
 
     /// <summary>
     /// Popular TV shows.
     /// </summary>
-    [EnumValue("popular")]
+    [JsonStringEnumMemberName("popular")]
     Popular
 }

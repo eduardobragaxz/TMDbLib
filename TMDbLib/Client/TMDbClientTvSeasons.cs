@@ -106,8 +106,7 @@ public partial class TMDbClient
 
         var appends = string.Join(
             ",",
-            typeof(TvSeasonMethods)
-            .GetEnumValuesAsUnderlyingType()
+            Enum.GetValuesAsUnderlyingType<TvSeasonMethods>()
             .OfType<TvSeasonMethods>()
             .Except([TvSeasonMethods.Undefined])
             .Where(s => extraMethods.HasFlag(s))

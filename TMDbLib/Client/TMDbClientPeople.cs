@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.People;
 using TMDbLib.Objects.Search;
+using TMDbLib.Objects.TvShows;
 using TMDbLib.Rest;
 using TMDbLib.Utilities;
 
@@ -113,8 +114,7 @@ public partial class TMDbClient
 
         var appends = string.Join(
             ",",
-            typeof(PersonMethods)
-            .GetEnumValuesAsUnderlyingType()
+            Enum.GetValuesAsUnderlyingType<PersonMethods>()
             .OfType<PersonMethods>()
             .Except([PersonMethods.Undefined])
             .Where(s => extraMethods.HasFlag(s))

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.People;
@@ -12,54 +12,54 @@ public enum PersonMethods
     /// <summary>
     /// Undefined or no additional data.
     /// </summary>
-    [EnumValue("Undefined")]
+    [JsonStringEnumMemberName("Undefined")]
     Undefined = 0,
 
     /// <summary>
     /// Include movie credits.
     /// </summary>
-    [EnumValue("movie_credits")]
+    [JsonStringEnumMemberName("movie_credits")]
     MovieCredits = 1,
 
     /// <summary>
     /// Include TV credits.
     /// </summary>
-    [EnumValue("tv_credits")]
+    [JsonStringEnumMemberName("tv_credits")]
     TvCredits = 2,
 
     /// <summary>
     /// Include external IDs.
     /// </summary>
-    [EnumValue("external_ids")]
+    [JsonStringEnumMemberName("external_ids")]
     ExternalIds = 4,
 
     /// <summary>
     /// Include profile images.
     /// </summary>
-    [EnumValue("images")]
+    [JsonStringEnumMemberName("images")]
     Images = 8,
 
     /// <summary>
     /// Include tagged images.
     /// </summary>
-    [EnumValue("tagged_images")]
+    [JsonStringEnumMemberName("tagged_images")]
     TaggedImages = 16,
 
     /// <summary>
     /// Include change history.
     /// </summary>
-    [EnumValue("changes")]
+    [JsonStringEnumMemberName("changes")]
     Changes = 32,
 
     /// <summary>
     /// Include translations.
     /// </summary>
-    [EnumValue("translations")]
+    [JsonStringEnumMemberName("translations")]
     Translations = 64,
 
     /// <summary>
     /// Include combined movie and TV credits.
     /// </summary>
-    [EnumValue("combined_credits")]
+    [JsonStringEnumMemberName("combined_credits")]
     CombinedCredits = 128,
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 namespace TMDbLib.Utilities;
 
@@ -12,59 +13,42 @@ namespace TMDbLib.Utilities;
 public static class EnumExtensions
 {
     /// <summary>
-    /// Gets the description of an enum value from its <see cref="EnumValueAttribute"/>, or the enum name if no attribute is present.
+    /// Gets the description of an enum value from its <see cref="JsonStringEnumMemberNameAttribute"/>, or the enum name if no attribute is present.
     /// </summary>
     /// <typeparam name="T">The enum type.</typeparam>
     /// <param name="enumerationValue">The enum value.</param>
     /// <returns>The description string from the attribute, or the enum value name.</returns>
-    public static string GetDescription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors
-        | DynamicallyAccessedMemberTypes.NonPublicConstructors
-        | DynamicallyAccessedMemberTypes.PublicMethods
-        | DynamicallyAccessedMemberTypes.NonPublicMethods
-        | DynamicallyAccessedMemberTypes.PublicFields
-        | DynamicallyAccessedMemberTypes.NonPublicFields
-        | DynamicallyAccessedMemberTypes.PublicNestedTypes
-        | DynamicallyAccessedMemberTypes.NonPublicNestedTypes
-        | DynamicallyAccessedMemberTypes.PublicProperties
-        | DynamicallyAccessedMemberTypes.NonPublicProperties
-        | DynamicallyAccessedMemberTypes.PublicEvents
-        | DynamicallyAccessedMemberTypes.NonPublicEvents)] T>(this T enumerationValue)
+    public static string GetDescription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicFields)] T>(this T enumerationValue)
         where T : struct
     {
-        var type = enumerationValue.GetType();
-        var typeInfo = type.GetTypeInfo();
+        var type = typeof(T);
 
-        if (!typeInfo.IsEnum)
+        if (!type.IsEnum)
         {
             throw new ArgumentException("EnumerationValue must be of Enum type", nameof(enumerationValue));
         }
 
-        var members = typeof(T).GetTypeInfo().GetMembers();
+        var requestedName = $"{enumerationValue}";
+        var fieldMember = type.GetField(requestedName);
 
-        var requestedName = enumerationValue.ToString();
-
-        // Tries to find a DisplayAttribute for a potential friendly name for the enum
-        foreach (var member in members)
+        if (fieldMember is not null)
         {
-            if (member.Name != requestedName)
-            {
-                continue;
-            }
+            var attributes = fieldMember.CustomAttributes;
 
-            foreach (var attributeData in member.CustomAttributes)
+            foreach (var attributeData in attributes)
             {
-                if (attributeData.AttributeType != typeof(EnumValueAttribute))
+                if (attributeData.AttributeType != typeof(JsonStringEnumMemberNameAttribute))
                 {
                     continue;
                 }
 
                 // Pull out the Value
-                if (!attributeData.ConstructorArguments.Any())
+                if (attributeData.ConstructorArguments.Count == 0)
                 {
                     break;
                 }
 
-                var argument = attributeData.ConstructorArguments.First();
+                var argument = attributeData.ConstructorArguments[0];
 
                 if (argument.Value is string stringValue)
                 {
@@ -73,11 +57,8 @@ public static class EnumExtensions
 
                 break;
             }
-
-            break;
         }
 
-        // If we have no description attribute, just return the ToString of the enum
-        return requestedName ?? string.Empty;
+        return requestedName;
     }
 }

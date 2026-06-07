@@ -10,6 +10,7 @@ using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Reviews;
 using TMDbLib.Objects.Search;
+using TMDbLib.Objects.TvShows;
 using TMDbLib.Rest;
 using TMDbLib.Utilities;
 using static TMDbLib.Rest.RestRequest;
@@ -197,8 +198,7 @@ public sealed partial class TMDbClient
 
         var appends = string.Join(
             ",",
-            typeof(MovieMethods)
-            .GetEnumValuesAsUnderlyingType()
+            Enum.GetValuesAsUnderlyingType<MovieMethods>()
             .OfType<MovieMethods>()
             .Except([MovieMethods.Undefined])
             .Where(s => extraMethods.HasFlag(s))

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.Companies;
@@ -12,12 +12,12 @@ public enum CompanyMethods
     /// <summary>
     /// No additional methods specified.
     /// </summary>
-    [EnumValue("Undefined")]
+    [JsonStringEnumMemberName("Undefined")]
     Undefined = 0,
 
     /// <summary>
     /// Include movies associated with the company.
     /// </summary>
-    [EnumValue("movies")]
+    [JsonStringEnumMemberName("movies")]
     Movies = 1
 }

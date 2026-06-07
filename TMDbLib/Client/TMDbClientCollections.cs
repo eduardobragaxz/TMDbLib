@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TMDbLib.Objects.Collections;
 using TMDbLib.Objects.General;
+using TMDbLib.Objects.TvShows;
 using TMDbLib.Rest;
 using TMDbLib.Utilities;
 
@@ -70,8 +71,7 @@ public partial class TMDbClient
 
         var appends = string.Join(
             ",",
-            typeof(CollectionMethods)
-            .GetEnumValuesAsUnderlyingType()
+            Enum.GetValuesAsUnderlyingType<CollectionMethods>()
             .OfType<CollectionMethods>()
             .Except([CollectionMethods.Undefined])
             .Where(s => extraMethods.HasFlag(s))

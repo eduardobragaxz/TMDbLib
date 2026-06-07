@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.TvShows;
@@ -12,42 +12,42 @@ public enum TvSeasonMethods
     /// <summary>
     /// No additional data.
     /// </summary>
-    [EnumValue("Undefined")]
+    [JsonStringEnumMemberName("Undefined")]
     Undefined = 0,
 
     /// <summary>
     /// Include credits information.
     /// </summary>
-    [EnumValue("credits")]
+    [JsonStringEnumMemberName("credits")]
     Credits = 1,
 
     /// <summary>
     /// Include images.
     /// </summary>
-    [EnumValue("images")]
+    [JsonStringEnumMemberName("images")]
     Images = 2,
 
     /// <summary>
     /// Include external IDs.
     /// </summary>
-    [EnumValue("external_ids")]
+    [JsonStringEnumMemberName("external_ids")]
     ExternalIds = 4,
 
     /// <summary>
     /// Include videos.
     /// </summary>
-    [EnumValue("videos")]
+    [JsonStringEnumMemberName("videos")]
     Videos = 8,
 
     /// <summary>
     /// Include account states.
     /// </summary>
-    [EnumValue("account_states")]
+    [JsonStringEnumMemberName("account_states")]
     AccountStates = 16,
 
     /// <summary>
     /// Include translations.
     /// </summary>
-    [EnumValue("translations")]
+    [JsonStringEnumMemberName("translations")]
     Translations = 32,
 }

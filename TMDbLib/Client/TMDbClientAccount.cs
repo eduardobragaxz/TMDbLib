@@ -16,19 +16,19 @@ public partial class TMDbClient
 {
     private enum AccountListsMethods
     {
-        [EnumValue("favorite/movies")]
+        [JsonStringEnumMemberName("favorite/movies")]
         FavoriteMovies,
-        [EnumValue("favorite/tv")]
+        [JsonStringEnumMemberName("favorite/tv")]
         FavoriteTv,
-        [EnumValue("rated/movies")]
+        [JsonStringEnumMemberName("rated/movies")]
         RatedMovies,
-        [EnumValue("rated/tv")]
+        [JsonStringEnumMemberName("rated/tv")]
         RatedTv,
-        [EnumValue("rated/tv/episodes")]
+        [JsonStringEnumMemberName("rated/tv/episodes")]
         RatedTvEpisodes,
-        [EnumValue("watchlist/movies")]
+        [JsonStringEnumMemberName("watchlist/movies")]
         MovieWatchlist,
-        [EnumValue("watchlist/tv")]
+        [JsonStringEnumMemberName("watchlist/tv")]
         TvWatchlist,
     }
 

@@ -17,30 +17,30 @@ public enum ChangeAction
     /// <summary>
     /// An item was added.
     /// </summary>
-    // [EnumValue("added")]
+    // [JsonStringEnumMemberName("added")]
     Added = 1,
 
     /// <summary>
     /// An item was created.
     /// </summary>
-    // [EnumValue("created")]
+    // [JsonStringEnumMemberName("created")]
     Created = 2,
 
     /// <summary>
     /// An item was updated.
     /// </summary>
-    // [EnumValue("updated")]
+    // [JsonStringEnumMemberName("updated")]
     Updated = 3,
 
     /// <summary>
     /// An item was deleted.
     /// </summary>
-    // [EnumValue("deleted")]
+    // [JsonStringEnumMemberName("deleted")]
     Deleted = 4,
 
     /// <summary>
     /// An item was destroyed.
     /// </summary>
-    // [EnumValue("destroyed")]
+    // [JsonStringEnumMemberName("destroyed")]
     Destroyed = 5
 }

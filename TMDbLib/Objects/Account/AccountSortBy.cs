@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.Account;
@@ -15,6 +16,6 @@ public enum AccountSortBy
     /// <summary>
     /// Sort by creation date.
     /// </summary>
-    [EnumValue("created_at")]
+    [JsonStringEnumMemberName("created_at")]
     CreatedAt = 1,
 }

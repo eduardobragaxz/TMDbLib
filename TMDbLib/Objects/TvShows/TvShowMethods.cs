@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.TvShows;
@@ -12,102 +12,102 @@ public enum TvShowMethods
     /// <summary>
     /// No additional data.
     /// </summary>
-    [EnumValue("Undefined")]
+    [JsonStringEnumMemberName("Undefined")]
     Undefined = 0,
 
     /// <summary>
     /// Include credits information.
     /// </summary>
-    [EnumValue("credits")]
+    [JsonStringEnumMemberName("credits")]
     Credits = 1 << 0,
 
     /// <summary>
     /// Include images.
     /// </summary>
-    [EnumValue("images")]
+    [JsonStringEnumMemberName("images")]
     Images = 1 << 1,
 
     /// <summary>
     /// Include external IDs.
     /// </summary>
-    [EnumValue("external_ids")]
+    [JsonStringEnumMemberName("external_ids")]
     ExternalIds = 1 << 2,
 
     /// <summary>
     /// Include content ratings.
     /// </summary>
-    [EnumValue("content_ratings")]
+    [JsonStringEnumMemberName("content_ratings")]
     ContentRatings = 1 << 3,
 
     /// <summary>
     /// Include alternative titles.
     /// </summary>
-    [EnumValue("alternative_titles")]
+    [JsonStringEnumMemberName("alternative_titles")]
     AlternativeTitles = 1 << 4,
 
     /// <summary>
     /// Include keywords.
     /// </summary>
-    [EnumValue("keywords")]
+    [JsonStringEnumMemberName("keywords")]
     Keywords = 1 << 5,
 
     /// <summary>
     /// Include similar TV shows.
     /// </summary>
-    [EnumValue("similar")]
+    [JsonStringEnumMemberName("similar")]
     Similar = 1 << 6,
 
     /// <summary>
     /// Include videos.
     /// </summary>
-    [EnumValue("videos")]
+    [JsonStringEnumMemberName("videos")]
     Videos = 1 << 7,
 
     /// <summary>
     /// Include translations.
     /// </summary>
-    [EnumValue("translations")]
+    [JsonStringEnumMemberName("translations")]
     Translations = 1 << 8,
 
     /// <summary>
     /// Include account states.
     /// </summary>
-    [EnumValue("account_states")]
+    [JsonStringEnumMemberName("account_states")]
     AccountStates = 1 << 9,
 
     /// <summary>
     /// Include changes.
     /// </summary>
-    [EnumValue("changes")]
+    [JsonStringEnumMemberName("changes")]
     Changes = 1 << 10,
 
     /// <summary>
     /// Include recommendations.
     /// </summary>
-    [EnumValue("recommendations")]
+    [JsonStringEnumMemberName("recommendations")]
     Recommendations = 1 << 11,
 
     /// <summary>
     /// Include reviews.
     /// </summary>
-    [EnumValue("reviews")]
+    [JsonStringEnumMemberName("reviews")]
     Reviews = 1 << 12,
 
     /// <summary>
     /// Include watch providers.
     /// </summary>
-    [EnumValue("watch/providers")]
+    [JsonStringEnumMemberName("watch/providers")]
     WatchProviders = 1 << 13,
 
     /// <summary>
     /// Include episode groups.
     /// </summary>
-    [EnumValue("episode_groups")]
+    [JsonStringEnumMemberName("episode_groups")]
     EpisodeGroups = 1 << 14,
 
     /// <summary>
     /// Include aggregated credits.
     /// </summary>
-    [EnumValue("aggregate_credits")]
+    [JsonStringEnumMemberName("aggregate_credits")]
     CreditsAggregate = 1 << 15,
 }

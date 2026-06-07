@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.Movies;
@@ -12,102 +12,102 @@ public enum MovieMethods
     /// <summary>
     /// Undefined or no additional data.
     /// </summary>
-    [EnumValue("Undefined")]
+    [JsonStringEnumMemberName("Undefined")]
     Undefined = 0,
 
     /// <summary>
     /// Include alternative titles.
     /// </summary>
-    [EnumValue("alternative_titles")]
+    [JsonStringEnumMemberName("alternative_titles")]
     AlternativeTitles = 1 << 0,
 
     /// <summary>
     /// Include cast and crew credits.
     /// </summary>
-    [EnumValue("credits")]
+    [JsonStringEnumMemberName("credits")]
     Credits = 1 << 1,
 
     /// <summary>
     /// Include images.
     /// </summary>
-    [EnumValue("images")]
+    [JsonStringEnumMemberName("images")]
     Images = 1 << 2,
 
     /// <summary>
     /// Include keywords.
     /// </summary>
-    [EnumValue("keywords")]
+    [JsonStringEnumMemberName("keywords")]
     Keywords = 1 << 3,
 
     /// <summary>
     /// Include releases information.
     /// </summary>
-    [EnumValue("releases")]
+    [JsonStringEnumMemberName("releases")]
     Releases = 1 << 4,
 
     /// <summary>
     /// Include videos.
     /// </summary>
-    [EnumValue("videos")]
+    [JsonStringEnumMemberName("videos")]
     Videos = 1 << 5,
 
     /// <summary>
     /// Include translations.
     /// </summary>
-    [EnumValue("translations")]
+    [JsonStringEnumMemberName("translations")]
     Translations = 1 << 6,
 
     /// <summary>
     /// Include similar movies.
     /// </summary>
-    [EnumValue("similar")]
+    [JsonStringEnumMemberName("similar")]
     Similar = 1 << 7,
 
     /// <summary>
     /// Include user reviews.
     /// </summary>
-    [EnumValue("reviews")]
+    [JsonStringEnumMemberName("reviews")]
     Reviews = 1 << 8,
 
     /// <summary>
     /// Include lists containing this movie.
     /// </summary>
-    [EnumValue("lists")]
+    [JsonStringEnumMemberName("lists")]
     Lists = 1 << 9,
 
     /// <summary>
     /// Include change history.
     /// </summary>
-    [EnumValue("changes")]
+    [JsonStringEnumMemberName("changes")]
     Changes = 1 << 10,
 
     /// <summary>
     /// Requires a valid user session to be set on the client object.
     /// </summary>
-    [EnumValue("account_states")]
+    [JsonStringEnumMemberName("account_states")]
     AccountStates = 1 << 11,
 
     /// <summary>
     /// Include release dates by country.
     /// </summary>
-    [EnumValue("release_dates")]
+    [JsonStringEnumMemberName("release_dates")]
     ReleaseDates = 1 << 12,
 
     /// <summary>
     /// Include recommended movies.
     /// </summary>
-    [EnumValue("recommendations")]
+    [JsonStringEnumMemberName("recommendations")]
     Recommendations = 1 << 13,
 
     /// <summary>
     /// Include external IDs.
     /// </summary>
-    [EnumValue("external_ids")]
+    [JsonStringEnumMemberName("external_ids")]
     ExternalIds = 1 << 14,
 
     /// <summary>
     /// Include watch provider information.
     /// </summary>
-    [EnumValue("watch/providers")]
+    [JsonStringEnumMemberName("watch/providers")]
     WatchProviders = 1 << 15
 }

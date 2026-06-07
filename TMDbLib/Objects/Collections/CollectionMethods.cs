@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.Collections;
@@ -12,18 +12,18 @@ public enum CollectionMethods
     /// <summary>
     /// No additional methods specified.
     /// </summary>
-    [EnumValue("Undefined")]
+    [JsonStringEnumMemberName("Undefined")]
     Undefined = 0,
 
     /// <summary>
     /// Include images for the collection.
     /// </summary>
-    [EnumValue("images")]
+    [JsonStringEnumMemberName("images")]
     Images = 1,
 
     /// <summary>
     /// Include translations for the collection.
     /// </summary>
-    [EnumValue("translations")]
+    [JsonStringEnumMemberName("translations")]
     Translations = 2,
 }

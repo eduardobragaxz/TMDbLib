@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TMDbLib.Objects.Companies;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
+using TMDbLib.Objects.TvShows;
 using TMDbLib.Rest;
 using TMDbLib.Utilities;
 
@@ -49,9 +50,7 @@ public partial class TMDbClient
         req.AddUrlSegment("companyId", companyId.ToString(CultureInfo.InvariantCulture));
 
         var appends = string.Join(
-            ",",
-            typeof(CompanyMethods)
-            .GetEnumValuesAsUnderlyingType()
+            ",", Enum.GetValuesAsUnderlyingType<CompanyMethods>()
             .OfType<CompanyMethods>()
             .Except([CompanyMethods.Undefined])
             .Where(s => extraMethods.HasFlag(s))

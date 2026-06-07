@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using TMDbLib.Objects.TvShows;
 
 namespace TMDbLib.Utilities.Converters;
 
@@ -60,7 +61,7 @@ public class TolerantEnumConverter : JsonConverter<object>
         else if (reader.TokenType == JsonTokenType.Number)
         {
             var enumVal = reader.GetInt32();
-            var values = enumType.GetEnumValuesAsUnderlyingType();
+            var values = Enum.GetValuesAsUnderlyingType(enumType);
 
             foreach (var dd in values)
             {

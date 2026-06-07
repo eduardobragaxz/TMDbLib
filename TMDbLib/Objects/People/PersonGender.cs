@@ -10,7 +10,6 @@ public enum PersonGender
     /// <summary>
     /// Unknown or not specified.
     /// </summary>
-    [EnumValue(null)]
     Unknown = 0,
 
     /// <summary>

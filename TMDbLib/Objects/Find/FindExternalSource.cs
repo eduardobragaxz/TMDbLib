@@ -10,12 +10,12 @@ public enum FindExternalSource
     /// <summary>
     /// IMDb external ID source.
     /// </summary>
-    [EnumValue("imdb_id")]
+    [JsonStringEnumMemberName("imdb_id")]
     Imdb,
 
     /// <summary>
     /// TVDb external ID source.
     /// </summary>
-    [EnumValue("tvdb_id")]
+    [JsonStringEnumMemberName("tvdb_id")]
     TvDb
 }

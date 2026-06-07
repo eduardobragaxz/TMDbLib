@@ -1,4 +1,5 @@
-﻿using TMDbLib.Utilities;
+using System.Text.Json.Serialization;
+using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.Trending;
 
@@ -10,12 +11,13 @@ public enum TimeWindow
     /// <summary>
     /// Trending content for the current day.
     /// </summary>
-    [EnumValue("day")]
+    [JsonStringEnumMemberName("day")]
     Day,
 
     /// <summary>
     /// Trending content for the current week.
     /// </summary>
-    [EnumValue("week")]
+    // [JsonStringEnumMemberName("week")]
+    [JsonStringEnumMemberName("week")]
     Week
 }

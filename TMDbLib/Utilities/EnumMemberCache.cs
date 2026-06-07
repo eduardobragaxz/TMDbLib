@@ -47,7 +47,7 @@ internal static class EnumMemberCache
                 continue;
             }
 
-            var attrib = fieldInfo.CustomAttributes.FirstOrDefault(s => s.AttributeType == typeof(EnumValueAttribute));
+            var attrib = fieldInfo.CustomAttributes.FirstOrDefault(s => s.AttributeType == typeof(JsonStringEnumMemberNameAttribute));
 
             if (attrib is null)
             {
@@ -56,9 +56,9 @@ internal static class EnumMemberCache
             else
             {
                 var arg = attrib.ConstructorArguments.FirstOrDefault();
-                var enumValue = arg.Value as string;
+                var JsonStringEnumMemberName = arg.Value as string;
 
-                cache[value] = enumValue;
+                cache[value] = JsonStringEnumMemberName;
             }
         }
 
