@@ -24,7 +24,7 @@ public enum TimeWindow
     Week
 }
 
-public class TimeWindowClass
+internal class TimeWindowClass
 {
     public static Dictionary<TimeWindow, string> TimeWindowDescriptions => new ()
     {

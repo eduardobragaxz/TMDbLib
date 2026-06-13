@@ -21,12 +21,3 @@ public enum FindExternalSource
     [JsonStringEnumMemberName("tvdb_id")]
     TvDb
 }
-
-public class FindExternalSourceClass
-{
-    public static Dictionary<FindExternalSource, string> FindExternalSourceDescriptions => new ()
-    {
-        [FindExternalSource.Imdb] = "imdb_id",
-        [FindExternalSource.TvDb] = "tvdb_id"
-    };
-}

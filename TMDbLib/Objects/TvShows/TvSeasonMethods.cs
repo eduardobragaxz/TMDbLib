@@ -52,17 +52,3 @@ public enum TvSeasonMethods
     [JsonStringEnumMemberName("translations")]
     Translations = 32,
 }
-
-public class TvSeasonMethodsClass
-{
-    public static Dictionary<TvSeasonMethods, string> TvSeasonMethodsDescriptions => new()
-    {
-        [TvSeasonMethods.Undefined] = "Undefined",
-        [TvSeasonMethods.Credits] = "credits",
-        [TvSeasonMethods.Images] = "images",
-        [TvSeasonMethods.ExternalIds] = "external_ids",
-        [TvSeasonMethods.Videos] = "videos",
-        [TvSeasonMethods.AccountStates] = "account_states",
-        [TvSeasonMethods.Translations] = "translations",
-    };
-}

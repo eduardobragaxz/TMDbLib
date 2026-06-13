@@ -23,12 +23,3 @@ public enum CompanyMethods
     [JsonStringEnumMemberName("movies")]
     Movies = 1
 }
-
-public class CompanyMethodsClass
-{
-    public static Dictionary<CompanyMethods, string> CompanyMethodsDescriptions => new ()
-    {
-        [CompanyMethods.Undefined] = "Undefined",
-        [CompanyMethods.Movies] = "movies",
-    };
-}

@@ -65,19 +65,3 @@ public enum PersonMethods
     [JsonStringEnumMemberName("combined_credits")]
     CombinedCredits = 128,
 }
-
-public class PersonMethodsClass
-{
-    public static Dictionary<PersonMethods, string> PersonMethodsDescriptions => new ()
-    {
-        [PersonMethods.Undefined] = "Undefined",
-        [PersonMethods.MovieCredits] = "movie_credits",
-        [PersonMethods.TvCredits] = "tv_credits",
-        [PersonMethods.ExternalIds] = "external_ids",
-        [PersonMethods.Images] = "images",
-        [PersonMethods.TaggedImages] = "tagged_images",
-        [PersonMethods.Changes] = "changes",
-        [PersonMethods.Translations] = "translations",
-        [PersonMethods.CombinedCredits] = "combined_credits"
-    };
-}

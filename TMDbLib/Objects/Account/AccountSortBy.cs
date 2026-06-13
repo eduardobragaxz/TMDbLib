@@ -21,12 +21,3 @@ public enum AccountSortBy
     [JsonStringEnumMemberName("created_at")]
     CreatedAt = 1,
 }
-
-public class AccountSortByClass
-{
-    public static Dictionary<AccountSortBy, string> AccountSortByDescriptions => new ()
-    {
-        [AccountSortBy.Undefined] = "Undefined",
-        [AccountSortBy.CreatedAt] = "created_at",
-    };
-}

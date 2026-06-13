@@ -98,25 +98,3 @@ public enum DiscoverMovieSortBy
     [JsonStringEnumMemberName("vote_count.desc")]
     VoteCountDesc
 }
-
-public class DiscoverMovieSortByClass
-{
-    public static Dictionary<DiscoverMovieSortBy, string> DiscoverMovieSortByDescriptions => new ()
-    {
-        [DiscoverMovieSortBy.Undefined] = "Undefined",
-        [DiscoverMovieSortBy.Popularity] = "popularity.asc",
-        [DiscoverMovieSortBy.PopularityDesc] = "popularity.desc",
-        [DiscoverMovieSortBy.ReleaseDate] = "release_date.asc",
-        [DiscoverMovieSortBy.ReleaseDateDesc] = "release_date.desc",
-        [DiscoverMovieSortBy.Revenue] = "revenue.asc",
-        [DiscoverMovieSortBy.RevenueDesc] = "revenue.desc",
-        [DiscoverMovieSortBy.PrimaryReleaseDate] = "primary_release_date.asc",
-        [DiscoverMovieSortBy.PrimaryReleaseDateDesc] = "primary_release_date.desc",
-        [DiscoverMovieSortBy.OriginalTitle] = "original_title.asc",
-        [DiscoverMovieSortBy.OriginalTitleDesc] = "original_title.desc",
-        [DiscoverMovieSortBy.VoteAverage] = "vote_average.asc",
-        [DiscoverMovieSortBy.VoteAverageDesc] = "vote_average.desc",
-        [DiscoverMovieSortBy.VoteCount] = "vote_count.asc",
-        [DiscoverMovieSortBy.VoteCountDesc] = "vote_count.desc",
-    };
-}

@@ -15,7 +15,7 @@ namespace TMDbLib.Client;
 
 public partial class TMDbClient
 {
-    public enum AccountListsMethods
+    internal enum AccountListsMethods
     {
         [JsonStringEnumMemberName("favorite/movies")]
         FavoriteMovies,
@@ -33,16 +33,6 @@ public partial class TMDbClient
         TvWatchlist,
     }
 
-    public static Dictionary<AccountListsMethods, string> AccountListsDescriptions => new ()
-    {
-        [AccountListsMethods.FavoriteMovies] = "favorite/movies",
-        [AccountListsMethods.FavoriteTv] = "favorite/tv",
-        [AccountListsMethods.RatedMovies] = "favorite/movies",
-        [AccountListsMethods.RatedTv] = "rated/tv",
-        [AccountListsMethods.RatedTvEpisodes] = "rated/tv/episodes",
-        [AccountListsMethods.MovieWatchlist] = "watchlist/movies",
-        [AccountListsMethods.TvWatchlist] = "watchlist/tv",
-    };
     private async Task<SearchContainer<T>?> GetAccountListInternal<T>(int page, AccountSortBy sortBy, SortOrder sortOrder, string? language, AccountListsMethods method, CancellationToken cancellationToken = default)
     {
         RequireSessionId(SessionType.UserSession);

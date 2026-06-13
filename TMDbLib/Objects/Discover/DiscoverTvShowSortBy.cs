@@ -85,23 +85,3 @@ public enum DiscoverTvShowSortBy
     [JsonStringEnumMemberName("vote_count.desc")]
     VoteCountDesc
 }
-
-public class DiscoverTvShowSortByClass
-{
-    public static Dictionary<DiscoverTvShowSortBy, string> DiscoverTvShowSortByDescriptions => new ()
-    {
-        [DiscoverTvShowSortBy.Undefined] = "Undefined",
-        [DiscoverTvShowSortBy.VoteAverage] = "vote_average.asc",
-        [DiscoverTvShowSortBy.VoteAverageDesc] = "vote_average.desc",
-        [DiscoverTvShowSortBy.FirstAirDate] = "first_air_date.asc",
-        [DiscoverTvShowSortBy.FirstAirDateDesc] = "first_air_date.desc",
-        [DiscoverTvShowSortBy.Popularity] = "popularity.asc",
-        [DiscoverTvShowSortBy.PopularityDesc] = "popularity.desc",
-        [DiscoverTvShowSortBy.Revenue] = "revenue.asc",
-        [DiscoverTvShowSortBy.RevenueDesc] = "revenue.desc",
-        [DiscoverTvShowSortBy.PrimaryReleaseDate] = "primary_release_date.asc",
-        [DiscoverTvShowSortBy.PrimaryReleaseDateDesc] = "primary_release_date.desc",
-        [DiscoverTvShowSortBy.VoteCount] = "vote_count.asc",
-        [DiscoverTvShowSortBy.VoteCountDesc] = "vote_count.desc",
-    };
-}

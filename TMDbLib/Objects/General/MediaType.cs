@@ -58,19 +58,3 @@ public enum MediaType
     /// </summary>
     Collection = 8
 }
-
-public class MediaTypeClass
-{
-    public static Dictionary<MediaType, string> MediaTypeDescriptions => new ()
-    {
-        [MediaType.Unknown] = "Unknown",
-        [MediaType.Movie] = "Movie",
-        [MediaType.Tv] = "Tv",
-        [MediaType.Person] = "Person",
-        [MediaType.Episode] = "Episode",
-        [MediaType.TvEpisode] = "tv_episode",
-        [MediaType.Season] = "Season",
-        [MediaType.TvSeason] = "tv_season",
-        [MediaType.Collection] = "Collection"
-    };
-}

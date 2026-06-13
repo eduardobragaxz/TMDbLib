@@ -38,15 +38,3 @@ public enum WatchMonetizationType
     [JsonStringEnumMemberName("buy")]
     Buy
 }
-
-public class WatchMonetizationTypeClass
-{
-    public static Dictionary<WatchMonetizationType, string> WatchMonetizationTypeDescriptions => new ()
-    {
-        [WatchMonetizationType.Flatrate] = "flatrate",
-        [WatchMonetizationType.Free] = "free",
-        [WatchMonetizationType.Ads] = "ads",
-        [WatchMonetizationType.Rent] = "rent",
-        [WatchMonetizationType.Buy] = "buy",
-    };
-}

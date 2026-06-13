@@ -29,13 +29,3 @@ public enum CollectionMethods
     [JsonStringEnumMemberName("translations")]
     Translations = 2,
 }
-
-public class CollectionMethodsClass
-{
-    public static Dictionary<CollectionMethods, string> CollectionDescriptions => new ()
-    {
-        [CollectionMethods.Undefined] = "Undefined",
-        [CollectionMethods.Images] = "images",
-        [CollectionMethods.Undefined] = "translations"
-    };
-}
