@@ -22,7 +22,7 @@ public partial class TMDbClient
         req.AddUrlSegment("season_number", seasonNumber.ToString(CultureInfo.InvariantCulture));
         req.AddUrlSegment("episode_number", episodeNumber.ToString(CultureInfo.InvariantCulture));
 
-        req.AddUrlSegment("method", tvShowMethod.GetDescription());
+        req.AddUrlSegment("method", tvShowMethod.GetDescription<TvEpisodeMethods>());
 
         // TODO: Dateformat?
         // if (dateFormat is not null)
@@ -62,7 +62,7 @@ public partial class TMDbClient
         req.AddUrlSegment("id", tvShowId.ToString(CultureInfo.InvariantCulture));
         req.AddUrlSegment("season_number", seasonNumber.ToString(CultureInfo.InvariantCulture));
         req.AddUrlSegment("episode_number", episodeNumber.ToString(CultureInfo.InvariantCulture));
-        req.AddUrlSegment("method", TvEpisodeMethods.AccountStates.GetDescription());
+        req.AddUrlSegment("method", TvEpisodeMethods.AccountStates.GetDescription<TvEpisodeMethods>());
         AddSessionId(req, SessionType.UserSession);
 
         using var response = await req.Get<TvEpisodeAccountState>(cancellationToken).ConfigureAwait(false);
@@ -116,7 +116,7 @@ public partial class TMDbClient
             .OfType<TvEpisodeMethods>()
             .Except([TvEpisodeMethods.Undefined])
             .Where(s => extraMethods.HasFlag(s))
-            .Select(s => s.GetDescription()));
+            .Select(s => s.GetDescription<TvEpisodeMethods>()));
 
         if (appends != string.Empty)
         {

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using TMDbLib.Objects.Collections;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.Find;
@@ -18,4 +20,13 @@ public enum FindExternalSource
     /// </summary>
     [JsonStringEnumMemberName("tvdb_id")]
     TvDb
+}
+
+public class FindExternalSourceClass
+{
+    public static Dictionary<FindExternalSource, string> FindExternalSourceDescriptions => new ()
+    {
+        [FindExternalSource.Imdb] = "imdb_id",
+        [FindExternalSource.TvDb] = "tvdb_id"
+    };
 }

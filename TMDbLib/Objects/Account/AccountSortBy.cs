@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using TMDbLib.Objects.Trending;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.Account;
@@ -18,4 +20,13 @@ public enum AccountSortBy
     /// </summary>
     [JsonStringEnumMemberName("created_at")]
     CreatedAt = 1,
+}
+
+public class AccountSortByClass
+{
+    public static Dictionary<AccountSortBy, string> AccountSortByDescriptions => new ()
+    {
+        [AccountSortBy.Undefined] = "Undefined",
+        [AccountSortBy.CreatedAt] = "created_at",
+    };
 }

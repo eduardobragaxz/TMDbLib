@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.Discover;
@@ -36,4 +37,16 @@ public enum WatchMonetizationType
     /// </summary>
     [JsonStringEnumMemberName("buy")]
     Buy
+}
+
+public class WatchMonetizationTypeClass
+{
+    public static Dictionary<WatchMonetizationType, string> WatchMonetizationTypeDescriptions => new ()
+    {
+        [WatchMonetizationType.Flatrate] = "flatrate",
+        [WatchMonetizationType.Free] = "free",
+        [WatchMonetizationType.Ads] = "ads",
+        [WatchMonetizationType.Rent] = "rent",
+        [WatchMonetizationType.Buy] = "buy",
+    };
 }

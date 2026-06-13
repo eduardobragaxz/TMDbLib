@@ -35,7 +35,7 @@ public sealed partial class TMDbClient
     {
         var req = _client.Create("movie/{movieId}/{method}");
         req.AddUrlSegment("movieId", movieId.ToString(CultureInfo.InvariantCulture));
-        req.AddUrlSegment("method", movieMethod.GetDescription());
+        req.AddUrlSegment("method", movieMethod.GetDescription<MovieMethods>());
 
         if (country is not null)
         {
@@ -87,7 +87,7 @@ public sealed partial class TMDbClient
 
         var req = _client.Create("movie/{movieId}/{method}");
         req.AddUrlSegment("movieId", movieId.ToString(CultureInfo.InvariantCulture));
-        req.AddUrlSegment("method", MovieMethods.AccountStates.GetDescription());
+        req.AddUrlSegment("method", MovieMethods.AccountStates.GetDescription<MovieMethods>());
         AddSessionId(req, SessionType.UserSession);
 
         return await req.GetOfT<AccountState>(cancellationToken).ConfigureAwait(false);
@@ -202,7 +202,7 @@ public sealed partial class TMDbClient
             .OfType<MovieMethods>()
             .Except([MovieMethods.Undefined])
             .Where(s => extraMethods.HasFlag(s))
-            .Select(s => s.GetDescription()));
+            .Select(s => s.GetDescription<MovieMethods>()));
 
         if (appends != string.Empty)
         {

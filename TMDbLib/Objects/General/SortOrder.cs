@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using TMDbLib.Objects.Trending;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.General;
@@ -23,4 +25,14 @@ public enum SortOrder
     /// </summary>
     [JsonStringEnumMemberName("desc")]
     Descending = 2
+}
+
+public class SortOrderClass
+{
+    public static Dictionary<SortOrder, string> SortOrderDescriptions => new ()
+    {
+        [SortOrder.Undefined] = "Undefined",
+        [SortOrder.Ascending] = "asc",
+        [SortOrder.Descending] = "desc"
+    };
 }

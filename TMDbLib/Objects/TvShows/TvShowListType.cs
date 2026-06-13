@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.TvShows;
@@ -30,4 +31,15 @@ public enum TvShowListType
     /// </summary>
     [JsonStringEnumMemberName("popular")]
     Popular
+}
+
+public class TvShowListTypeClass
+{
+    public static Dictionary<TvShowListType, string> TvShowListTypeDescriptions => new ()
+    {
+        [TvShowListType.OnTheAir] = "on_the_air",
+        [TvShowListType.AiringToday] = "airing_today",
+        [TvShowListType.TopRated] = "top_rated",
+        [TvShowListType.Popular] = "popular",
+    };
 }

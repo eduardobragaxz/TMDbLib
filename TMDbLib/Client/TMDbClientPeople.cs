@@ -28,7 +28,7 @@ public partial class TMDbClient
     {
         var req = _client.Create("person/{personId}/{method}");
         req.AddUrlSegment("personId", personId.ToString(CultureInfo.InvariantCulture));
-        req.AddUrlSegment("method", personMethod.GetDescription());
+        req.AddUrlSegment("method", personMethod.GetDescription<PersonMethods>());
 
         // TODO: Dateformat?
         // if (dateFormat is not null)
@@ -118,7 +118,7 @@ public partial class TMDbClient
             .OfType<PersonMethods>()
             .Except([PersonMethods.Undefined])
             .Where(s => extraMethods.HasFlag(s))
-            .Select(s => s.GetDescription()));
+            .Select(s => s.GetDescription<PersonMethods>()));
 
         if (appends != string.Empty)
         {

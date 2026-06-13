@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using TMDbLib.Objects.Find;
@@ -42,7 +42,7 @@ public partial class TMDbClient
         var req = _client.Create("find/{id}");
 
         req.AddUrlSegment("id", WebUtility.UrlEncode(id));
-        req.AddParameter("external_source", source.GetDescription());
+        req.AddParameter("external_source", source.GetDescription<FindExternalSource>());
 
         language ??= DefaultLanguage;
         if (!string.IsNullOrEmpty(language))

@@ -339,7 +339,7 @@ public class DiscoverMovie : DiscoverBase<SearchMovie>
     /// <returns>The current <see cref="DiscoverMovie"/> instance for method chaining.</returns>
     public DiscoverMovie OrderBy(DiscoverMovieSortBy sortBy)
     {
-        Parameters["sort_by"] = sortBy.GetDescription();
+        Parameters["sort_by"] = sortBy.GetDescription<DiscoverMovieSortBy>();
         return this;
     }
 
@@ -629,7 +629,7 @@ public class DiscoverMovie : DiscoverBase<SearchMovie>
     /// <remarks>Use in conjunction with <see cref="WhereWatchRegionIs"/> to specify the region.</remarks>
     public DiscoverMovie WhereAllWatchMonetizationTypesMatch(params WatchMonetizationType[] monetizationTypes)
     {
-        Parameters["with_watch_monetization_types"] = string.Join(",", monetizationTypes.Select(s => s.GetDescription()));
+        Parameters["with_watch_monetization_types"] = string.Join(",", monetizationTypes.Select(s => s.GetDescription<WatchMonetizationType>()));
         return this;
     }
 
@@ -642,7 +642,7 @@ public class DiscoverMovie : DiscoverBase<SearchMovie>
     /// <remarks>Use in conjunction with <see cref="WhereWatchRegionIs"/> to specify the region.</remarks>
     public DiscoverMovie WhereAnyWatchMonetizationTypesMatch(params WatchMonetizationType[] monetizationTypes)
     {
-        Parameters["with_watch_monetization_types"] = string.Join("|", monetizationTypes.Select(s => s.GetDescription()));
+        Parameters["with_watch_monetization_types"] = string.Join("|", monetizationTypes.Select(s => s.GetDescription<WatchMonetizationType>()));
         return this;
     }
 }

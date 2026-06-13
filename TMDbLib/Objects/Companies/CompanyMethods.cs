@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using TMDbLib.Objects.Collections;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.Companies;
@@ -20,4 +22,13 @@ public enum CompanyMethods
     /// </summary>
     [JsonStringEnumMemberName("movies")]
     Movies = 1
+}
+
+public class CompanyMethodsClass
+{
+    public static Dictionary<CompanyMethods, string> CompanyMethodsDescriptions => new ()
+    {
+        [CompanyMethods.Undefined] = "Undefined",
+        [CompanyMethods.Movies] = "movies",
+    };
 }

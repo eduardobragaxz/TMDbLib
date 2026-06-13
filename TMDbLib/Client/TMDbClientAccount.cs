@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace TMDbLib.Client;
 
 public partial class TMDbClient
 {
-    private enum AccountListsMethods
+    public enum AccountListsMethods
     {
         [JsonStringEnumMemberName("favorite/movies")]
         FavoriteMovies,
@@ -32,11 +33,21 @@ public partial class TMDbClient
         TvWatchlist,
     }
 
+    public static Dictionary<AccountListsMethods, string> AccountListsDescriptions => new ()
+    {
+        [AccountListsMethods.FavoriteMovies] = "favorite/movies",
+        [AccountListsMethods.FavoriteTv] = "favorite/tv",
+        [AccountListsMethods.RatedMovies] = "favorite/movies",
+        [AccountListsMethods.RatedTv] = "rated/tv",
+        [AccountListsMethods.RatedTvEpisodes] = "rated/tv/episodes",
+        [AccountListsMethods.MovieWatchlist] = "watchlist/movies",
+        [AccountListsMethods.TvWatchlist] = "watchlist/tv",
+    };
     private async Task<SearchContainer<T>?> GetAccountListInternal<T>(int page, AccountSortBy sortBy, SortOrder sortOrder, string? language, AccountListsMethods method, CancellationToken cancellationToken = default)
     {
         RequireSessionId(SessionType.UserSession);
 
-        var request = _client.Create("account/{accountId}/" + method.GetDescription());
+        var request = _client.Create("account/{accountId}/" + method.GetDescription<AccountListsMethods>());
         request.AddUrlSegment("accountId", ActiveAccount!.Id.ToString(CultureInfo.InvariantCulture));
         AddSessionId(request, SessionType.UserSession);
 
@@ -47,12 +58,12 @@ public partial class TMDbClient
 
         if (sortBy != AccountSortBy.Undefined)
         {
-            request.AddParameter("sort_by", sortBy.GetDescription());
+            request.AddParameter("sort_by", sortBy.GetDescription<AccountSortBy>());
         }
 
         if (sortOrder != SortOrder.Undefined)
         {
-            request.AddParameter("sort_order", sortOrder.GetDescription());
+            request.AddParameter("sort_order", sortOrder.GetDescription<SortOrder>());
         }
 
         language ??= DefaultLanguage;
@@ -82,7 +93,7 @@ public partial class TMDbClient
 
         var request = _client.Create("account/{accountId}/favorite");
         request.AddUrlSegment("accountId", ActiveAccount!.Id.ToString(CultureInfo.InvariantCulture));
-        var favoriteListBody = new FavoriteListBody(mediaType.GetDescription().ToLowerInvariant(), mediaId, isFavorite);
+        var favoriteListBody = new FavoriteListBody(mediaType.GetDescription<MediaType>().ToLowerInvariant(), mediaId, isFavorite);
         request.SetBody(favoriteListBody);
         AddSessionId(request, SessionType.UserSession);
 
@@ -110,7 +121,7 @@ public partial class TMDbClient
 
         var request = _client.Create("account/{accountId}/watchlist");
         request.AddUrlSegment("accountId", ActiveAccount!.Id.ToString(CultureInfo.InvariantCulture));
-        request.SetBody(new WatchListBody(mediaType.GetDescription().ToLowerInvariant(), mediaId, isOnWatchlist));
+        request.SetBody(new WatchListBody(mediaType.GetDescription<MediaType>().ToLowerInvariant(), mediaId, isOnWatchlist));
         AddSessionId(request, SessionType.UserSession);
 
         var response = await request.PostOfT<PostReply>(cancellationToken).ConfigureAwait(false);

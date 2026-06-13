@@ -19,7 +19,7 @@ public partial class TMDbClient
     {
         var req = _client.Create("company/{companyId}/{method}");
         req.AddUrlSegment("companyId", companyId.ToString(CultureInfo.InvariantCulture));
-        req.AddUrlSegment("method", companyMethod.GetDescription());
+        req.AddUrlSegment("method", companyMethod.GetDescription<CompanyMethods>());
 
         if (page >= 1)
         {
@@ -54,7 +54,7 @@ public partial class TMDbClient
             .OfType<CompanyMethods>()
             .Except([CompanyMethods.Undefined])
             .Where(s => extraMethods.HasFlag(s))
-            .Select(s => s.GetDescription()));
+            .Select(s => s.GetDescription<CompanyMethods>()));
 
         if (appends != string.Empty)
         {

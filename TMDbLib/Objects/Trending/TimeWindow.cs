@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using TMDbLib.Utilities;
+using static TMDbLib.Client.TMDbClient;
 
 namespace TMDbLib.Objects.Trending;
 
@@ -20,4 +22,13 @@ public enum TimeWindow
     // [JsonStringEnumMemberName("week")]
     [JsonStringEnumMemberName("week")]
     Week
+}
+
+public class TimeWindowClass
+{
+    public static Dictionary<TimeWindow, string> TimeWindowDescriptions => new ()
+    {
+        [TimeWindow.Day] = "day",
+        [TimeWindow.Week] = "week",
+    };
 }

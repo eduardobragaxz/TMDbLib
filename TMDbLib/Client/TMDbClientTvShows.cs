@@ -24,7 +24,7 @@ public partial class TMDbClient
     {
         var req = _client.Create("tv/{id}/{method}");
         req.AddUrlSegment("id", id.ToString(CultureInfo.InvariantCulture));
-        req.AddUrlSegment("method", tvShowMethod.GetDescription());
+        req.AddUrlSegment("method", tvShowMethod.GetDescription<TvShowMethods>());
 
         // TODO: Dateformat?
         // if (dateFormat is not null)
@@ -101,7 +101,7 @@ public partial class TMDbClient
 
         var req = _client.Create("tv/{tvShowId}/{method}");
         req.AddUrlSegment("tvShowId", tvShowId.ToString(CultureInfo.InvariantCulture));
-        req.AddUrlSegment("method", TvShowMethods.AccountStates.GetDescription());
+        req.AddUrlSegment("method", TvShowMethods.AccountStates.GetDescription<TvShowMethods>());
         AddSessionId(req, SessionType.UserSession);
 
         return await req.GetOfT<AccountState>(cancellationToken).ConfigureAwait(false);
@@ -159,7 +159,7 @@ public partial class TMDbClient
             .OfType<TvShowMethods>()
             .Except([TvShowMethods.Undefined])
             .Where(s => extraMethods.HasFlag(s))
-            .Select(s => s.GetDescription()));
+            .Select(s => s.GetDescription<TvShowMethods>()));
 
         if (appends != string.Empty)
         {
@@ -311,7 +311,7 @@ public partial class TMDbClient
     public async Task<SearchContainer<SearchTv>?> GetTvShowListAsync(TvShowListType list, string? language, int page = 0, string? timezone = null, CancellationToken cancellationToken = default)
     {
         var req = _client.Create("tv/{method}");
-        req.AddUrlSegment("method", list.GetDescription());
+        req.AddUrlSegment("method", list.GetDescription<TvShowListType>());
 
         if (page > 0)
         {

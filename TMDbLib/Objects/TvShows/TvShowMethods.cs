@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.TvShows;
@@ -110,4 +111,28 @@ public enum TvShowMethods
     /// </summary>
     [JsonStringEnumMemberName("aggregate_credits")]
     CreditsAggregate = 1 << 15,
+}
+
+public class TvShowMethodsClass
+{
+    public static Dictionary<TvShowMethods, string> TvShowMethodsDescriptions => new ()
+    {
+        [TvShowMethods.Undefined] = "Undefined",
+        [TvShowMethods.Credits] = "credits",
+        [TvShowMethods.Images] = "images",
+        [TvShowMethods.ExternalIds] = "external_ids",
+        [TvShowMethods.ContentRatings] = "content_ratings",
+        [TvShowMethods.AlternativeTitles] = "alternative_titles",
+        [TvShowMethods.Keywords] = "keywords",
+        [TvShowMethods.Similar] = "similar",
+        [TvShowMethods.Videos] = "videos",
+        [TvShowMethods.Translations] = "translations",
+        [TvShowMethods.AccountStates] = "account_states",
+        [TvShowMethods.Changes] = "changes",
+        [TvShowMethods.Recommendations] = "recommendations",
+        [TvShowMethods.Reviews] = "reviews",
+        [TvShowMethods.WatchProviders] = "watch/providers",
+        [TvShowMethods.EpisodeGroups] = "episode_groups",
+        [TvShowMethods.CreditsAggregate] = "aggregate_credits",
+    };
 }

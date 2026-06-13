@@ -19,7 +19,7 @@ public partial class TMDbClient
     {
         var req = _client.Create("collection/{collectionId}/{method}");
         req.AddUrlSegment("collectionId", collectionId.ToString(CultureInfo.InvariantCulture));
-        req.AddUrlSegment("method", collectionMethod.GetDescription());
+        req.AddUrlSegment("method", collectionMethod.GetDescription<CollectionMethods>());
 
         if (language is not null)
         {
@@ -75,7 +75,7 @@ public partial class TMDbClient
             .OfType<CollectionMethods>()
             .Except([CollectionMethods.Undefined])
             .Where(s => extraMethods.HasFlag(s))
-            .Select(s => s.GetDescription()));
+            .Select(s => s.GetDescription<CollectionMethods>()));
 
         if (appends != string.Empty)
         {

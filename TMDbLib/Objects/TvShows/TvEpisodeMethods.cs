@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using TMDbLib.Objects.Movies;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.TvShows;
@@ -50,4 +52,18 @@ public enum TvEpisodeMethods
     /// </summary>
     [JsonStringEnumMemberName("translations")]
     Translations = 32,
+}
+
+public class TvEpisodeMethodsClass
+{
+    public static Dictionary<TvEpisodeMethods, string> TvEpisodeMethodsDescriptions => new ()
+    {
+        [TvEpisodeMethods.Undefined] = "Undefined",
+        [TvEpisodeMethods.Credits] = "credits",
+        [TvEpisodeMethods.Images] = "images",
+        [TvEpisodeMethods.ExternalIds] = "external_ids",
+        [TvEpisodeMethods.Videos] = "videos",
+        [TvEpisodeMethods.AccountStates] = "account_states",
+        [TvEpisodeMethods.Translations] = "translations",
+    };
 }

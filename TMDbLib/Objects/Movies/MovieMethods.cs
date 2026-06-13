@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using TMDbLib.Objects.Collections;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.Movies;
@@ -110,4 +112,27 @@ public enum MovieMethods
     /// </summary>
     [JsonStringEnumMemberName("watch/providers")]
     WatchProviders = 1 << 15
+}
+
+public class MovieMethodsClass
+{
+    public static Dictionary<MovieMethods, string> MovieMethodsDescriptions => new ()
+    {
+        [MovieMethods.Undefined] = "Undefined",
+        [MovieMethods.AlternativeTitles] = "alternative_titles",
+        [MovieMethods.Credits] = "credits",
+        [MovieMethods.Images] = "images",
+        [MovieMethods.Keywords] = "keywords",
+        [MovieMethods.Releases] = "releases",
+        [MovieMethods.Videos] = "videos",
+        [MovieMethods.Translations] = "translations",
+        [MovieMethods.Similar] = "similar",
+        [MovieMethods.Reviews] = "reviews",
+        [MovieMethods.Lists] = "lists",
+        [MovieMethods.AccountStates] = "account_states",
+        [MovieMethods.ReleaseDates] = "release_dates",
+        [MovieMethods.Recommendations] = "recommendations",
+        [MovieMethods.ExternalIds] = "external_ids",
+        [MovieMethods.WatchProviders] = "watch/providers"
+    };
 }

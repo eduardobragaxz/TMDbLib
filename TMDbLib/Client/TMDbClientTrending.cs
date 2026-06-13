@@ -22,7 +22,7 @@ public partial class TMDbClient
     public async Task<SearchContainer<SearchMovie>?> GetTrendingMoviesAsync(TimeWindow timeWindow, int page = 0, string? language = null, CancellationToken cancellationToken = default)
     {
         var req = _client.Create("trending/movie/{time_window}");
-        req.AddUrlSegment("time_window", timeWindow.GetDescription());
+        req.AddUrlSegment("time_window", timeWindow.GetDescription<TimeWindow>());
 
         if (page >= 1)
         {
@@ -54,7 +54,7 @@ public partial class TMDbClient
     public async Task<SearchContainer<SearchTv>?> GetTrendingTvAsync(TimeWindow timeWindow, int page = 0, string? language = null, CancellationToken cancellationToken = default)
     {
         var req = _client.Create("trending/tv/{time_window}");
-        req.AddUrlSegment("time_window", timeWindow.GetDescription());
+        req.AddUrlSegment("time_window", timeWindow.GetDescription<TimeWindow>());
 
         if (page >= 1)
         {
@@ -86,7 +86,7 @@ public partial class TMDbClient
     public async Task<SearchContainer<SearchPerson>?> GetTrendingPeopleAsync(TimeWindow timeWindow, int page = 0, string? language = null, CancellationToken cancellationToken = default)
     {
         var req = _client.Create("trending/person/{time_window}");
-        req.AddUrlSegment("time_window", timeWindow.GetDescription());
+        req.AddUrlSegment("time_window", timeWindow.GetDescription<TimeWindow>());
 
         if (page >= 1)
         {
@@ -118,7 +118,7 @@ public partial class TMDbClient
     public async Task<SearchContainer<SearchBase>?> GetTrendingAllAsync(TimeWindow timeWindow, int page = 0, string? language = null, CancellationToken cancellationToken = default)
     {
         var req = _client.Create("trending/all/{time_window}");
-        req.AddUrlSegment("time_window", timeWindow.GetDescription());
+        req.AddUrlSegment("time_window", timeWindow.GetDescription<TimeWindow>());
 
         if (page >= 1)
         {

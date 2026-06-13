@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using TMDbLib.Objects.General;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.Collections;
@@ -26,4 +28,14 @@ public enum CollectionMethods
     /// </summary>
     [JsonStringEnumMemberName("translations")]
     Translations = 2,
+}
+
+public class CollectionMethodsClass
+{
+    public static Dictionary<CollectionMethods, string> CollectionDescriptions => new ()
+    {
+        [CollectionMethods.Undefined] = "Undefined",
+        [CollectionMethods.Images] = "images",
+        [CollectionMethods.Undefined] = "translations"
+    };
 }
