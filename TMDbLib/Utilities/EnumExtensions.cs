@@ -27,7 +27,7 @@ internal static class EnumExtensions
     {
         [AccountListsMethods.FavoriteMovies] = "favorite/movies",
         [AccountListsMethods.FavoriteTv] = "favorite/tv",
-        [AccountListsMethods.RatedMovies] = "favorite/movies",
+        [AccountListsMethods.RatedMovies] = "rated/movies",
         [AccountListsMethods.RatedTv] = "rated/tv",
         [AccountListsMethods.RatedTvEpisodes] = "rated/tv/episodes",
         [AccountListsMethods.MovieWatchlist] = "watchlist/movies",
