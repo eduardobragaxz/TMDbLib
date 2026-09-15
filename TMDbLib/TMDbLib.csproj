@@ -8,6 +8,7 @@
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
     <Nullable>enable</Nullable>
     <IsAotCompatible>true</IsAotCompatible>
+    <Features>$(Features);runtime-async=on</Features>
   </PropertyGroup>
 
   <!-- Analyzers -->
