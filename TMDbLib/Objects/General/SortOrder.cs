@@ -17,12 +17,12 @@ public enum SortOrder
     /// <summary>
     /// Ascending sort order.
     /// </summary>
-    [JsonStringEnumMemberName("asc")]
+    // [JsonStringEnumMemberName("asc")]
     Ascending = 1,
 
     /// <summary>
     /// Descending sort order.
     /// </summary>
-    [JsonStringEnumMemberName("desc")]
+    // [JsonStringEnumMemberName("desc")]
     Descending = 2
 }

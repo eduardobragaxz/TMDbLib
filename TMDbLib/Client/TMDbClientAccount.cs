@@ -46,14 +46,14 @@ public partial class TMDbClient
             request.AddParameter("page", page.ToString(CultureInfo.InvariantCulture));
         }
 
-        if (sortBy != AccountSortBy.Undefined)
-        {
-            request.AddParameter("sort_by", sortBy.GetDescription<AccountSortBy>());
-        }
+        // if (sortBy != AccountSortBy.Undefined)
+        // {
+        //    request.AddParameter("sort_by", sortBy.GetDescription<AccountSortBy>());
+        // }
 
         if (sortOrder != SortOrder.Undefined)
         {
-            request.AddParameter("sort_order", sortOrder.GetDescription<SortOrder>());
+            request.AddParameter("sort_by", sortOrder.GetDescription<SortOrder>());
         }
 
         language ??= DefaultLanguage;

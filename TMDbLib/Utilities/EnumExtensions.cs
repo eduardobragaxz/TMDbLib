@@ -49,8 +49,8 @@ internal static class EnumExtensions
     private static readonly Dictionary<SortOrder, string> _sortOrderDescriptions = new ()
     {
         [SortOrder.Undefined] = "Undefined",
-        [SortOrder.Ascending] = "asc",
-        [SortOrder.Descending] = "desc"
+        [SortOrder.Ascending] = "created_at.asc",
+        [SortOrder.Descending] = "created_at.desc"
     };
 
     private static readonly Dictionary<MediaType, string> _mediaTypeDescriptions = new ()
