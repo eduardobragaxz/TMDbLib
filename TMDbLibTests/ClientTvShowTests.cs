@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Xunit;
 using TMDbLib.Objects.Authentication;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Reviews;
 using TMDbLib.Objects.TvShows;
 using TMDbLibTests.Helpers;
 using TMDbLibTests.JsonHelpers;
+using Xunit;
 
 namespace TMDbLibTests;
 
@@ -34,7 +34,8 @@ public class ClientTvShowTests : TestBase
             [TvShowMethods.Recommendations] = tvShow => tvShow.Recommendations,
             [TvShowMethods.WatchProviders] = tvShow => tvShow.WatchProviders,
             [TvShowMethods.EpisodeGroups] = tvShow => tvShow.EpisodeGroups,
-            [TvShowMethods.CreditsAggregate] = tvShow => tvShow.AggregateCredits
+            [TvShowMethods.CreditsAggregate] = tvShow => tvShow.AggregateCredits,
+            [TvShowMethods.Lists] = tvShow => tvShow.Lists
         };
     }
 
@@ -66,7 +67,7 @@ public class ClientTvShowTests : TestBase
         await TMDbClient.SetSessionInformationAsync(TestConfig.UserSessionId, SessionType.UserSession);
 
         // Account states will only show up if we've done something
-        await TMDbClient.TvShowSetRatingAsync(IdHelper.KeepingUpAppearances, 5, TestContext.Current.CancellationToken);
+        await TMDbClient.TvShowSetRatingAsync(IdHelper.KeepingUpAppearances, 5, cancellationToken: TestContext.Current.CancellationToken);
 
         await TestMethodsHelper.TestGetAll(Methods, async combined =>
         {
@@ -104,7 +105,7 @@ public class ClientTvShowTests : TestBase
     [Fact]
     public async Task TestTvShowSeparateExtrasExternalIdsAsync()
     {
-        var externalIds = await TMDbClient.GetTvShowExternalIdsAsync(IdHelper.GameOfThrones, TestContext.Current.CancellationToken);
+        var externalIds = await TMDbClient.GetTvShowExternalIdsAsync(IdHelper.GameOfThrones, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(externalIds);
     }
@@ -115,7 +116,7 @@ public class ClientTvShowTests : TestBase
     [Fact]
     public async Task TestTvShowSeparateExtrasContentRatingsAsync()
     {
-        var contentRatings = await TMDbClient.GetTvShowContentRatingsAsync(IdHelper.BreakingBad, TestContext.Current.CancellationToken);
+        var contentRatings = await TMDbClient.GetTvShowContentRatingsAsync(IdHelper.BreakingBad, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(contentRatings);
     }
@@ -126,9 +127,29 @@ public class ClientTvShowTests : TestBase
     [Fact]
     public async Task TestTvShowSeparateExtrasAlternativeTitlesAsync()
     {
-        var alternativeTitles = await TMDbClient.GetTvShowAlternativeTitlesAsync(IdHelper.BreakingBad, TestContext.Current.CancellationToken);
+        var alternativeTitles = await TMDbClient.GetTvShowAlternativeTitlesAsync(IdHelper.BreakingBad, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(alternativeTitles);
+    }
+
+    /// <summary>
+    /// Tests that episode groups can be retrieved separately for a TV show.
+    /// </summary>
+    [Fact]
+    public async Task TestTvShowSeparateExtrasEpisodeGroupsAsync()
+    {
+        var episodeGroups = await TMDbClient.GetTvShowEpisodeGroupsAsync(IdHelper.BreakingBad, cancellationToken: TestContext.Current.CancellationToken);
+        Assert.NotNull(episodeGroups);
+
+        Assert.Equal(IdHelper.BreakingBad, episodeGroups.Id);
+        Assert.NotNull(episodeGroups.Results);
+        Assert.NotEmpty(episodeGroups.Results);
+        Assert.All(episodeGroups.Results, group =>
+        {
+            Assert.False(string.IsNullOrEmpty(group.Id));
+            Assert.False(string.IsNullOrEmpty(group.Name));
+            Assert.True(group.EpisodeCount > 0);
+        });
     }
 
     /// <summary>
@@ -137,7 +158,7 @@ public class ClientTvShowTests : TestBase
     [Fact]
     public async Task TestTvShowSeparateExtrasKeywordsAsync()
     {
-        var keywords = await TMDbClient.GetTvShowKeywordsAsync(IdHelper.BreakingBad, TestContext.Current.CancellationToken);
+        var keywords = await TMDbClient.GetTvShowKeywordsAsync(IdHelper.BreakingBad, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(keywords);
 
         Assert.NotNull(keywords.Results);
@@ -147,12 +168,25 @@ public class ClientTvShowTests : TestBase
     }
 
     /// <summary>
+    /// Tests the standalone /tv/{id}/lists endpoint added for the TMDb lists feature.
+    /// </summary>
+    [Fact]
+    public async Task TestTvShowSeparateExtrasListsAsync()
+    {
+        var lists = await TMDbClient.GetTvShowListsAsync(IdHelper.BreakingBad, cancellationToken: TestContext.Current.CancellationToken);
+
+        Assert.NotNull(lists);
+        Assert.Equal(IdHelper.BreakingBad, lists.Id);
+        Assert.NotNull(lists.Results);
+    }
+
+    /// <summary>
     /// Tests that translations can be retrieved separately for a TV show.
     /// </summary>
     [Fact]
     public async Task TestTvShowSeparateExtrasTranslationsAsync()
     {
-        var translations = await TMDbClient.GetTvShowTranslationsAsync(IdHelper.BreakingBad, TestContext.Current.CancellationToken);
+        var translations = await TMDbClient.GetTvShowTranslationsAsync(IdHelper.BreakingBad, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(translations);
         Assert.NotNull(translations.Translations);
 
@@ -167,11 +201,11 @@ public class ClientTvShowTests : TestBase
     [Fact]
     public async Task TestTvShowSeparateExtrasVideosAsync()
     {
-        var videos = await TMDbClient.GetTvShowVideosAsync(IdHelper.BreakingBad, cancellationToken: TestContext.Current.CancellationToken);
+        var videos = await TMDbClient.GetTvShowVideosAsync(IdHelper.GameOfThrones, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(videos);
 
         Assert.NotNull(videos.Results);
-        var single = videos.Results.Single(s => s.Id == "5759db2fc3a3683e7c003df7");
+        var single = videos.Results.Single(s => s.Id == "5c9295200e0a267cd8168bd8");
 
         await Verify(single);
     }
@@ -190,10 +224,10 @@ public class ClientTvShowTests : TestBase
         Assert.NotNull(show);
         if (show.AccountStates is null || !show.AccountStates.Rating.HasValue)
         {
-            await TMDbClient.TvShowSetRatingAsync(IdHelper.BigBangTheory, 5, TestContext.Current.CancellationToken);
+            await TMDbClient.TvShowSetRatingAsync(IdHelper.BigBangTheory, 5, cancellationToken: TestContext.Current.CancellationToken);
 
             // Allow TMDb to update cache
-            await Task.Delay(2000, TestContext.Current.CancellationToken);
+            await Task.Delay(2000, cancellationToken: TestContext.Current.CancellationToken);
 
             show = await TMDbClient.GetTvShowAsync(IdHelper.BigBangTheory, TvShowMethods.AccountStates, cancellationToken: TestContext.Current.CancellationToken);
             Assert.NotNull(show);
@@ -235,7 +269,7 @@ public class ClientTvShowTests : TestBase
     [Fact]
     public async Task TestTvShowGetImagesWithImageLanguageAsync()
     {
-        var images = await TMDbClient.GetTvShowImagesAsync(IdHelper.BreakingBad, "en-US", "en", TestContext.Current.CancellationToken);
+        var images = await TMDbClient.GetTvShowImagesAsync(IdHelper.BreakingBad, "en-US", "en", cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(images);
 
         TestImagesHelpers.TestImagePaths(images);
@@ -343,7 +377,7 @@ public class ClientTvShowTests : TestBase
     [Fact]
     public async Task TestTvShowGetMovieWatchProviders()
     {
-        var resp = await TMDbClient.GetTvShowWatchProvidersAsync(IdHelper.GameOfThrones, TestContext.Current.CancellationToken);
+        var resp = await TMDbClient.GetTvShowWatchProvidersAsync(IdHelper.GameOfThrones, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(resp);
         Assert.NotNull(resp.Results);
 
@@ -359,7 +393,7 @@ public class ClientTvShowTests : TestBase
     [Fact]
     public async Task TestTvShowTranslationsAsync()
     {
-        var translations = await TMDbClient.GetTvShowTranslationsAsync(IdHelper.BreakingBad, TestContext.Current.CancellationToken);
+        var translations = await TMDbClient.GetTvShowTranslationsAsync(IdHelper.BreakingBad, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(translations);
 
         await Verify(translations);
@@ -424,7 +458,7 @@ public class ClientTvShowTests : TestBase
     [Fact]
     public async Task TestTvShowLatest()
     {
-        var tvShow = await TMDbClient.GetLatestTvShowAsync(TestContext.Current.CancellationToken);
+        var tvShow = await TMDbClient.GetLatestTvShowAsync(cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(tvShow);
     }
@@ -452,7 +486,7 @@ public class ClientTvShowTests : TestBase
     [Fact]
     public async Task TestTvShowLists()
     {
-        foreach (TvShowListType type in Enum.GetValues<TvShowListType>().OfType<TvShowListType>())
+        foreach (TvShowListType type in Enum.GetValues(typeof(TvShowListType)).OfType<TvShowListType>())
         {
             await TestHelpers.SearchPagesAsync(i => TMDbClient.GetTvShowListAsync(type, i));
         }
@@ -522,13 +556,13 @@ public class ClientTvShowTests : TestBase
         await TMDbClient.SetSessionInformationAsync(TestConfig.UserSessionId, SessionType.UserSession);
 
         // Set a rating
-        Assert.True(await TMDbClient.TvShowSetRatingAsync(IdHelper.BreakingBad, 5, TestContext.Current.CancellationToken));
+        Assert.True(await TMDbClient.TvShowSetRatingAsync(IdHelper.BreakingBad, 5, cancellationToken: TestContext.Current.CancellationToken));
 
         // Allow TMDb to cache our changes
-        await Task.Delay(2000, TestContext.Current.CancellationToken);
+        await Task.Delay(2000, cancellationToken: TestContext.Current.CancellationToken);
 
         // Verify the rating was set
-        var accountState = await TMDbClient.GetTvShowAccountStateAsync(IdHelper.BreakingBad, TestContext.Current.CancellationToken);
+        var accountState = await TMDbClient.GetTvShowAccountStateAsync(IdHelper.BreakingBad, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(accountState);
         Assert.Equal(IdHelper.BreakingBad, accountState.Id);
         Assert.NotNull(accountState.Rating);
@@ -544,7 +578,7 @@ public class ClientTvShowTests : TestBase
         await TMDbClient.SetSessionInformationAsync(TestConfig.UserSessionId, SessionType.UserSession);
 
         // Valid ratings should succeed - use integer value that is known to work
-        Assert.True(await TMDbClient.TvShowSetRatingAsync(IdHelper.BreakingBad, 5, TestContext.Current.CancellationToken));
+        Assert.True(await TMDbClient.TvShowSetRatingAsync(IdHelper.BreakingBad, 5, cancellationToken: TestContext.Current.CancellationToken));
     }
 
     /// <summary>
@@ -557,7 +591,7 @@ public class ClientTvShowTests : TestBase
         await TMDbClient.SetSessionInformationAsync(TestConfig.GuestTestSessionId, SessionType.GuestSession);
 
         // Try changing the rating - use integer value that is known to work
-        Assert.True(await TMDbClient.TvShowSetRatingAsync(IdHelper.BreakingBad, 5, TestContext.Current.CancellationToken));
+        Assert.True(await TMDbClient.TvShowSetRatingAsync(IdHelper.BreakingBad, 5, cancellationToken: TestContext.Current.CancellationToken));
     }
 
     /// <summary>

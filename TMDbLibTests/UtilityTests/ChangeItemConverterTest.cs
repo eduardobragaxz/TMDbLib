@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TMDbLib.Objects.Changes;
-using TMDbLib.Objects.Movies;
 using TMDbLib.Utilities.Serializer;
 using TMDbLibTests.JsonHelpers;
 using Xunit;
@@ -108,7 +106,7 @@ public class ChangeItemConverterTest : TestBase
     [Fact]
     public async Task TestChangeItemConverter()
     {
-        var latestMovie = await TMDbClient.GetMovieLatestAsync(TestContext.Current.CancellationToken);
+        var latestMovie = await TMDbClient.GetMovieLatestAsync(cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(latestMovie);
 
         var changes = await TMDbClient.GetMovieChangesAsync(latestMovie.Id, cancellationToken: TestContext.Current.CancellationToken);

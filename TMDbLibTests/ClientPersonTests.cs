@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Xunit;
 using TMDbLib.Objects.People;
 using TMDbLib.Objects.Search;
 using TMDbLibTests.Helpers;
 using TMDbLibTests.JsonHelpers;
+using Xunit;
 
 namespace TMDbLibTests;
 
@@ -97,7 +97,7 @@ public class ClientPersonTests : TestBase
     [Fact]
     public async Task TestPersonsGetPersonTvCreditsAsync()
     {
-        var item = await TMDbClient.GetPersonTvCreditsAsync(IdHelper.BruceWillis, TestContext.Current.CancellationToken);
+        var item = await TMDbClient.GetPersonTvCreditsAsync(IdHelper.BruceWillis, cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(item);
         Assert.NotNull(item.Cast);
@@ -122,7 +122,7 @@ public class ClientPersonTests : TestBase
     [Fact]
     public async Task TestGetPersonMovieCreditsAsync()
     {
-        var item = await TMDbClient.GetPersonMovieCreditsAsync(IdHelper.BruceWillis, TestContext.Current.CancellationToken);
+        var item = await TMDbClient.GetPersonMovieCreditsAsync(IdHelper.BruceWillis, cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(item);
         Assert.NotNull(item.Cast);
@@ -146,7 +146,7 @@ public class ClientPersonTests : TestBase
     [Fact]
     public async Task TestGetPersonCombinedCreditsAsync()
     {
-        var item = await TMDbClient.GetPersonCombinedCreditsAsync(IdHelper.BruceWillis, TestContext.Current.CancellationToken);
+        var item = await TMDbClient.GetPersonCombinedCreditsAsync(IdHelper.BruceWillis, cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(item);
         Assert.NotNull(item.Cast);
@@ -182,7 +182,7 @@ public class ClientPersonTests : TestBase
     [Fact]
     public async Task TestGetPersonExternalIdsAsync()
     {
-        var item = await TMDbClient.GetPersonExternalIdsAsync(IdHelper.BruceWillis, TestContext.Current.CancellationToken);
+        var item = await TMDbClient.GetPersonExternalIdsAsync(IdHelper.BruceWillis, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(item);
     }
@@ -206,7 +206,7 @@ public class ClientPersonTests : TestBase
     [Fact]
     public async Task TestGetPersonImagesAsync()
     {
-        var images = await TMDbClient.GetPersonImagesAsync(IdHelper.BruceWillis, TestContext.Current.CancellationToken);
+        var images = await TMDbClient.GetPersonImagesAsync(IdHelper.BruceWillis, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(images);
 
         Assert.NotNull(images.Profiles);
@@ -222,7 +222,7 @@ public class ClientPersonTests : TestBase
     [Fact]
     public async Task TestPersonsTaggedImagesAsync()
     {
-        var images = await TMDbClient.GetPersonTaggedImagesAsync(IdHelper.BruceWillis, 1, TestContext.Current.CancellationToken);
+        var images = await TMDbClient.GetPersonTaggedImagesAsync(IdHelper.BruceWillis, 1, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(images);
 
         Assert.NotNull(images.Results);
@@ -255,7 +255,7 @@ public class ClientPersonTests : TestBase
     [Fact]
     public async Task TestGetLatestPersonAsync()
     {
-        var item = await TMDbClient.GetLatestPersonAsync(TestContext.Current.CancellationToken);
+        var item = await TMDbClient.GetLatestPersonAsync(cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(item);
     }

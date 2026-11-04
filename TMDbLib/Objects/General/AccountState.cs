@@ -24,7 +24,6 @@ public class AccountState
     /// Gets or sets the user's rating for the media item.
     /// </summary>
     [JsonPropertyName("rated")]
-    [JsonConverter(typeof(AccountStateConverter))]
     public double? Rated { get; set; }
 
     /// <summary>

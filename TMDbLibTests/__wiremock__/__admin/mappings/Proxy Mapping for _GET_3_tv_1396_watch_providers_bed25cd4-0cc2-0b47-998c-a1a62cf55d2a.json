@@ -1,6 +1,5 @@
 {
   "Guid": "bed25cd4-0cc2-0b47-998c-a1a62cf55d2a",
-  "UpdatedAt": "2025-12-24T18:45:22.2562929Z",
   "Title": "Proxy Mapping for GET /3/tv/1396/watch/providers",
   "Description": "Proxy Mapping for GET /3/tv/1396/watch/providers",
   "Priority": -2000000,
@@ -17,7 +16,20 @@
     "Methods": [
       "GET"
     ],
-    "HttpVersion": "1.1"
+    "HttpVersion": "1.1",
+    "Headers": [
+      {
+        "Name": "Accept-Encoding",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "gzip, deflate, br",
+            "IgnoreCase": true
+          }
+        ],
+        "IgnoreCase": true
+      }
+    ]
   },
   "Response": {
     "StatusCode": 200,
@@ -31,7 +43,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 31
+              "display_priority": 0
             }
           ]
         },
@@ -75,7 +87,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 3
+              "display_priority": 0
             }
           ]
         },
@@ -86,38 +98,38 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             }
           ]
         },
         "AT": {
           "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=AT",
-          "flatrate": [
-            {
-              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
-              "provider_id": 8,
-              "provider_name": "Netflix",
-              "display_priority": 154
-            }
-          ],
           "buy": [
             {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
               "provider_id": 10,
               "provider_name": "Amazon Video",
-              "display_priority": 3
+              "display_priority": 5
             },
             {
               "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
               "provider_id": 3,
               "provider_name": "Google Play Movies",
-              "display_priority": 6
+              "display_priority": 8
             },
             {
               "logo_path": "/cBN4jd4wPq6on0kESiTlevqvlnL.jpg",
               "provider_id": 20,
               "provider_name": "maxdome Store",
-              "display_priority": 12
+              "display_priority": 14
+            }
+          ],
+          "flatrate": [
+            {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
             }
           ]
         },
@@ -127,8 +139,8 @@
             {
               "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
               "provider_id": 2,
-              "provider_name": "Apple TV",
-              "display_priority": 11
+              "provider_name": "Apple TV Store",
+              "display_priority": 13
             },
             {
               "logo_path": "/9B7l9ZSos54kFrZbliVExt2z9C9.jpg",
@@ -142,7 +154,7 @@
               "logo_path": "/sSfxJXq7s8oHf3XWd0FtqagPDsF.jpg",
               "provider_id": 21,
               "provider_name": "Stan",
-              "display_priority": 10
+              "display_priority": 12
             }
           ]
         },
@@ -153,7 +165,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 2
+              "display_priority": 0
             }
           ]
         },
@@ -186,7 +198,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             }
           ]
         },
@@ -230,13 +242,13 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 41
+              "display_priority": 42
             }
           ]
         },
@@ -258,7 +270,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 12
+              "display_priority": 0
             }
           ]
         },
@@ -269,18 +281,26 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 6
+              "display_priority": 0
             }
           ]
         },
         "CA": {
           "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=CA",
+          "buy": [
+            {
+              "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
+              "provider_id": 2,
+              "provider_name": "Apple TV Store",
+              "display_priority": 7
+            }
+          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 0
+              "display_priority": 3
             },
             {
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
@@ -288,32 +308,24 @@
               "provider_name": "Netflix Standard with Ads",
               "display_priority": 94
             }
-          ],
-          "buy": [
-            {
-              "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
-              "provider_id": 2,
-              "provider_name": "Apple TV",
-              "display_priority": 5
-            }
           ]
         },
         "CH": {
           "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=CH",
+          "buy": [
+            {
+              "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
+              "provider_id": 3,
+              "provider_name": "Google Play Movies",
+              "display_priority": 7
+            }
+          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
-            }
-          ],
-          "buy": [
-            {
-              "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
-              "provider_id": 3,
-              "provider_name": "Google Play Movies",
-              "display_priority": 5
             }
           ]
         },
@@ -335,7 +347,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 2
+              "display_priority": 0
             }
           ]
         },
@@ -346,7 +358,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 3
+              "display_priority": 0
             }
           ]
         },
@@ -357,7 +369,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 2
+              "display_priority": 0
             }
           ]
         },
@@ -401,7 +413,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 6
+              "display_priority": 0
             }
           ]
         },
@@ -412,44 +424,12 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             }
           ]
         },
         "DE": {
           "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=DE",
-          "buy": [
-            {
-              "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
-              "provider_id": 2,
-              "provider_name": "Apple TV",
-              "display_priority": 4
-            },
-            {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
-              "provider_id": 10,
-              "provider_name": "Amazon Video",
-              "display_priority": 7
-            },
-            {
-              "logo_path": "/cBN4jd4wPq6on0kESiTlevqvlnL.jpg",
-              "provider_id": 20,
-              "provider_name": "maxdome Store",
-              "display_priority": 16
-            },
-            {
-              "logo_path": "/nCsFBTEmlCMc5NA4fwPuluTz6AO.jpg",
-              "provider_id": 178,
-              "provider_name": "MagentaTV",
-              "display_priority": 21
-            },
-            {
-              "logo_path": "/dKh2TJ9lTWV0UIcDQGMnMyQ8AIN.jpg",
-              "provider_id": 1993,
-              "provider_name": "Videoload",
-              "display_priority": 106
-            }
-          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
@@ -461,32 +441,50 @@
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 84
+              "display_priority": 83
+            }
+          ],
+          "buy": [
+            {
+              "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
+              "provider_id": 2,
+              "provider_name": "Apple TV Store",
+              "display_priority": 5
+            },
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 8
+            },
+            {
+              "logo_path": "/cBN4jd4wPq6on0kESiTlevqvlnL.jpg",
+              "provider_id": 20,
+              "provider_name": "maxdome Store",
+              "display_priority": 18
+            },
+            {
+              "logo_path": "/nCsFBTEmlCMc5NA4fwPuluTz6AO.jpg",
+              "provider_id": 178,
+              "provider_name": "MagentaTV",
+              "display_priority": 23
+            },
+            {
+              "logo_path": "/dKh2TJ9lTWV0UIcDQGMnMyQ8AIN.jpg",
+              "provider_id": 1993,
+              "provider_name": "Videoload",
+              "display_priority": 104
             }
           ]
         },
         "DK": {
           "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=DK",
-          "buy": [
-            {
-              "logo_path": "/auWzottqpExOHUlJwDZ4DvdHGoL.jpg",
-              "provider_id": 423,
-              "provider_name": "Blockbuster",
-              "display_priority": 14
-            },
-            {
-              "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
-              "provider_id": 426,
-              "provider_name": "SF Anytime",
-              "display_priority": 15
-            }
-          ],
           "rent": [
             {
               "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
               "provider_id": 426,
               "provider_name": "SF Anytime",
-              "display_priority": 15
+              "display_priority": 16
             }
           ],
           "flatrate": [
@@ -494,7 +492,21 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
+            }
+          ],
+          "buy": [
+            {
+              "logo_path": "/auWzottqpExOHUlJwDZ4DvdHGoL.jpg",
+              "provider_id": 423,
+              "provider_name": "Blockbuster",
+              "display_priority": 15
+            },
+            {
+              "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
+              "provider_id": 426,
+              "provider_name": "SF Anytime",
+              "display_priority": 16
             }
           ]
         },
@@ -566,7 +578,7 @@
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 51
+              "display_priority": 52
             }
           ]
         },
@@ -577,13 +589,13 @@
               "logo_path": "/auWzottqpExOHUlJwDZ4DvdHGoL.jpg",
               "provider_id": 423,
               "provider_name": "Blockbuster",
-              "display_priority": 12
+              "display_priority": 13
             },
             {
               "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
               "provider_id": 426,
               "provider_name": "SF Anytime",
-              "display_priority": 13
+              "display_priority": 14
             }
           ],
           "rent": [
@@ -591,7 +603,7 @@
               "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
               "provider_id": 426,
               "provider_name": "SF Anytime",
-              "display_priority": 13
+              "display_priority": 14
             }
           ],
           "flatrate": [
@@ -599,7 +611,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             }
           ]
         },
@@ -616,38 +628,6 @@
         },
         "FR": {
           "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=FR",
-          "buy": [
-            {
-              "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
-              "provider_id": 2,
-              "provider_name": "Apple TV",
-              "display_priority": 5
-            },
-            {
-              "logo_path": "/cAUTwxqoI7zc9XtYr1SMtWZEsXg.jpg",
-              "provider_id": 58,
-              "provider_name": "Canal VOD",
-              "display_priority": 9
-            },
-            {
-              "logo_path": "/9Fyo6njYvroAIxAzTBbLgnjgYga.jpg",
-              "provider_id": 61,
-              "provider_name": "Orange VOD",
-              "display_priority": 12
-            },
-            {
-              "logo_path": "/PAaj5bekwbeeoRC1evWg4KJW8p.jpg",
-              "provider_id": 2286,
-              "provider_name": "VIVA by videofutur",
-              "display_priority": 83
-            },
-            {
-              "logo_path": "/rdMFjYYE0uZ55rBdlX149gRF1XQ.jpg",
-              "provider_id": 2307,
-              "provider_name": "Premiere Max",
-              "display_priority": 85
-            }
-          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
@@ -659,7 +639,39 @@
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 59
+              "display_priority": 52
+            }
+          ],
+          "buy": [
+            {
+              "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
+              "provider_id": 2,
+              "provider_name": "Apple TV Store",
+              "display_priority": 6
+            },
+            {
+              "logo_path": "/cAUTwxqoI7zc9XtYr1SMtWZEsXg.jpg",
+              "provider_id": 58,
+              "provider_name": "Canal VOD",
+              "display_priority": 11
+            },
+            {
+              "logo_path": "/9Fyo6njYvroAIxAzTBbLgnjgYga.jpg",
+              "provider_id": 61,
+              "provider_name": "Orange VOD",
+              "display_priority": 14
+            },
+            {
+              "logo_path": "/PAaj5bekwbeeoRC1evWg4KJW8p.jpg",
+              "provider_id": 2286,
+              "provider_name": "VIVA by videofutur",
+              "display_priority": 79
+            },
+            {
+              "logo_path": "/rdMFjYYE0uZ55rBdlX149gRF1XQ.jpg",
+              "provider_id": 2307,
+              "provider_name": "Premiere Max",
+              "display_priority": 81
             }
           ]
         },
@@ -676,27 +688,27 @@
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 87
+              "display_priority": 86
             }
           ],
           "buy": [
             {
               "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
               "provider_id": 2,
-              "provider_name": "Apple TV",
-              "display_priority": 4
+              "provider_name": "Apple TV Store",
+              "display_priority": 5
             },
             {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
               "provider_id": 10,
               "provider_name": "Amazon Video",
-              "display_priority": 7
+              "display_priority": 8
             },
             {
               "logo_path": "/59TxOAYcoFaufd6CWm465oPchD.jpg",
               "provider_id": 130,
               "provider_name": "Sky Store",
-              "display_priority": 16
+              "display_priority": 18
             }
           ]
         },
@@ -723,10 +735,10 @@
           ],
           "buy": [
             {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
               "provider_id": 10,
               "provider_name": "Amazon Video",
-              "display_priority": 84
+              "display_priority": 83
             }
           ]
         },
@@ -781,7 +793,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             }
           ]
         },
@@ -803,7 +815,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             }
           ]
         },
@@ -820,20 +832,20 @@
         },
         "IE": {
           "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=IE",
+          "buy": [
+            {
+              "logo_path": "/59TxOAYcoFaufd6CWm465oPchD.jpg",
+              "provider_id": 130,
+              "provider_name": "Sky Store",
+              "display_priority": 10
+            }
+          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
-            }
-          ],
-          "buy": [
-            {
-              "logo_path": "/59TxOAYcoFaufd6CWm465oPchD.jpg",
-              "provider_id": 130,
-              "provider_name": "Sky Store",
-              "display_priority": 9
             }
           ]
         },
@@ -889,6 +901,18 @@
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
+            },
+            {
+              "logo_path": "/vDdk3LyjWkYlfCtkrhkjFKFK1Hg.jpg",
+              "provider_id": 29,
+              "provider_name": "Sky Go",
+              "display_priority": 6
+            },
+            {
+              "logo_path": "/g0E9h3JAeIwmdvxlT73jiEuxdNj.jpg",
+              "provider_id": 39,
+              "provider_name": "Now TV",
+              "display_priority": 10
             }
           ]
         },
@@ -916,18 +940,18 @@
         },
         "JP": {
           "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=JP",
-          "buy": [
+          "rent": [
             {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
               "provider_id": 10,
               "provider_name": "Amazon Video",
-              "display_priority": 5
+              "display_priority": 7
             },
             {
-              "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
-              "provider_id": 3,
-              "provider_name": "Google Play Movies",
-              "display_priority": 7
+              "logo_path": "/9EWAEok40O0HVhV0MYJmlE4LhGy.jpg",
+              "provider_id": 2683,
+              "provider_name": "FOD",
+              "display_priority": 80
             }
           ],
           "flatrate": [
@@ -941,21 +965,27 @@
               "logo_path": "/bxBlRPEPpMVDc4jMhSrTf2339DW.jpg",
               "provider_id": 15,
               "provider_name": "Hulu",
-              "display_priority": 1
+              "display_priority": 5
             },
             {
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 24
+              "display_priority": 25
             }
           ],
-          "rent": [
+          "buy": [
             {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
               "provider_id": 10,
               "provider_name": "Amazon Video",
-              "display_priority": 5
+              "display_priority": 7
+            },
+            {
+              "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
+              "provider_id": 3,
+              "provider_name": "Google Play Movies",
+              "display_priority": 9
             }
           ],
           "free": [
@@ -963,7 +993,7 @@
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 9,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 4
+              "display_priority": 1
             }
           ]
         },
@@ -991,7 +1021,7 @@
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 26
+              "display_priority": 27
             }
           ]
         },
@@ -1057,7 +1087,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 7
+              "display_priority": 0
             }
           ]
         },
@@ -1112,7 +1142,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 3
+              "display_priority": 0
             }
           ]
         },
@@ -1123,7 +1153,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 3
+              "display_priority": 0
             }
           ]
         },
@@ -1145,7 +1175,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 4
+              "display_priority": 0
             }
           ]
         },
@@ -1178,13 +1208,13 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 7
+              "display_priority": 0
             },
             {
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 39
+              "display_priority": 40
             }
           ]
         },
@@ -1239,7 +1269,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 10
+              "display_priority": 0
             }
           ]
         },
@@ -1250,24 +1280,32 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 2
+              "display_priority": 0
             }
           ]
         },
         "NO": {
           "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=NO",
+          "flatrate": [
+            {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
+            }
+          ],
           "buy": [
             {
               "logo_path": "/auWzottqpExOHUlJwDZ4DvdHGoL.jpg",
               "provider_id": 423,
               "provider_name": "Blockbuster",
-              "display_priority": 14
+              "display_priority": 15
             },
             {
               "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
               "provider_id": 426,
               "provider_name": "SF Anytime",
-              "display_priority": 15
+              "display_priority": 16
             }
           ],
           "rent": [
@@ -1275,15 +1313,7 @@
               "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
               "provider_id": 426,
               "provider_name": "SF Anytime",
-              "display_priority": 15
-            }
-          ],
-          "flatrate": [
-            {
-              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
-              "provider_id": 8,
-              "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 16
             }
           ]
         },
@@ -1294,7 +1324,7 @@
               "logo_path": "/iscLKFDwQlr0BAgVDBcuRapLiwC.jpg",
               "provider_id": 273,
               "provider_name": "Neon TV",
-              "display_priority": 3
+              "display_priority": 6
             }
           ]
         },
@@ -1327,7 +1357,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             }
           ]
         },
@@ -1371,7 +1401,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             }
           ]
         },
@@ -1382,7 +1412,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             }
           ]
         },
@@ -1415,7 +1445,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             }
           ]
         },
@@ -1437,7 +1467,7 @@
               "logo_path": "/3EJQtj4m83kRh7bV9BF6KWmPiKp.jpg",
               "provider_id": 577,
               "provider_name": "TvIgle",
-              "display_priority": 18
+              "display_priority": 19
             }
           ]
         },
@@ -1465,20 +1495,20 @@
         },
         "SE": {
           "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=SE",
-          "flatrate": [
-            {
-              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
-              "provider_id": 8,
-              "provider_name": "Netflix",
-              "display_priority": 1
-            }
-          ],
           "rent": [
             {
               "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
               "provider_id": 426,
               "provider_name": "SF Anytime",
-              "display_priority": 15
+              "display_priority": 16
+            }
+          ],
+          "flatrate": [
+            {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
             }
           ],
           "buy": [
@@ -1486,13 +1516,13 @@
               "logo_path": "/auWzottqpExOHUlJwDZ4DvdHGoL.jpg",
               "provider_id": 423,
               "provider_name": "Blockbuster",
-              "display_priority": 14
+              "display_priority": 15
             },
             {
               "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
               "provider_id": 426,
               "provider_name": "SF Anytime",
-              "display_priority": 15
+              "display_priority": 16
             }
           ]
         },
@@ -1525,7 +1555,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             }
           ]
         },
@@ -1580,7 +1610,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 3
+              "display_priority": 0
             }
           ]
         },
@@ -1591,7 +1621,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             }
           ]
         },
@@ -1613,7 +1643,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 2
+              "display_priority": 0
             }
           ]
         },
@@ -1663,44 +1693,44 @@
         },
         "US": {
           "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=US",
-          "flatrate": [
-            {
-              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
-              "provider_id": 8,
-              "provider_name": "Netflix",
-              "display_priority": 1
-            },
-            {
-              "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
-              "provider_id": 1796,
-              "provider_name": "Netflix Standard with Ads",
-              "display_priority": 155
-            }
-          ],
           "buy": [
             {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
               "provider_id": 10,
               "provider_name": "Amazon Video",
-              "display_priority": 6
+              "display_priority": 8
             },
             {
               "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
               "provider_id": 2,
-              "provider_name": "Apple TV",
-              "display_priority": 7
+              "provider_name": "Apple TV Store",
+              "display_priority": 9
             },
             {
               "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
               "provider_id": 3,
               "provider_name": "Google Play Movies",
-              "display_priority": 16
+              "display_priority": 20
             },
             {
-              "logo_path": "/19fkcOz0xeUgCVW8tO85uOYnYK9.jpg",
+              "logo_path": "/oIXE9vJdkilIxCLAtlbtiqewgvn.jpg",
               "provider_id": 7,
               "provider_name": "Fandango At Home",
-              "display_priority": 35
+              "display_priority": 37
+            }
+          ],
+          "flatrate": [
+            {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 2
+            },
+            {
+              "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
+              "provider_id": 1796,
+              "provider_name": "Netflix Standard with Ads",
+              "display_priority": 151
             }
           ]
         },
@@ -1766,7 +1796,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 4
+              "display_priority": 0
             }
           ]
         }
@@ -1776,19 +1806,7 @@
       "Content-Type": "application/json; charset=utf-8",
       "Transfer-Encoding": "chunked",
       "Connection": "keep-alive",
-      "Server": "openresty",
-      "Cache-Control": "public, max-age=12600",
-      "x-memc": "HIT",
-      "x-memc-key": "9d491f0a0dd6c184041ea41b0416bd2dbb9a55cb28e75fd2bcac40e89fee5bd8",
-      "x-az": "us-east-1a",
-      "ETag": "W/\u00222845ea6b13c9ddbc7413afb0d2b2c121\u0022",
-      "Vary": [
-        "accept-encoding",
-        "Origin"
-      ],
-      "X-Cache": "Miss from cloudfront",
-      "X-Amz-Cf-Pop": "MUC50-P3",
-      "Alt-Svc": "h3=\u0022:443\u0022"
+      "Server": "openresty"
     }
   }
 }

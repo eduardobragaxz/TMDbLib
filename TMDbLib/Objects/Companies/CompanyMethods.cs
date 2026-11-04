@@ -8,6 +8,7 @@ namespace TMDbLib.Objects.Companies;
 /// <summary>
 /// Specifies additional methods to include when retrieving company information.
 /// </summary>
+
 [Flags]
 public enum CompanyMethods
 {
@@ -18,8 +19,14 @@ public enum CompanyMethods
     Undefined = 0,
 
     /// <summary>
-    /// Include movies associated with the company.
+    /// Include alternative names for the company.
     /// </summary>
-    [JsonStringEnumMemberName("movies")]
-    Movies = 1
+    [JsonStringEnumMemberName("alternative_names")]
+    AlternativeNames = 2,
+
+    /// <summary>
+    /// Include logo images for the company.
+    /// </summary>
+    [JsonStringEnumMemberName("images")]
+    Images = 4,
 }

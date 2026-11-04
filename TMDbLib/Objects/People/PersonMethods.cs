@@ -6,8 +6,9 @@ using TMDbLib.Utilities;
 namespace TMDbLib.Objects.People;
 
 /// <summary>
-/// Specifies additional person data to retrieve from the API.
+/// Additional person data to retrieve from the API.
 /// </summary>
+
 [Flags]
 public enum PersonMethods
 {

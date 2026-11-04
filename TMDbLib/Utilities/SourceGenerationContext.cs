@@ -8,6 +8,7 @@ using TMDbLib.Objects.Authentication;
 using TMDbLib.Objects.Changes;
 using TMDbLib.Objects.Exceptions;
 using TMDbLib.Objects.General;
+using TMDbLib.Objects.General.Schema;
 using TMDbLib.Objects.Lists;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.People;
@@ -29,7 +30,6 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(SearchTvSeason))]
 [JsonSerializable(typeof(SearchPerson))]
 [JsonSerializable(typeof(SearchCollection))]
-[JsonSerializable(typeof(SearchBase))]
 [JsonSerializable(typeof(ChangeItemBase))]
 [JsonSerializable(typeof(ChangeItemAdded))]
 [JsonSerializable(typeof(ChangeItemCreated))]
@@ -40,13 +40,9 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(CombinedCreditsCrewMovie))]
 [JsonSerializable(typeof(CombinedCreditsCastTv), TypeInfoPropertyName = "TMDbLib_Objects_People_CombinedCreditsCastTv")]
 [JsonSerializable(typeof(CombinedCreditsCrewTv), TypeInfoPropertyName = "TMDbLib_Objects_People_CombinedCreditsCrewTv")]
-[JsonSerializable(typeof(KnownForBase))]
-[JsonSerializable(typeof(KnownForMovie))]
-[JsonSerializable(typeof(KnownForTv))]
 [JsonSerializable(typeof(TaggedImage))]
 [JsonSerializable(typeof(List<int>))]
 [JsonSerializable(typeof(TMDbStatusMessage))]
-[JsonSerializable(typeof(SearchContainer<SearchBase>))]
 [JsonSerializable(typeof(Movie))]
 [JsonSerializable(typeof(TvShow))]
 [JsonSerializable(typeof(TvSeason))]
@@ -86,6 +82,7 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(SearchContainer<AccountSearchTvEpisode>))]
 [JsonSerializable(typeof(ListStatus))]
 [JsonSerializable(typeof(SearchContainerWithDates<SearchMovie>))]
+[JsonSerializable(typeof(TmdbMediaSummary))]
 internal partial class SourceGenerationContext : JsonSerializerContext
 {
 }

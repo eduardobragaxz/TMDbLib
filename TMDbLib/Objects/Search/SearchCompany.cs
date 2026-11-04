@@ -3,12 +3,12 @@ using System.Text.Json.Serialization;
 namespace TMDbLib.Objects.Search;
 
 /// <summary>
-/// Represents a company search result.
+/// Company search result.
 /// </summary>
 public class SearchCompany
 {
     /// <summary>
-    /// Gets or sets the company ID.
+    /// Gets or sets the company id.
     /// </summary>
     [JsonPropertyName("id")]
     public int Id { get; set; }
@@ -24,4 +24,10 @@ public class SearchCompany
     /// </summary>
     [JsonPropertyName("name")]
     public string? Name { get; set; }
+
+    /// <summary>
+    /// Gets or sets the origin country ISO code.
+    /// </summary>
+    [JsonPropertyName("origin_country")]
+    public string? OriginCountry { get; set; }
 }

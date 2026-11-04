@@ -1,11 +1,8 @@
 using System.Linq;
 using System.Threading.Tasks;
-using Xunit;
-using TMDbLib.Objects.General;
-using TMDbLib.Objects.Movies;
-using TMDbLib.Objects.Search;
 using TMDbLibTests.Helpers;
 using TMDbLibTests.JsonHelpers;
+using Xunit;
 
 namespace TMDbLibTests;
 
@@ -20,7 +17,7 @@ public class ClientKeywordTests : TestBase
     [Fact]
     public async Task TestGetMovieKeywordsAsync()
     {
-        var keywords = await TMDbClient.GetMovieKeywordsAsync(IdHelper.AGoodDayToDieHard, TestContext.Current.CancellationToken);
+        var keywords = await TMDbClient.GetMovieKeywordsAsync(IdHelper.AGoodDayToDieHard, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(keywords);
     }
@@ -31,7 +28,7 @@ public class ClientKeywordTests : TestBase
     [Fact]
     public async Task TestGetTvShowKeywordsAsync()
     {
-        var keywords = await TMDbClient.GetTvShowKeywordsAsync(IdHelper.BigBangTheory, TestContext.Current.CancellationToken);
+        var keywords = await TMDbClient.GetTvShowKeywordsAsync(IdHelper.BigBangTheory, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(keywords);
     }
@@ -42,7 +39,7 @@ public class ClientKeywordTests : TestBase
     [Fact]
     public async Task TestKeywordGetSingle()
     {
-        var keyword = await TMDbClient.GetKeywordAsync(IdHelper.AgentKeyword, TestContext.Current.CancellationToken);
+        var keyword = await TMDbClient.GetKeywordAsync(IdHelper.AgentKeyword, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(keyword);
     }
@@ -53,7 +50,7 @@ public class ClientKeywordTests : TestBase
     [Fact]
     public async Task TestKeywordsMissing()
     {
-        var keywords = await TMDbClient.GetMovieKeywordsAsync(IdHelper.MissingID, TestContext.Current.CancellationToken);
+        var keywords = await TMDbClient.GetMovieKeywordsAsync(IdHelper.MissingID, cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.Null(keywords);
     }
@@ -71,7 +68,7 @@ public class ClientKeywordTests : TestBase
         Assert.NotNull(movies.Results);
         Assert.NotEmpty(movies.Results);
 
-        var movie = await TMDbClient.GetMovieKeywordsAsync(movies.Results.First().Id, TestContext.Current.CancellationToken);
+        var movie = await TMDbClient.GetMovieKeywordsAsync(movies.Results.First().Id, cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(movie);
         Assert.NotNull(movie.Keywords);

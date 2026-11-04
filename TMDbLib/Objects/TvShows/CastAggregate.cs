@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using TMDbLib.Objects.General.Schema;
 
 namespace TMDbLib.Objects.TvShows;
 
 /// <summary>
-/// Represents aggregated cast information across multiple episodes.
+/// Aggregated cast information across multiple episodes.
 /// </summary>
-public class CastAggregate : CastBase
+public class CastAggregate : TmdbPersonSummary
 {
     /// <summary>
-    /// Gets or sets the list of roles played by the cast member.
+    /// Gets or sets the roles played by the cast member.
     /// </summary>
     [JsonPropertyName("roles")]
     public List<CastRole>? Roles { get; set; }
@@ -19,4 +20,10 @@ public class CastAggregate : CastBase
     /// </summary>
     [JsonPropertyName("total_episode_count")]
     public int TotalEpisodeCount { get; set; }
+
+    /// <summary>
+    /// Gets or sets the order in the cast list.
+    /// </summary>
+    [JsonPropertyName("order")]
+    public int? Order { get; set; }
 }

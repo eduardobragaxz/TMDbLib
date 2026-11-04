@@ -1,10 +1,8 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using TMDbLib.Objects.Changes;
-using TMDbLib.Objects.General;
-using Xunit;
 using TMDbLibTests.JsonHelpers;
+using Xunit;
 
 namespace TMDbLibTests;
 
@@ -22,8 +20,8 @@ public class ClientChangesTests : TestBase
     [Fact]
     public async Task TestChangesMoviesAsync()
     {
-        var page1 = await TMDbClient.GetMoviesChangesAsync(1, null, null, TestContext.Current.CancellationToken);
-        var oldChanges = await TMDbClient.GetMoviesChangesAsync(0, null, FixedEndDate, TestContext.Current.CancellationToken);
+        var page1 = await TMDbClient.GetMoviesChangesAsync(1, cancellationToken: TestContext.Current.CancellationToken);
+        var oldChanges = await TMDbClient.GetMoviesChangesAsync(endDate: FixedEndDate, cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(page1);
         Assert.NotNull(page1.Results);

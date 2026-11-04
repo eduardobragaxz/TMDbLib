@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace TMDbLib.Objects.TvShows;
 
 /// <summary>
-/// Represents a role played by a cast member in a TV show.
+/// Role played by a cast member in a TV show.
 /// </summary>
 public class CastRole
 {
@@ -14,7 +14,7 @@ public class CastRole
     public string? Character { get; set; }
 
     /// <summary>
-    /// Gets or sets the credit ID.
+    /// Gets or sets the credit id.
     /// </summary>
     [JsonPropertyName("credit_id")]
     public string? CreditId { get; set; }

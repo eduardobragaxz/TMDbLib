@@ -17,5 +17,5 @@ public class Avatar
     /// Gets or sets the TMDb avatar.
     /// </summary>
     [JsonPropertyName("tmdb")]
-    public TMDbAvatar? TMDbAvatar { get; set; }
+    public TmdbAvatar? TMDbAvatar { get; set; }
 }

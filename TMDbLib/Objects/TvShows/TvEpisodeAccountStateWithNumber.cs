@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace TMDbLib.Objects.TvShows;
 
 /// <summary>
-/// Represents the account state for a TV episode including the episode number.
+/// TV episode account state including the episode number.
 /// </summary>
 public class TvEpisodeAccountStateWithNumber : TvEpisodeAccountState
 {

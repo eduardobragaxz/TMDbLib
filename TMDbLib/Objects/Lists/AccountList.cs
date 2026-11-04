@@ -6,7 +6,7 @@ namespace TMDbLib.Objects.Lists;
 /// <summary>
 /// Represents an account-specific list.
 /// </summary>
-public class AccountList : TMDbList<int>
+public class AccountList : TMDbList
 {
     /// <summary>
     /// Gets or sets the media type of the list.

@@ -35,12 +35,14 @@ public class TmdbPartialDateConverter : JsonConverter<DateTime?>
             return null;
         }
 
-        if (!DateTime.TryParse(str, CultureInfo.InvariantCulture.DateTimeFormat, DateTimeStyles.None, out var result))
+        if (reader.TokenType == JsonTokenType.String && reader.TryGetDateTime(out var dt))
         {
-            return null;
+            return dt;
         }
 
-        return result;
+        return reader.TryGetDateTimeLenient(CultureInfo.InvariantCulture.DateTimeFormat, out var result)
+            ? result
+            : null;
     }
 
     /// <summary>
@@ -51,13 +53,12 @@ public class TmdbPartialDateConverter : JsonConverter<DateTime?>
     /// <param name="options">Serializer options.</param>
     public override void Write(Utf8JsonWriter writer, DateTime? value, JsonSerializerOptions options)
     {
-        var date = value as DateTime?;
-        if (date is null)
+        if (value is null)
         {
             writer?.WriteNullValue();
             return;
         }
 
-        writer?.WriteStringValue(date.Value.ToString(CultureInfo.InvariantCulture));
+        writer?.WriteStringValue(value.Value.ToString(CultureInfo.InvariantCulture));
     }
 }

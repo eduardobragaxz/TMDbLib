@@ -4,18 +4,19 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using TMDbLib.Objects.General;
+using TMDbLib.Objects.General.Schema;
 using TMDbLib.Objects.People;
 
 namespace TMDbLib.Utilities.Converters;
 
-internal class CombinedCreditsCrewConverter : JsonConverter<List<CombinedCreditsCrewBase?>>
+internal class CombinedCreditsCrewConverter : JsonConverter<List<TmdbMediaSummary?>>
 {
     public override bool CanConvert(Type objectType)
     {
-        return objectType == typeof(List<CombinedCreditsCrewBase>);
+        return objectType == typeof(List<TmdbMediaSummary>);
     }
 
-    public override List<CombinedCreditsCrewBase?> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override List<TmdbMediaSummary?> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         var jElement = JsonElement.ParseValue(ref reader);
 
@@ -24,14 +25,14 @@ internal class CombinedCreditsCrewConverter : JsonConverter<List<CombinedCredits
         return target;
     }
 
-    public override void Write(Utf8JsonWriter writer, List<CombinedCreditsCrewBase?> value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, List<TmdbMediaSummary?> value, JsonSerializerOptions options)
     {
         throw new NotImplementedException();
     }
 
-    protected List<CombinedCreditsCrewBase?> GetInstance(JsonElement jElement)
+    protected List<TmdbMediaSummary?> GetInstance(JsonElement jElement)
     {
-        List<CombinedCreditsCrewBase?> combinedCreditsCrewBaseList = [];
+        List<TmdbMediaSummary?> combinedCreditsCrewBaseList = [];
         using JsonElement.ArrayEnumerator arrayEnumerator = jElement.EnumerateArray();
 
         foreach (var m in arrayEnumerator)

@@ -1,6 +1,5 @@
 {
   "Guid": "c81c17d0-42ee-4e40-b868-91b8a89a025d",
-  "UpdatedAt": "2025-12-24T18:45:16.5185896Z",
   "Title": "Proxy Mapping for GET /3/movie/19995/lists",
   "Description": "Proxy Mapping for GET /3/movie/19995/lists",
   "Priority": -2000000,
@@ -17,7 +16,20 @@
     "Methods": [
       "GET"
     ],
-    "HttpVersion": "1.1"
+    "HttpVersion": "1.1",
+    "Headers": [
+      {
+        "Name": "Accept-Encoding",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "gzip, deflate, br",
+            "IgnoreCase": true
+          }
+        ],
+        "IgnoreCase": true
+      }
+    ]
   },
   "Response": {
     "StatusCode": 200,
@@ -26,98 +38,21 @@
       "page": 1,
       "results": [
         {
-          "description": "",
+          "description": "What I\u0027ve Watched.",
           "favorite_count": 0,
-          "id": 8197238,
-          "item_count": 490,
+          "id": 1006,
+          "item_count": 872,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
-          "name": "Foreign Films",
-          "poster_path": null
-        },
-        {
-          "description": "",
-          "favorite_count": 0,
-          "id": 8538837,
-          "item_count": 720,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "Google TV Collection",
-          "poster_path": null
-        },
-        {
-          "description": "",
-          "favorite_count": 0,
-          "id": 8553968,
-          "item_count": 412,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "121",
-          "poster_path": null
-        },
-        {
-          "description": "Cain Cinema features a 4K UHD picture on a 120\u0022 (16:9) screen, and a 7.2.4 Dolby Atmos audio experience. ",
-          "favorite_count": 0,
-          "id": 7081593,
-          "item_count": 2024,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "Now Showing at Cain Cinema",
-          "poster_path": null
-        },
-        {
-          "description": "",
-          "favorite_count": 0,
-          "id": 134725,
-          "item_count": 1085,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "Watched Movies",
-          "poster_path": null
-        },
-        {
-          "description": "Last updated: 24/12/2025 16:02",
-          "favorite_count": 0,
-          "id": 8550268,
-          "item_count": 10,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "Disney UK Top 10 Movies",
-          "poster_path": null
-        },
-        {
-          "description": "",
-          "favorite_count": 0,
-          "id": 8168597,
-          "item_count": 18048,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "movies",
-          "poster_path": null
-        },
-        {
-          "description": "",
-          "favorite_count": 0,
-          "id": 8250820,
-          "item_count": 1199,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "watched",
-          "poster_path": null
+          "name": "Movies",
+          "poster_path": "/vMUD0oL66LkV6aPrmC1hLSK6bxu.jpg"
         },
         {
           "description": "",
           "favorite_count": 0,
           "id": 8231799,
-          "item_count": 423,
+          "item_count": 605,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
@@ -127,145 +62,210 @@
         {
           "description": "",
           "favorite_count": 0,
-          "id": 8570770,
-          "item_count": 159,
+          "id": 8665054,
+          "item_count": 5512,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
-          "name": "klam Film ",
+          "name": "New English Movies",
           "poster_path": null
         },
         {
           "description": "",
           "favorite_count": 0,
-          "id": 8543704,
-          "item_count": 10,
+          "id": 8665052,
+          "item_count": 6664,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
-          "name": "Mr. Wise",
-          "poster_path": null
-        },
-        {
-          "description": "Movies (and the occasional tv show) I love, that are not necessarily actually any good.",
-          "favorite_count": 0,
-          "id": 8579925,
-          "item_count": 324,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "Crusoe Ink",
+          "name": "New in English",
           "poster_path": null
         },
         {
           "description": "",
           "favorite_count": 0,
-          "id": 8238235,
-          "item_count": 15356,
+          "id": 8672663,
+          "item_count": 3074,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
-          "name": "My Movie Library",
-          "poster_path": null
-        },
-        {
-          "description": "Live-action movies I have seen at some point in my life.",
-          "favorite_count": 0,
-          "id": 113214,
-          "item_count": 419,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "Live-Action Movies",
+          "name": "Action Hindi Dubbed",
           "poster_path": null
         },
         {
           "description": "",
           "favorite_count": 0,
-          "id": 103747,
-          "item_count": 1377,
+          "id": 8672662,
+          "item_count": 1406,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
-          "name": "Grandma",
+          "name": "Adventure Hindi Dubbed",
+          "poster_path": null
+        },
+        {
+          "description": "Automated renaming to: Dual Audio Hindi Movies",
+          "favorite_count": 0,
+          "id": 8665064,
+          "item_count": 6770,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Dual Audio Hindi Movies",
+          "poster_path": null
+        },
+        {
+          "description": "Automated renaming to: Dual Audio Hindi Movies Above 7",
+          "favorite_count": 0,
+          "id": 8665066,
+          "item_count": 1269,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Dual Audio Hindi Movies Above 7",
           "poster_path": null
         },
         {
           "description": "",
           "favorite_count": 0,
-          "id": 8544061,
-          "item_count": 398,
+          "id": 8661773,
+          "item_count": 135,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
-          "name": "Movies",
+          "name": "Radarr Library",
           "poster_path": null
         },
         {
-          "description": "As the title says.",
+          "description": "Curated list of Science Fiction on Hulu (US). Updated frequently. Last updated September 2, 2026.",
           "favorite_count": 0,
-          "id": 8574911,
-          "item_count": 1120,
+          "id": 8678691,
+          "item_count": 114,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
-          "name": "Movies I have watched",
+          "name": "Hulu - Science Fiction Movies",
           "poster_path": null
         },
         {
-          "description": "Vu au cin\u00E9ma",
+          "description": "Curated list of Adventure on Hulu (US). Updated frequently. Last updated September 2, 2026.",
           "favorite_count": 0,
-          "id": 8577199,
-          "item_count": 87,
+          "id": 8678677,
+          "item_count": 108,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
-          "name": "Cin\u00E9ma",
+          "name": "Hulu - Adventure Movies",
+          "poster_path": null
+        },
+        {
+          "description": "Curated list of Action on Hulu (US). Updated frequently. Last updated September 2, 2026.",
+          "favorite_count": 0,
+          "id": 8678676,
+          "item_count": 150,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Hulu - Action Movies",
+          "poster_path": null
+        },
+        {
+          "description": "Curated list of Top Rated on Hulu (US). Updated frequently. Last updated September 2, 2026.",
+          "favorite_count": 0,
+          "id": 8678675,
+          "item_count": 150,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Hulu - Top Rated Movies",
+          "poster_path": null
+        },
+        {
+          "description": "Curated list of Most Popular on Hulu (US). Updated frequently. Last updated September 2, 2026.",
+          "favorite_count": 0,
+          "id": 8678674,
+          "item_count": 150,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Hulu - Popular Movies",
+          "poster_path": null
+        },
+        {
+          "description": "Curated list of Science Fiction on Disney\u002B (US). Updated frequently. Last updated September 2, 2026.",
+          "favorite_count": 0,
+          "id": 8678647,
+          "item_count": 136,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Disney\u002B - Science Fiction Movies",
+          "poster_path": null
+        },
+        {
+          "description": "Curated list of Adventure on Disney\u002B (US). Updated frequently. Last updated September 2, 2026.",
+          "favorite_count": 0,
+          "id": 8678633,
+          "item_count": 150,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Disney\u002B - Adventure Movies",
+          "poster_path": null
+        },
+        {
+          "description": "Curated list of Action on Disney\u002B (US). Updated frequently. Last updated September 2, 2026.",
+          "favorite_count": 0,
+          "id": 8678632,
+          "item_count": 150,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Disney\u002B - Action Movies",
+          "poster_path": null
+        },
+        {
+          "description": "Curated list of Top Rated on Disney\u002B (US). Updated frequently. Last updated September 2, 2026.",
+          "favorite_count": 0,
+          "id": 8678631,
+          "item_count": 150,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Disney\u002B - Top Rated Movies",
+          "poster_path": null
+        },
+        {
+          "description": "Curated list of Most Popular on Disney\u002B (US). Updated frequently. Last updated September 2, 2026.",
+          "favorite_count": 0,
+          "id": 8678630,
+          "item_count": 150,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Disney\u002B - Popular Movies",
           "poster_path": null
         },
         {
           "description": "",
           "favorite_count": 0,
-          "id": 8521004,
-          "item_count": 163,
+          "id": 8691271,
+          "item_count": 30,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
-          "name": "2025",
-          "poster_path": null
-        },
-        {
-          "description": "\u003C3",
-          "favorite_count": 0,
-          "id": 101542,
-          "item_count": 1329,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "Vaached\u2764",
+          "name": "Collection",
           "poster_path": null
         }
       ],
-      "total_pages": 94,
-      "total_results": 1866
+      "total_pages": 112,
+      "total_results": 2221
     },
     "Headers": {
       "Content-Type": "application/json; charset=utf-8",
       "Transfer-Encoding": "chunked",
       "Connection": "keep-alive",
-      "Server": "openresty",
-      "Cache-Control": "public, max-age=26155",
-      "x-memc": "MISS, STORE",
-      "x-memc-key": "65408aa66d656eb9034c69c144104ab3466152aaf4207fa66e580c5db0b81da5",
-      "x-az": "us-east-1a",
-      "ETag": "W/\u00221cdfa719f4e0cc65efdb4d8a66ee121f\u0022",
-      "Vary": [
-        "accept-encoding",
-        "Origin"
-      ],
-      "X-Cache": "Miss from cloudfront",
-      "X-Amz-Cf-Pop": "MUC50-P3",
-      "Alt-Svc": "h3=\u0022:443\u0022"
+      "Server": "openresty"
     }
   }
 }

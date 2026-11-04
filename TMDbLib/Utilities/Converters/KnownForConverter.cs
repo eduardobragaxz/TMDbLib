@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using TMDbLib.Objects.General;
-using TMDbLib.Objects.Search;
+using TMDbLib.Objects.General.Schema;
 
 namespace TMDbLib.Utilities.Converters;
 
-internal class KnownForConverter : JsonConverter<List<KnownForBase?>>
+internal class KnownForConverter : JsonConverter<List<TmdbMediaSummary?>>
 {
     public override bool CanConvert(Type objectType)
     {
-        return objectType == typeof(List<KnownForBase>);
+        return objectType == typeof(List<TmdbMediaSummary>);
     }
 
-    public override List<KnownForBase?> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override List<TmdbMediaSummary?> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         var jElement = JsonElement.ParseValue(ref reader);
 
@@ -23,7 +23,7 @@ internal class KnownForConverter : JsonConverter<List<KnownForBase?>>
         return target;
     }
 
-    public override void Write(Utf8JsonWriter writer, List<KnownForBase?> value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, List<TmdbMediaSummary?> value, JsonSerializerOptions options)
     {
         if (value is null)
         {
@@ -36,9 +36,9 @@ internal class KnownForConverter : JsonConverter<List<KnownForBase?>>
         // jToken.WriteTo(writer);
     }
 
-    protected List<KnownForBase?> GetInstance(JsonElement jElement)
+    protected List<TmdbMediaSummary?> GetInstance(JsonElement jElement)
     {
-        List<KnownForBase?> knownForBaseList = [];
+        List<TmdbMediaSummary?> knownForBaseList = [];
         using JsonElement.ArrayEnumerator arrayEnumerator = jElement.EnumerateArray();
 
         foreach (var item in arrayEnumerator)
@@ -48,8 +48,8 @@ internal class KnownForConverter : JsonConverter<List<KnownForBase?>>
 
             knownForBaseList.Add(mediaType switch
             {
-                MediaType.Movie => item.Deserialize(SourceGenerationContext.Default.KnownForMovie),
-                MediaType.Tv => item.Deserialize(SourceGenerationContext.Default.KnownForTv),
+                MediaType.Movie => item.Deserialize(SourceGenerationContext.Default.TmdbMediaSummary),
+                MediaType.Tv => item.Deserialize(SourceGenerationContext.Default.TmdbMediaSummary),
                 _ => null
             });
         }

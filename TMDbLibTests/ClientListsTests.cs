@@ -2,13 +2,11 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TMDbLib.Client;
-using Xunit;
 using TMDbLib.Objects.Authentication;
 using TMDbLib.Objects.General;
-using TMDbLib.Objects.Lists;
 using TMDbLibTests.Helpers;
 using TMDbLibTests.JsonHelpers;
-using System.Globalization;
+using Xunit;
 
 namespace TMDbLibTests;
 
@@ -18,7 +16,15 @@ namespace TMDbLibTests;
 [Collection(nameof(ListFixturesCollection))]
 public class ClientListsTests : TestBase
 {
-    private const string TestListId = "528349d419c2954bd21ca0a8";
+    // TMDb list ids are integers, and only the leading digits of the id path segment are
+    // significant: requesting "527fa7f3760ee361f70c8b14" returns exactly what "527" returns.
+    // The legacy id this test used, "528349d419c2954bd21ca0a8", therefore only ever requested
+    // list 528349, which does not exist. This is a long-lived list that still resolves.
+    private const int TestListId = 509;
+
+    // A long-lived list with more items than fit on one page, so the paging fields are meaningful.
+    private const int MultiPageListId = 1;
+
     private const string EphemeralListPrefix = "TestListTMDbLib-";
 
     /// <summary>
@@ -27,10 +33,61 @@ public class ClientListsTests : TestBase
     [Fact]
     public async Task TestGetListAsync()
     {
-        // Get list (TestListId points to a deleted list, so null is expected)
         var list = await TMDbClient.GetListAsync(TestListId, cancellationToken: TestContext.Current.CancellationToken);
 
+        Assert.NotNull(list);
+        Assert.Equal(TestListId, list.Id);
+        Assert.NotNull(list.Items);
+        Assert.NotEmpty(list.Items);
+
         await Verify(list);
+    }
+
+    /// <summary>
+    /// Tests that the items of a list longer than one page can be paged through. Without the paging
+    /// fields on the response a caller has no way of telling that a list has more items to fetch.
+    /// </summary>
+    [Fact]
+    public async Task TestGetListPagingAsync()
+    {
+        var firstPage = await TMDbClient.GetListAsync(MultiPageListId, page: 1, cancellationToken: TestContext.Current.CancellationToken);
+
+        Assert.NotNull(firstPage);
+        Assert.Equal(1, firstPage.Page);
+        Assert.True(firstPage.TotalPages > 1);
+        Assert.Equal(firstPage.ItemCount, firstPage.TotalResults);
+        Assert.NotNull(firstPage.Items);
+        Assert.True(firstPage.Items.Count < firstPage.TotalResults);
+
+        var secondPage = await TMDbClient.GetListAsync(MultiPageListId, page: 2, cancellationToken: TestContext.Current.CancellationToken);
+
+        Assert.NotNull(secondPage);
+        Assert.Equal(2, secondPage.Page);
+        Assert.Equal(firstPage.TotalPages, secondPage.TotalPages);
+        Assert.NotNull(secondPage.Items);
+        Assert.NotEmpty(secondPage.Items);
+
+        // Each page holds different items, so paging through them yields the whole list.
+        Assert.Empty(firstPage.Items.Select(item => item.Id).Intersect(secondPage.Items.Select(item => item.Id)));
+    }
+
+    /// <summary>
+    /// Tests that the items of a list longer than one page can be enumerated in one go.
+    /// </summary>
+    [Fact]
+    public async Task TestGetListItemsAsync()
+    {
+        var list = await TMDbClient.GetListAsync(MultiPageListId, cancellationToken: TestContext.Current.CancellationToken);
+        Assert.NotNull(list);
+        Assert.True(list.TotalPages > 1);
+
+        var items = await TMDbClient.GetListItemsAsync(MultiPageListId, cancellationToken: TestContext.Current.CancellationToken)
+            .ToListAsync(TestContext.Current.CancellationToken);
+
+        // The list can gain or lose an item between the requests, so this only asserts that paging
+        // happened at all and that no item was handed out twice.
+        Assert.True(items.Count > list.Items!.Count);
+        Assert.Equal(items.Count, items.Select(item => item.Id).Distinct().Count());
     }
 
     /// <summary>
@@ -53,7 +110,7 @@ public class ClientListsTests : TestBase
     [Fact]
     public async Task TestListMissingAsync()
     {
-        var list = await TMDbClient.GetListAsync(IdHelper.MissingID.ToString(CultureInfo.InvariantCulture), cancellationToken: TestContext.Current.CancellationToken);
+        var list = await TMDbClient.GetListAsync(IdHelper.MissingID, cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.Null(list);
     }
@@ -70,9 +127,7 @@ public class ClientListsTests : TestBase
         await TMDbClient.SetSessionInformationAsync(TestConfig.UserSessionId, SessionType.UserSession);
 
         var listId = await TMDbClient.ListCreateAsync(listName, cancellationToken: TestContext.Current.CancellationToken);
-        Assert.NotNull(listId);
-
-        Assert.False(string.IsNullOrWhiteSpace(listId));
+        Assert.NotEqual(0, listId);
 
         var newlyAddedList = await TMDbClient.GetListAsync(listId, cancellationToken: TestContext.Current.CancellationToken);
 
@@ -82,23 +137,23 @@ public class ClientListsTests : TestBase
         Assert.Empty(newlyAddedList.Items);
 
         // Add a movie
-        await TMDbClient.ListAddMovieAsync(listId, IdHelper.Avatar, TestContext.Current.CancellationToken);
-        await TMDbClient.ListAddMovieAsync(listId, IdHelper.AGoodDayToDieHard, TestContext.Current.CancellationToken);
+        await TMDbClient.ListAddMovieAsync(listId, IdHelper.Avatar, cancellationToken: TestContext.Current.CancellationToken);
+        await TMDbClient.ListAddMovieAsync(listId, IdHelper.AGoodDayToDieHard, cancellationToken: TestContext.Current.CancellationToken);
 
-        Assert.True(await TMDbClient.GetListIsMoviePresentAsync(listId, IdHelper.Avatar, TestContext.Current.CancellationToken));
+        Assert.True(await TMDbClient.GetListIsMoviePresentAsync(listId, IdHelper.Avatar, cancellationToken: TestContext.Current.CancellationToken));
 
         // Remove a movie
-        await TMDbClient.ListRemoveMovieAsync(listId, IdHelper.Avatar, TestContext.Current.CancellationToken);
+        await TMDbClient.ListRemoveMovieAsync(listId, IdHelper.Avatar, cancellationToken: TestContext.Current.CancellationToken);
 
-        Assert.False(await TMDbClient.GetListIsMoviePresentAsync(listId, IdHelper.Avatar, TestContext.Current.CancellationToken));
+        Assert.False(await TMDbClient.GetListIsMoviePresentAsync(listId, IdHelper.Avatar, cancellationToken: TestContext.Current.CancellationToken));
 
         // Clear the list
-        await TMDbClient.ListClearAsync(listId, TestContext.Current.CancellationToken);
+        await TMDbClient.ListClearAsync(listId, cancellationToken: TestContext.Current.CancellationToken);
 
-        Assert.False(await TMDbClient.GetListIsMoviePresentAsync(listId, IdHelper.AGoodDayToDieHard, TestContext.Current.CancellationToken));
+        Assert.False(await TMDbClient.GetListIsMoviePresentAsync(listId, IdHelper.AGoodDayToDieHard, cancellationToken: TestContext.Current.CancellationToken));
 
         // Delete the list
-        Assert.True(await TMDbClient.ListDeleteAsync(listId, TestContext.Current.CancellationToken));
+        Assert.True(await TMDbClient.ListDeleteAsync(listId, cancellationToken: TestContext.Current.CancellationToken));
     }
 
     /// <summary>
@@ -114,7 +169,7 @@ public class ClientListsTests : TestBase
         // API may return false or throw an exception for invalid IDs
         try
         {
-            var result = await TMDbClient.ListDeleteAsync("invalid_id", TestContext.Current.CancellationToken);
+            var result = await TMDbClient.ListDeleteAsync(IdHelper.MissingID, cancellationToken: TestContext.Current.CancellationToken);
             Assert.False(result);
         }
         catch (TMDbLib.Objects.Exceptions.GeneralHttpException)
@@ -147,7 +202,7 @@ public class ClientListsTests : TestBase
 
             foreach (var list in lists.Results.Where(s => s.Name?.StartsWith(EphemeralListPrefix, StringComparison.Ordinal) == true))
             {
-                client.ListDeleteAsync(list.Id.ToString(CultureInfo.InvariantCulture)).GetAwaiter().GetResult();
+                client.ListDeleteAsync(list.Id).GetAwaiter().GetResult();
             }
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using TMDbLib.Utilities.Converters;
@@ -6,7 +7,7 @@ using TMDbLib.Utilities.Converters;
 namespace TMDbLib.Objects.Movies;
 
 /// <summary>
-/// Represents a specific movie release date entry.
+/// Movie release date entry.
 /// </summary>
 public class ReleaseDateItem
 {
@@ -17,13 +18,19 @@ public class ReleaseDateItem
     public string? Certification { get; set; }
 
     /// <summary>
-    /// Gets or sets a language code, e.g. en.
+    /// Gets or sets the release descriptors.
+    /// </summary>
+    [JsonPropertyName("descriptors")]
+    public List<string>? Descriptors { get; set; }
+
+    /// <summary>
+    /// Gets or sets the language code, e.g. en.
     /// </summary>
     [JsonPropertyName("iso_639_1")]
     public string? Iso_639_1 { get; set; }
 
     /// <summary>
-    /// Gets or sets additional notes about the release.
+    /// Gets or sets the release note.
     /// </summary>
     [JsonPropertyName("note")]
     public string? Note { get; set; }

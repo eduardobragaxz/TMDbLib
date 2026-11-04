@@ -1,6 +1,5 @@
 {
   "Guid": "0bccccdd-fbc3-2841-9c52-77f5c8aee76f",
-  "UpdatedAt": "2025-12-24T18:45:25.0231269Z",
   "Title": "Proxy Mapping for GET /3/tv/37680/watch/providers",
   "Description": "Proxy Mapping for GET /3/tv/37680/watch/providers",
   "Priority": -2000000,
@@ -17,7 +16,20 @@
     "Methods": [
       "GET"
     ],
-    "HttpVersion": "1.1"
+    "HttpVersion": "1.1",
+    "Headers": [
+      {
+        "Name": "Accept-Encoding",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "gzip, deflate, br",
+            "IgnoreCase": true
+          }
+        ],
+        "IgnoreCase": true
+      }
+    ]
   },
   "Response": {
     "StatusCode": 200,
@@ -28,22 +40,22 @@
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=AD",
           "flatrate": [
             {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
+            },
+            {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 0
+              "display_priority": 1
             },
             {
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 21
-            },
-            {
-              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
-              "provider_id": 8,
-              "provider_name": "Netflix",
-              "display_priority": 31
+              "display_priority": 23
             }
           ]
         },
@@ -60,7 +72,7 @@
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 8
+              "display_priority": 1
             }
           ]
         },
@@ -100,7 +112,7 @@
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 24
+              "display_priority": 25
             }
           ]
         },
@@ -108,16 +120,10 @@
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=AO",
           "flatrate": [
             {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 1
-            },
-            {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 3
+              "display_priority": 0
             }
           ]
         },
@@ -128,115 +134,105 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
+            },
+            {
+              "logo_path": "/4ABGBjAMtRrYUrr0w3QfanuiaoB.jpg",
+              "provider_id": 1889,
+              "provider_name": "Universal\u002B Amazon Channel",
+              "display_priority": 60
             }
           ]
         },
         "AT": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=AT",
-          "flatrate": [
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 9,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 0
-            },
-            {
-              "logo_path": "/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
-              "provider_id": 2100,
-              "provider_name": "Amazon Prime Video with Ads",
-              "display_priority": 61
-            },
-            {
-              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
-              "provider_id": 8,
-              "provider_name": "Netflix",
-              "display_priority": 154
-            }
-          ],
-          "ads": [
-            {
-              "logo_path": "/3tKojIkk9QpkDUeU8HgpHQ9Jb2v.jpg",
-              "provider_id": 304,
-              "provider_name": "Joyn",
-              "display_priority": 68
-            }
-          ],
           "free": [
             {
               "logo_path": "/ugus0p8BGGhE8sxhwAjJz2o8jyy.jpg",
               "provider_id": 537,
               "provider_name": "ZDF",
-              "display_priority": 25
+              "display_priority": 27
+            }
+          ],
+          "flatrate": [
+            {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
+            },
+            {
+              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+              "provider_id": 9,
+              "provider_name": "Amazon Prime Video",
+              "display_priority": 1
+            },
+            {
+              "logo_path": "/geOzgeKZWpZC3lymAVEHVIk3X0q.jpg",
+              "provider_id": 381,
+              "provider_name": "Canal\u002B",
+              "display_priority": 57
+            },
+            {
+              "logo_path": "/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
+              "provider_id": 2100,
+              "provider_name": "Amazon Prime Video with Ads",
+              "display_priority": 63
             }
           ],
           "buy": [
             {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
               "provider_id": 10,
               "provider_name": "Amazon Video",
-              "display_priority": 3
+              "display_priority": 5
             },
             {
               "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
               "provider_id": 3,
               "provider_name": "Google Play Movies",
-              "display_priority": 6
+              "display_priority": 8
             },
             {
               "logo_path": "/cBN4jd4wPq6on0kESiTlevqvlnL.jpg",
               "provider_id": 20,
               "provider_name": "maxdome Store",
-              "display_priority": 12
+              "display_priority": 14
             }
           ]
         },
         "AU": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=AU",
-          "buy": [
-            {
-              "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
-              "provider_id": 2,
-              "provider_name": "Apple TV",
-              "display_priority": 11
-            },
-            {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
-              "provider_id": 10,
-              "provider_name": "Amazon Video",
-              "display_priority": 13
-            },
-            {
-              "logo_path": "/9B7l9ZSos54kFrZbliVExt2z9C9.jpg",
-              "provider_id": 436,
-              "provider_name": "Fetch TV",
-              "display_priority": 31
-            }
-          ],
           "flatrate": [
-            {
-              "logo_path": "/97yvRBw1GzX7fXprcF80er19ot.jpg",
-              "provider_id": 337,
-              "provider_name": "Disney Plus",
-              "display_priority": 1
-            },
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 2
+              "display_priority": 1
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 3
+              "display_priority": 2
+            },
+            {
+              "logo_path": "/97yvRBw1GzX7fXprcF80er19ot.jpg",
+              "provider_id": 337,
+              "provider_name": "Disney Plus",
+              "display_priority": 4
+            },
+            {
+              "logo_path": "/7QX5OdsQZrXGNBKq9SPzoPV9OYQ.jpg",
+              "provider_id": 385,
+              "provider_name": "BINGE",
+              "display_priority": 6
             },
             {
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
@@ -245,16 +241,30 @@
               "display_priority": 50
             },
             {
-              "logo_path": "/7QX5OdsQZrXGNBKq9SPzoPV9OYQ.jpg",
-              "provider_id": 385,
-              "provider_name": "BINGE",
-              "display_priority": 85
-            },
-            {
               "logo_path": "/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
               "provider_id": 2100,
               "provider_name": "Amazon Prime Video with Ads",
-              "display_priority": 95
+              "display_priority": 92
+            }
+          ],
+          "buy": [
+            {
+              "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
+              "provider_id": 2,
+              "provider_name": "Apple TV Store",
+              "display_priority": 13
+            },
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 14
+            },
+            {
+              "logo_path": "/9B7l9ZSos54kFrZbliVExt2z9C9.jpg",
+              "provider_id": 436,
+              "provider_name": "Fetch TV",
+              "display_priority": 31
             }
           ]
         },
@@ -265,7 +275,13 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 2
+              "display_priority": 0
+            },
+            {
+              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+              "provider_id": 119,
+              "provider_name": "Amazon Prime Video",
+              "display_priority": 1
             }
           ]
         },
@@ -288,7 +304,7 @@
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 24
+              "display_priority": 25
             }
           ]
         },
@@ -311,24 +327,21 @@
         },
         "BE": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=BE",
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 34
+            }
+          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 2
-            }
-          ]
-        },
-        "BF": {
-          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=BF",
-          "flatrate": [
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
@@ -356,7 +369,15 @@
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 18
+              "display_priority": 19
+            }
+          ],
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 30
             }
           ]
         },
@@ -418,24 +439,30 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
             },
             {
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 41
+              "display_priority": 42
             },
             {
               "logo_path": "/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
               "provider_id": 2100,
               "provider_name": "Amazon Prime Video with Ads",
+              "display_priority": 80
+            },
+            {
+              "logo_path": "/4ABGBjAMtRrYUrr0w3QfanuiaoB.jpg",
+              "provider_id": 1889,
+              "provider_name": "Universal\u002B Amazon Channel",
               "display_priority": 83
             }
           ]
@@ -464,23 +491,12 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 12
+              "display_priority": 0
             }
           ]
         },
         "BZ": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=BZ",
-          "flatrate": [
-            {
-              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
-              "provider_id": 8,
-              "provider_name": "Netflix",
-              "display_priority": 6
-            }
-          ]
-        },
-        "CA": {
-          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=CA",
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
@@ -492,19 +508,50 @@
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
+            }
+          ]
+        },
+        "CA": {
+          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=CA",
+          "buy": [
+            {
+              "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
+              "provider_id": 2,
+              "provider_name": "Apple TV Store",
+              "display_priority": 7
+            },
+            {
+              "logo_path": "/4bIKO5tqPgko0135wL9GhMsb1wv.jpg",
+              "provider_id": 140,
+              "provider_name": "CosmoGo",
+              "display_priority": 19
+            },
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 57
+            }
+          ],
+          "flatrate": [
+            {
+              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+              "provider_id": 119,
+              "provider_name": "Amazon Prime Video",
+              "display_priority": 1
+            },
+            {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 3
             },
             {
               "logo_path": "/ewOptMVIYcOadMGGJz8DJueH2bH.jpg",
               "provider_id": 230,
               "provider_name": "Crave",
-              "display_priority": 4
-            },
-            {
-              "logo_path": "/7rJJlPpuGz0DV5OLjVW1HzYaFj9.jpg",
-              "provider_id": 146,
-              "provider_name": "iciTouTV",
-              "display_priority": 12
+              "display_priority": 6
             },
             {
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
@@ -522,45 +569,12 @@
               "logo_path": "/qcKfSyX4xkXESjHrkO8cZLRJkn6.jpg",
               "provider_id": 2604,
               "provider_name": "Crave Amazon Channel",
-              "display_priority": 144
-            }
-          ],
-          "buy": [
-            {
-              "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
-              "provider_id": 2,
-              "provider_name": "Apple TV",
-              "display_priority": 5
-            },
-            {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
-              "provider_id": 10,
-              "provider_name": "Amazon Video",
-              "display_priority": 56
-            }
-          ]
-        },
-        "CD": {
-          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=CD",
-          "flatrate": [
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 0
+              "display_priority": 140
             }
           ]
         },
         "CH": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=CH",
-          "free": [
-            {
-              "logo_path": "/ugus0p8BGGhE8sxhwAjJz2o8jyy.jpg",
-              "provider_id": 537,
-              "provider_name": "ZDF",
-              "display_priority": 23
-            }
-          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
@@ -578,7 +592,7 @@
               "logo_path": "/ytApMa9fThUQUFTn696AeNBrB8f.jpg",
               "provider_id": 210,
               "provider_name": "Sky",
-              "display_priority": 6
+              "display_priority": 8
             }
           ],
           "buy": [
@@ -586,18 +600,43 @@
               "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
               "provider_id": 3,
               "provider_name": "Google Play Movies",
-              "display_priority": 5
+              "display_priority": 7
             },
             {
               "logo_path": "/59TxOAYcoFaufd6CWm465oPchD.jpg",
               "provider_id": 130,
               "provider_name": "Sky Store",
-              "display_priority": 14
+              "display_priority": 15
+            },
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 74
+            }
+          ],
+          "free": [
+            {
+              "logo_path": "/ugus0p8BGGhE8sxhwAjJz2o8jyy.jpg",
+              "provider_id": 537,
+              "provider_name": "ZDF",
+              "display_priority": 23
             }
           ]
         },
         "CI": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=CI",
+          "flatrate": [
+            {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
+            }
+          ]
+        },
+        "CL": {
+          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=CL",
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
@@ -610,23 +649,12 @@
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
               "display_priority": 1
-            }
-          ]
-        },
-        "CL": {
-          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=CL",
-          "flatrate": [
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 1
             },
             {
-              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
-              "provider_id": 8,
-              "provider_name": "Netflix",
-              "display_priority": 2
+              "logo_path": "/4ABGBjAMtRrYUrr0w3QfanuiaoB.jpg",
+              "provider_id": 1889,
+              "provider_name": "Universal\u002B Amazon Channel",
+              "display_priority": 43
             }
           ]
         },
@@ -634,16 +662,10 @@
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=CM",
           "flatrate": [
             {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 1
-            },
-            {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 3
+              "display_priority": 0
             }
           ]
         },
@@ -651,16 +673,22 @@
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=CO",
           "flatrate": [
             {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
+            },
+            {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
               "display_priority": 1
             },
             {
-              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
-              "provider_id": 8,
-              "provider_name": "Netflix",
-              "display_priority": 2
+              "logo_path": "/4ABGBjAMtRrYUrr0w3QfanuiaoB.jpg",
+              "provider_id": 1889,
+              "provider_name": "Universal\u002B Amazon Channel",
+              "display_priority": 44
             }
           ]
         },
@@ -699,7 +727,13 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 6
+              "display_priority": 0
+            },
+            {
+              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+              "provider_id": 119,
+              "provider_name": "Amazon Prime Video",
+              "display_priority": 1
             }
           ]
         },
@@ -710,32 +744,32 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
             },
             {
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 22
+              "display_priority": 23
+            }
+          ],
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 42
             }
           ]
         },
         "DE": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=DE",
-          "free": [
-            {
-              "logo_path": "/ugus0p8BGGhE8sxhwAjJz2o8jyy.jpg",
-              "provider_id": 537,
-              "provider_name": "ZDF",
-              "display_priority": 46
-            }
-          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
@@ -753,45 +787,53 @@
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 84
+              "display_priority": 83
             },
             {
               "logo_path": "/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
               "provider_id": 2100,
               "provider_name": "Amazon Prime Video with Ads",
-              "display_priority": 114
+              "display_priority": 112
             },
             {
               "logo_path": "/qqTyjCCJuuARytrY7rNRAKka1VF.jpg",
               "provider_id": 2412,
               "provider_name": "Magenta TV\u002B",
-              "display_priority": 198
+              "display_priority": 192
+            }
+          ],
+          "free": [
+            {
+              "logo_path": "/ugus0p8BGGhE8sxhwAjJz2o8jyy.jpg",
+              "provider_id": 537,
+              "provider_name": "ZDF",
+              "display_priority": 48
             }
           ],
           "buy": [
             {
               "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
               "provider_id": 2,
-              "provider_name": "Apple TV",
-              "display_priority": 4
+              "provider_name": "Apple TV Store",
+              "display_priority": 5
             },
             {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
               "provider_id": 10,
               "provider_name": "Amazon Video",
-              "display_priority": 7
+              "display_priority": 8
             },
             {
               "logo_path": "/cBN4jd4wPq6on0kESiTlevqvlnL.jpg",
               "provider_id": 20,
               "provider_name": "maxdome Store",
-              "display_priority": 16
+              "display_priority": 18
             },
             {
               "logo_path": "/xo4zowa5gbKT4z65ZathH6H4Cdg.jpg",
               "provider_id": 2209,
               "provider_name": "Freenet meinVOD",
-              "display_priority": 130
+              "display_priority": 128
             }
           ]
         },
@@ -802,7 +844,7 @@
               "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
               "provider_id": 426,
               "provider_name": "SF Anytime",
-              "display_priority": 15
+              "display_priority": 16
             }
           ],
           "buy": [
@@ -810,16 +852,16 @@
               "logo_path": "/auWzottqpExOHUlJwDZ4DvdHGoL.jpg",
               "provider_id": 423,
               "provider_name": "Blockbuster",
-              "display_priority": 14
+              "display_priority": 15
             },
             {
               "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
               "provider_id": 426,
               "provider_name": "SF Anytime",
-              "display_priority": 15
+              "display_priority": 16
             },
             {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
               "provider_id": 10,
               "provider_name": "Amazon Video",
               "display_priority": 48
@@ -830,25 +872,37 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
+            },
+            {
+              "logo_path": "/bnoTnLzz2MAhK3Yc6P9KXe5drIz.jpg",
+              "provider_id": 76,
+              "provider_name": "Viaplay",
+              "display_priority": 6
             },
             {
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 33
+              "display_priority": 34
             },
             {
               "logo_path": "/a6z85DKGuPOyTg03TlJ6ShzzFO6.jpg",
               "provider_id": 1961,
               "provider_name": "Allente",
-              "display_priority": 37
+              "display_priority": 38
+            },
+            {
+              "logo_path": "/s38BRDYN1fP3Ll9bptNaE5JXFkL.jpg",
+              "provider_id": 2624,
+              "provider_name": "TV2 Skyshowtime",
+              "display_priority": 51
             }
           ]
         },
@@ -918,6 +972,14 @@
               "provider_name": "Amazon Prime Video",
               "display_priority": 1
             }
+          ],
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 34
+            }
           ]
         },
         "EG": {
@@ -939,12 +1001,73 @@
         },
         "ES": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=ES",
+          "flatrate": [
+            {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
+            },
+            {
+              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+              "provider_id": 119,
+              "provider_name": "Amazon Prime Video",
+              "display_priority": 1
+            },
+            {
+              "logo_path": "/f6TRLB3H4jDpFEZ0z2KWSSvu1SB.jpg",
+              "provider_id": 149,
+              "provider_name": "Movistar Plus\u002B Ficci\u00F3n Total ",
+              "display_priority": 7
+            },
+            {
+              "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
+              "provider_id": 1773,
+              "provider_name": "SkyShowtime",
+              "display_priority": 11
+            },
+            {
+              "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
+              "provider_id": 1796,
+              "provider_name": "Netflix Standard with Ads",
+              "display_priority": 52
+            },
+            {
+              "logo_path": "/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
+              "provider_id": 2100,
+              "provider_name": "Amazon Prime Video with Ads",
+              "display_priority": 79
+            }
+          ],
           "buy": [
             {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
               "provider_id": 10,
               "provider_name": "Amazon Video",
-              "display_priority": 32
+              "display_priority": 33
+            }
+          ]
+        },
+        "FI": {
+          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=FI",
+          "buy": [
+            {
+              "logo_path": "/auWzottqpExOHUlJwDZ4DvdHGoL.jpg",
+              "provider_id": 423,
+              "provider_name": "Blockbuster",
+              "display_priority": 13
+            },
+            {
+              "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
+              "provider_id": 426,
+              "provider_name": "SF Anytime",
+              "display_priority": 14
+            },
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 53
             }
           ],
           "flatrate": [
@@ -958,48 +1081,85 @@
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 3
+              "display_priority": 1
             },
             {
-              "logo_path": "/f6TRLB3H4jDpFEZ0z2KWSSvu1SB.jpg",
-              "provider_id": 149,
-              "provider_name": "Movistar Plus\u002B Ficci\u00F3n Total ",
-              "display_priority": 6
+              "logo_path": "/c7SqVo4DFrbK3RwhGbxvQ9SRco2.jpg",
+              "provider_id": 338,
+              "provider_name": "Ruutu",
+              "display_priority": 7
             },
             {
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 10
+              "display_priority": 33
             },
             {
-              "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
-              "provider_id": 1796,
-              "provider_name": "Netflix Standard with Ads",
-              "display_priority": 51
-            },
-            {
-              "logo_path": "/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
-              "provider_id": 2100,
-              "provider_name": "Amazon Prime Video with Ads",
-              "display_priority": 82
+              "logo_path": "/bnoTnLzz2MAhK3Yc6P9KXe5drIz.jpg",
+              "provider_id": 76,
+              "provider_name": "Viaplay",
+              "display_priority": 34
             }
-          ]
-        },
-        "FI": {
-          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=FI",
+          ],
           "rent": [
             {
               "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
               "provider_id": 426,
               "provider_name": "SF Anytime",
-              "display_priority": 13
+              "display_priority": 14
             },
             {
               "logo_path": "/7QzLA6rsML2rKxhuagWlDl7Zxlm.jpg",
               "provider_id": 553,
               "provider_name": "Telia Play",
-              "display_priority": 27
+              "display_priority": 28
+            }
+          ]
+        },
+        "FJ": {
+          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=FJ",
+          "flatrate": [
+            {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
+            },
+            {
+              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+              "provider_id": 119,
+              "provider_name": "Amazon Prime Video",
+              "display_priority": 1
+            }
+          ]
+        },
+        "FR": {
+          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=FR",
+          "buy": [
+            {
+              "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
+              "provider_id": 2,
+              "provider_name": "Apple TV Store",
+              "display_priority": 6
+            },
+            {
+              "logo_path": "/cAUTwxqoI7zc9XtYr1SMtWZEsXg.jpg",
+              "provider_id": 58,
+              "provider_name": "Canal VOD",
+              "display_priority": 11
+            },
+            {
+              "logo_path": "/9Fyo6njYvroAIxAzTBbLgnjgYga.jpg",
+              "provider_id": 61,
+              "provider_name": "Orange VOD",
+              "display_priority": 14
+            },
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 36
             }
           ],
           "flatrate": [
@@ -1016,133 +1176,27 @@
               "display_priority": 2
             },
             {
-              "logo_path": "/c7SqVo4DFrbK3RwhGbxvQ9SRco2.jpg",
-              "provider_id": 338,
-              "provider_name": "Ruutu",
-              "display_priority": 5
-            },
-            {
-              "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
-              "provider_id": 1773,
-              "provider_name": "SkyShowtime",
-              "display_priority": 32
-            }
-          ],
-          "buy": [
-            {
-              "logo_path": "/auWzottqpExOHUlJwDZ4DvdHGoL.jpg",
-              "provider_id": 423,
-              "provider_name": "Blockbuster",
-              "display_priority": 12
-            },
-            {
-              "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
-              "provider_id": 426,
-              "provider_name": "SF Anytime",
-              "display_priority": 13
-            },
-            {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
-              "provider_id": 10,
-              "provider_name": "Amazon Video",
-              "display_priority": 54
-            }
-          ]
-        },
-        "FJ": {
-          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=FJ",
-          "flatrate": [
-            {
-              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
-              "provider_id": 8,
-              "provider_name": "Netflix",
-              "display_priority": 0
-            }
-          ]
-        },
-        "FR": {
-          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=FR",
-          "buy": [
-            {
-              "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
-              "provider_id": 2,
-              "provider_name": "Apple TV",
-              "display_priority": 5
-            },
-            {
-              "logo_path": "/cAUTwxqoI7zc9XtYr1SMtWZEsXg.jpg",
-              "provider_id": 58,
-              "provider_name": "Canal VOD",
-              "display_priority": 9
-            },
-            {
-              "logo_path": "/9Fyo6njYvroAIxAzTBbLgnjgYga.jpg",
-              "provider_id": 61,
-              "provider_name": "Orange VOD",
-              "display_priority": 12
-            },
-            {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
-              "provider_id": 10,
-              "provider_name": "Amazon Video",
-              "display_priority": 40
-            }
-          ],
-          "flatrate": [
-            {
-              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
-              "provider_id": 8,
-              "provider_name": "Netflix",
-              "display_priority": 1
-            },
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 3
-            },
-            {
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 59
+              "display_priority": 52
             },
             {
               "logo_path": "/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
               "provider_id": 2100,
               "provider_name": "Amazon Prime Video with Ads",
-              "display_priority": 93
+              "display_priority": 87
             }
           ]
         },
         "GB": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=GB",
-          "free": [
+          "ads": [
             {
-              "logo_path": "/nc8Tpsr8SqCbsTUogPDD06gGzB3.jpg",
-              "provider_id": 38,
-              "provider_name": "BBC iPlayer",
-              "display_priority": 13
-            }
-          ],
-          "buy": [
-            {
-              "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
-              "provider_id": 2,
-              "provider_name": "Apple TV",
-              "display_priority": 4
-            },
-            {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
-              "provider_id": 10,
-              "provider_name": "Amazon Video",
-              "display_priority": 7
-            },
-            {
-              "logo_path": "/59TxOAYcoFaufd6CWm465oPchD.jpg",
-              "provider_id": 130,
-              "provider_name": "Sky Store",
-              "display_priority": 16
+              "logo_path": "/uMWCgjsGnO5IoQtqxXOjnQA5gt9.jpg",
+              "provider_id": 103,
+              "provider_name": "Channel 4",
+              "display_priority": 11
             }
           ],
           "flatrate": [
@@ -1153,16 +1207,48 @@
               "display_priority": 0
             },
             {
+              "logo_path": "/vDdk3LyjWkYlfCtkrhkjFKFK1Hg.jpg",
+              "provider_id": 29,
+              "provider_name": "Sky Go",
+              "display_priority": 13
+            },
+            {
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 87
+              "display_priority": 86
+            }
+          ],
+          "buy": [
+            {
+              "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
+              "provider_id": 2,
+              "provider_name": "Apple TV Store",
+              "display_priority": 5
+            },
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 8
+            },
+            {
+              "logo_path": "/59TxOAYcoFaufd6CWm465oPchD.jpg",
+              "provider_id": 130,
+              "provider_name": "Sky Store",
+              "display_priority": 18
             }
           ]
         },
         "GF": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=GF",
           "flatrate": [
+            {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
+            },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
@@ -1173,20 +1259,20 @@
         },
         "GG": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=GG",
-          "buy": [
-            {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
-              "provider_id": 10,
-              "provider_name": "Amazon Video",
-              "display_priority": 84
-            }
-          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
+            }
+          ],
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 83
             }
           ]
         },
@@ -1198,18 +1284,6 @@
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
-            },
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 1
-            },
-            {
-              "logo_path": "/ilR8XFZOr3e3wETQ4ZXLjXQXrts.jpg",
-              "provider_id": 55,
-              "provider_name": "ShowMax",
-              "display_priority": 7
             }
           ]
         },
@@ -1228,22 +1302,24 @@
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=GQ",
           "flatrate": [
             {
-              "logo_path": "/ilR8XFZOr3e3wETQ4ZXLjXQXrts.jpg",
-              "provider_id": 55,
-              "provider_name": "ShowMax",
-              "display_priority": 7
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
             }
           ]
         },
         "GR": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=GR",
-          "flatrate": [
+          "buy": [
             {
-              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
-              "provider_id": 8,
-              "provider_name": "Netflix",
-              "display_priority": 0
-            },
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 34
+            }
+          ],
+          "flatrate": [
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
@@ -1269,6 +1345,17 @@
             }
           ]
         },
+        "GY": {
+          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=GY",
+          "flatrate": [
+            {
+              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+              "provider_id": 119,
+              "provider_name": "Amazon Prime Video",
+              "display_priority": 0
+            }
+          ]
+        },
         "HK": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=HK",
           "flatrate": [
@@ -1276,13 +1363,13 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 5
+              "display_priority": 1
             }
           ]
         },
@@ -1322,24 +1409,40 @@
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 30
+              "display_priority": 31
+            }
+          ],
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 43
             }
           ]
         },
         "HU": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=HU",
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 37
+            }
+          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
             },
             {
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
@@ -1362,18 +1465,32 @@
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 6
+              "display_priority": 1
             }
           ]
         },
         "IE": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=IE",
+          "ads": [
+            {
+              "logo_path": "/uMWCgjsGnO5IoQtqxXOjnQA5gt9.jpg",
+              "provider_id": 103,
+              "provider_name": "Channel 4",
+              "display_priority": 16
+            }
+          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
+            },
+            {
+              "logo_path": "/vDdk3LyjWkYlfCtkrhkjFKFK1Hg.jpg",
+              "provider_id": 29,
+              "provider_name": "Sky Go",
+              "display_priority": 9
             }
           ],
           "buy": [
@@ -1381,7 +1498,13 @@
               "logo_path": "/59TxOAYcoFaufd6CWm465oPchD.jpg",
               "provider_id": 130,
               "provider_name": "Sky Store",
-              "display_priority": 9
+              "display_priority": 10
+            },
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 43
             }
           ]
         },
@@ -1421,7 +1544,7 @@
               "logo_path": "/kVqjgpcwvDJOhCupjcLzwwtOp52.jpg",
               "provider_id": 2336,
               "provider_name": "JioHotstar",
-              "display_priority": 5
+              "display_priority": 3
             },
             {
               "logo_path": "/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
@@ -1461,12 +1584,34 @@
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
+            },
+            {
+              "logo_path": "/bnoTnLzz2MAhK3Yc6P9KXe5drIz.jpg",
+              "provider_id": 76,
+              "provider_name": "Viaplay",
+              "display_priority": 24
+            }
+          ],
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 39
             }
           ]
         },
         "IT": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=IT",
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 34
+            }
+          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
@@ -1478,7 +1623,13 @@
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
+            },
+            {
+              "logo_path": "/vDdk3LyjWkYlfCtkrhkjFKFK1Hg.jpg",
+              "provider_id": 29,
+              "provider_name": "Sky Go",
+              "display_priority": 6
             },
             {
               "logo_path": "/g0E9h3JAeIwmdvxlT73jiEuxdNj.jpg",
@@ -1491,14 +1642,6 @@
               "provider_id": 2100,
               "provider_name": "Amazon Prime Video with Ads",
               "display_priority": 87
-            }
-          ],
-          "buy": [
-            {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
-              "provider_id": 10,
-              "provider_name": "Amazon Video",
-              "display_priority": 33
             }
           ]
         },
@@ -1538,34 +1681,58 @@
         },
         "JP": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=JP",
-          "rent": [
-            {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
-              "provider_id": 10,
-              "provider_name": "Amazon Video",
-              "display_priority": 5
-            }
-          ],
           "flatrate": [
+            {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
+            },
             {
               "logo_path": "/bxBlRPEPpMVDc4jMhSrTf2339DW.jpg",
               "provider_id": 15,
               "provider_name": "Hulu",
-              "display_priority": 1
+              "display_priority": 5
+            },
+            {
+              "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
+              "provider_id": 1796,
+              "provider_name": "Netflix Standard with Ads",
+              "display_priority": 25
+            },
+            {
+              "logo_path": "/9EWAEok40O0HVhV0MYJmlE4LhGy.jpg",
+              "provider_id": 2683,
+              "provider_name": "FOD",
+              "display_priority": 80
+            }
+          ],
+          "rent": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 7
+            },
+            {
+              "logo_path": "/9EWAEok40O0HVhV0MYJmlE4LhGy.jpg",
+              "provider_id": 2683,
+              "provider_name": "FOD",
+              "display_priority": 80
             }
           ],
           "buy": [
             {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
               "provider_id": 10,
               "provider_name": "Amazon Video",
-              "display_priority": 5
+              "display_priority": 7
             },
             {
               "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
               "provider_id": 3,
               "provider_name": "Google Play Movies",
-              "display_priority": 7
+              "display_priority": 9
             }
           ]
         },
@@ -1577,12 +1744,6 @@
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
-            },
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 1
             }
           ]
         },
@@ -1605,7 +1766,7 @@
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 26
+              "display_priority": 27
             }
           ]
         },
@@ -1686,6 +1847,14 @@
               "provider_name": "Amazon Prime Video",
               "display_priority": 1
             }
+          ],
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 35
+            }
           ]
         },
         "LU": {
@@ -1695,18 +1864,26 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 7
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 16
+              "display_priority": 1
             }
           ]
         },
         "LV": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=LV",
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 34
+            }
+          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
@@ -1797,7 +1974,7 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 3
+              "display_priority": 0
             }
           ]
         },
@@ -1805,22 +1982,10 @@
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=MG",
           "flatrate": [
             {
-              "logo_path": "/ilR8XFZOr3e3wETQ4ZXLjXQXrts.jpg",
-              "provider_id": 55,
-              "provider_name": "ShowMax",
-              "display_priority": 0
-            },
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 1
-            },
-            {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 3
+              "display_priority": 0
             }
           ]
         },
@@ -1843,7 +2008,7 @@
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 23
+              "display_priority": 24
             }
           ]
         },
@@ -1851,22 +2016,10 @@
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=ML",
           "flatrate": [
             {
-              "logo_path": "/ilR8XFZOr3e3wETQ4ZXLjXQXrts.jpg",
-              "provider_id": 55,
-              "provider_name": "ShowMax",
-              "display_priority": 0
-            },
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 2
-            },
-            {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 4
+              "display_priority": 0
             }
           ]
         },
@@ -1898,20 +2051,15 @@
             }
           ]
         },
-        "MW": {
-          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=MW",
-          "flatrate": [
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 0
-            }
-          ]
-        },
         "MX": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=MX",
           "flatrate": [
+            {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
+            },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
@@ -1919,22 +2067,22 @@
               "display_priority": 1
             },
             {
-              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
-              "provider_id": 8,
-              "provider_name": "Netflix",
-              "display_priority": 7
-            },
-            {
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 39
+              "display_priority": 40
+            },
+            {
+              "logo_path": "/4ABGBjAMtRrYUrr0w3QfanuiaoB.jpg",
+              "provider_id": 1889,
+              "provider_name": "Universal\u002B Amazon Channel",
+              "display_priority": 59
             },
             {
               "logo_path": "/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
               "provider_id": 2100,
               "provider_name": "Amazon Prime Video with Ads",
-              "display_priority": 73
+              "display_priority": 70
             }
           ]
         },
@@ -1951,7 +2099,7 @@
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 7
+              "display_priority": 1
             }
           ]
         },
@@ -1963,12 +2111,6 @@
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
-            },
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 1
             }
           ]
         },
@@ -1980,18 +2122,6 @@
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
-            },
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 1
-            },
-            {
-              "logo_path": "/ilR8XFZOr3e3wETQ4ZXLjXQXrts.jpg",
-              "provider_id": 55,
-              "provider_name": "ShowMax",
-              "display_priority": 19
             }
           ]
         },
@@ -2003,12 +2133,6 @@
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
-            },
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 1
             }
           ]
         },
@@ -2019,7 +2143,13 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 10
+              "display_priority": 0
+            },
+            {
+              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+              "provider_id": 119,
+              "provider_name": "Amazon Prime Video",
+              "display_priority": 1
             }
           ]
         },
@@ -2027,22 +2157,30 @@
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=NL",
           "flatrate": [
             {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 0
-            },
-            {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 2
+              "display_priority": 0
+            },
+            {
+              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+              "provider_id": 119,
+              "provider_name": "Amazon Prime Video",
+              "display_priority": 1
             },
             {
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 10
+              "display_priority": 11
+            }
+          ],
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 35
             }
           ]
         },
@@ -2053,7 +2191,7 @@
               "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
               "provider_id": 426,
               "provider_name": "SF Anytime",
-              "display_priority": 15
+              "display_priority": 16
             }
           ],
           "flatrate": [
@@ -2061,25 +2199,31 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
+            },
+            {
+              "logo_path": "/bnoTnLzz2MAhK3Yc6P9KXe5drIz.jpg",
+              "provider_id": 76,
+              "provider_name": "Viaplay",
+              "display_priority": 6
             },
             {
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 7
+              "display_priority": 8
             },
             {
               "logo_path": "/3ZigBD8WTEPcEHAvMWiJGUsv5u4.jpg",
               "provider_id": 578,
               "provider_name": "Strim",
-              "display_priority": 27
+              "display_priority": 28
             }
           ],
           "buy": [
@@ -2087,16 +2231,16 @@
               "logo_path": "/auWzottqpExOHUlJwDZ4DvdHGoL.jpg",
               "provider_id": 423,
               "provider_name": "Blockbuster",
-              "display_priority": 14
+              "display_priority": 15
             },
             {
               "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
               "provider_id": 426,
               "provider_name": "SF Anytime",
-              "display_priority": 15
+              "display_priority": 16
             },
             {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
               "provider_id": 10,
               "provider_name": "Amazon Video",
               "display_priority": 49
@@ -2105,30 +2249,26 @@
         },
         "NZ": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=NZ",
-          "flatrate": [
+          "buy": [
             {
-              "logo_path": "/97yvRBw1GzX7fXprcF80er19ot.jpg",
-              "provider_id": 337,
-              "provider_name": "Disney Plus",
-              "display_priority": 0
-            },
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 57
+            }
+          ],
+          "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 2
-            },
-            {
-              "logo_path": "/kZRT6tkMn7zzRy8PjPuB3g3TItL.jpg",
-              "provider_id": 395,
-              "provider_name": "TVNZ\u002B",
-              "display_priority": 11
+              "logo_path": "/97yvRBw1GzX7fXprcF80er19ot.jpg",
+              "provider_id": 337,
+              "provider_name": "Disney Plus",
+              "display_priority": 3
             }
           ]
         },
@@ -2173,13 +2313,13 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
             }
           ]
         },
@@ -2187,10 +2327,27 @@
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=PF",
           "flatrate": [
             {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
+            },
+            {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
               "display_priority": 1
+            }
+          ]
+        },
+        "PG": {
+          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=PG",
+          "flatrate": [
+            {
+              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+              "provider_id": 119,
+              "provider_name": "Amazon Prime Video",
+              "display_priority": 0
             }
           ]
         },
@@ -2229,19 +2386,27 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 5
+              "display_priority": 1
             },
             {
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 6
+              "display_priority": 7
+            }
+          ],
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 27
             }
           ]
         },
@@ -2264,24 +2429,32 @@
         },
         "PT": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=PT",
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 44
+            }
+          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
             },
             {
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 27
+              "display_priority": 28
             }
           ]
         },
@@ -2321,24 +2494,32 @@
         },
         "RO": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=RO",
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 34
+            }
+          ],
           "flatrate": [
             {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
             },
             {
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 18
+              "display_priority": 19
             }
           ]
         },
@@ -2361,7 +2542,7 @@
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 25
+              "display_priority": 26
             }
           ]
         },
@@ -2378,7 +2559,7 @@
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 21
+              "display_priority": 1
             }
           ]
         },
@@ -2390,43 +2571,37 @@
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
-            },
-            {
-              "logo_path": "/ilR8XFZOr3e3wETQ4ZXLjXQXrts.jpg",
-              "provider_id": 55,
-              "provider_name": "ShowMax",
-              "display_priority": 6
             }
           ]
         },
         "SE": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=SE",
-          "rent": [
-            {
-              "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
-              "provider_id": 426,
-              "provider_name": "SF Anytime",
-              "display_priority": 15
-            }
-          ],
           "buy": [
             {
               "logo_path": "/auWzottqpExOHUlJwDZ4DvdHGoL.jpg",
               "provider_id": 423,
               "provider_name": "Blockbuster",
-              "display_priority": 14
+              "display_priority": 15
             },
             {
               "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
               "provider_id": 426,
               "provider_name": "SF Anytime",
-              "display_priority": 15
+              "display_priority": 16
             },
             {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
               "provider_id": 10,
               "provider_name": "Amazon Video",
               "display_priority": 39
+            }
+          ],
+          "rent": [
+            {
+              "logo_path": "/sNmIwrniZZORvNJOmEuWGhwBJNf.jpg",
+              "provider_id": 426,
+              "provider_name": "SF Anytime",
+              "display_priority": 16
             }
           ],
           "flatrate": [
@@ -2434,19 +2609,25 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
+            },
+            {
+              "logo_path": "/bnoTnLzz2MAhK3Yc6P9KXe5drIz.jpg",
+              "provider_id": 76,
+              "provider_name": "Viaplay",
+              "display_priority": 7
             },
             {
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 7
+              "display_priority": 8
             }
           ]
         },
@@ -2486,7 +2667,7 @@
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 25
+              "display_priority": 26
             }
           ]
         },
@@ -2497,25 +2678,39 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
             },
             {
               "logo_path": "/h0ZYcYHicKQ4Ixm5nOjqvwni5NG.jpg",
               "provider_id": 1773,
               "provider_name": "SkyShowtime",
-              "display_priority": 32
+              "display_priority": 33
+            }
+          ],
+          "buy": [
+            {
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
+              "provider_id": 10,
+              "provider_name": "Amazon Video",
+              "display_priority": 47
             }
           ]
         },
         "SM": {
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=SM",
           "flatrate": [
+            {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
+            },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
@@ -2532,12 +2727,6 @@
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
-            },
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 1
             }
           ]
         },
@@ -2562,6 +2751,12 @@
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=TC",
           "flatrate": [
             {
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
+            },
+            {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
@@ -2573,9 +2768,9 @@
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=TD",
           "flatrate": [
             {
-              "logo_path": "/ilR8XFZOr3e3wETQ4ZXLjXQXrts.jpg",
-              "provider_id": 55,
-              "provider_name": "ShowMax",
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
               "display_priority": 0
             },
             {
@@ -2583,12 +2778,6 @@
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
               "display_priority": 1
-            },
-            {
-              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
-              "provider_id": 8,
-              "provider_name": "Netflix",
-              "display_priority": 3
             }
           ]
         },
@@ -2599,13 +2788,13 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 3
+              "display_priority": 1
             }
           ]
         },
@@ -2633,13 +2822,13 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 2
+              "display_priority": 0
             },
             {
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 4
+              "display_priority": 1
             }
           ]
         },
@@ -2685,18 +2874,17 @@
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
-            },
+            }
+          ]
+        },
+        "UA": {
+          "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=UA",
+          "flatrate": [
             {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 1
-            },
-            {
-              "logo_path": "/ilR8XFZOr3e3wETQ4ZXLjXQXrts.jpg",
-              "provider_id": 55,
-              "provider_name": "ShowMax",
-              "display_priority": 6
+              "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+              "provider_id": 8,
+              "provider_name": "Netflix",
+              "display_priority": 0
             }
           ]
         },
@@ -2708,18 +2896,6 @@
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
-            },
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 1
-            },
-            {
-              "logo_path": "/ilR8XFZOr3e3wETQ4ZXLjXQXrts.jpg",
-              "provider_id": 55,
-              "provider_name": "ShowMax",
-              "display_priority": 7
             }
           ]
         },
@@ -2730,51 +2906,51 @@
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 1
+              "display_priority": 2
             },
             {
               "logo_path": "/2aGrp1xw3qhwCYvNGAJZPdjfeeX.jpg",
               "provider_id": 386,
               "provider_name": "Peacock Premium",
-              "display_priority": 15
+              "display_priority": 16
             },
             {
               "logo_path": "/dpR8r13zWDeUR0QkzWidrdMxa56.jpg",
               "provider_id": 1796,
               "provider_name": "Netflix Standard with Ads",
-              "display_priority": 155
+              "display_priority": 151
             },
             {
               "logo_path": "/drPlq5beqXtBaP7MNs8W616YRhm.jpg",
               "provider_id": 387,
               "provider_name": "Peacock Premium Plus",
-              "display_priority": 217
+              "display_priority": 213
             }
           ],
           "buy": [
             {
-              "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+              "logo_path": "/qR6FKvnPBx2O37FDg8PNM7efwF3.jpg",
               "provider_id": 10,
               "provider_name": "Amazon Video",
-              "display_priority": 6
+              "display_priority": 8
             },
             {
               "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
               "provider_id": 2,
-              "provider_name": "Apple TV",
-              "display_priority": 7
+              "provider_name": "Apple TV Store",
+              "display_priority": 9
             },
             {
               "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
               "provider_id": 3,
               "provider_name": "Google Play Movies",
-              "display_priority": 16
+              "display_priority": 20
             },
             {
-              "logo_path": "/19fkcOz0xeUgCVW8tO85uOYnYK9.jpg",
+              "logo_path": "/oIXE9vJdkilIxCLAtlbtiqewgvn.jpg",
               "provider_id": 7,
               "provider_name": "Fandango At Home",
-              "display_priority": 35
+              "display_priority": 37
             }
           ]
         },
@@ -2819,7 +2995,7 @@
               "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
               "provider_id": 119,
               "provider_name": "Amazon Prime Video",
-              "display_priority": 2
+              "display_priority": 1
             }
           ]
         },
@@ -2848,12 +3024,6 @@
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
-            },
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 1
             }
           ]
         },
@@ -2865,12 +3035,6 @@
               "provider_id": 8,
               "provider_name": "Netflix",
               "display_priority": 0
-            },
-            {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 1
             }
           ]
         },
@@ -2878,16 +3042,10 @@
           "link": "https://www.themoviedb.org/tv/37680-suits/watch?locale=ZW",
           "flatrate": [
             {
-              "logo_path": "/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
-              "provider_id": 119,
-              "provider_name": "Amazon Prime Video",
-              "display_priority": 2
-            },
-            {
               "logo_path": "/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
               "provider_id": 8,
               "provider_name": "Netflix",
-              "display_priority": 4
+              "display_priority": 0
             }
           ]
         }
@@ -2897,19 +3055,7 @@
       "Content-Type": "application/json; charset=utf-8",
       "Transfer-Encoding": "chunked",
       "Connection": "keep-alive",
-      "Server": "openresty",
-      "Cache-Control": "public, max-age=20464",
-      "x-memc": "HIT",
-      "x-memc-key": "1220b586b135836c469a0f582f1658c315325f12cf2cd8c0f98f98fdfcbb23e8",
-      "x-az": "us-east-1c",
-      "ETag": "W/\u00225d0360b44ab368af8527a09ddd6d8aa1\u0022",
-      "Vary": [
-        "accept-encoding",
-        "Origin"
-      ],
-      "X-Cache": "Miss from cloudfront",
-      "X-Amz-Cf-Pop": "MUC50-P3",
-      "Alt-Svc": "h3=\u0022:443\u0022"
+      "Server": "openresty"
     }
   }
 }

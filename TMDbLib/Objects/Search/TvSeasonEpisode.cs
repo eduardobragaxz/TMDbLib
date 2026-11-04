@@ -7,18 +7,18 @@ using TMDbLib.Objects.TvShows;
 namespace TMDbLib.Objects.Search;
 
 /// <summary>
-/// Represents a TV season episode with full details.
+/// TV season episode with full details.
 /// </summary>
 public class TvSeasonEpisode
 {
     /// <summary>
-    /// Gets or sets the air date of the episode.
+    /// Gets or sets the air date.
     /// </summary>
     [JsonPropertyName("air_date")]
     public DateTime? AirDate { get; set; }
 
     /// <summary>
-    /// Gets or sets the list of crew members for the episode.
+    /// Gets or sets the crew members.
     /// </summary>
     [JsonPropertyName("crew")]
     public List<Crew>? Crew { get; set; }
@@ -36,37 +36,37 @@ public class TvSeasonEpisode
     public string? EpisodeType { get; set; }
 
     /// <summary>
-    /// Gets or sets the list of guest stars for the episode.
+    /// Gets or sets the guest stars.
     /// </summary>
     [JsonPropertyName("guest_stars")]
     public List<Cast>? GuestStars { get; set; }
 
     /// <summary>
-    /// Gets or sets the TMDb ID of the episode.
+    /// Gets or sets the TMDb id.
     /// </summary>
     [JsonPropertyName("id")]
     public int Id { get; set; }
 
     /// <summary>
-    /// Gets or sets the name of the episode.
+    /// Gets or sets the episode name.
     /// </summary>
     [JsonPropertyName("name")]
     public string? Name { get; set; }
 
     /// <summary>
-    /// Gets or sets the overview text of the episode.
+    /// Gets or sets the overview.
     /// </summary>
     [JsonPropertyName("overview")]
     public string? Overview { get; set; }
 
     /// <summary>
-    /// Gets or sets the production code of the episode.
+    /// Gets or sets the production code.
     /// </summary>
     [JsonPropertyName("production_code")]
     public string? ProductionCode { get; set; }
 
     /// <summary>
-    /// Gets or sets the runtime of the episode in minutes.
+    /// Gets or sets the runtime in minutes.
     /// </summary>
     [JsonPropertyName("runtime")]
     public int? Runtime { get; set; }
@@ -76,6 +76,12 @@ public class TvSeasonEpisode
     /// </summary>
     [JsonPropertyName("season_number")]
     public int SeasonNumber { get; set; }
+
+    /// <summary>
+    /// Gets or sets the TMDb id of the TV show this episode belongs to.
+    /// </summary>
+    [JsonPropertyName("show_id")]
+    public int ShowId { get; set; }
 
     /// <summary>
     /// Gets or sets the still image path.

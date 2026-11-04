@@ -23,13 +23,6 @@ namespace TMDbLibTests.JsonHelpers;
 /// </summary>
 public abstract class TestBase
 {
-    ///// <summary>
-    ///// Registers necessary module initializers.
-    ///// </summary>
-
-    // [ModuleInitializer]
-    // public static void Init() => VerifyNewtonsoftJson.Initialize();
-
     /// <summary>
     /// Gets the Verify settings used for all tests in this class.
     /// </summary>
@@ -66,7 +59,7 @@ public abstract class TestBase
         VerifySettings.AddExtraSettings(serializerSettings =>
         {
             // Use custom contract resolver that:
-            // 1. Reads Newtonsoft.Json [JsonProperty] attributes for property names
+            // 1. Reads System.Text.Json [JsonPropertyName] attributes for property names
             // 2. Uses camelCase for properties without explicit names
             // 3. Sorts collections for consistent output
             // serializerSettings.ContractResolver = new DataSortingContractResolver();
@@ -100,22 +93,22 @@ public abstract class TestBase
         return Verifier.Verify(obj, settings);
     }
 
-    ///// <summary>
-    ///// Argon-compatible enum converter that uses TMDbLib's EnumMemberCache for proper string values.
-    ///// </summary>
-    //class ArgonEnumStringValueConverter : Argon.JsonConverter
-    //{
-    //    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-    //    {
-    //        var str = EnumMemberCache.GetString(value);
-    //        writer.WriteValue(str);
-    //    }
+    /// <summary>
+    /// Argon-compatible enum converter that renders enums using their TMDb string values.
+    /// </summary>
+    class ArgonEnumStringValueConverter : Argon.JsonConverter
+    {
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            var str = EnumValueLookup.GetString(value);
+            writer.WriteValue(str);
+        }
 
-    //    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
-    //    {
-    //        var val = EnumMemberCache.GetValue(reader.Value as string, objectType);
-    //        return val;
-    //    }
+        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+        {
+            var val = EnumValueLookup.GetValue(reader.Value as string, objectType);
+            return val;
+        }
 
     //    public override bool CanConvert(Type objectType)
     //    {
@@ -258,23 +251,29 @@ public abstract class TestBase
         //{
         //    var property = CreateProperty(member);
 
-        //    // Check for System.Text.Json JsonPropertyNameAttribute and use its name
-        //    var jsonPropertyAttr = member.GetCustomAttributes(true)
-        //        .FirstOrDefault(a => a.GetType().FullName == "System.Text.Json.Serialization.JsonPropertyNameAttribute");
+        /// <summary>
+        /// Creates a property for the given member.
+        /// </summary>
+        protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
+        {
+            var property = base.CreateProperty(member, memberSerialization);
 
-        //    if (jsonPropertyAttr is not null)
-        //    {
-        //        // Get the PropertyName from the attribute using reflection
-        //        var propertyNameProp = jsonPropertyAttr.GetType().GetProperty("Name");
-        //        if (propertyNameProp is not null)
-        //        {
-        //            var name = propertyNameProp.GetValue(jsonPropertyAttr) as string;
-        //            if (!string.IsNullOrEmpty(name))
-        //            {
-        //                property.Name = name;
-        //            }
-        //        }
-        //    }
+            // Check for System.Text.Json JsonPropertyNameAttribute and use its name
+            var jsonPropertyAttr = member.GetCustomAttributes(true)
+                .FirstOrDefault(a => a.GetType().FullName == "System.Text.Json.Serialization.JsonPropertyNameAttribute");
+
+            if (jsonPropertyAttr is not null)
+            {
+                var propertyNameProp = jsonPropertyAttr.GetType().GetProperty("Name");
+                if (propertyNameProp is not null)
+                {
+                    var name = propertyNameProp.GetValue(jsonPropertyAttr) as string;
+                    if (!string.IsNullOrEmpty(name))
+                    {
+                        property.PropertyName = name;
+                    }
+                }
+            }
 
         //    // Skip ignored properties (dynamic values that change over time)
         //    if (IgnoredProperties.Contains(member.Name) || (property.PropertyName is not null && IgnoredProperties.Contains(property.PropertyName)))

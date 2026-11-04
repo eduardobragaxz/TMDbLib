@@ -1,6 +1,5 @@
 {
   "Guid": "ef1945ea-9c5d-184a-a7b7-992da0814c36",
-  "UpdatedAt": "2025-12-24T18:45:31.8272764Z",
   "Title": "Proxy Mapping for GET /3/discover/movie",
   "Description": "Proxy Mapping for GET /3/discover/movie",
   "Priority": -2000000,
@@ -18,6 +17,19 @@
       "GET"
     ],
     "HttpVersion": "1.1",
+    "Headers": [
+      {
+        "Name": "Accept-Encoding",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "gzip, deflate, br",
+            "IgnoreCase": true
+          }
+        ],
+        "IgnoreCase": true
+      }
+    ],
     "Params": [
       {
         "Name": "language",
@@ -63,19 +75,7 @@
       "Content-Type": "application/json; charset=utf-8",
       "Transfer-Encoding": "chunked",
       "Connection": "keep-alive",
-      "Server": "openresty",
-      "x-memc": "MISS",
-      "x-memc-key": "c5c8cec33763d5cb218d0fe34d819fa31b2460817e636086ce4a8400aee8cfe7",
-      "x-az": "us-east-1b",
-      "Cache-Control": "public, max-age=0",
-      "ETag": "W/\u00220e23279b004381f72a34159d5c7dfd1f\u0022",
-      "Vary": [
-        "accept-encoding",
-        "Origin"
-      ],
-      "X-Cache": "RefreshHit from cloudfront",
-      "X-Amz-Cf-Pop": "MUC50-P3",
-      "Alt-Svc": "h3=\u0022:443\u0022"
+      "Server": "openresty"
     }
   }
 }

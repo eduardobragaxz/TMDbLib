@@ -5,8 +5,7 @@ namespace TMDbLib.Objects.Lists;
 /// <summary>
 /// Represents the base class for TMDb lists.
 /// </summary>
-/// <typeparam name="TId">The type of the list ID.</typeparam>
-public abstract class TMDbList<TId>
+public abstract class TMDbList
 {
     /// <summary>
     /// Gets or sets the description of the list.

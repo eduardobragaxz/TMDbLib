@@ -1,6 +1,5 @@
 {
   "Guid": "3041ed60-b835-7d4d-9ac7-dc5f692f4ef9",
-  "UpdatedAt": "2025-12-24T18:45:18.1996482Z",
   "Title": "Proxy Mapping for GET /3/movie/changes",
   "Description": "Proxy Mapping for GET /3/movie/changes",
   "Priority": -2000000,
@@ -18,6 +17,19 @@
       "GET"
     ],
     "HttpVersion": "1.1",
+    "Headers": [
+      {
+        "Name": "Accept-Encoding",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "gzip, deflate, br",
+            "IgnoreCase": true
+          }
+        ],
+        "IgnoreCase": true
+      }
+    ],
     "Params": [
       {
         "Name": "page",
@@ -36,427 +48,515 @@
     "BodyAsJson": {
       "results": [
         {
-          "id": 1602682,
-          "adult": false
+          "id": 1235780,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1402827,
-          "adult": false
+          "id": 1327690,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1542374,
-          "adult": false
+          "id": 1386815,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1525353,
-          "adult": false
+          "id": 1743314,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1596619,
-          "adult": false
+          "id": 1743309,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602507,
-          "adult": false
+          "id": 1743316,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1486122,
-          "adult": false
+          "id": 1743073,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1273274,
-          "adult": false
+          "id": 1438000,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1492347,
-          "adult": false
+          "id": 1743158,
+          "adult": true,
+          "softcore": false
         },
         {
-          "id": 1505887,
-          "adult": false
+          "id": 1742386,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1516248,
-          "adult": false
+          "id": 1578079,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1557337,
-          "adult": false
+          "id": 1743072,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1571485,
-          "adult": false
+          "id": 1703640,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1579604,
-          "adult": false
+          "id": 1463434,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1585481,
-          "adult": false
+          "id": 1509997,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1598221,
-          "adult": false
+          "id": 1517794,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1598861,
-          "adult": true
+          "id": 1552242,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1598991,
-          "adult": false
+          "id": 1573757,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1600861,
-          "adult": false
+          "id": 1630030,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1063020,
-          "adult": false
+          "id": 1671526,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1425001,
-          "adult": false
+          "id": 1688584,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1534078,
-          "adult": false
+          "id": 1698104,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1568452,
-          "adult": false
+          "id": 1699958,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1569655,
-          "adult": false
+          "id": 1702801,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1580428,
-          "adult": false
+          "id": 1712141,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1588858,
-          "adult": false
+          "id": 1715083,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1590915,
-          "adult": false
+          "id": 1723405,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1591447,
-          "adult": false
+          "id": 1726014,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1596389,
-          "adult": false
+          "id": 1729643,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1596395,
-          "adult": false
+          "id": 1732790,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1596400,
-          "adult": false
+          "id": 1733105,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1596957,
-          "adult": false
+          "id": 1733354,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1601139,
-          "adult": false
+          "id": 1733588,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602147,
-          "adult": false
+          "id": 1734134,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1196946,
-          "adult": false
+          "id": 1735105,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602112,
-          "adult": false
+          "id": 1735714,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1374985,
-          "adult": false
+          "id": 1735723,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1540992,
-          "adult": false
+          "id": 1736125,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602448,
-          "adult": false
+          "id": 1736274,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1581153,
-          "adult": false
+          "id": 1736288,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602050,
-          "adult": true
+          "id": 1737647,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602597,
-          "adult": false
+          "id": 1738404,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602400,
-          "adult": false
+          "id": 1738575,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602409,
-          "adult": false
+          "id": 1739835,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602624,
-          "adult": false
+          "id": 1739865,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602390,
-          "adult": false
+          "id": 1740477,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602570,
-          "adult": false
+          "id": 1740655,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1230368,
-          "adult": false
+          "id": 1740965,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602683,
-          "adult": false
+          "id": 1741269,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1521964,
-          "adult": null
+          "id": 1741409,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1601680,
-          "adult": null
+          "id": 1741417,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1406557,
-          "adult": false
+          "id": 1742110,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 467948,
-          "adult": false
+          "id": 1742445,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 537049,
-          "adult": false
+          "id": 1528537,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 17305,
-          "adult": false
+          "id": 1711469,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 192577,
-          "adult": false
+          "id": 1733045,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 56883,
-          "adult": false
+          "id": 1735594,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 453789,
-          "adult": false
+          "id": 1739947,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 381725,
-          "adult": false
+          "id": 1739962,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602684,
-          "adult": false
+          "id": 1743248,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 453785,
-          "adult": false
+          "id": 588520,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1399457,
-          "adult": false
+          "id": 1228911,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 453777,
-          "adult": false
+          "id": 1401832,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 463708,
-          "adult": false
+          "id": 1523433,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 15403,
-          "adult": false
+          "id": 1612487,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 453774,
-          "adult": false
+          "id": 1699385,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 17809,
-          "adult": false
+          "id": 1707378,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 13354,
-          "adult": false
+          "id": 1724318,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 227783,
-          "adult": false
+          "id": 1725033,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 543744,
-          "adult": false
+          "id": 1725268,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602679,
-          "adult": false
+          "id": 1732167,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 499977,
-          "adult": false
+          "id": 1732288,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602685,
-          "adult": false
+          "id": 1738718,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1601227,
-          "adult": null
+          "id": 1739194,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 712352,
-          "adult": false
+          "id": 1739204,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1601347,
-          "adult": null
+          "id": 1741992,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 50300,
-          "adult": false
+          "id": 1742724,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 330397,
-          "adult": false
+          "id": 1742932,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 50337,
-          "adult": false
+          "id": 1742844,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 184917,
-          "adult": false
+          "id": 1742944,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602090,
-          "adult": null
+          "id": 1396772,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 198077,
-          "adult": false
+          "id": 1742965,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602686,
-          "adult": false
+          "id": 1743167,
+          "adult": true,
+          "softcore": false
         },
         {
-          "id": 799477,
-          "adult": false
+          "id": 1742934,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1460661,
-          "adult": false
+          "id": 1743251,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602687,
-          "adult": null
+          "id": 1743264,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 9738,
-          "adult": false
+          "id": 1742706,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 54087,
-          "adult": false
+          "id": 1742707,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1159165,
-          "adult": false
+          "id": 1742708,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602158,
-          "adult": false
+          "id": 1742712,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1601238,
-          "adult": null
+          "id": 1742714,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1601339,
-          "adult": null
+          "id": 1743060,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 250140,
-          "adult": false
+          "id": 1742301,
+          "adult": false,
+          "softcore": true
         },
         {
-          "id": 45491,
-          "adult": false
+          "id": 1742717,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 773025,
-          "adult": true
+          "id": 1743256,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 589615,
-          "adult": false
+          "id": 1742718,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602688,
-          "adult": false
+          "id": 1743303,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1602689,
-          "adult": false
+          "id": 1742914,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1530734,
-          "adult": true
+          "id": 1706178,
+          "adult": false,
+          "softcore": false
         },
         {
-          "id": 1601973,
-          "adult": null
+          "id": 1743305,
+          "adult": false,
+          "softcore": false
         }
       ],
       "page": 1,
-      "total_pages": 66,
-      "total_results": 6595
+      "total_pages": 72,
+      "total_results": 7199
     },
     "Headers": {
       "Content-Type": "application/json; charset=utf-8",
       "Transfer-Encoding": "chunked",
       "Connection": "keep-alive",
-      "Server": "openresty",
-      "Cache-Control": "public, max-age=581",
-      "x-memc": "HIT",
-      "x-memc-key": "ae86d18627b3e3f9c7baf15492e5eebc48e60a9f9bb6e4aa9fa66c73e3347bc9",
-      "x-az": "us-east-1b",
-      "ETag": "W/\u0022fec8278916def49af8c8ab440675d0c6\u0022",
-      "Vary": [
-        "accept-encoding",
-        "Origin"
-      ],
-      "X-Cache": "Miss from cloudfront",
-      "X-Amz-Cf-Pop": "MUC50-P3",
-      "Alt-Svc": "h3=\u0022:443\u0022"
+      "Server": "openresty"
     }
   }
 }

@@ -3,12 +3,12 @@ using System.Text.Json.Serialization;
 namespace TMDbLib.Objects.TvShows;
 
 /// <summary>
-/// Represents basic identifying information for a TV episode.
+/// Basic identifying information for a TV episode.
 /// </summary>
 public class TvEpisodeInfo
 {
     /// <summary>
-    /// Gets or sets the episode ID.
+    /// Gets or sets the episode id.
     /// </summary>
     [JsonPropertyName("id")]
     public int? Id { get; set; }

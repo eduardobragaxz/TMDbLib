@@ -1,8 +1,11 @@
-﻿namespace TMDbLib.Objects.Authentication
+using TMDbLib.Utilities;
+
+namespace TMDbLib.Objects.Authentication
 {
     /// <summary>
     /// Specifies the type of session used for authentication.
     /// </summary>
+    
     public enum SessionType
     {
         /// <summary>

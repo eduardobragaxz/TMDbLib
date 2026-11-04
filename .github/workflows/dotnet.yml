@@ -12,17 +12,37 @@ env:
   DOTNET_NOLOGO: true
 
 jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Verify formatting
+      run: dotnet format whitespace --verify-no-changes --no-restore
+
+    - name: Verify code style
+      run: dotnet format style --verify-no-changes --no-restore
+
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       with:
         fetch-depth: 50
     - run: git fetch --tags
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # v5
+      uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6
       with:
         dotnet-version: 10.0.x
 
@@ -33,7 +53,7 @@ jobs:
       run: dotnet build --no-restore
 
     - name: Test
-      run: MOCK_MODE=Playback dotnet test --no-build --verbosity normal --filter "Category!=RequiresAccountAccess"
+      run: MOCK_MODE=Playback dotnet test --no-build --verbosity normal --filter-not-trait "Category=RequiresAccountAccess"
 
     - name: Pack
       if: github.ref == 'refs/heads/master'
@@ -45,11 +65,12 @@ jobs:
 
     - name: "Github packages: Cleanup"
       if: github.ref == 'refs/heads/master'
-      uses: stripethree/gpr-janitor@dist
+      uses: stripethree/gpr-janitor@62ae019a1372c20cb6f3f7125ea4f115045caf1f # dist
       with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        package-name: TMDbLib
+        package-type: nuget
+        owner-type: org
         dry-run: false
         keep-versions: 25
         min-age-days: 14
-        versions-to-fetch: 20
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

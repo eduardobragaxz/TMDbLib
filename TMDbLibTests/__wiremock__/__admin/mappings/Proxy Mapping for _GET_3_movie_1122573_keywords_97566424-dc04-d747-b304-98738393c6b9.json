@@ -1,0 +1,84 @@
+{
+  "Guid": "97566424-dc04-d747-b304-98738393c6b9",
+  "Title": "Proxy Mapping for GET /3/movie/1122573/keywords",
+  "Description": "Proxy Mapping for GET /3/movie/1122573/keywords",
+  "Priority": -2000000,
+  "Request": {
+    "Path": {
+      "Matchers": [
+        {
+          "Name": "WildcardMatcher",
+          "Pattern": "/3/movie/1122573/keywords",
+          "IgnoreCase": false
+        }
+      ]
+    },
+    "Methods": [
+      "GET"
+    ],
+    "HttpVersion": "1.1",
+    "Headers": [
+      {
+        "Name": "Accept-Encoding",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "gzip, deflate, br",
+            "IgnoreCase": true
+          }
+        ],
+        "IgnoreCase": true
+      }
+    ]
+  },
+  "Response": {
+    "StatusCode": 200,
+    "BodyAsJson": {
+      "id": 1122573,
+      "keywords": [
+        {
+          "id": 10364,
+          "name": "mission"
+        },
+        {
+          "id": 10051,
+          "name": "heist"
+        },
+        {
+          "id": 33705,
+          "name": "agent"
+        },
+        {
+          "id": 181325,
+          "name": "dangerous mission"
+        },
+        {
+          "id": 276775,
+          "name": "irreverent"
+        },
+        {
+          "id": 293649,
+          "name": "provocative"
+        },
+        {
+          "id": 325773,
+          "name": "audacious"
+        },
+        {
+          "id": 325809,
+          "name": "enthusiastic"
+        },
+        {
+          "id": 325845,
+          "name": "sarcastic"
+        }
+      ]
+    },
+    "Headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "Server": "openresty"
+    }
+  }
+}

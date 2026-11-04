@@ -11,11 +11,6 @@ namespace TMDbLib.Utilities.Converters;
 /// </summary>
 internal class TmdbIntArrayAsObjectConverter : JsonConverter<List<int>>
 {
-    public override bool CanConvert(Type objectType)
-    {
-        return objectType is object;
-    }
-
     public override List<int>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         // Sometimes the genre_ids is an empty object, instead of an array
@@ -46,7 +41,8 @@ internal class TmdbIntArrayAsObjectConverter : JsonConverter<List<int>>
 
         if (reader.TokenType == JsonTokenType.Null)
         {
-            return null;
+            reader.Skip();
+            return new List<int>();
         }
 
         throw new InvalidOperationException("Unable to convert list of integers");

@@ -1,0 +1,57 @@
+{
+  "Guid": "0a5707b0-b8e1-9a4c-9163-cb409b153c88",
+  "Title": "Proxy Mapping for GET /3/tv/1396/episode_groups",
+  "Description": "Proxy Mapping for GET /3/tv/1396/episode_groups",
+  "Priority": -2000000,
+  "Request": {
+    "Path": {
+      "Matchers": [
+        {
+          "Name": "WildcardMatcher",
+          "Pattern": "/3/tv/1396/episode_groups",
+          "IgnoreCase": false
+        }
+      ]
+    },
+    "Methods": [
+      "GET"
+    ],
+    "HttpVersion": "1.1",
+    "Headers": [
+      {
+        "Name": "Accept-Encoding",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "gzip, deflate, br",
+            "IgnoreCase": true
+          }
+        ],
+        "IgnoreCase": true
+      }
+    ]
+  },
+  "Response": {
+    "StatusCode": 200,
+    "BodyAsJson": {
+      "results": [
+        {
+          "description": "Seasons grouped as they appear on DVD, as well as paid video-on-demand services, such as Prime Video and YouTube.",
+          "episode_count": 62,
+          "group_count": 6,
+          "id": "69f50757054263b7bc87e32a",
+          "name": "DVD / PVOD",
+          "network": null,
+          "type": 3
+        }
+      ],
+      "id": 1396
+    },
+    "Headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "Server": "openresty"
+    }
+  }
+}

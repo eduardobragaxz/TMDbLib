@@ -7,10 +7,16 @@ using TMDbLib.Objects.Search;
 namespace TMDbLib.Objects.TvShows;
 
 /// <summary>
-/// Represents a TV season with full details.
+/// TV season with full details.
 /// </summary>
 public class TvSeason
 {
+    /// <summary>
+    /// Gets or sets the MongoDB-style object id returned by TMDb (the "_id" field).
+    /// </summary>
+    [JsonPropertyName("_id")]
+    public string? UnderscoreId { get; set; }
+
     /// <summary>
     /// Gets or sets the account states for episodes in the season.
     /// </summary>
@@ -18,49 +24,61 @@ public class TvSeason
     public ResultContainer<TvEpisodeAccountStateWithNumber>? AccountStates { get; set; }
 
     /// <summary>
-    /// Gets or sets the air date of the season.
+    /// Gets or sets the air date.
     /// </summary>
     [JsonPropertyName("air_date")]
     public DateTime? AirDate { get; set; }
 
     /// <summary>
-    /// Gets or sets the credits for the season.
+    /// Gets or sets the credits.
     /// </summary>
     [JsonPropertyName("credits")]
     public Credits? Credits { get; set; }
 
     /// <summary>
-    /// Gets or sets the list of episodes in the season.
+    /// Gets or sets the aggregated credits.
+    /// </summary>
+    [JsonPropertyName("aggregate_credits")]
+    public CreditsAggregate? AggregateCredits { get; set; }
+
+    /// <summary>
+    /// Gets or sets the episodes.
     /// </summary>
     [JsonPropertyName("episodes")]
     public List<TvSeasonEpisode>? Episodes { get; set; }
 
     /// <summary>
-    /// Gets or sets the external IDs for the season.
+    /// Gets or sets the external ids.
     /// </summary>
     [JsonPropertyName("external_ids")]
     public ExternalIdsTvSeason? ExternalIds { get; set; }
 
     /// <summary>
-    /// Gets or sets object Id, will only be populated when explicitly getting episode details.
+    /// Gets or sets the season id; populated only when explicitly getting episode details.
     /// </summary>
     [JsonPropertyName("id")]
     public int? Id { get; set; }
 
     /// <summary>
-    /// Gets or sets the poster images for the season.
+    /// Gets or sets the poster images.
     /// </summary>
     [JsonPropertyName("images")]
     public PosterImages? Images { get; set; }
 
     /// <summary>
-    /// Gets or sets the name of the season.
+    /// Gets or sets the season name.
     /// </summary>
     [JsonPropertyName("name")]
     public string? Name { get; set; }
 
     /// <summary>
-    /// Gets or sets the overview text of the season.
+    /// Gets or sets the networks the season aired on.
+    /// </summary>
+    [JsonPropertyName("networks")]
+    public List<NetworkWithLogo>? Networks { get; set; }
+
+    /// <summary>
+    /// Gets or sets the overview.
     /// </summary>
     [JsonPropertyName("overview")]
     public string? Overview { get; set; }
@@ -84,14 +102,20 @@ public class TvSeason
     public double VoteAverage { get; set; }
 
     /// <summary>
-    /// Gets or sets the videos for the season.
+    /// Gets or sets the videos.
     /// </summary>
     [JsonPropertyName("videos")]
     public ResultContainer<Video>? Videos { get; set; }
 
     /// <summary>
-    /// Gets or sets the translations for the season.
+    /// Gets or sets the translations.
     /// </summary>
     [JsonPropertyName("translations")]
     public TranslationsContainer? Translations { get; set; }
+
+    /// <summary>
+    /// Gets or sets the watch providers by country.
+    /// </summary>
+    [JsonPropertyName("watch/providers")]
+    public SingleResultContainer<Dictionary<string, WatchProviders>>? WatchProviders { get; set; }
 }

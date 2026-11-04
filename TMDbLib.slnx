@@ -3,6 +3,7 @@
     <File Path=".editorconfig" />
     <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
     <File Path="Readme.md" />
   </Folder>
   <Folder Name="/Solution Items/_Imports/">
@@ -11,5 +12,6 @@
   </Folder>
   <Project Path="TestApplication/TestApplication.csproj" />
   <Project Path="TMDbLib/TMDbLib.csproj" />
+  <Project Path="TMDbLib.SourceGenerators/TMDbLib.SourceGenerators.csproj" />
   <Project Path="TMDbLibTests/TMDbLibTests.csproj" />
 </Solution>

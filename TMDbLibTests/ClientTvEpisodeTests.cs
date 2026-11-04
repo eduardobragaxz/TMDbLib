@@ -2,14 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Xunit;
 using TMDbLib.Objects.Authentication;
-using TMDbLib.Objects.Changes;
-using TMDbLib.Objects.General;
 using TMDbLib.Objects.TvShows;
 using TMDbLibTests.Helpers;
 using TMDbLibTests.JsonHelpers;
-using Cast = TMDbLib.Objects.TvShows.Cast;
+using Xunit;
 
 namespace TMDbLibTests;
 
@@ -64,10 +61,10 @@ public class ClientTvEpisodeTests : TestBase
         Assert.NotNull(episode);
         if (episode.AccountStates is null || !episode.AccountStates.Rating.HasValue)
         {
-            await TMDbClient.TvEpisodeSetRatingAsync(IdHelper.BigBangTheory, 1, 1, 5, TestContext.Current.CancellationToken);
+            await TMDbClient.TvEpisodeSetRatingAsync(IdHelper.BigBangTheory, 1, 1, 5, cancellationToken: TestContext.Current.CancellationToken);
 
             // Allow TMDb to update cache
-            await Task.Delay(2000, TestContext.Current.CancellationToken);
+            await Task.Delay(2000, cancellationToken: TestContext.Current.CancellationToken);
 
             episode = await TMDbClient.GetTvEpisodeAsync(IdHelper.BigBangTheory, 1, 1, TvEpisodeMethods.AccountStates, cancellationToken: TestContext.Current.CancellationToken);
         }
@@ -84,7 +81,7 @@ public class ClientTvEpisodeTests : TestBase
         await TMDbClient.SetSessionInformationAsync(TestConfig.UserSessionId, SessionType.UserSession);
 
         // Account states will only show up if we've done something
-        await TMDbClient.TvEpisodeSetRatingAsync(IdHelper.FullerHouse, 1, 1, 5, TestContext.Current.CancellationToken);
+        await TMDbClient.TvEpisodeSetRatingAsync(IdHelper.FullerHouse, 1, 1, 5, cancellationToken: TestContext.Current.CancellationToken);
 
         await TestMethodsHelper.TestGetAll(Methods, async combined =>
             {
@@ -143,7 +140,7 @@ public class ClientTvEpisodeTests : TestBase
     [Fact]
     public async Task TestTvEpisodeSeparateExtrasExternalIdsAsync()
     {
-        var externalIds = await TMDbClient.GetTvEpisodeExternalIdsAsync(IdHelper.BreakingBad, 1, 1, TestContext.Current.CancellationToken);
+        var externalIds = await TMDbClient.GetTvEpisodeExternalIdsAsync(IdHelper.BreakingBad, 1, 1, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(externalIds);
     }
@@ -178,38 +175,38 @@ public class ClientTvEpisodeTests : TestBase
     public async Task TestTvEpisodeAccountStateRatingSetAsync()
     {
         await TMDbClient.SetSessionInformationAsync(TestConfig.UserSessionId, SessionType.UserSession);
-        var accountState = await TMDbClient.GetTvEpisodeAccountStateAsync(IdHelper.BreakingBad, 1, 1, TestContext.Current.CancellationToken);
+        var accountState = await TMDbClient.GetTvEpisodeAccountStateAsync(IdHelper.BreakingBad, 1, 1, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(accountState);
 
         // Remove the rating
         if (accountState.Rating.HasValue)
         {
-            Assert.True(await TMDbClient.TvEpisodeRemoveRatingAsync(IdHelper.BreakingBad, 1, 1, TestContext.Current.CancellationToken));
+            Assert.True(await TMDbClient.TvEpisodeRemoveRatingAsync(IdHelper.BreakingBad, 1, 1, cancellationToken: TestContext.Current.CancellationToken));
 
             // Allow TMDb to cache our changes
-            await Task.Delay(2000, TestContext.Current.CancellationToken);
+            await Task.Delay(2000, cancellationToken: TestContext.Current.CancellationToken);
         }
         // Test that the episode is NOT rated
-        accountState = await TMDbClient.GetTvEpisodeAccountStateAsync(IdHelper.BreakingBad, 1, 1, TestContext.Current.CancellationToken);
+        accountState = await TMDbClient.GetTvEpisodeAccountStateAsync(IdHelper.BreakingBad, 1, 1, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(accountState);
 
         Assert.Equal(IdHelper.BreakingBadSeason1Episode1Id, accountState.Id);
         Assert.False(accountState.Rating.HasValue);
 
         // Rate the episode
-        Assert.True(await TMDbClient.TvEpisodeSetRatingAsync(IdHelper.BreakingBad, 1, 1, 5, TestContext.Current.CancellationToken));
+        Assert.True(await TMDbClient.TvEpisodeSetRatingAsync(IdHelper.BreakingBad, 1, 1, 5, cancellationToken: TestContext.Current.CancellationToken));
 
         // Allow TMDb to cache our changes
-        await Task.Delay(2000, TestContext.Current.CancellationToken);
+        await Task.Delay(2000, cancellationToken: TestContext.Current.CancellationToken);
 
         // Test that the episode IS rated
-        accountState = await TMDbClient.GetTvEpisodeAccountStateAsync(IdHelper.BreakingBad, 1, 1, TestContext.Current.CancellationToken);
+        accountState = await TMDbClient.GetTvEpisodeAccountStateAsync(IdHelper.BreakingBad, 1, 1, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(accountState);
         Assert.Equal(IdHelper.BreakingBadSeason1Episode1Id, accountState.Id);
         Assert.True(accountState.Rating.HasValue);
 
         // Remove the rating
-        Assert.True(await TMDbClient.TvEpisodeRemoveRatingAsync(IdHelper.BreakingBad, 1, 1, TestContext.Current.CancellationToken));
+        Assert.True(await TMDbClient.TvEpisodeRemoveRatingAsync(IdHelper.BreakingBad, 1, 1, cancellationToken: TestContext.Current.CancellationToken));
     }
 
     /// <summary>
@@ -223,7 +220,7 @@ public class ClientTvEpisodeTests : TestBase
 
         // TMDb now returns HTTP 400 for invalid ratings instead of returning false
         // Test valid ratings only
-        Assert.True(await TMDbClient.TvEpisodeSetRatingAsync(IdHelper.BreakingBad, 1, 1, 5, TestContext.Current.CancellationToken));
+        Assert.True(await TMDbClient.TvEpisodeSetRatingAsync(IdHelper.BreakingBad, 1, 1, 5, cancellationToken: TestContext.Current.CancellationToken));
     }
 
     /// <summary>
@@ -255,7 +252,7 @@ public class ClientTvEpisodeTests : TestBase
     [Fact]
     public async Task TestTvEpisodesScreenedTheatricallyAsync()
     {
-        var results = await TMDbClient.GetTvEpisodesScreenedTheatricallyAsync(IdHelper.GameOfThrones, TestContext.Current.CancellationToken);
+        var results = await TMDbClient.GetTvEpisodesScreenedTheatricallyAsync(IdHelper.GameOfThrones, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(results);
         Assert.NotNull(results.Results);
         var single = results.Results.Single(s => s.Id == IdHelper.GameOfThronesSeason4Episode10);

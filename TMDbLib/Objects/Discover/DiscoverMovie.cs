@@ -333,7 +333,7 @@ public class DiscoverMovie : DiscoverBase<SearchMovie>
     }
 
     /// <summary>
-    /// Available options are: popularity.ascpopularity.descrelease_date.ascrelease_date.descrevenue.ascrevenue.descprimary_release_date.ascprimary_release_date.descoriginal_title.ascoriginal_title.descvote_average.ascvote_average.descvote_count.ascvote_count.desc.
+    /// Sets the sort order for the results.
     /// </summary>
     /// <param name="sortBy">The sort order to apply.</param>
     /// <returns>The current <see cref="DiscoverMovie"/> instance for method chaining.</returns>
@@ -643,6 +643,82 @@ public class DiscoverMovie : DiscoverBase<SearchMovie>
     public DiscoverMovie WhereAnyWatchMonetizationTypesMatch(params WatchMonetizationType[] monetizationTypes)
     {
         Parameters["with_watch_monetization_types"] = string.Join("|", monetizationTypes.Select(s => s.GetDescription<WatchMonetizationType>()));
+        return this;
+    }
+
+    /// <summary>
+    /// Restrict results to movies whose origin country matches the provided ISO 3166-1 code.
+    /// </summary>
+    /// <param name="originCountry">The ISO 3166-1 origin country code (e.g. "US").</param>
+    /// <returns>The current <see cref="DiscoverMovie"/> instance for method chaining.</returns>
+    public DiscoverMovie WhereOriginCountryIs(string originCountry)
+    {
+        Parameters["with_origin_country"] = originCountry;
+        return this;
+    }
+
+    /// <summary>
+    /// Exclude movies produced by the specified companies. Comma-separated IDs (AND).
+    /// </summary>
+    /// <param name="companyIds">The company IDs to exclude.</param>
+    /// <returns>The current <see cref="DiscoverMovie"/> instance for method chaining.</returns>
+    public DiscoverMovie WhereCompaniesExclude(IEnumerable<int> companyIds)
+    {
+        Parameters["without_companies"] = string.Join(",", companyIds.Select(s => s.ToString(CultureInfo.InvariantCulture)));
+        return this;
+    }
+
+    /// <summary>
+    /// Exclude movies available on the specified watch providers. Pipe-separated IDs (OR).
+    /// </summary>
+    /// <param name="providerIds">The watch provider IDs to exclude.</param>
+    /// <returns>The current <see cref="DiscoverMovie"/> instance for method chaining.</returns>
+    /// <remarks>Use in conjunction with <see cref="WhereWatchRegionIs"/> to specify the region.</remarks>
+    public DiscoverMovie ExcludeWatchProviders(IEnumerable<int> providerIds)
+    {
+        Parameters["without_watch_providers"] = string.Join("|", providerIds.Select(s => s.ToString(CultureInfo.InvariantCulture)));
+        return this;
+    }
+
+    /// <summary>
+    /// Exclude movies with the specified genres. Expected value is a list of genres.
+    /// </summary>
+    /// <param name="genres">The genres to exclude.</param>
+    /// <returns>The current <see cref="DiscoverMovie"/> instance for method chaining.</returns>
+    public DiscoverMovie WhereGenresExclude(IEnumerable<Genre> genres)
+    {
+        return WhereGenresExclude(genres.Select(s => s.Id));
+    }
+
+    /// <summary>
+    /// Exclude movies with the specified genres. Expected value is a list of integer (the id of a genre).
+    /// </summary>
+    /// <param name="genreIds">The genre IDs to exclude.</param>
+    /// <returns>The current <see cref="DiscoverMovie"/> instance for method chaining.</returns>
+    public DiscoverMovie WhereGenresExclude(IEnumerable<int> genreIds)
+    {
+        Parameters["without_genres"] = string.Join(",", genreIds.Select(s => s.ToString(CultureInfo.InvariantCulture)));
+        return this;
+    }
+
+    /// <summary>
+    /// Filter movies to exclude a specific keyword. Expected value is a list of keywords.
+    /// </summary>
+    /// <param name="keywords">The keywords to exclude.</param>
+    /// <returns>The current <see cref="DiscoverMovie"/> instance for method chaining.</returns>
+    public DiscoverMovie WhereKeywordsExclude(IEnumerable<Keyword> keywords)
+    {
+        return WhereKeywordsExclude(keywords.Select(s => s.Id));
+    }
+
+    /// <summary>
+    /// Filter movies to exclude a specific keyword. Expected value is a list of integer (the id of a keyword).
+    /// </summary>
+    /// <param name="keywordIds">The keyword IDs to exclude.</param>
+    /// <returns>The current <see cref="DiscoverMovie"/> instance for method chaining.</returns>
+    public DiscoverMovie WhereKeywordsExclude(IEnumerable<int> keywordIds)
+    {
+        Parameters["without_keywords"] = string.Join("|", keywordIds.Select(s => s.ToString(CultureInfo.InvariantCulture)));
         return this;
     }
 }

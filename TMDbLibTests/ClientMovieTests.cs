@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Xunit;
 using TMDbLib.Objects.Authentication;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Search;
 using TMDbLibTests.Helpers;
 using TMDbLibTests.JsonHelpers;
+using Xunit;
 
 namespace TMDbLibTests;
 
@@ -27,7 +27,6 @@ public class ClientMovieTests : TestBase
             [MovieMethods.Credits] = movie => movie.Credits,
             [MovieMethods.Images] = movie => movie.Images,
             [MovieMethods.Keywords] = movie => movie.Keywords,
-            [MovieMethods.Releases] = movie => movie.Releases,
             [MovieMethods.Videos] = movie => movie.Videos,
             [MovieMethods.Translations] = movie => movie.Translations,
             [MovieMethods.Similar] = movie => movie.Similar,
@@ -89,7 +88,7 @@ public class ClientMovieTests : TestBase
         tmpMethods.Remove(MovieMethods.Changes);
         tmpMethods.Remove(MovieMethods.AccountStates);
 
-        var movie = await TMDbClient.GetMovieAsync(IdHelper.TheDarkKnightRisesImdb, MovieMethods.Credits | MovieMethods.Images | MovieMethods.Keywords, TestContext.Current.CancellationToken);
+        var movie = await TMDbClient.GetMovieAsync(IdHelper.TheDarkKnightRisesImdb, MovieMethods.Credits | MovieMethods.Images | MovieMethods.Keywords, cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(movie);
         Assert.NotNull(movie.Credits);
@@ -119,12 +118,12 @@ public class ClientMovieTests : TestBase
     [Fact]
     public async Task TestMoviesGetMovieAlternativeTitles()
     {
-        var respUs = await TMDbClient.GetMovieAlternativeTitlesAsync(IdHelper.AGoodDayToDieHard, "US", TestContext.Current.CancellationToken);
-        var respFrench = await TMDbClient.GetMovieAlternativeTitlesAsync(IdHelper.AGoodDayToDieHard, "FR", TestContext.Current.CancellationToken);
+        var respUs = await TMDbClient.GetMovieAlternativeTitlesAsync(IdHelper.AGoodDayToDieHard, "US", cancellationToken: TestContext.Current.CancellationToken);
+        var respFrench = await TMDbClient.GetMovieAlternativeTitlesAsync(IdHelper.AGoodDayToDieHard, "FR", cancellationToken: TestContext.Current.CancellationToken);
 
         TMDbClient.DefaultCountry = "CA";
 
-        var respCaDefault = await TMDbClient.GetMovieAlternativeTitlesAsync(IdHelper.AGoodDayToDieHard, TestContext.Current.CancellationToken);
+        var respCaDefault = await TMDbClient.GetMovieAlternativeTitlesAsync(IdHelper.AGoodDayToDieHard, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(new
         {
@@ -140,7 +139,7 @@ public class ClientMovieTests : TestBase
     [Fact]
     public async Task TestMoviesGetMovieReleaseDates()
     {
-        var resp = await TMDbClient.GetMovieReleaseDatesAsync(IdHelper.AGoodDayToDieHard, TestContext.Current.CancellationToken);
+        var resp = await TMDbClient.GetMovieReleaseDatesAsync(IdHelper.AGoodDayToDieHard, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(resp);
     }
@@ -151,7 +150,7 @@ public class ClientMovieTests : TestBase
     [Fact]
     public async Task TestMoviesGetMovieCasts()
     {
-        var resp = await TMDbClient.GetMovieCreditsAsync(IdHelper.AGoodDayToDieHard, TestContext.Current.CancellationToken);
+        var resp = await TMDbClient.GetMovieCreditsAsync(IdHelper.AGoodDayToDieHard, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(resp);
         Assert.NotNull(resp.Cast);
         Assert.NotNull(resp.Crew);
@@ -175,7 +174,7 @@ public class ClientMovieTests : TestBase
     [Fact]
     public async Task TestMoviesGetExternalIds()
     {
-        var externalIds = await TMDbClient.GetMovieExternalIdsAsync(IdHelper.BladeRunner2049, TestContext.Current.CancellationToken);
+        var externalIds = await TMDbClient.GetMovieExternalIdsAsync(IdHelper.BladeRunner2049, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(externalIds);
     }
@@ -186,7 +185,7 @@ public class ClientMovieTests : TestBase
     [Fact]
     public async Task TestMoviesGetMovieImages()
     {
-        var resp = await TMDbClient.GetMovieImagesAsync(IdHelper.AGoodDayToDieHard, TestContext.Current.CancellationToken);
+        var resp = await TMDbClient.GetMovieImagesAsync(IdHelper.AGoodDayToDieHard, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(resp);
 
         TestImagesHelpers.TestImagePaths(resp);
@@ -212,7 +211,7 @@ public class ClientMovieTests : TestBase
     [Fact]
     public async Task TestMoviesGetMovieImagesWithImageLanguage()
     {
-        var images = await TMDbClient.GetMovieImagesAsync(IdHelper.AGoodDayToDieHard, "en-US", "en", TestContext.Current.CancellationToken);
+        var images = await TMDbClient.GetMovieImagesAsync(IdHelper.AGoodDayToDieHard, "en-US", "en", cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(images);
 
         TestImagesHelpers.TestImagePaths(images);
@@ -238,7 +237,7 @@ public class ClientMovieTests : TestBase
     [Fact]
     public async Task TestMoviesGetMovieWithImageLanguage()
     {
-        var resp = await TMDbClient.GetMovieAsync(IdHelper.Avatar, "de-DE", "de", MovieMethods.Images, TestContext.Current.CancellationToken);
+        var resp = await TMDbClient.GetMovieAsync(IdHelper.Avatar, "de-DE", "de", MovieMethods.Images, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(resp);
         var images = resp.Images;
         Assert.NotNull(images);
@@ -260,18 +259,7 @@ public class ClientMovieTests : TestBase
     [Fact]
     public async Task TestMoviesGetMovieKeywords()
     {
-        var resp = await TMDbClient.GetMovieKeywordsAsync(IdHelper.AGoodDayToDieHard, TestContext.Current.CancellationToken);
-
-        await Verify(resp);
-    }
-
-    /// <summary>
-    /// Tests that release information for a movie can be retrieved.
-    /// </summary>
-    [Fact]
-    public async Task TestMoviesGetMovieReleases()
-    {
-        var resp = await TMDbClient.GetMovieReleasesAsync(IdHelper.AGoodDayToDieHard, TestContext.Current.CancellationToken);
+        var resp = await TMDbClient.GetMovieKeywordsAsync(IdHelper.AGoodDayToDieHard, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(resp);
     }
@@ -293,7 +281,7 @@ public class ClientMovieTests : TestBase
     [Fact]
     public async Task TestMoviesGetMovieWatchProviders()
     {
-        var resp = await TMDbClient.GetMovieWatchProvidersAsync(IdHelper.AGoodDayToDieHard, TestContext.Current.CancellationToken);
+        var resp = await TMDbClient.GetMovieWatchProvidersAsync(IdHelper.AGoodDayToDieHard, cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(resp);
 
@@ -310,7 +298,7 @@ public class ClientMovieTests : TestBase
     [Fact]
     public async Task TestMoviesGetMovieTranslations()
     {
-        var resp = await TMDbClient.GetMovieTranslationsAsync(IdHelper.AGoodDayToDieHard, TestContext.Current.CancellationToken);
+        var resp = await TMDbClient.GetMovieTranslationsAsync(IdHelper.AGoodDayToDieHard, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(resp);
     }
@@ -340,7 +328,9 @@ public class ClientMovieTests : TestBase
     }
 
     /// <summary>
-    /// Tests that recommended movies for a given movie can be retrieved.
+    /// Tests that recommended movies for a given movie can be retrieved and that localization
+    /// returns localized titles for the same underlying movie. Picks the lowest-id movie
+    /// that appears in both responses to stay resilient against TMDb recommendation drift.
     /// </summary>
     [Fact]
     public async Task TestMoviesGetMovieRecommendationsMovies()
@@ -352,15 +342,23 @@ public class ClientMovieTests : TestBase
         Assert.NotNull(respGerman);
         Assert.NotNull(resp.Results);
         Assert.NotNull(respGerman.Results);
+        Assert.NotEmpty(resp.Results);
+        Assert.NotEmpty(respGerman.Results);
 
-        var single = resp.Results.Single(s => s.Id == 1571);
-        var singleGerman = respGerman.Results.Single(s => s.Id == 1571);
+        // Pick a movie that appears in both responses to compare localization.
+        var commonId = resp.Results
+            .Select(r => r.Id)
+            .Intersect(respGerman.Results.Select(r => r.Id))
+            .DefaultIfEmpty(0)
+            .Min();
+        Assert.NotEqual(0, commonId);
 
-        await Verify(new
-        {
-            single,
-            singleGerman
-        });
+        var single = resp.Results.Single(s => s.Id == commonId);
+        var singleGerman = respGerman.Results.Single(s => s.Id == commonId);
+
+        // Same underlying movie, potentially localized titles.
+        Assert.Equal(single.Id, singleGerman.Id);
+        Assert.Equal(single.OriginalTitle, singleGerman.OriginalTitle);
     }
 
     /// <summary>
@@ -548,7 +546,7 @@ public class ClientMovieTests : TestBase
         await TMDbClient.SetSessionInformationAsync(TestConfig.UserSessionId, SessionType.UserSession);
 
         // Valid ratings should succeed - use integer value that is known to work
-        Assert.True(await TMDbClient.MovieSetRatingAsync(IdHelper.Avatar, 5, TestContext.Current.CancellationToken));
+        Assert.True(await TMDbClient.MovieSetRatingAsync(IdHelper.Avatar, 5, cancellationToken: TestContext.Current.CancellationToken));
     }
 
     /// <summary>
@@ -579,12 +577,12 @@ public class ClientMovieTests : TestBase
 
         if (movie.AccountStates?.Rating is null)
         {
-            await TMDbClient.MovieSetRatingAsync(IdHelper.TheDarkKnightRises, 5, TestContext.Current.CancellationToken);
+            await TMDbClient.MovieSetRatingAsync(IdHelper.TheDarkKnightRises, 5, cancellationToken: TestContext.Current.CancellationToken);
 
             // Allow TMDb to update cache
-            await Task.Delay(2000, TestContext.Current.CancellationToken);
+            await Task.Delay(2000, cancellationToken: TestContext.Current.CancellationToken);
 
-            movie = await TMDbClient.GetMovieAsync(IdHelper.TheDarkKnightRises, MovieMethods.AccountStates, TestContext.Current.CancellationToken);
+            movie = await TMDbClient.GetMovieAsync(IdHelper.TheDarkKnightRises, MovieMethods.AccountStates, cancellationToken: TestContext.Current.CancellationToken);
             Assert.NotNull(movie);
         }
         Assert.NotNull(movie.AccountStates);

@@ -2,14 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Xunit;
 using TMDbLib.Objects.Authentication;
-using TMDbLib.Objects.Changes;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.TvShows;
 using TMDbLibTests.Helpers;
 using TMDbLibTests.JsonHelpers;
-using Credits = TMDbLib.Objects.TvShows.Credits;
+using Xunit;
 
 namespace TMDbLibTests;
 
@@ -64,10 +62,10 @@ public class ClientTvSeasonTests : TestBase
         Assert.NotNull(season);
         if (season.AccountStates?.Results is null || season.AccountStates.Results.All(s => s.EpisodeNumber != 1))
         {
-            await TMDbClient.TvEpisodeSetRatingAsync(IdHelper.BigBangTheory, 1, 1, 5, TestContext.Current.CancellationToken);
+            await TMDbClient.TvEpisodeSetRatingAsync(IdHelper.BigBangTheory, 1, 1, 5, cancellationToken: TestContext.Current.CancellationToken);
 
             // Allow TMDb to update cache
-            await Task.Delay(2000, TestContext.Current.CancellationToken);
+            await Task.Delay(2000, cancellationToken: TestContext.Current.CancellationToken);
 
             season = await TMDbClient.GetTvSeasonAsync(IdHelper.BigBangTheory, 1, TvSeasonMethods.AccountStates, cancellationToken: TestContext.Current.CancellationToken);
             Assert.NotNull(season);
@@ -89,7 +87,7 @@ public class ClientTvSeasonTests : TestBase
         await TMDbClient.SetSessionInformationAsync(TestConfig.UserSessionId, SessionType.UserSession);
 
         // Account states will only show up if we've done something
-        await TMDbClient.TvEpisodeSetRatingAsync(IdHelper.FullerHouse, 1, 1, 5, TestContext.Current.CancellationToken);
+        await TMDbClient.TvEpisodeSetRatingAsync(IdHelper.FullerHouse, 1, 1, 5, cancellationToken: TestContext.Current.CancellationToken);
 
         await TestMethodsHelper.TestGetAll(Methods, async combined =>
         {
@@ -127,13 +125,26 @@ public class ClientTvSeasonTests : TestBase
         await Verify(credits);
     }
 
+
+    /// <summary>
+    /// Tests that aggregate credits can be retrieved for a TV show across all seasons and episodes.
+    /// </summary>
+    [Fact]
+    public async Task TestAggregateCreditsExtractAllAsync()
+    {
+        var credits = await TMDbClient.GetTvSeasonAggregateCredits(IdHelper.BreakingBad, seasonNumber: 1, cancellationToken: TestContext.Current.CancellationToken);
+
+        await Verify(credits);
+    }
+
+
     /// <summary>
     /// Tests that external IDs can be retrieved separately for a TV season.
     /// </summary>
     [Fact]
     public async Task TestTvSeasonSeparateExtrasExternalIdsAsync()
     {
-        var externalIds = await TMDbClient.GetTvSeasonExternalIdsAsync(IdHelper.BreakingBad, 1, TestContext.Current.CancellationToken);
+        var externalIds = await TMDbClient.GetTvSeasonExternalIdsAsync(IdHelper.BreakingBad, 1, cancellationToken: TestContext.Current.CancellationToken);
 
         await Verify(externalIds);
     }
@@ -199,7 +210,7 @@ public class ClientTvSeasonTests : TestBase
     [Fact]
     public async Task TestTvSeasonGetChangesAsync()
     {
-        var latestTvShow = await TMDbClient.GetLatestTvShowAsync(TestContext.Current.CancellationToken);
+        var latestTvShow = await TMDbClient.GetLatestTvShowAsync(cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(latestTvShow);
         if (latestTvShow.Seasons is null || latestTvShow.Seasons.Count == 0)
         {
@@ -211,6 +222,19 @@ public class ClientTvSeasonTests : TestBase
 
         // Changes may or may not exist depending on recent activity
         Assert.NotNull(changes);
+    }
+
+    /// <summary>
+    /// Tests that watch provider information can be retrieved for a TV season by region.
+    /// </summary>
+    [Fact]
+    public async Task TestTvSeasonGetWatchProvidersAsync()
+    {
+        var resp = await TMDbClient.GetTvSeasonWatchProvidersAsync(IdHelper.GameOfThrones, 1, cancellationToken: TestContext.Current.CancellationToken);
+        Assert.NotNull(resp);
+        Assert.NotNull(resp.Results);
+
+        // Not making further assertions since this data is highly dynamic.
     }
 
     /// <summary>

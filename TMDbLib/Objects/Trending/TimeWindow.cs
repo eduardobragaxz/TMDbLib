@@ -8,6 +8,7 @@ namespace TMDbLib.Objects.Trending;
 /// <summary>
 /// Represents the time window for trending content.
 /// </summary>
+
 public enum TimeWindow
 {
     /// <summary>

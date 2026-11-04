@@ -30,4 +30,16 @@ public class ExternalIdsPerson : ExternalIds
     /// </summary>
     [JsonPropertyName("instagram_id")]
     public string? InstagramId { get; set; }
+
+    /// <summary>
+    /// Gets or sets the TikTok ID.
+    /// </summary>
+    [JsonPropertyName("tiktok_id")]
+    public string? TiktokId { get; set; }
+
+    /// <summary>
+    /// Gets or sets the YouTube ID.
+    /// </summary>
+    [JsonPropertyName("youtube_id")]
+    public string? YoutubeId { get; set; }
 }

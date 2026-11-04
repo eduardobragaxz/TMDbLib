@@ -1,6 +1,5 @@
 {
   "Guid": "a4aa3d49-2098-7a4a-8cdd-ae9fbe2f1dcf",
-  "UpdatedAt": "2025-12-24T18:45:15.982205Z",
   "Title": "Proxy Mapping for GET /3/movie/47964/keywords",
   "Description": "Proxy Mapping for GET /3/movie/47964/keywords",
   "Priority": -2000000,
@@ -17,7 +16,20 @@
     "Methods": [
       "GET"
     ],
-    "HttpVersion": "1.1"
+    "HttpVersion": "1.1",
+    "Headers": [
+      {
+        "Name": "Accept-Encoding",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "gzip, deflate, br",
+            "IgnoreCase": true
+          }
+        ],
+        "IgnoreCase": true
+      }
+    ]
   },
   "Response": {
     "StatusCode": 200,
@@ -82,7 +94,7 @@
         },
         {
           "id": 210326,
-          "name": "chernobyl"
+          "name": "chernobyl, ukraine"
         },
         {
           "id": 219404,
@@ -110,19 +122,7 @@
       "Content-Type": "application/json; charset=utf-8",
       "Transfer-Encoding": "chunked",
       "Connection": "keep-alive",
-      "Server": "openresty",
-      "x-memc": "HIT",
-      "x-memc-key": "21536ba7caf228bb298ce5b9f8f8f21c3beb8027e3474bcdc8e205b35304d962",
-      "x-az": "us-east-1b",
-      "Cache-Control": "public, max-age=6240",
-      "ETag": "W/\u00228e5348252e54149f04e9c61e942ee876\u0022",
-      "Vary": [
-        "accept-encoding",
-        "Origin"
-      ],
-      "X-Cache": "RefreshHit from cloudfront",
-      "X-Amz-Cf-Pop": "MUC50-P3",
-      "Alt-Svc": "h3=\u0022:443\u0022"
+      "Server": "openresty"
     }
   }
 }

@@ -1,13 +1,14 @@
 using System;
 using System.Text.Json.Serialization;
 using TMDbLib.Objects.General;
+using TMDbLib.Objects.General.Schema;
 
 namespace TMDbLib.Objects.Search;
 
 /// <summary>
-/// Represents a TV episode search result.
+/// TV episode search result.
 /// </summary>
-public class SearchTvEpisode : SearchBase
+public class SearchTvEpisode : TmdbEntity
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="SearchTvEpisode"/> class.
@@ -18,7 +19,7 @@ public class SearchTvEpisode : SearchBase
     }
 
     /// <summary>
-    /// Gets or sets the air date of the episode.
+    /// Gets or sets the air date.
     /// </summary>
     [JsonPropertyName("air_date")]
     public DateTime? AirDate { get; set; }
@@ -30,22 +31,34 @@ public class SearchTvEpisode : SearchBase
     public long EpisodeNumber { get; set; }
 
     /// <summary>
-    /// Gets or sets the name of the episode.
+    /// Gets or sets the episode type (e.g. standard, finale).
+    /// </summary>
+    [JsonPropertyName("episode_type")]
+    public string? EpisodeType { get; set; }
+
+    /// <summary>
+    /// Gets or sets the episode name.
     /// </summary>
     [JsonPropertyName("name")]
     public string? Name { get; set; }
 
     /// <summary>
-    /// Gets or sets the overview text of the episode.
+    /// Gets or sets the overview.
     /// </summary>
     [JsonPropertyName("overview")]
     public string? Overview { get; set; }
 
     /// <summary>
-    /// Gets or sets the production code of the episode.
+    /// Gets or sets the production code.
     /// </summary>
     [JsonPropertyName("production_code")]
     public string? ProductionCode { get; set; }
+
+    /// <summary>
+    /// Gets or sets the runtime in minutes.
+    /// </summary>
+    [JsonPropertyName("runtime")]
+    public int? Runtime { get; set; }
 
     /// <summary>
     /// Gets or sets the season number.
@@ -54,7 +67,7 @@ public class SearchTvEpisode : SearchBase
     public int SeasonNumber { get; set; }
 
     /// <summary>
-    /// Gets or sets the TV show ID.
+    /// Gets or sets the parent TV show id.
     /// </summary>
     [JsonPropertyName("show_id")]
     public int ShowId { get; set; }

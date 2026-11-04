@@ -1,0 +1,251 @@
+{
+  "Guid": "e148f969-7cd5-e84b-9258-f4f1ac49beee",
+  "Title": "Proxy Mapping for GET /3/tv/1396/lists",
+  "Description": "Proxy Mapping for GET /3/tv/1396/lists",
+  "Priority": -2000000,
+  "Request": {
+    "Path": {
+      "Matchers": [
+        {
+          "Name": "WildcardMatcher",
+          "Pattern": "/3/tv/1396/lists",
+          "IgnoreCase": false
+        }
+      ]
+    },
+    "Methods": [
+      "GET"
+    ],
+    "HttpVersion": "1.1",
+    "Headers": [
+      {
+        "Name": "Accept-Encoding",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "gzip, deflate, br",
+            "IgnoreCase": true
+          }
+        ],
+        "IgnoreCase": true
+      }
+    ]
+  },
+  "Response": {
+    "StatusCode": 200,
+    "BodyAsJson": {
+      "id": 1396,
+      "page": 1,
+      "results": [
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8646325,
+          "item_count": 699,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "Already seen",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8562644,
+          "item_count": 35,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "watch later",
+          "poster_path": null
+        },
+        {
+          "description": "Films in my library",
+          "favorite_count": 0,
+          "id": 36939,
+          "item_count": 778,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "DvD Database",
+          "poster_path": null
+        },
+        {
+          "description": "Things I\u0027m currently watching or started and haven\u0027t came back to yet (ratings shown are the averages - not mine :p)",
+          "favorite_count": 0,
+          "id": 8636073,
+          "item_count": 44,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "Watching",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8294743,
+          "item_count": 320,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "Watched",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8538803,
+          "item_count": 316,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "\u0130zlenecek",
+          "poster_path": null
+        },
+        {
+          "description": "film",
+          "favorite_count": 0,
+          "id": 8523552,
+          "item_count": 283,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "movie ",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8223817,
+          "item_count": 658,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "almost every movie i watched",
+          "poster_path": null
+        },
+        {
+          "description": "Films I own on DVD and Blu-Ray.",
+          "favorite_count": 0,
+          "id": 8570792,
+          "item_count": 1871,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "Physical Media - Movies",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8230665,
+          "item_count": 684,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "TV SHOW",
+          "poster_path": null
+        },
+        {
+          "description": "Television Series of which I have watched one or more complete seasons.",
+          "favorite_count": 0,
+          "id": 8193811,
+          "item_count": 707,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "Television Series",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8636522,
+          "item_count": 7362,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "US Enterprise TV",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8663733,
+          "item_count": 271,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "Watched",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8523635,
+          "item_count": 154,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "TV Shows",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8568424,
+          "item_count": 71,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "English Series",
+          "poster_path": null
+        },
+        {
+          "description": "Cain Cinema features a 4K UHD picture on a 120\u0022 (16:9) screen, and a 7.2.4 Dolby Atmos audio experience. ",
+          "favorite_count": 0,
+          "id": 7081593,
+          "item_count": 2121,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "Now Showing at Cain Cinema",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8661692,
+          "item_count": 45,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "Drama tv",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8661691,
+          "item_count": 44,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "Crime / Mystery",
+          "poster_path": null
+        },
+        {
+          "description": "TV SERIES BALISTAR LIST\r\nJl. Sahadewa No.13C, Legian, Kec kuta, Kabupaten Badung, Bali. \u201CIn front of The Local Restaurant\u201D",
+          "favorite_count": 0,
+          "id": 8226356,
+          "item_count": 2792,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "TV SERIES 2026 UPDATE",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8629905,
+          "item_count": 133,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "name": "TV Show Collection",
+          "poster_path": null
+        }
+      ],
+      "total_pages": 119,
+      "total_results": 2363
+    },
+    "Headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "Server": "openresty"
+    }
+  }
+}

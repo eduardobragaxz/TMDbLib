@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
+using TMDbLib.Objects.General.Schema;
 
 namespace TMDbLib.Objects.Search;
 
 /// <summary>
-/// Represents a collection search result.
+/// Collection search result.
 /// </summary>
-public class SearchCollection : SearchBase
+public class SearchCollection : TmdbEntity
 {
     // Property to hold additional data from the JSON (populated by JSON deserialization)
 #pragma warning disable CS0649 // Field is assigned by JSON deserialization
@@ -31,7 +32,7 @@ public class SearchCollection : SearchBase
     public string? BackdropPath { get; set; }
 
     /// <summary>
-    /// Gets or sets the name of the collection.
+    /// Gets or sets the collection name.
     /// </summary>
     [JsonPropertyName("name")]
     public string? Name
@@ -41,7 +42,7 @@ public class SearchCollection : SearchBase
             // If _name is not set, attempt to retrieve the "title" property from additional data
             if (_name is null && _additionalData is not null && _additionalData.TryGetValue("title", out var nameToken))
             {
-                return nameToken.ToString();
+                return nameToken.ValueKind == JsonValueKind.String ? nameToken.GetString() : nameToken.ToString();
             }
 
             return _name;
@@ -56,7 +57,7 @@ public class SearchCollection : SearchBase
     public string? OriginalLanguage { get; set; }
 
     /// <summary>
-    /// Gets or sets the original name of the collection.
+    /// Gets or sets the original collection name.
     /// </summary>
     [JsonPropertyName("original_name")]
     public string? OriginalName
@@ -67,7 +68,7 @@ public class SearchCollection : SearchBase
             if (_originalName is null && _additionalData is not null &&
                 _additionalData.TryGetValue("original_title", out var originalNameToken))
             {
-                return originalNameToken.ToString();
+                return originalNameToken.ValueKind == JsonValueKind.String ? originalNameToken.GetString() : originalNameToken.ToString();
             }
 
             return _originalName;
@@ -76,7 +77,7 @@ public class SearchCollection : SearchBase
     }
 
     /// <summary>
-    /// Gets or sets the overview text of the collection.
+    /// Gets or sets the overview text.
     /// </summary>
     [JsonPropertyName("overview")]
     public string? Overview { get; set; }

@@ -5,8 +5,9 @@ using TMDbLib.Utilities;
 namespace TMDbLib.Objects.TvShows;
 
 /// <summary>
-/// Defines the optional data that can be retrieved along with TV season details.
+/// Additional TV season data to retrieve from the API.
 /// </summary>
+
 [Flags]
 public enum TvSeasonMethods
 {
@@ -51,4 +52,16 @@ public enum TvSeasonMethods
     /// </summary>
     [JsonStringEnumMemberName("translations")]
     Translations = 32,
+
+    /// <summary>
+    /// Include aggregated credits.
+    /// </summary>
+    [JsonStringEnumMemberName("aggregate_credits")]
+    CreditsAggregate = 64,
+
+    /// <summary>
+    /// Include watch providers.
+    /// </summary>
+    [JsonStringEnumMemberName("watch/providers")]
+    WatchProviders = 128,
 }

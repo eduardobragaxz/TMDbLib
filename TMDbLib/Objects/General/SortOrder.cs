@@ -7,6 +7,7 @@ namespace TMDbLib.Objects.General;
 /// <summary>
 /// Represents sort order options.
 /// </summary>
+
 public enum SortOrder
 {
     /// <summary>

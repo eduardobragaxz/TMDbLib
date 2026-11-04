@@ -6,7 +6,9 @@ using System.Text.Json.Serialization;
 namespace TMDbLib.Utilities.Converters;
 
 /// <summary>
-/// JSON converter for UTC datetime values in TMDb's specific format.
+/// JSON converter factory for UTC datetime values in TMDb's specific format
+/// (<c>yyyy-MM-dd HH:mm:ss UTC</c>). Supports both <see cref="DateTime"/> and
+/// <see cref="Nullable{DateTime}"/> properties.
 /// </summary>
 public class TmdbUtcTimeConverter : JsonConverter<DateTime>
 {

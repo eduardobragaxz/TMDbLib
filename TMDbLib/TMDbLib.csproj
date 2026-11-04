@@ -25,6 +25,7 @@
     </PackageReference>
   </ItemGroup>
 
+  <!-- Build-time only: generates the enum <-> TMDb string maps so no runtime reflection is needed. -->
   <ItemGroup>
     <None Include="../Readme.md" Pack="true" PackagePath="" />
   </ItemGroup>

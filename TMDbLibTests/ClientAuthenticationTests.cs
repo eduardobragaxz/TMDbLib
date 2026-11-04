@@ -1,8 +1,10 @@
 using System;
 using System.Threading.Tasks;
+using TMDbLib.Objects.Authentication;
 using TMDbLibTests.Exceptions;
-using Xunit;
+using TMDbLibTests.Helpers;
 using TMDbLibTests.JsonHelpers;
+using Xunit;
 
 namespace TMDbLibTests;
 
@@ -33,7 +35,7 @@ public class ClientAuthenticationTests : TestBase
     [Fact]
     public async Task TestAuthenticationRequestNewToken()
     {
-        var token = await TMDbClient.AuthenticationRequestAutenticationTokenAsync(TestContext.Current.CancellationToken);
+        var token = await TMDbClient.AuthenticationRequestAutenticationTokenAsync(cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(token);
         Assert.True(token.Success);
@@ -66,7 +68,7 @@ public class ClientAuthenticationTests : TestBase
     {
         const string requestToken = "bla";
 
-        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => TMDbClient.AuthenticationGetUserSessionAsync(requestToken, TestContext.Current.CancellationToken));
+        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => TMDbClient.AuthenticationGetUserSessionAsync(requestToken, cancellationToken: TestContext.Current.CancellationToken));
     }
 
     /// <summary>
@@ -79,11 +81,11 @@ public class ClientAuthenticationTests : TestBase
     [Trait("Category", "RequiresAccountAccess")]
     public async Task TestAuthenticationGetUserSessionApiUserValidationSuccessAsync()
     {
-        var token = await TMDbClient.AuthenticationRequestAutenticationTokenAsync(TestContext.Current.CancellationToken);
+        var token = await TMDbClient.AuthenticationRequestAutenticationTokenAsync(cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(token);
         Assert.NotNull(token.RequestToken);
 
-        await TMDbClient.AuthenticationValidateUserTokenAsync(token.RequestToken, TestConfig.Username, TestConfig.Password, TestContext.Current.CancellationToken);
+        await TMDbClient.AuthenticationValidateUserTokenAsync(token.RequestToken, TestConfig.Username, TestConfig.Password, cancellationToken: TestContext.Current.CancellationToken);
     }
 
     /// <summary>
@@ -92,11 +94,11 @@ public class ClientAuthenticationTests : TestBase
     [Fact]
     public async Task TestAuthenticationGetUserSessionApiUserValidationInvalidLoginAsync()
     {
-        var token = await TMDbClient.AuthenticationRequestAutenticationTokenAsync(TestContext.Current.CancellationToken);
+        var token = await TMDbClient.AuthenticationRequestAutenticationTokenAsync(cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(token);
         Assert.NotNull(token.RequestToken);
 
-        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => TMDbClient.AuthenticationValidateUserTokenAsync(token.RequestToken, "bla", "bla", TestContext.Current.CancellationToken));
+        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => TMDbClient.AuthenticationValidateUserTokenAsync(token.RequestToken, "bla", "bla", cancellationToken: TestContext.Current.CancellationToken));
     }
 
     /// <summary>
@@ -111,7 +113,7 @@ public class ClientAuthenticationTests : TestBase
     {
         try
         {
-            var session = await TMDbClient.AuthenticationGetUserSessionAsync(TestConfig.Username, TestConfig.Password, TestContext.Current.CancellationToken);
+            var session = await TMDbClient.AuthenticationGetUserSessionAsync(TestConfig.Username, TestConfig.Password, cancellationToken: TestContext.Current.CancellationToken);
 
             Assert.NotNull(session);
             Assert.True(session.Success);
@@ -135,7 +137,7 @@ public class ClientAuthenticationTests : TestBase
     {
         const string requestToken = "5f3a62c0d7977319e3d14adf1a2064c0c0938bcf";
 
-        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => TMDbClient.AuthenticationGetUserSessionAsync(requestToken, TestContext.Current.CancellationToken));
+        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => TMDbClient.AuthenticationGetUserSessionAsync(requestToken, cancellationToken: TestContext.Current.CancellationToken));
     }
 
     /// <summary>
@@ -144,10 +146,65 @@ public class ClientAuthenticationTests : TestBase
     [Fact]
     public async Task TestAuthenticationCreateGuestSessionAsync()
     {
-        var guestSession = await TMDbClient.AuthenticationCreateGuestSessionAsync(TestContext.Current.CancellationToken);
+        var guestSession = await TMDbClient.AuthenticationCreateGuestSessionAsync(cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(guestSession);
         Assert.True(guestSession.Success);
         Assert.NotNull(guestSession.GuestSessionId);
+    }
+
+    /// <summary>
+    /// Should report the configured API key as valid (the test config uses a real working key).
+    /// </summary>
+    [Fact]
+    public async Task TestAuthenticationValidateApiKeyAsync()
+    {
+        var isValid = await TMDbClient.AuthenticationValidateApiKeyAsync(cancellationToken: TestContext.Current.CancellationToken);
+
+        Assert.True(isValid);
+    }
+
+    /// <summary>
+    /// Tests that logging out a session works correctly. Skipped when test credentials aren't valid.
+    /// </summary>
+    [Fact]
+    [Trait("Category", "RequiresAccountAccess")]
+    public async Task TestAuthenticationDeleteSessionAsync()
+    {
+        try
+        {
+            var session = await TMDbClient.AuthenticationGetUserSessionAsync(TestConfig.Username, TestConfig.Password, cancellationToken: TestContext.Current.CancellationToken);
+            if (session?.SessionId is null)
+            {
+                _output.WriteLine("WARNING: Could not establish a session; skipping delete test.");
+                return;
+            }
+
+            var result = await TMDbClient.AuthenticationDeleteSessionAsync(session.SessionId, cancellationToken: TestContext.Current.CancellationToken);
+
+            Assert.True(result);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            _output.WriteLine($"WARNING: Test credentials are no longer valid. Exception: {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Tests that calling a user-session method without any session throws UserSessionRequiredException.
+    /// </summary>
+    [Fact]
+    public async Task TestUserSessionRequiredWithoutSessionAsync()
+    {
+        await Assert.ThrowsAsync<UserSessionRequiredException>(() => TMDbClient.AccountGetDetailsAsync(cancellationToken: TestContext.Current.CancellationToken));
+    }
+
+    /// <summary>
+    /// Tests that calling a method accepting a guest or user session without any session throws GuestSessionRequiredException.
+    /// </summary>
+    [Fact]
+    public async Task TestGuestSessionRequiredWithoutSessionAsync()
+    {
+        await Assert.ThrowsAsync<GuestSessionRequiredException>(() => TMDbClient.MovieSetRatingAsync(IdHelper.Avatar, 5, cancellationToken: TestContext.Current.CancellationToken));
     }
 }

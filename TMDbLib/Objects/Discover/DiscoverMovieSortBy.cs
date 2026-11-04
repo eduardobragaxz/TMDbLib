@@ -7,6 +7,7 @@ namespace TMDbLib.Objects.Discover;
 /// <summary>
 /// Specifies the sorting options for movie discovery queries.
 /// </summary>
+
 public enum DiscoverMovieSortBy
 {
     /// <summary>
@@ -27,13 +28,13 @@ public enum DiscoverMovieSortBy
     PopularityDesc,
 
     /// <summary>
-    /// Sort by release date in ascending order.
+    /// Sort by release date (of any release type) in ascending order.
     /// </summary>
     [JsonStringEnumMemberName("release_date.asc")]
     ReleaseDate,
 
     /// <summary>
-    /// Sort by release date in descending order.
+    /// Sort by release date (of any release type) in descending order.
     /// </summary>
     [JsonStringEnumMemberName("release_date.desc")]
     ReleaseDateDesc,
@@ -73,6 +74,18 @@ public enum DiscoverMovieSortBy
     /// </summary>
     [JsonStringEnumMemberName("original_title.desc")]
     OriginalTitleDesc,
+
+    /// <summary>
+    /// Sort by title in ascending order.
+    /// </summary>
+    [JsonStringEnumMemberName("title.asc")]
+    Title,
+
+    /// <summary>
+    /// Sort by title in descending order.
+    /// </summary>
+    [JsonStringEnumMemberName("title.desc")]
+    TitleDesc,
 
     /// <summary>
     /// Sort by vote average in ascending order.

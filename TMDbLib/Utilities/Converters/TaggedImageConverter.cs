@@ -10,11 +10,6 @@ namespace TMDbLib.Utilities.Converters;
 
 internal class TaggedImageConverter : JsonConverter<TaggedImage>
 {
-    public override bool CanConvert(Type objectType)
-    {
-        return objectType == typeof(TaggedImage);
-    }
-
     public override TaggedImage? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         var jElement = JsonElement.ParseValue(ref reader);

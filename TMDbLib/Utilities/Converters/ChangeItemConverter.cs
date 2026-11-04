@@ -11,11 +11,6 @@ namespace TMDbLib.Utilities.Converters;
 
 internal class ChangeItemConverter : JsonConverter<ChangeItemBase?>
 {
-    public override bool CanConvert(Type objectType)
-    {
-        return objectType == typeof(ChangeItemBase);
-    }
-
     public override ChangeItemBase? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         var jElement = JsonElement.ParseValue(ref reader);

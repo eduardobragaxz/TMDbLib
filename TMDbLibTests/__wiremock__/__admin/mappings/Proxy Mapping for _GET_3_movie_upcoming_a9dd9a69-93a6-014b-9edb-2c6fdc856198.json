@@ -1,6 +1,5 @@
 {
   "Guid": "a9dd9a69-93a6-014b-9edb-2c6fdc856198",
-  "UpdatedAt": "2025-12-24T18:45:23.9663359Z",
   "Title": "Proxy Mapping for GET /3/movie/upcoming",
   "Description": "Proxy Mapping for GET /3/movie/upcoming",
   "Priority": -2000000,
@@ -18,6 +17,19 @@
       "GET"
     ],
     "HttpVersion": "1.1",
+    "Headers": [
+      {
+        "Name": "Accept-Encoding",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "gzip, deflate, br",
+            "IgnoreCase": true
+          }
+        ],
+        "IgnoreCase": true
+      }
+    ],
     "Params": [
       {
         "Name": "page",
@@ -35,423 +47,436 @@
     "StatusCode": 200,
     "BodyAsJson": {
       "dates": {
-        "maximum": "2026-01-21",
-        "minimum": "2025-12-31"
+        "maximum": "2026-09-02",
+        "minimum": "2026-08-12"
       },
       "page": 2,
       "results": [
         {
           "adult": false,
-          "backdrop_path": "/jOuu4mEBOuJVb6CkkmRDpjnrZed.jpg",
+          "backdrop_path": "/b9q9VmbXDvJmTziRqkwdEmFdwhr.jpg",
+          "genre_ids": [
+            878,
+            9648,
+            53
+          ],
+          "id": 1101383,
+          "title": "The End of Oak Street",
+          "original_language": "en",
+          "original_title": "The End of Oak Street",
+          "overview": "After a mysterious cosmic event rips Oak Street from suburbia and transports their neighborhood to someplace unknown, the Platt family soon discovers that their very survival depends on them sticking together as they navigate their now unrecognizable surroundings.",
+          "popularity": 0.0,
+          "poster_path": "/3SifFCwwFzXdU1Ew0nA4Z92Bs15.jpg",
+          "release_date": "2026-08-12",
+          "softcore": false,
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/7FivR6OVr56calRq8UyZjmPsVE2.jpg",
+          "genre_ids": [
+            28,
+            10752
+          ],
+          "id": 1594914,
+          "title": "Lucky Strike",
+          "original_language": "en",
+          "original_title": "Lucky Strike",
+          "overview": "A wounded American soldier fights to survive behind enemy lines during WWII\u0027s Battle of the Bulge against the Germans, relying on his instinct, spy craft and a hand-radio to evade capture and find his way back to his unit.",
+          "popularity": 0.0,
+          "poster_path": "/kzRAd7mj39ZY3FGNrDdZjqx56tn.jpg",
+          "release_date": "2026-06-26",
+          "softcore": false,
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/dyJvKsNs2KP8qQnAXbRwDjblViy.jpg",
+          "genre_ids": [
+            16,
+            10751,
+            14
+          ],
+          "id": 129,
+          "title": "Spirited Away",
+          "original_language": "ja",
+          "original_title": "\u5343\u3068\u5343\u5C0B\u306E\u795E\u96A0\u3057",
+          "overview": "A young girl, Chihiro, becomes trapped in a strange new world of spirits. When her parents undergo a mysterious transformation, she must call upon the courage she never knew she had to free her family.",
+          "popularity": 0.0,
+          "poster_path": "/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
+          "release_date": "2001-07-20",
+          "softcore": false,
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/lMK3FnMfQ9O3DiC7hi4J2XBzNf.jpg",
+          "genre_ids": [
+            35,
+            16,
+            14,
+            12
+          ],
+          "id": 1633056,
+          "title": "All Wishes Come True!",
+          "original_language": "zh",
+          "original_title": "\u516B\u4ED9\uFF01",
+          "overview": "Eight grassroot mortals use their street smarts and hilarious schemes to defy powerful gods, earning their title as the \u0022Eight Immortals.\u0022",
+          "popularity": 0.0,
+          "poster_path": "/wJ9FLxq3Q6D4ve8TUepYsr0PL3p.jpg",
+          "release_date": "2026-07-10",
+          "softcore": false,
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/izkMjmhauFx9DjoBQqM5sM5WAwE.jpg",
+          "genre_ids": [
+            28,
+            53,
+            878
+          ],
+          "id": 280,
+          "title": "Terminator 2: Judgment Day",
+          "original_language": "en",
+          "original_title": "Terminator 2: Judgment Day",
+          "overview": "Ten years after the events of the original, a reprogrammed T-800 is sent back in time to protect young John Connor from the shape-shifting T-1000. Together with his mother Sarah, he fights to stop Skynet from triggering a nuclear apocalypse.",
+          "popularity": 0.0,
+          "poster_path": "/jFTVD4XoWQTcg7wdyJKa8PEds5q.jpg",
+          "release_date": "1991-07-03",
+          "softcore": false,
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/fx2cEuadZK28VHKkc0F1nFR96i0.jpg",
           "genre_ids": [
             27,
-            9648
-          ],
-          "id": 937941,
-          "original_language": "en",
-          "original_title": "Shelby Oaks",
-          "overview": "A woman\u0027s obsessive search for her missing sister leads her into a terrifying mystery at the hands of an unknown evil.",
-          "popularity": 22.2051,
-          "poster_path": "/i3omY4P6QUzFQlEeclWY92RuXCH.jpg",
-          "release_date": "2025-10-02",
-          "title": "Shelby Oaks",
-          "video": false,
-          "vote_average": 5.781,
-          "vote_count": 128
-        },
-        {
-          "adult": false,
-          "backdrop_path": "/kWYfW2Re0rUDE6IHhy4CRuKWeFr.jpg",
-          "genre_ids": [
-            12,
-            14,
-            28
-          ],
-          "id": 121,
-          "original_language": "en",
-          "original_title": "The Lord of the Rings: The Two Towers",
-          "overview": "Frodo Baggins and the other members of the Fellowship continue on their sacred quest to destroy the One Ring--but on separate paths. Their destinies lie at two towers--Orthanc Tower in Isengard, where the corrupt wizard Saruman awaits, and Sauron\u0027s fortress at Barad-dur, deep within the dark lands of Mordor. Frodo and Sam are trekking to Mordor to destroy the One Ring of Power while Gimli, Legolas and Aragorn search for the orc-captured Merry and Pippin. All along, nefarious wizard Saruman awaits the Fellowship members at the Orthanc Tower in Isengard.",
-          "popularity": 21.6824,
-          "poster_path": "/5VTN0pR8gcqV3EPUHHfMGnJYN9L.jpg",
-          "release_date": "2002-12-18",
-          "title": "The Lord of the Rings: The Two Towers",
-          "video": false,
-          "vote_average": 8.41,
-          "vote_count": 23183
-        },
-        {
-          "adult": false,
-          "backdrop_path": "/vRoIogTQDO5yAmTmH5uGrlPfS0N.jpg",
-          "genre_ids": [
-            18
-          ],
-          "id": 1124566,
-          "original_language": "no",
-          "original_title": "Affeksjonsverdi",
-          "overview": "Sisters Nora and Agnes reunite with their estranged father, the charismatic Gustav, a once-renowned director who offers stage actress Nora a role in what he hopes will be his comeback film. When Nora turns it down, she soon discovers he has given her part to an eager young Hollywood star.",
-          "popularity": 21.5149,
-          "poster_path": "/7YYrTByEx7fPetfcTa6pEF6XjD9.jpg",
-          "release_date": "2025-08-20",
-          "title": "Sentimental Value",
-          "video": false,
-          "vote_average": 7.6,
-          "vote_count": 182
-        },
-        {
-          "adult": false,
-          "backdrop_path": "/2YOnE2qmoyyOUqQsFit12gDSauk.jpg",
-          "genre_ids": [
-            80,
-            35,
-            18
-          ],
-          "id": 1242419,
-          "original_language": "en",
-          "original_title": "Roofman",
-          "overview": "A former Army Ranger and struggling father turns to robbing McDonald\u2019s restaurants by cutting holes in their roofs, earning him the nickname \u0027Roofman\u0027. After escaping prison, he secretly lives inside a Toys \u201CR\u201D Us for six months, surviving undetected while planning his next move. But when he falls for a divorced mom drawn to his undeniable charm, his double life begins to unravel, setting off a compelling and suspenseful game of cat and mouse as his past closes in.",
-          "popularity": 21.2572,
-          "poster_path": "/pUpFD3Oq1eN5mdF9MDwCwH874P8.jpg",
-          "release_date": "2025-10-08",
-          "title": "Roofman",
-          "video": false,
-          "vote_average": 7.237,
-          "vote_count": 321
-        },
-        {
-          "adult": false,
-          "backdrop_path": "/2u7zbn8EudG6kLlBzUYqP8RyFU4.jpg",
-          "genre_ids": [
-            12,
-            14,
-            28
-          ],
-          "id": 122,
-          "original_language": "en",
-          "original_title": "The Lord of the Rings: The Return of the King",
-          "overview": "As armies mass for a final battle that will decide the fate of the world--and powerful, ancient forces of Light and Dark compete to determine the outcome--one member of the Fellowship of the Ring is revealed as the noble heir to the throne of the Kings of Men. Yet, the sole hope for triumph over evil lies with a brave hobbit, Frodo, who, accompanied by his loyal friend Sam and the hideous, wretched Gollum, ventures deep into the very dark heart of Mordor on his seemingly impossible quest to destroy the Ring of Power.\u200B",
-          "popularity": 20.6783,
-          "poster_path": "/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg",
-          "release_date": "2003-12-17",
-          "title": "The Lord of the Rings: The Return of the King",
-          "video": false,
-          "vote_average": 8.491,
-          "vote_count": 25759
-        },
-        {
-          "adult": false,
-          "backdrop_path": "/AvYsEYnj8h0495UhBYEXqK7hkFo.jpg",
-          "genre_ids": [
-            35,
-            80,
-            18,
-            9648
-          ],
-          "id": 1287571,
-          "original_language": "id",
-          "original_title": "Agak Laen: Menyala Pantiku!",
-          "overview": "After repeatedly failing their missions, Detectives Bene, Boris, Jegel, and Oki are given one last chance: to go undercover in a nursing home in search of a fugitive wanted for the murder of the mayor\u2019s child.",
-          "popularity": 19.548,
-          "poster_path": "/48Lbiwc8QiaGXhpfHkWExLgIcaa.jpg",
-          "release_date": "2025-11-27",
-          "title": "Agak Laen: Menyala Pantiku!",
-          "video": false,
-          "vote_average": 8.2,
-          "vote_count": 4
-        },
-        {
-          "adult": false,
-          "backdrop_path": "/yt9m5CiU2MZkQoNl1kqLPODNR4t.jpg",
-          "genre_ids": [
-            18,
-            10749
-          ],
-          "id": 858024,
-          "original_language": "en",
-          "original_title": "Hamnet",
-          "overview": "The powerful story of love and loss that inspired the creation of Shakespeare\u0027s timeless masterpiece, Hamlet.",
-          "popularity": 18.4461,
-          "poster_path": "/71KNp6RiOQTbs8Fn1DagrFQrZmx.jpg",
-          "release_date": "2025-11-26",
-          "title": "Hamnet",
-          "video": false,
-          "vote_average": 8.2,
-          "vote_count": 17
-        },
-        {
-          "adult": false,
-          "backdrop_path": "/rz8NcfTRczvn94vpnmMx42zt6EC.jpg",
-          "genre_ids": [
-            53,
-            18
-          ],
-          "id": 1042834,
-          "original_language": "en",
-          "original_title": "Eden",
-          "overview": "A group of disillusioned outsiders abandon modern society in search of a new beginning. Settling on a remote, uninhabited island, their utopian dream quickly unravels as they discover that the greatest threat isn\u2019t the brutal climate or deadly wildlife, but each other.",
-          "popularity": 14.9614,
-          "poster_path": "/jbFEESMVbpJU8IjZBjiWGJdEsxR.jpg",
-          "release_date": "2025-04-03",
-          "title": "Eden",
-          "video": false,
-          "vote_average": 6.751,
-          "vote_count": 456
-        },
-        {
-          "adult": false,
-          "backdrop_path": "/7PDe2oJu8BHsu9hJ02FjOXT20a1.jpg",
-          "genre_ids": [
-            18,
-            10402,
-            10749
-          ],
-          "id": 1371185,
-          "original_language": "en",
-          "original_title": "Song Sung Blue",
-          "overview": "Based on a true story, two down-on-their-luck musicians form a joyous Neil Diamond tribute band, proving it\u0027s never too late to find love and follow your dreams.",
-          "popularity": 13.8286,
-          "poster_path": "/3HsIAbHWbFDUbY2jfj4wqEjGC3b.jpg",
-          "release_date": "2025-12-25",
-          "title": "Song Sung Blue",
-          "video": false,
-          "vote_average": 6.0,
-          "vote_count": 3
-        },
-        {
-          "adult": false,
-          "backdrop_path": "/cJvUJEEQ86LSjl4gFLkYpdCJC96.jpg",
-          "genre_ids": [
-            10752,
-            28
-          ],
-          "id": 1241436,
-          "original_language": "en",
-          "original_title": "Warfare",
-          "overview": "A platoon of Navy SEALs embarks on a dangerous mission in Ramadi, Iraq, with the chaos and brotherhood of war retold through their memories of the event.",
-          "popularity": 13.208,
-          "poster_path": "/srj9rYrjefyWqkLc6l2xjTGeBGO.jpg",
-          "release_date": "2025-04-09",
-          "title": "Warfare",
-          "video": false,
-          "vote_average": 7.103,
-          "vote_count": 1184
-        },
-        {
-          "adult": false,
-          "backdrop_path": "/tPaurpIUskVji5vwV0dhy9pq4Vs.jpg",
-          "genre_ids": [
-            10751,
-            16,
-            12,
             35
           ],
-          "id": 953,
+          "id": 1266127,
+          "title": "Ready or Not: Here I Come",
           "original_language": "en",
-          "original_title": "Madagascar",
-          "overview": "Four animal friends get a taste of the wild life when they break out of captivity at the Central Park Zoo and wash ashore on the island of Madagascar.",
-          "popularity": 12.881,
-          "poster_path": "/zMpJY5CJKUufG9OTw0In4eAFqPX.jpg",
-          "release_date": "2005-05-25",
-          "title": "Madagascar",
+          "original_title": "Ready or Not: Here I Come",
+          "overview": "Moments after surviving an all-out attack from the Le Domas family, Grace discovers she\u2019s reached the next level of the nightmarish game \u2014 and this time with her estranged sister Faith at her side. Grace has one chance to survive, keep her sister alive, and claim the High Seat of the Council that controls the world. Four rival families are hunting her for the throne, and whoever wins rules it all.",
+          "popularity": 0.0,
+          "poster_path": "/jRf89HVEtBZiSnOXXWDhZOfuTwW.jpg",
+          "release_date": "2026-03-19",
+          "softcore": false,
           "video": false,
-          "vote_average": 6.917,
-          "vote_count": 11395
+          "vote_average": 0.0,
+          "vote_count": 0
         },
         {
           "adult": false,
-          "backdrop_path": "/g1OvTd1eF346vmx8qsJnjaiooZ6.jpg",
+          "backdrop_path": "/kLA1GqiOEyVgXxgNqLoCr7bYcqu.jpg",
+          "genre_ids": [
+            18,
+            35,
+            10749
+          ],
+          "id": 950028,
+          "title": "The Invite",
+          "original_language": "en",
+          "original_title": "The Invite",
+          "overview": "Joe and Angela\u2019s marriage is on thin ice. When they invite their enigmatic upstairs neighbors for a dinner party, the night spirals into unexpected places. Have they reignited the spark or lit the match that burns it all down?",
+          "popularity": 0.0,
+          "poster_path": "/b7Dr8Chzse8VagexAporUu2RtLx.jpg",
+          "release_date": "2026-06-25",
+          "softcore": false,
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/8x9iKH8kWA0zdkgNdpAew7OstYe.jpg",
+          "genre_ids": [
+            16,
+            10749,
+            18
+          ],
+          "id": 372058,
+          "title": "Your Name.",
+          "original_language": "ja",
+          "original_title": "\u541B\u306E\u540D\u306F\u3002",
+          "overview": "High schoolers Mitsuha and Taki are complete strangers living separate lives. But one night, they suddenly switch places. Mitsuha wakes up in Taki\u2019s body, and he in hers. This bizarre occurrence continues to happen randomly, and the two must adjust their lives around each other.",
+          "popularity": 0.0,
+          "poster_path": "/q719jXXEzOoYaps6babgKnONONX.jpg",
+          "release_date": "2016-07-01",
+          "softcore": false,
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/mDVnHFcxxUJC9TQFVeKh1TJNBzh.jpg",
+          "genre_ids": [
+            28,
+            53
+          ],
+          "id": 1279493,
+          "title": "The Get Out",
+          "original_language": "en",
+          "original_title": "The Get Out",
+          "overview": "A nightclub owner is on the verge of leaving his dangerous past behind for retirement with his girlfriend. When masked gunmen rob him and he finds himself squeezed by ruthless cartels, a mysterious newcomer arrives with an interest in buying the business. With danger closing in from all sides, he must navigate a deadly web of deception, power, and survival  -  where escape may no longer be an option.",
+          "popularity": 0.0,
+          "poster_path": "/zlkeH0s7dDxcnuPcHBqAyXFUxqN.jpg",
+          "release_date": "2026-06-18",
+          "softcore": false,
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/3TwUt1vUmbPaUMJSm7luCbDABTB.jpg",
           "genre_ids": [
             12,
-            14,
+            16,
+            35
+          ],
+          "id": 1598766,
+          "title": "Crayon Shin-chan the Movie: Very Bizarre! My Yokai Vacation",
+          "original_language": "ja",
+          "original_title": "\u30AF\u30EC\u30E8\u30F3\u3057\u3093\u3061\u3083\u3093 \u5947\u3005\u602A\u3005\uFF01\u30AA\u30E9\u306E\u5996\u602A\u30D0\u30B1\uFF5E\u30B7\u30E7\u30F3",
+          "overview": "Shin-chan and his family visit his father\u0027s home town of Akita in order to view the Omagari Fireworks Festival. When a strange incident to causes the residents of \u201CYokai Land\u201D to begin running wild throughout Akita and the rest of Japan, Shin-chan and company are lured to \u201CYokai Land\u201D for an unusual adventure.",
+          "popularity": 0.0,
+          "poster_path": "/15iwqqJVgFfeFh4Y1f8gg9yi2Fw.jpg",
+          "release_date": "2026-07-31",
+          "softcore": false,
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/75pK9Dj1CheZFItgld9TVvb2P4x.jpg",
+          "genre_ids": [
+            27,
+            53,
+            35
+          ],
+          "id": 1477712,
+          "title": "Ice Cream Man",
+          "original_language": "en",
+          "original_title": "Ice Cream Man",
+          "overview": "An idyllic summer town descends into madness when an ice cream man serves kids sweet delights with horrifying results.",
+          "popularity": 0.0,
+          "poster_path": "/c987gxFjXqYOxZEZKcTkS1ONTWH.jpg",
+          "release_date": "2026-08-03",
+          "softcore": false,
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/nlPCdZlHtRNcF6C9hzUH4ebmV1w.jpg",
+          "genre_ids": [
+            35,
+            18,
+            10749
+          ],
+          "id": 313369,
+          "title": "La La Land",
+          "original_language": "en",
+          "original_title": "La La Land",
+          "overview": "Mia, an aspiring actress, serves lattes to movie stars in between auditions and Sebastian, a jazz musician, scrapes by playing cocktail party gigs in dingy bars, but as success mounts they are faced with decisions that begin to fray the fragile fabric of their love affair, and the dreams they worked so hard to maintain in each other threaten to rip them apart.",
+          "popularity": 0.0,
+          "poster_path": "/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg",
+          "release_date": "2016-12-01",
+          "softcore": false,
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/upNeU9FNGAvdhnoThvv64Z0MWKn.jpg",
+          "genre_ids": [
+            12,
+            16,
+            35,
             10751
           ],
-          "id": 630,
+          "id": 1185806,
+          "title": "PAW Patrol: The Dino Movie",
           "original_language": "en",
-          "original_title": "The Wizard of Oz",
-          "overview": "Young Dorothy finds herself in a magical world where she makes friends with a lion, a scarecrow and a tin man as they make their way along the yellow brick road to talk with the Wizard and ask for the things they miss most in their lives. The Wicked Witch of the West is the only thing that could stop them.",
-          "popularity": 12.2943,
-          "poster_path": "/lbezZTzzOcomu2ezKJBUsIPtqA6.jpg",
-          "release_date": "1939-08-15",
-          "title": "The Wizard of Oz",
+          "original_title": "PAW Patrol: The Dino Movie",
+          "overview": "The Paw Patrol lands on a mysterious dinosaur island after a storm, where they meet Rex, a stranded pup. When Humdinger\u0027s reckless mining triggers a volcano, the team faces their biggest rescue mission yet to save the island.",
+          "popularity": 0.0,
+          "poster_path": "/cxXSF4aY5N2cOGwaga5OnpPFHzk.jpg",
+          "release_date": "2026-07-23",
+          "softcore": false,
           "video": false,
-          "vote_average": 7.59,
-          "vote_count": 5927
+          "vote_average": 0.0,
+          "vote_count": 0
         },
         {
           "adult": false,
-          "backdrop_path": "/nKwZoaflB5VQNn0StOBAHDxU8YR.jpg",
-          "genre_ids": [
-            35,
-            18
-          ],
-          "id": 1206008,
-          "original_language": "en",
-          "original_title": "Ella McCay",
-          "overview": "An idealistic young politician juggles familial issues and a challenging work life while preparing to take over the job of her mentor, the state\u2019s longtime incumbent governor.",
-          "popularity": 11.8331,
-          "poster_path": "/iQCtK477yqp6xnHHrQG2P0lXoow.jpg",
-          "release_date": "2025-12-11",
-          "title": "Ella McCay",
-          "video": false,
-          "vote_average": 5.1,
-          "vote_count": 20
-        },
-        {
-          "adult": false,
-          "backdrop_path": "/c6LXcv9D70NpftZX1j0Z3umXhoK.jpg",
-          "genre_ids": [
-            18,
-            53
-          ],
-          "id": 1151272,
-          "original_language": "es",
-          "original_title": "Sir\u0101t",
-          "overview": "A man and his son arrive at a rave lost in the mountains of Morocco. They are looking for Marina, their daughter and sister, who disappeared months ago at another rave. Driven by fate, they decide to follow a group of ravers in search of one last party, in hopes Marina will be there.",
-          "popularity": 11.8002,
-          "poster_path": "/4RsM2U4mJr1Gf2S0W8hClrM2x80.jpg",
-          "release_date": "2025-06-06",
-          "title": "Sir\u0101t",
-          "video": false,
-          "vote_average": 6.899,
-          "vote_count": 267
-        },
-        {
-          "adult": false,
-          "backdrop_path": "/yZtnGzfZER0QU7ZG4r4RaZAaXJH.jpg",
-          "genre_ids": [
-            27,
-            53,
-            80
-          ],
-          "id": 1519168,
-          "original_language": "en",
-          "original_title": "The Jester 2",
-          "overview": "When teen magician Max crosses paths with the sinister Jester on Halloween night, she must outsmart a supernatural killer whose magic is all too real and whose tricks always end up in blood.",
-          "popularity": 11.3652,
-          "poster_path": "/47dsw1jSOV0Be5zmy7CtLhYpqU.jpg",
-          "release_date": "2025-09-15",
-          "title": "The Jester 2",
-          "video": false,
-          "vote_average": 6.4,
-          "vote_count": 39
-        },
-        {
-          "adult": false,
-          "backdrop_path": "/zWO3B2CTDguZqCrVQ2u5Xnp9VRS.jpg",
-          "genre_ids": [
-            80,
-            53,
-            35
-          ],
-          "id": 1245993,
-          "original_language": "en",
-          "original_title": "Caught Stealing",
-          "overview": "Burned-out ex-baseball player Hank Thompson unexpectedly finds himself embroiled in a dangerous struggle for survival amidst the criminal underbelly of late 1990s New York City, forced to navigate a treacherous underworld he never imagined.",
-          "popularity": 11.3591,
-          "poster_path": "/cvda8s5J8YaHjTyEyXQpvD6f3iV.jpg",
-          "release_date": "2025-08-26",
-          "title": "Caught Stealing",
-          "video": false,
-          "vote_average": 6.926,
-          "vote_count": 619
-        },
-        {
-          "adult": false,
-          "backdrop_path": "/xSD0q1FiuZkvHuy7uscOLbmd1hR.jpg",
+          "backdrop_path": "/4XPNNt0zfZKBqxxVWaQALd57UHl.jpg",
           "genre_ids": [
             12,
-            28,
+            16,
+            10751,
             14
           ],
-          "id": 13494,
-          "original_language": "en",
-          "original_title": "Red Sonja",
-          "overview": "A young girl rises from the ashes of tragedy to become the most feared warrior woman of all time: the She-Devil with a Sword.",
-          "popularity": 11.0835,
-          "poster_path": "/aE3yh4y0h96CZZpLo0UDFMWZAA9.jpg",
-          "release_date": "2025-07-31",
-          "title": "Red Sonja",
+          "id": 823219,
+          "title": "Flow",
+          "original_language": "lv",
+          "original_title": "Straume",
+          "overview": "A solitary cat, displaced by a great flood, finds refuge on a boat with various species and must navigate the challenges of adapting to a transformed world together.",
+          "popularity": 0.0,
+          "poster_path": "/z2sG41PxfL1hnL1mHbxzSREUtOf.jpg",
+          "release_date": "2024-08-29",
+          "softcore": false,
           "video": false,
-          "vote_average": 5.708,
-          "vote_count": 149
+          "vote_average": 0.0,
+          "vote_count": 0
         },
         {
           "adult": false,
-          "backdrop_path": "/kv8kCuvfhSQ50YxjowqpVn1QqhJ.jpg",
+          "backdrop_path": "/apfyLCPVFttB8oXcsLJ7q0NSFLx.jpg",
           "genre_ids": [
+            53,
+            36,
+            10752
+          ],
+          "id": 1318413,
+          "title": "Pressure",
+          "original_language": "en",
+          "original_title": "Pressure",
+          "overview": "In the tense 72 hours before D-Day, and the fate of the free world hanging in the balance, General Dwight D. Eisenhower and Captain James Stagg face an impossible choice\u2014launch the largest and most dangerous seaborne invasion in history or risk losing the war altogether.",
+          "popularity": 0.0,
+          "poster_path": "/gFjEggtrejCN79r6SXRjM269OtG.jpg",
+          "release_date": "2026-05-25",
+          "softcore": false,
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/v92U09IUqaNbZnnThWKtGPmB3Mb.jpg",
+          "genre_ids": [
+            28,
+            35
+          ],
+          "id": 1541560,
+          "title": "Stop! That! Train!",
+          "original_language": "en",
+          "original_title": "Stop! That! Train!",
+          "overview": "Best friends and train stewardesses Tess and DeeDee trade their dreary shifts on the Stank Rail for the glitzy Glamazonian Express. However, when a catastrophic Stormaganza threatens to crash the high-speed train into Celebration, Florida, the duo in coach must join forces with the snobby first-class attendants, a hot but dimwitted co-conductor, and fabulous US President Judy Gagwell to save the day.",
+          "popularity": 0.0,
+          "poster_path": "/w90dGS6D2lVO4aO5rdQ8QECrUGY.jpg",
+          "release_date": "2026-06-12",
+          "softcore": false,
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/brnfCYyz8EMbBrHgmh8sCwBi5i1.jpg",
+          "genre_ids": [
+            28,
             27,
             53
           ],
-          "id": 801937,
-          "original_language": "en",
-          "original_title": "Silent Night, Deadly Night",
-          "overview": "After witnessing his parents\u2019 brutal murder on Christmas Eve, Billy transforms into a Killer Santa, delivering a yearly spree of calculated, chilling violence. This year, his blood-soaked mission collides with love, as a young woman challenges him to confront his darkness.",
-          "popularity": 10.9248,
-          "poster_path": "/xCdSd7NnRdnL8DGLVhI95WhUNoi.jpg",
-          "release_date": "2025-12-11",
-          "title": "Silent Night, Deadly Night",
+          "id": 396535,
+          "title": "Train to Busan",
+          "original_language": "ko",
+          "original_title": "\uBD80\uC0B0\uD589",
+          "overview": "When a zombie virus pushes Korea into a state of emergency, those trapped on an express train to Busan must fight for their own survival.",
+          "popularity": 0.0,
+          "poster_path": "/vNVFt6dtcqnI7hqa6LFBUibuFiw.jpg",
+          "release_date": "2016-07-20",
+          "softcore": false,
           "video": false,
-          "vote_average": 5.714,
-          "vote_count": 21
+          "vote_average": 0.0,
+          "vote_count": 0
         },
         {
           "adult": false,
-          "backdrop_path": "/q2V1q2Xxwqg3uXQKufpdCtrnAdn.jpg",
+          "backdrop_path": "/4BSJVRQ3EsHMIVZSiKz1l58jDhg.jpg",
           "genre_ids": [
-            35,
-            14
+            27,
+            9648
           ],
-          "id": 1114967,
+          "id": 1480387,
+          "title": "undertone",
           "original_language": "en",
-          "original_title": "Good Fortune",
-          "overview": "A well-meaning but rather inept angel named Gabriel meddles in the lives of a struggling gig worker and a wealthy capitalist.",
-          "popularity": 10.6389,
-          "poster_path": "/r83HIGA0mUiy7I9qVr17pF7SCDP.jpg",
-          "release_date": "2025-10-14",
-          "title": "Good Fortune",
+          "original_title": "undertone",
+          "overview": "The host of a popular paranormal podcast becomes haunted by terrifying recordings mysteriously sent her way.",
+          "popularity": 0.0,
+          "poster_path": "/2PFgFMnrdCPXWiZl1PUvky7Mo9D.jpg",
+          "release_date": "2026-03-12",
+          "softcore": false,
           "video": false,
-          "vote_average": 7.08,
-          "vote_count": 337
+          "vote_average": 0.0,
+          "vote_count": 0
         },
         {
           "adult": false,
-          "backdrop_path": "/ffQFnAUm2Uu4RU0nijpjPRf9TBT.jpg",
+          "backdrop_path": "/i0lipAm0VHFA3EH0CPV0s5LJMIE.jpg",
           "genre_ids": [
-            18,
-            10749
+            878,
+            9648,
+            28
           ],
-          "id": 843,
-          "original_language": "cn",
-          "original_title": "\u82B1\u6A23\u5E74\u83EF",
-          "overview": "Two neighbors form a strong bond after both suspect extramarital activities of their spouses. However, they agree to keep their bond platonic so as not to commit similar wrongs.",
-          "popularity": 10.5508,
-          "poster_path": "/m8jNwTP13ubYZyh5siVuyT9pZDp.jpg",
-          "release_date": "2000-09-29",
-          "title": "In the Mood for Love",
+          "id": 1058424,
+          "title": "Hope",
+          "original_language": "ko",
+          "original_title": "\uD638\uD504",
+          "overview": "In the remote South Korean village of Hope Harbor, police chief Bum-seok and officer Sung-ae are called to investigate a mysterious creature wreaking havoc on the community. But all is not as it seems, and perceptions can be misleading. What begins as ignorance plants the seed of disaster, escalating through human conflict into a tragedy of cosmic proportions.",
+          "popularity": 0.0,
+          "poster_path": "/bcK5naYzzfY0JBCgrPrsrbV6NO1.jpg",
+          "release_date": "2026-07-15",
+          "softcore": false,
           "video": false,
-          "vote_average": 8.092,
-          "vote_count": 3100
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/jVeYae744cR2ogx9ShQ3qXOcRiZ.jpg",
+          "genre_ids": [
+            27
+          ],
+          "id": 964849,
+          "title": "Nightborn",
+          "original_language": "fi",
+          "original_title": "Y\u00F6n lapsi",
+          "overview": "In Finnish forest, Saga and her husband Jon embark on a new chapter as parents. But Saga\u0027s joy is overshadowed by a chilling suspicion about their newborn, unbeknownst to Jon, causing a rift as she alone grapples with the disturbing truth.",
+          "popularity": 0.0,
+          "poster_path": "/ddMt3IAgEHE0SWBjm97jR8gKx9B.jpg",
+          "release_date": "2026-07-01",
+          "softcore": false,
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
         }
       ],
-      "total_pages": 37,
-      "total_results": 731
+      "total_pages": 49,
+      "total_results": 969
     },
     "Headers": {
       "Content-Type": "application/json; charset=utf-8",
       "Transfer-Encoding": "chunked",
       "Connection": "keep-alive",
-      "Server": "openresty",
-      "Cache-Control": "public, max-age=12903",
-      "x-memc": "HIT",
-      "x-memc-key": "f04285b05c61f3dae2bae75b288dcf660c5b517a46bc294e671abf3e18531c20",
-      "x-az": "us-east-1c",
-      "ETag": "W/\u0022ec5911374aebd5d88f8ce092025320da\u0022",
-      "Vary": [
-        "accept-encoding",
-        "Origin"
-      ],
-      "X-Cache": "Miss from cloudfront",
-      "X-Amz-Cf-Pop": "MUC50-P3",
-      "Alt-Svc": "h3=\u0022:443\u0022"
+      "Server": "openresty"
     }
   }
 }

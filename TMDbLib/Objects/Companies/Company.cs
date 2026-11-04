@@ -10,6 +10,12 @@ namespace TMDbLib.Objects.Companies;
 public class Company
 {
     /// <summary>
+    /// Gets or sets the alternative names for the company. This property is populated when the AlternativeNames method is requested.
+    /// </summary>
+    [JsonPropertyName("alternative_names")]
+    public AlternativeNames? AlternativeNames { get; set; }
+
+    /// <summary>
     /// Gets or sets the company description.
     /// </summary>
     [JsonPropertyName("description")]
@@ -40,10 +46,10 @@ public class Company
     public string? LogoPath { get; set; }
 
     /// <summary>
-    /// Gets or sets the movies associated with the company. This property is populated when the Movies method is requested.
+    /// Gets or sets the images for the company. This property is populated when the Images method is requested.
     /// </summary>
-    [JsonPropertyName("movies")]
-    public SearchContainer<SearchMovie>? Movies { get; set; }
+    [JsonPropertyName("images")]
+    public ImagesWithId? Images { get; set; }
 
     /// <summary>
     /// Gets or sets the company name.

@@ -1,8 +1,11 @@
-﻿namespace TMDbLib.Objects.TvShows
+using TMDbLib.Utilities;
+
+namespace TMDbLib.Objects.TvShows
 {
     /// <summary>
-    /// Represents the type of episode grouping for a TV show.
+    /// Episode grouping type for a TV show.
     /// </summary>
+    
     public enum TvGroupType
     {
         /// <summary>

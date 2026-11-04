@@ -76,7 +76,7 @@ internal static class EnumExtensions
     private static readonly Dictionary<CompanyMethods, string> _companyMethodsDescriptions = new ()
     {
         [CompanyMethods.Undefined] = "Undefined",
-        [CompanyMethods.Movies] = "movies",
+        [CompanyMethods.Images] = "images",
     };
 
     private static readonly Dictionary<FindExternalSource, string> _findExternalSourceDescriptions = new ()
@@ -206,10 +206,10 @@ internal static class EnumExtensions
         [DiscoverTvShowSortBy.FirstAirDateDesc] = "first_air_date.desc",
         [DiscoverTvShowSortBy.Popularity] = "popularity.asc",
         [DiscoverTvShowSortBy.PopularityDesc] = "popularity.desc",
-        [DiscoverTvShowSortBy.Revenue] = "revenue.asc",
-        [DiscoverTvShowSortBy.RevenueDesc] = "revenue.desc",
-        [DiscoverTvShowSortBy.PrimaryReleaseDate] = "primary_release_date.asc",
-        [DiscoverTvShowSortBy.PrimaryReleaseDateDesc] = "primary_release_date.desc",
+        [DiscoverTvShowSortBy.Name] = "name.asc",
+        [DiscoverTvShowSortBy.NameDesc] = "name.desc",
+        [DiscoverTvShowSortBy.OriginalName] = "original_name.asc",
+        [DiscoverTvShowSortBy.OriginalNameDesc] = "original_name.desc",
         [DiscoverTvShowSortBy.VoteCount] = "vote_count.asc",
         [DiscoverTvShowSortBy.VoteCountDesc] = "vote_count.desc",
     };

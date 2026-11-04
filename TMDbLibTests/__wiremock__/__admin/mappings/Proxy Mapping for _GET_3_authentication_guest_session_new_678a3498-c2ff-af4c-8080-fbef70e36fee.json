@@ -1,6 +1,5 @@
 {
   "Guid": "678a3498-c2ff-af4c-8080-fbef70e36fee",
-  "UpdatedAt": "2025-12-24T18:45:16.645066Z",
   "Title": "Proxy Mapping for GET /3/authentication/guest_session/new",
   "Description": "Proxy Mapping for GET /3/authentication/guest_session/new",
   "Priority": -2000000,
@@ -17,30 +16,33 @@
     "Methods": [
       "GET"
     ],
-    "HttpVersion": "1.1"
+    "HttpVersion": "1.1",
+    "Headers": [
+      {
+        "Name": "Accept-Encoding",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "gzip, deflate, br",
+            "IgnoreCase": true
+          }
+        ],
+        "IgnoreCase": true
+      }
+    ]
   },
   "Response": {
     "StatusCode": 200,
     "BodyAsJson": {
       "success": true,
-      "guest_session_id": "ae3787c45ee77bf7200e233b07b2b8ce",
-      "expires_at": "2025-12-25 18:45:16 UTC"
+      "guest_session_id": "00000000000000000000000000000000",
+      "expires_at": "2026-01-01 00:00:00 UTC"
     },
     "Headers": {
       "Content-Type": "application/json; charset=utf-8",
       "Transfer-Encoding": "chunked",
       "Connection": "keep-alive",
-      "Server": "openresty",
-      "Cache-Control": "public, max-age=0",
-      "x-az": "us-east-1c",
-      "ETag": "W/\u0022b86c2789ab054d1c5b8047e036513dea\u0022",
-      "Vary": [
-        "accept-encoding",
-        "Origin"
-      ],
-      "X-Cache": "Miss from cloudfront",
-      "X-Amz-Cf-Pop": "MUC50-P3",
-      "Alt-Svc": "h3=\u0022:443\u0022"
+      "Server": "openresty"
     }
   }
 }

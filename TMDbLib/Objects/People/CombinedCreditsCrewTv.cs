@@ -1,52 +1,34 @@
-using System;
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using TMDbLib.Objects.General;
-using TMDbLib.Utilities.Converters;
+using TMDbLib.Objects.General.Schema;
 
 namespace TMDbLib.Objects.People;
 
 /// <summary>
-/// Represents a TV show crew credit for a person.
+/// TV crew credit for a person.
 /// </summary>
-public class CombinedCreditsCrewTv : CombinedCreditsCrewBase
+public class CombinedCreditsCrewTv : TmdbTvSummary, ICrewCredit, ITvCreditExtras
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="CombinedCreditsCrewTv"/> class.
+    /// Gets or sets the credit id.
     /// </summary>
-    public CombinedCreditsCrewTv()
-    {
-        MediaType = MediaType.Tv;
-    }
+    [JsonPropertyName("credit_id")]
+    public string? CreditId { get; set; }
 
     /// <summary>
-    /// Gets or sets the TV show name.
+    /// Gets or sets the crew department.
     /// </summary>
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
+    [JsonPropertyName("department")]
+    public string? Department { get; set; }
 
     /// <summary>
-    /// Gets or sets the original TV show name.
-    /// </summary>
-    [JsonPropertyName("original_name")]
-    public string? OriginalName { get; set; }
-
-    /// <summary>
-    /// Gets or sets the first air date.
-    /// </summary>
-    [JsonPropertyName("first_air_date")]
-    [JsonConverter(typeof(TmdbUtcTimeConverter))]
-    public DateTime? FirstAirDate { get; set; }
-
-    /// <summary>
-    /// Gets or sets the origin country codes.
-    /// </summary>
-    [JsonPropertyName("origin_country")]
-    public List<string>? OriginCountry { get; set; }
-
-    /// <summary>
-    /// Gets or sets the number of episodes.
+    /// Gets or sets the number of episodes the person worked on.
     /// </summary>
     [JsonPropertyName("episode_count")]
     public int EpisodeCount { get; set; }
+
+    /// <summary>
+    /// Gets or sets the job title.
+    /// </summary>
+    [JsonPropertyName("job")]
+    public string? Job { get; set; }
 }

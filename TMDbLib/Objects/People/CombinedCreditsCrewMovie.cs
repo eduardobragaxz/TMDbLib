@@ -1,51 +1,28 @@
-using System;
 using System.Text.Json.Serialization;
-using TMDbLib.Objects.General;
-using TMDbLib.Utilities.Converters;
+using TMDbLib.Objects.General.Schema;
 
 namespace TMDbLib.Objects.People;
 
 /// <summary>
-/// Represents a movie crew credit for a person.
+/// Movie crew credit for a person.
 /// </summary>
-public class CombinedCreditsCrewMovie : CombinedCreditsCrewBase
+public class CombinedCreditsCrewMovie : TmdbMovieSummary, ICrewCredit
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="CombinedCreditsCrewMovie"/> class.
+    /// Gets or sets the credit id.
     /// </summary>
-    public CombinedCreditsCrewMovie()
-    {
-        MediaType = MediaType.Movie;
-    }
+    [JsonPropertyName("credit_id")]
+    public string? CreditId { get; set; }
 
     /// <summary>
-    /// Gets or sets a value indicating whether the content is adult.
+    /// Gets or sets the crew department.
     /// </summary>
-    [JsonPropertyName("adult")]
-    public bool Adult { get; set; }
+    [JsonPropertyName("department")]
+    public string? Department { get; set; }
 
     /// <summary>
-    /// Gets or sets the original title.
+    /// Gets or sets the job title.
     /// </summary>
-    [JsonPropertyName("original_title")]
-    public string? OriginalTitle { get; set; }
-
-    /// <summary>
-    /// Gets or sets the release date.
-    /// </summary>
-    [JsonPropertyName("release_date")]
-    [JsonConverter(typeof(TmdbUtcTimeConverter))]
-    public DateTime? ReleaseDate { get; set; }
-
-    /// <summary>
-    /// Gets or sets the movie title.
-    /// </summary>
-    [JsonPropertyName("title")]
-    public string? Title { get; set; }
-
-    /// <summary>
-    /// Gets or sets a value indicating whether the movie has video content.
-    /// </summary>
-    [JsonPropertyName("video")]
-    public bool Video { get; set; }
+    [JsonPropertyName("job")]
+    public string? Job { get; set; }
 }

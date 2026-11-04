@@ -14,16 +14,27 @@ namespace TMDbLib.Client;
 
 public partial class TMDbClient
 {
-    private async Task<T?> GetCollectionMethodInternal<T>(int collectionId, CollectionMethods collectionMethod, string? language = null, CancellationToken cancellationToken = default)
+    private async Task<T?> GetCollectionMethodInternal<T>(int collectionId, CollectionMethods collectionMethod, string? language = null, string? includeImageLanguage = null, CancellationToken cancellationToken = default)
         where T : new()
     {
         var req = _client.Create("collection/{collectionId}/{method}");
         req.AddUrlSegment("collectionId", collectionId.ToString(CultureInfo.InvariantCulture));
         req.AddUrlSegment("method", collectionMethod.GetDescription<CollectionMethods>());
 
-        if (language is not null)
+        // Only the images sub-resource accepts these, per the TMDb OpenAPI spec.
+        if (collectionMethod == CollectionMethods.Images)
         {
-            req.AddParameter("language", language);
+            language ??= DefaultLanguage;
+            if (!string.IsNullOrWhiteSpace(language))
+            {
+                req.AddParameter("language", language);
+            }
+
+            includeImageLanguage ??= DefaultImageLanguage;
+            if (!string.IsNullOrWhiteSpace(includeImageLanguage))
+            {
+                req.AddParameter("include_image_language", includeImageLanguage);
+            }
         }
 
         var resp = await req.GetOfT<T>(cancellationToken).ConfigureAwait(false);
@@ -32,26 +43,26 @@ public partial class TMDbClient
     }
 
     /// <summary>
-    /// Retrieves a collection by its TMDb ID.
+    /// Gets a collection by id.
     /// </summary>
-    /// <param name="collectionId">The TMDb ID of the collection.</param>
-    /// <param name="extraMethods">Additional data to include in the response using the append_to_response pattern.</param>
-    /// <param name="cancellationToken">A cancellation token to cancel the operation.</param>
-    /// <returns>The collection object, or null if not found.</returns>
+    /// <param name="collectionId">The TMDb id of the collection.</param>
+    /// <param name="extraMethods">Additional data to append to the response.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>The collection, or null if not found.</returns>
     public async Task<Collection?> GetCollectionAsync(int collectionId, CollectionMethods extraMethods = CollectionMethods.Undefined, CancellationToken cancellationToken = default)
     {
         return await GetCollectionAsync(collectionId, DefaultLanguage, null, extraMethods, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
-    /// Retrieves a collection by its TMDb ID with language and image language options.
+    /// Gets a collection by id with language options.
     /// </summary>
-    /// <param name="collectionId">The TMDb ID of the collection.</param>
-    /// <param name="language">The ISO 639-1 language code for the collection text. Defaults to the client's DefaultLanguage.</param>
-    /// <param name="includeImageLanguages">A comma-separated list of ISO 639-1 language codes for including images. Defaults to the client's DefaultImageLanguage.</param>
-    /// <param name="extraMethods">Additional data to include in the response using the append_to_response pattern.</param>
-    /// <param name="cancellationToken">A cancellation token to cancel the operation.</param>
-    /// <returns>The collection object, or null if not found.</returns>
+    /// <param name="collectionId">The TMDb id of the collection.</param>
+    /// <param name="language">The ISO 639-1 language code.</param>
+    /// <param name="includeImageLanguages">Comma-separated ISO 639-1 codes for image languages.</param>
+    /// <param name="extraMethods">Additional data to append to the response.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>The collection, or null if not found.</returns>
     public async Task<Collection?> GetCollectionAsync(int collectionId, string? language, string? includeImageLanguages, CollectionMethods extraMethods = CollectionMethods.Undefined, CancellationToken cancellationToken = default)
     {
         var req = _client.Create("collection/{collectionId}");
@@ -100,25 +111,26 @@ public partial class TMDbClient
     }
 
     /// <summary>
-    /// Retrieves images for a specific collection.
+    /// Gets the images for a collection.
     /// </summary>
-    /// <param name="collectionId">The TMDb ID of the collection.</param>
-    /// <param name="language">The ISO 639-1 language code for filtering images. If null, uses the client's DefaultLanguage.</param>
-    /// <param name="cancellationToken">A cancellation token to cancel the operation.</param>
-    /// <returns>An object containing the collection's images (posters and backdrops).</returns>
-    public async Task<ImagesWithId?> GetCollectionImagesAsync(int collectionId, string? language = null, CancellationToken cancellationToken = default)
+    /// <param name="collectionId">The TMDb id of the collection.</param>
+    /// <param name="language">The ISO 639-1 language code.</param>
+    /// <param name="includeImageLanguage">A comma-separated list of ISO 639-1 codes of image languages to include (e.g. "en,null").</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>The collection's posters and backdrops.</returns>
+    public async Task<ImagesWithId?> GetCollectionImagesAsync(int collectionId, string? language = null, string? includeImageLanguage = null, CancellationToken cancellationToken = default)
     {
-        return await GetCollectionMethodInternal<ImagesWithId>(collectionId, CollectionMethods.Images, language, cancellationToken).ConfigureAwait(false);
+        return await GetCollectionMethodInternal<ImagesWithId>(collectionId, CollectionMethods.Images, language, includeImageLanguage, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
-    /// Retrieves all translations for a specific collection.
+    /// Gets the translations for a collection.
     /// </summary>
-    /// <param name="collectionId">The TMDb ID of the collection.</param>
-    /// <param name="cancellationToken">A cancellation token to cancel the operation.</param>
-    /// <returns>A container with all available translations for the collection.</returns>
+    /// <param name="collectionId">The TMDb id of the collection.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>The collection's translations.</returns>
     public async Task<TranslationsContainer?> GetCollectionTranslationsAsync(int collectionId, CancellationToken cancellationToken = default)
     {
-        return await GetCollectionMethodInternal<TranslationsContainer>(collectionId, CollectionMethods.Translations, null, cancellationToken).ConfigureAwait(false);
+        return await GetCollectionMethodInternal<TranslationsContainer>(collectionId, CollectionMethods.Translations, cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 }

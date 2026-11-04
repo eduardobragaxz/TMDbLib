@@ -1,13 +1,7 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TMDbLib.Objects.Configuration;
-using Xunit;
-using TMDbLib.Objects.Timezones;
 using TMDbLibTests.JsonHelpers;
-using TMDbLib.Objects.Countries;
-using TMDbLib.Objects.General;
-using TMDbLib.Objects.Languages;
+using Xunit;
 
 namespace TMDbLibTests;
 
@@ -22,7 +16,7 @@ public class ClientConfigurationTests : TestBase
     [Fact]
     public async Task TestConfigurationAsync()
     {
-        var result = await TMDbClient.GetAPIConfiguration(TestContext.Current.CancellationToken);
+        var result = await TMDbClient.GetAPIConfiguration(cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(result);
 
         await Verify(result);
@@ -34,7 +28,7 @@ public class ClientConfigurationTests : TestBase
     [Fact]
     public async Task TestPrimaryTranslationsAsync()
     {
-        var result = await TMDbClient.GetPrimaryTranslationsAsync(TestContext.Current.CancellationToken);
+        var result = await TMDbClient.GetPrimaryTranslationsAsync(cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(result);
 
         Assert.Contains("da-DK", result);
@@ -46,7 +40,7 @@ public class ClientConfigurationTests : TestBase
     [Fact]
     public async Task TestCountryListAsync()
     {
-        var result = await TMDbClient.GetCountriesAsync(TestContext.Current.CancellationToken);
+        var result = await TMDbClient.GetCountriesAsync(cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(result);
         Assert.NotEmpty(result);
         var single = result.Single(s => s.EnglishName == "Denmark");
@@ -60,7 +54,7 @@ public class ClientConfigurationTests : TestBase
     [Fact]
     public async Task TestLanguageListAsync()
     {
-        var result = await TMDbClient.GetLanguagesAsync(TestContext.Current.CancellationToken);
+        var result = await TMDbClient.GetLanguagesAsync(cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(result);
         Assert.NotEmpty(result);
         var single = result.Single(s => s.Name == "Dansk");
@@ -74,7 +68,7 @@ public class ClientConfigurationTests : TestBase
     [Fact]
     public async Task TestTimezonesListAsync()
     {
-        var result = await TMDbClient.GetTimezonesAsync(TestContext.Current.CancellationToken);
+        var result = await TMDbClient.GetTimezonesAsync(cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(result);
         Assert.NotNull(result.List);
         Assert.NotEmpty(result.List);
@@ -89,7 +83,7 @@ public class ClientConfigurationTests : TestBase
     [Fact]
     public async Task TestJobListAsync()
     {
-        var jobs = await TMDbClient.GetJobsAsync(TestContext.Current.CancellationToken);
+        var jobs = await TMDbClient.GetJobsAsync(cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(jobs);
         Assert.NotEmpty(jobs);
         var single = jobs.Single(s => s.Department == "Writing");

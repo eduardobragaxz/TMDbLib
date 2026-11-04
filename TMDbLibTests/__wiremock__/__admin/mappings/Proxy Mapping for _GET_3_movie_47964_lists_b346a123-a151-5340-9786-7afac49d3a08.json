@@ -1,6 +1,5 @@
 {
   "Guid": "b346a123-a151-5340-9786-7afac49d3a08",
-  "UpdatedAt": "2025-12-24T18:45:20.3736732Z",
   "Title": "Proxy Mapping for GET /3/movie/47964/lists",
   "Description": "Proxy Mapping for GET /3/movie/47964/lists",
   "Priority": -2000000,
@@ -17,7 +16,20 @@
     "Methods": [
       "GET"
     ],
-    "HttpVersion": "1.1"
+    "HttpVersion": "1.1",
+    "Headers": [
+      {
+        "Name": "Accept-Encoding",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "gzip, deflate, br",
+            "IgnoreCase": true
+          }
+        ],
+        "IgnoreCase": true
+      }
+    ]
   },
   "Response": {
     "StatusCode": 200,
@@ -28,19 +40,162 @@
         {
           "description": "",
           "favorite_count": 0,
-          "id": 8168597,
-          "item_count": 18046,
+          "id": 8676610,
+          "item_count": 945,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
-          "name": "movies",
+          "name": "list",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 7079769,
+          "item_count": 2485,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Movies",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8205193,
+          "item_count": 1009,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "***Ac\u021Biune***",
+          "poster_path": null
+        },
+        {
+          "description": "Curated list of Most Popular on Max (US). Updated frequently. Last updated August 06, 2026.",
+          "favorite_count": 0,
+          "id": 8658716,
+          "item_count": 136,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "HBO Max US - Thriller Movies",
+          "poster_path": null
+        },
+        {
+          "description": "Curated list of Most Popular on Max (US). Updated frequently. Last updated August 06, 2026.",
+          "favorite_count": 0,
+          "id": 8658698,
+          "item_count": 142,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "HBO Max US - Action Movies",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8665054,
+          "item_count": 5417,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "New English Movies",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8665052,
+          "item_count": 6550,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "New in English",
+          "poster_path": null
+        },
+        {
+          "description": "Automated renaming to: Dual Audio Hindi Movies 5 to 7",
+          "favorite_count": 0,
+          "id": 8665071,
+          "item_count": 4421,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Dual Audio Hindi Movies 5 to 7",
+          "poster_path": null
+        },
+        {
+          "description": "Automated renaming to: Dual Audio Hindi Movies",
+          "favorite_count": 0,
+          "id": 8665064,
+          "item_count": 6712,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Dual Audio Hindi Movies",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 19829,
+          "item_count": 1882,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Movies about everything...",
+          "poster_path": null
+        },
+        {
+          "description": "All of my ratings are the movies that I have seen.",
+          "favorite_count": 0,
+          "id": 8302254,
+          "item_count": 2560,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Movies That I have watched all",
+          "poster_path": null
+        },
+        {
+          "description": "",
+          "favorite_count": 0,
+          "id": 8672648,
+          "item_count": 2486,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Thriller Hindi Dubbed",
+          "poster_path": null
+        },
+        {
+          "description": "Watched Movies",
+          "favorite_count": 0,
+          "id": 8510180,
+          "item_count": 1378,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Watched Movies",
+          "poster_path": null
+        },
+        {
+          "description": "A list of mids found by Mid Hunters",
+          "favorite_count": 0,
+          "id": 8272938,
+          "item_count": 11028,
+          "iso_639_1": "en",
+          "iso_3166_1": "US",
+          "list_type": "movie",
+          "name": "Mid Hunting List",
           "poster_path": null
         },
         {
           "description": "",
           "favorite_count": 0,
           "id": 8238235,
-          "item_count": 15356,
+          "item_count": 16736,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
@@ -51,7 +206,7 @@
           "description": "",
           "favorite_count": 0,
           "id": 143813,
-          "item_count": 16546,
+          "item_count": 17175,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
@@ -59,164 +214,21 @@
           "poster_path": null
         },
         {
-          "description": "A list of mids found by Mid Hunters",
+          "description": "My Blu-ray collection.",
           "favorite_count": 0,
-          "id": 8272938,
-          "item_count": 9419,
+          "id": 82018,
+          "item_count": 449,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
-          "name": "Mid Hunting List",
+          "name": "Blu-rays",
           "poster_path": null
         },
         {
           "description": "",
           "favorite_count": 0,
-          "id": 103747,
-          "item_count": 1377,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "Grandma",
-          "poster_path": null
-        },
-        {
-          "description": "Cain Cinema features a 4K UHD picture on a 120\u0022 (16:9) screen, and a 7.2.4 Dolby Atmos audio experience. ",
-          "favorite_count": 0,
-          "id": 7081593,
-          "item_count": 2024,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "Now Showing at Cain Cinema",
-          "poster_path": null
-        },
-        {
-          "description": "",
-          "favorite_count": 0,
-          "id": 8579741,
-          "item_count": 4131,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "listName",
-          "poster_path": null
-        },
-        {
-          "description": "",
-          "favorite_count": 0,
-          "id": 8579740,
-          "item_count": 4131,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "listName",
-          "poster_path": null
-        },
-        {
-          "description": "",
-          "favorite_count": 0,
-          "id": 8579737,
-          "item_count": 4131,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "listName",
-          "poster_path": null
-        },
-        {
-          "description": "",
-          "favorite_count": 0,
-          "id": 8579736,
-          "item_count": 3833,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "listName",
-          "poster_path": null
-        },
-        {
-          "description": "",
-          "favorite_count": 0,
-          "id": 8579739,
-          "item_count": 2683,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "listName",
-          "poster_path": null
-        },
-        {
-          "description": "",
-          "favorite_count": 0,
-          "id": 8289772,
-          "item_count": 572,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "Founders TW",
-          "poster_path": null
-        },
-        {
-          "description": "HTM Founder\u0027s Favorites",
-          "favorite_count": 0,
-          "id": 8259538,
-          "item_count": 770,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "Founders Favorites",
-          "poster_path": null
-        },
-        {
-          "description": "",
-          "favorite_count": 0,
-          "id": 8205193,
-          "item_count": 900,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "***Ac\u021Biune***",
-          "poster_path": null
-        },
-        {
-          "description": "Movies Seen",
-          "favorite_count": 0,
-          "id": 7973,
-          "item_count": 777,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "Movies (Seen)",
-          "poster_path": null
-        },
-        {
-          "description": "",
-          "favorite_count": 0,
-          "id": 8576117,
-          "item_count": 875,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "film",
-          "poster_path": null
-        },
-        {
-          "description": "",
-          "favorite_count": 0,
-          "id": 8297084,
-          "item_count": 980,
-          "iso_639_1": "en",
-          "iso_3166_1": "US",
-          "list_type": "movie",
-          "name": "Watched2",
-          "poster_path": null
-        },
-        {
-          "description": "Movie Watched List",
-          "favorite_count": 0,
-          "id": 7113415,
-          "item_count": 1171,
+          "id": 8236367,
+          "item_count": 1492,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
@@ -224,48 +236,36 @@
           "poster_path": null
         },
         {
-          "description": "Watched Movies",
+          "description": "Films I own on DVD and Blu-Ray.",
           "favorite_count": 0,
-          "id": 8510180,
-          "item_count": 1232,
+          "id": 8570792,
+          "item_count": 1871,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
-          "name": "Watched Movies",
+          "name": "Physical Media - Movies",
           "poster_path": null
         },
         {
-          "description": "desc",
+          "description": "Master List In Progress",
           "favorite_count": 0,
-          "id": 63036,
-          "item_count": 11086,
+          "id": 51108,
+          "item_count": 13495,
           "iso_639_1": "en",
           "iso_3166_1": "US",
           "list_type": "movie",
-          "name": "2010-2018;US;All",
+          "name": "My Movies",
           "poster_path": null
         }
       ],
-      "total_pages": 28,
-      "total_results": 559
+      "total_pages": 33,
+      "total_results": 648
     },
     "Headers": {
       "Content-Type": "application/json; charset=utf-8",
       "Transfer-Encoding": "chunked",
       "Connection": "keep-alive",
-      "Server": "openresty",
-      "Cache-Control": "public, max-age=27504",
-      "x-memc": "HIT",
-      "x-memc-key": "8856a679ffc44216ba0e4b8dae8c3d18eeafd8f4e053ff251dde9774dfc5ceac",
-      "x-az": "us-east-1a",
-      "ETag": "W/\u0022e47dd5b55402942faa2d4878b13b0e36\u0022",
-      "Vary": [
-        "accept-encoding",
-        "Origin"
-      ],
-      "X-Cache": "Hit from cloudfront",
-      "X-Amz-Cf-Pop": "MUC50-P3",
-      "Alt-Svc": "h3=\u0022:443\u0022"
+      "Server": "openresty"
     }
   }
 }

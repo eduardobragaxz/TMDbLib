@@ -23,11 +23,16 @@ public abstract class ChangeItemBase
     public string? Id { get; set; }
 
     /// <summary>
-    /// Gets or sets a language code, e.g. en
-    /// This field is not always set.
+    /// Gets or sets the language code (e.g. "en"); not always set.
     /// </summary>
     [JsonPropertyName("iso_639_1")]
     public string? Iso_639_1 { get; set; }
+
+    /// <summary>
+    /// Gets or sets the country code (e.g. "US"); not always set.
+    /// </summary>
+    [JsonPropertyName("iso_3166_1")]
+    public string? Iso_3166_1 { get; set; }
 
     /// <summary>
     /// Gets or sets the UTC timestamp when the change occurred.

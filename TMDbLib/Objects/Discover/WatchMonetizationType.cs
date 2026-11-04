@@ -6,6 +6,7 @@ namespace TMDbLib.Objects.Discover;
 /// <summary>
 /// Specifies the monetization type for watch provider filtering.
 /// </summary>
+
 public enum WatchMonetizationType
 {
     /// <summary>

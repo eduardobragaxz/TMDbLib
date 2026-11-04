@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 namespace TMDbLib.Objects.Credit;
 
 /// <summary>
-/// Represents a TV show episode in a credit context.
+/// TV episode in a credit context.
 /// </summary>
 public class CreditEpisode
 {
     /// <summary>
-    /// Gets or sets the air date of the episode.
+    /// Gets or sets the air date.
     /// </summary>
     [JsonPropertyName("air_date")]
     public DateTime? AirDate { get; set; }
@@ -21,25 +21,25 @@ public class CreditEpisode
     public long EpisodeNumber { get; set; }
 
     /// <summary>
-    /// Gets or sets the name of the episode.
+    /// Gets or sets the episode name.
     /// </summary>
     [JsonPropertyName("name")]
     public string? Name { get; set; }
 
     /// <summary>
-    /// Gets or sets the overview of the episode.
+    /// Gets or sets the overview.
     /// </summary>
     [JsonPropertyName("overview")]
     public string? Overview { get; set; }
 
     /// <summary>
-    /// Gets or sets the season number the episode belongs to.
+    /// Gets or sets the season number.
     /// </summary>
     [JsonPropertyName("season_number")]
     public int SeasonNumber { get; set; }
 
     /// <summary>
-    /// Gets or sets the still image path for the episode.
+    /// Gets or sets the still image path.
     /// </summary>
     [JsonPropertyName("still_path")]
     public string? StillPath { get; set; }

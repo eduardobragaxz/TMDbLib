@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using TMDbLib.Utilities;
 
 namespace TMDbLib.Objects.Discover;
@@ -6,6 +6,7 @@ namespace TMDbLib.Objects.Discover;
 /// <summary>
 /// Specifies the sorting options for TV show discovery queries.
 /// </summary>
+
 public enum DiscoverTvShowSortBy
 {
     /// <summary>
@@ -50,28 +51,28 @@ public enum DiscoverTvShowSortBy
     PopularityDesc,
 
     /// <summary>
-    /// Sort by revenue in ascending order.
+    /// Sort by name in ascending order.
     /// </summary>
-    [JsonStringEnumMemberName("revenue.asc")]
-    Revenue,
+    [JsonStringEnumMemberName("name.asc")]
+    Name,
 
     /// <summary>
-    /// Sort by revenue in descending order.
+    /// Sort by name in descending order.
     /// </summary>
-    [JsonStringEnumMemberName("revenue.desc")]
-    RevenueDesc,
+    [JsonStringEnumMemberName("name.desc")]
+    NameDesc,
 
     /// <summary>
-    /// Sort by primary release date in ascending order.
+    /// Sort by original name in ascending order.
     /// </summary>
-    [JsonStringEnumMemberName("primary_release_date.asc")]
-    PrimaryReleaseDate,
+    [JsonStringEnumMemberName("original_name.asc")]
+    OriginalName,
 
     /// <summary>
-    /// Sort by primary release date in descending order.
+    /// Sort by original name in descending order.
     /// </summary>
-    [JsonStringEnumMemberName("primary_release_date.desc")]
-    PrimaryReleaseDateDesc,
+    [JsonStringEnumMemberName("original_name.desc")]
+    OriginalNameDesc,
 
     /// <summary>
     /// Sort by vote count in ascending order.

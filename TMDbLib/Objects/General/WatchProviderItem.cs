@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace TMDbLib.Objects.General;
@@ -12,6 +13,12 @@ public class WatchProviderItem
     /// </summary>
     [JsonPropertyName("display_priority")]
     public int? DisplayPriority { get; set; }
+
+    /// <summary>
+    /// Gets or sets the per-country display priorities for the provider, keyed by ISO 3166-1 country code.
+    /// </summary>
+    [JsonPropertyName("display_priorities")]
+    public Dictionary<string, int>? DisplayPriorities { get; set; }
 
     /// <summary>
     /// Gets or sets the logo path for the provider.

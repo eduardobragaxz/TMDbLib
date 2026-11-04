@@ -8,6 +8,7 @@ namespace TMDbLib.Objects.Collections;
 /// <summary>
 /// Specifies additional methods to include when retrieving collection information.
 /// </summary>
+
 [Flags]
 public enum CollectionMethods
 {

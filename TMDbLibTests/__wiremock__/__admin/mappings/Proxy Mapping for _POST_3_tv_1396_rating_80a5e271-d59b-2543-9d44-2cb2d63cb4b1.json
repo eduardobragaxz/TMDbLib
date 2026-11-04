@@ -1,6 +1,5 @@
 {
   "Guid": "80a5e271-d59b-2543-9d44-2cb2d63cb4b1",
-  "UpdatedAt": "2025-12-24T18:45:22.7457923Z",
   "Title": "Proxy Mapping for POST /3/tv/1396/rating",
   "Description": "Proxy Mapping for POST /3/tv/1396/rating",
   "Priority": -2000000,
@@ -20,6 +19,17 @@
     "HttpVersion": "1.1",
     "Headers": [
       {
+        "Name": "Accept-Encoding",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "gzip, deflate, br",
+            "IgnoreCase": true
+          }
+        ],
+        "IgnoreCase": true
+      },
+      {
         "Name": "Content-Type",
         "Matchers": [
           {
@@ -36,7 +46,7 @@
       "Matcher": {
         "Name": "JsonMatcher",
         "Pattern": {
-          "value": 5.0
+          "value": 5
         },
         "IgnoreCase": true,
         "Regex": false
@@ -54,17 +64,7 @@
       "Content-Type": "application/json; charset=utf-8",
       "Transfer-Encoding": "chunked",
       "Connection": "keep-alive",
-      "Vary": [
-        "accept-encoding",
-        "Origin"
-      ],
-      "Server": "openresty",
-      "Cache-Control": "public, max-age=0",
-      "x-az": "us-east-1b",
-      "ETag": "W/\u002204302547257ccb7e68844cdd59055002\u0022",
-      "X-Cache": "Miss from cloudfront",
-      "X-Amz-Cf-Pop": "MUC50-P3",
-      "Alt-Svc": "h3=\u0022:443\u0022"
+      "Server": "openresty"
     }
   }
 }

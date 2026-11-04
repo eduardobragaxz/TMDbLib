@@ -2,7 +2,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using TMDbLib.Objects.Authentication;
 using TMDbLib.Objects.General;
-using TMDbLib.Objects.TvShows;
 using TMDbLib.Utilities.Serializer;
 using TMDbLibTests.Helpers;
 using TMDbLibTests.JsonHelpers;
@@ -21,13 +20,8 @@ public class AccountStateConverterTest : TestBase
     [Fact]
     public void AccountStateConverter_WithData()
     {
-        // { "rated": { "value": 5 } }
-        var original = new
-        {
-            rated = new { value = 5 }
-        };
+        const string json = """{"rated":{"value":5}}""";
 
-        var json = Serializer.SerializeToString(original);
         var result = Serializer.DeserializeFromString<AccountState>(json);
 
         Verify(new
@@ -43,10 +37,8 @@ public class AccountStateConverterTest : TestBase
     [Fact]
     public void AccountStateConverter_WithoutData()
     {
-        // { "rated": false }
-        var original = new { rated = false };
+        const string json = """{"rated":false}""";
 
-        var json = Serializer.SerializeToString(original);
         var result = Serializer.DeserializeFromString<AccountState>(json);
 
         Verify(new
@@ -64,7 +56,7 @@ public class AccountStateConverterTest : TestBase
     public async Task TestAccountStateConverterAccountState()
     {
         await TMDbClient.SetSessionInformationAsync(TestConfig.UserSessionId, SessionType.UserSession);
-        var accountState = await TMDbClient.GetMovieAccountStateAsync(IdHelper.Avatar, TestContext.Current.CancellationToken);
+        var accountState = await TMDbClient.GetMovieAccountStateAsync(IdHelper.Avatar, cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(accountState);
         await Verify(accountState);
@@ -78,7 +70,7 @@ public class AccountStateConverterTest : TestBase
     public async Task TestAccountStateConverterTvEpisodeAccountState()
     {
         await TMDbClient.SetSessionInformationAsync(TestConfig.UserSessionId, SessionType.UserSession);
-        var season = await TMDbClient.GetTvSeasonAccountStateAsync(IdHelper.BigBangTheory, 1, TestContext.Current.CancellationToken);
+        var season = await TMDbClient.GetTvSeasonAccountStateAsync(IdHelper.BigBangTheory, 1, cancellationToken: TestContext.Current.CancellationToken);
         Assert.NotNull(season);
         Assert.NotNull(season.Results);
 

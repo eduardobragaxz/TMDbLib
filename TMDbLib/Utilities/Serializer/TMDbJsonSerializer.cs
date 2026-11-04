@@ -5,7 +5,8 @@ using System.Text.Json;
 namespace TMDbLib.Utilities.Serializer;
 
 /// <summary>
-/// JSON serializer implementation for TMDbLib using Newtonsoft.Json with custom converters.
+/// JSON serializer implementation for TMDbLib using System.Text.Json with the
+/// library's custom converters and source-generated type metadata pre-registered.
 /// </summary>
 public class TMDbJsonSerializer : ITMDbSerializer
 {
@@ -21,7 +22,7 @@ public class TMDbJsonSerializer : ITMDbSerializer
     public static TMDbJsonSerializer Instance { get; } = new ();
 
     /// <summary>
-    /// Serializes an object to a stream.
+    /// Gets the <see cref="JsonSerializerOptions"/> in use.
     /// </summary>
     /// <param name="value">The value to be converted.</param>
     /// <typeparam name="T">The type of the object.</typeparam>
