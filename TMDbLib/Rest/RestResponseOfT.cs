@@ -26,6 +26,7 @@ internal class RestResponse<T> : RestResponse
         }
 
         using Stream content = await GetContent().ConfigureAwait(false);
+         string contents = await GetContentString().ConfigureAwait(false);
         var result = _client.Serializer.Deserialize<T>(content);
 
         return result is T typed ? typed : default;

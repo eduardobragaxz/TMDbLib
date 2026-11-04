@@ -29,6 +29,15 @@ internal class RestResponse : IDisposable
 
         return await _response.Content.ReadAsStreamAsync().ConfigureAwait(false);
     }
+    public async Task<string> GetContentString()
+    {
+        if (_response is null)
+        {
+            throw new InvalidOperationException("Cannot get content from a null response");
+        }
+
+        return await _response.Content.ReadAsStringAsync().ConfigureAwait(false);
+    }
 
     public string? GetHeader(string name, string? @default = null)
     {

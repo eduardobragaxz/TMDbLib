@@ -373,7 +373,7 @@ public partial class TMDbClient : IDisposable
 
         if (disposing)
         {
-            // _client?.Dispose();
+             _client?.Dispose();
         }
 
         _disposed = true;

@@ -83,6 +83,7 @@ namespace TMDbLib.Utilities;
 [JsonSerializable(typeof(ListStatus))]
 [JsonSerializable(typeof(SearchContainerWithDates<SearchMovie>))]
 [JsonSerializable(typeof(TmdbMediaSummary))]
+[JsonSerializable(typeof(SearchContainer<TmdbEntity>))]
 internal partial class SourceGenerationContext : JsonSerializerContext
 {
 }
