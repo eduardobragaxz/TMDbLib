@@ -32,15 +32,15 @@ internal class TmdbEntityConverter : JsonConverter<TmdbEntity>
             return null;
         }
 
-        var mediaType = mediaTypeElement.Deserialize((JsonTypeInfo<MediaType>)options.GetTypeInfo(typeof(MediaType)));
+        var mediaType = mediaTypeElement.Deserialize(options.GetTypeInfo<MediaType>());
         return mediaType switch
         {
-            MediaType.Movie => (TmdbEntity?)element.Deserialize(options.GetTypeInfo(typeof(SearchMovie))),
-            MediaType.Tv => (TmdbEntity?)element.Deserialize(options.GetTypeInfo(typeof(SearchTv))),
-            MediaType.Person => (TmdbEntity?)element.Deserialize(options.GetTypeInfo(typeof(SearchPerson))),
-            MediaType.Episode or MediaType.TvEpisode => (TmdbEntity?)element.Deserialize(options.GetTypeInfo(typeof(SearchTvEpisode))),
-            MediaType.Season or MediaType.TvSeason => (TmdbEntity?)element.Deserialize(options.GetTypeInfo(typeof(SearchTvSeason))),
-            MediaType.Collection => (TmdbEntity?)element.Deserialize(options.GetTypeInfo(typeof(SearchCollection))),
+            MediaType.Movie => element.Deserialize(options.GetTypeInfo<SearchMovie>()),
+            MediaType.Tv => element.Deserialize(options.GetTypeInfo<SearchTv>()),
+            MediaType.Person => element.Deserialize(options.GetTypeInfo<SearchPerson>()),
+            MediaType.Episode or MediaType.TvEpisode => element.Deserialize(options.GetTypeInfo<SearchTvEpisode>()),
+            MediaType.Season or MediaType.TvSeason => element.Deserialize(options.GetTypeInfo<SearchTvSeason>()),
+            MediaType.Collection => element.Deserialize(options.GetTypeInfo<SearchCollection>()),
             _ => throw new ArgumentOutOfRangeException(nameof(reader), mediaType, "Unsupported media type"),
         };
     }
