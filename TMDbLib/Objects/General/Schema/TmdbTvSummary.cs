@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using TMDbLib.Utilities.Converters;
 
 namespace TMDbLib.Objects.General.Schema;
 
@@ -22,6 +23,7 @@ public class TmdbTvSummary : TmdbMediaSummary
     /// Gets or sets the first-air date.
     /// </summary>
     [JsonPropertyName("first_air_date")]
+    [JsonConverter(typeof(TmdbUtcTimeConverter))]
     public DateTime? FirstAirDate { get; set; }
 
     /// <summary>

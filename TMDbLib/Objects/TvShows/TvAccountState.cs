@@ -12,5 +12,6 @@ public class TvAccountState
     /// Gets or sets the user rating.
     /// </summary>
     [JsonPropertyName("rated")]
+    [JsonConverter(typeof(AccountStateConverter))]
     public double? Rated { get; set; }
 }
